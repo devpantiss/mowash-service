@@ -19,7 +19,7 @@ const Hero = () => {
 
       {/* Hero Section Content */}
       <div className="flex flex-col items-center justify-center text-center h-full px-8">
-        <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">India's 1st Digital platform in WASH and Circular Economy</h1>
+        <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">India&apos;s 1st Digital platform in WASH and Circular Economy</h1>
         {/* <p className="text-white text-lg md:text-xl mb-6">
           Mental health is hard. Getting support doesn&apos;t need to be. Our app puts the tools to feel better
           in your back pocket, with personalized content to manage stress and anxiety, get better sleep, 
