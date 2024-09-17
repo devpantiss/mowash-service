@@ -20,7 +20,7 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-center text-center h-full px-8">
         <h1 className="text-white text-4xl md:text-6xl font-bold mb-4">Calm your mind. Change your life.</h1>
         <p className="text-white text-lg md:text-xl mb-6">
-          Mental health is hard. Getting support doesn't need to be. Our app puts the tools to feel better
+          Mental health is hard. Getting support doesn&apos;t need to be. Our app puts the tools to feel better
           in your back pocket, with personalized content to manage stress and anxiety, get better sleep, 
           and feel more present in your life.
         </p>
