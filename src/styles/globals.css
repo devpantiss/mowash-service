@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "leaflet/dist/leaflet.css";
+
+/* Style for WebKit browsers (Chrome, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 50px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%23007bff"><path d="M256 0C256 0 166 179.2 166 266c0 56.6 45.9 102 102 102s102-45.4 102-102c0-86.8-90-266-90-266zm0 358c-32.1 0-58-26.5-58-59 0-23 25-75.9 58-134.4 33 58.5 58 111.5 58 134.4 0 32.5-25.9 59-58 59z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+  }
+  
+  /* Style for Firefox */
+  input[type="range"]::-moz-range-thumb {
+    width: 50px;
+    height: 50px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%23007bff"><path d="M256 0C256 0 166 179.2 166 266c0 56.6 45.9 102 102 102s102-45.4 102-102c0-86.8-90-266-90-266zm0 358c-32.1 0-58-26.5-58-59 0-23 25-75.9 58-134.4 33 58.5 58 111.5 58 134.4 0 32.5-25.9 59-58 59z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+  }
+  
+  /* Style for Internet Explorer / Edge */
+  input[type="range"]::-ms-thumb {
+    width: 50px;
+    height: 50px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%23007bff"><path d="M256 0C256 0 166 179.2 166 266c0 56.6 45.9 102 102 102s102-45.4 102-102c0-86.8-90-266-90-266zm0 358c-32.1 0-58-26.5-58-59 0-23 25-75.9 58-134.4 33 58.5 58 111.5 58 134.4 0 32.5-25.9 59-58 59z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+  }
+
+
+
+  @layer utilities {
+    .bg-dotted {
+      background-image: linear-gradient(180deg, transparent 25%, #e5e7eb 25%, #e5e7eb 50%, transparent 50%);
+      background-size: 1px 20px;
+    }
+  }
+  
+  
+  
+  
