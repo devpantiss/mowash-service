@@ -163,7 +163,7 @@ const SignupStep11: React.FC = () => {
           {/* Section 4: Let's Get Your Needs Met */}
           <div className="mt-6">
             <h2 className="text-xl font-semibold text-gray-800">
-              Let's Get Your Needs Met
+              Let&apos;s Get Your Needs Met
             </h2>
             <div className="mt-2 flex space-x-4">
               {[

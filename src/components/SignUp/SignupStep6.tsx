@@ -5,24 +5,24 @@ import 'leaflet/dist/leaflet.css';
 // Ensure dynamic import of Leaflet and its components
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
+// const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
 // const useMapEvents = dynamic(() => import('react-leaflet').then(mod => mod.useMapEvents), { ssr: false });
 
-const LocationMarker = ({ setLatLng }: { setLatLng: (latLng: { lat: number; lng: number }) => void }) => {
-    const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null);
+// const LocationMarker = ({ setLatLng }: { setLatLng: (latLng: { lat: number; lng: number }) => void }) => {
+//     const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null);
 
-    // const map = useMapEvents({
-    //     click(e) {
-    //         setPosition(e.latlng);
-    //         setLatLng(e.latlng);
-    //     },
-    // });
+//     // const map = useMapEvents({
+//     //     click(e) {
+//     //         setPosition(e.latlng);
+//     //         setLatLng(e.latlng);
+//     //     },
+//     // });
 
-    return position === null ? null : <Marker position={position} />;
-};
+//     return position === null ? null : <Marker position={position} />;
+// };
 
 const SignupStep6: React.FC = () => {
-    const [latLng, setLatLng] = useState<{ lat: number; lng: number } | null>(null);
+    const [_, setLatLng] = useState<{ lat: number; lng: number } | null>(null);
     const [formData, setFormData] = useState({
         houseNumber: '',
         streetAddress: '',
@@ -74,7 +74,7 @@ const SignupStep6: React.FC = () => {
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
                         />
-                        <LocationMarker setLatLng={setLatLng} />
+                        {/* <LocationMarker setLatLng={setLatLng} /> */}
                     </MapContainer>
                 </div>
 

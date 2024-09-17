@@ -1,13 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 
-// Service interface to define the shape of the data
-interface Service {
-  title: string;
-  icon: string; // You can replace this with an actual icon component or SVG path
-  isNew?: boolean;
-}
-
 
 const services = [
   { title: 'Toilet Mason, Electrician & Plumber', icon: 'https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842795%2Fuploads%2F1721842795394-1.png.jpg&w=256&q=75' },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaToolbox, FaTruck, FaRecycle, FaUserGraduate, FaWater, FaLeaf, FaSolarPanel, FaBuilding, FaSeedling, FaMoneyBillWave, FaUniversity } from 'react-icons/fa';
+import { FaToolbox, FaUserGraduate } from 'react-icons/fa';
 import { GrLocationPin } from 'react-icons/gr';
 import { FaFileAlt } from "react-icons/fa";
 import { RiTeamFill } from "react-icons/ri";
@@ -14,7 +14,7 @@ const options = [
 ];
 
 const SignupStep4: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [_, setSelectedOption] = useState<string | null>(null);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -25,7 +25,7 @@ const SignupStep4: React.FC = () => {
       {/* Left Side */}
       <div className="w-1/2 flex items-center justify-center bg-white text-black p-8">
         <div className="text-center space-y-6">
-          <h1 className="text-5xl font-bold">It's easy to get started as an <span className='text-blue-600'>MWC Partner</span></h1>
+          <h1 className="text-5xl font-bold">It&apos;s easy to get started as an <span className='text-blue-600'>MWC Partner</span></h1>
         </div>
       </div>
 

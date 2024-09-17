@@ -19,7 +19,7 @@ const WhyToBeBanner = () => {
       style={{
         backgroundImage: 'url("/images/water.webp")',
         backgroundAttachment: 'fixed',
-        // backgroundPosition: `center ${offsetY * 0.5}px`,
+        backgroundPosition: `center ${offsetY * 0.5}px`,
         backgroundSize: 'cover',
       }}
     >

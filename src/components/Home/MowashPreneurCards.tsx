@@ -62,7 +62,7 @@ const MowashPreneurCards = () => {
                 </div>
             </div>
             <div className="bg-blue-600 mt-12 py-8 text-center">
-                <h3 className="text-2xl text-white font-bold">We've Got Your Back</h3>
+                <h3 className="text-2xl text-white font-bold">We&apos;ve Got Your Back</h3>
                 <p className="text-lg text-white max-w-3xl mx-auto mb-8">
                     What drives us: like-hearted, like-minded partnerships, programs that address your most urgent business problems such as attrition, retention and high-performance, with scalable and efficient solutions that work.
                 </p>
