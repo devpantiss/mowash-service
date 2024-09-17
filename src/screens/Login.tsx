@@ -1,6 +1,17 @@
+import Link from 'next/link';
 import React from 'react';
+import { useRouter } from 'next/router';
+
 
 const Login: React.FC = () => {
+  const router = useRouter();
+
+  const handleLogin = (event: React.FormEvent) => {
+    event.preventDefault();
+    router.push('/');
+  };
+
+
   return (
     <div
       className="h-screen flex justify-center items-center"
@@ -12,7 +23,7 @@ const Login: React.FC = () => {
     >
       <div className='flex h-screen mb-[100px] justify-start gap-x-4 w-1/2'>
         <div className=''>
-          <img src="/images/mowash-logo.webp" className='h-16' />
+          <img src="/images/mowash-logo.webp" className='h-12' />
         </div>
         <div className='flex justify-between items-center'>
           <div className='p-6'>
@@ -25,8 +36,6 @@ const Login: React.FC = () => {
             <img src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/1200px-UNICEF_Logo_g3gwyz.png" className='h-16' />
           </div>
         </div>
-
-
       </div>
 
 
@@ -35,7 +44,7 @@ const Login: React.FC = () => {
         {/* Right side with login form */}
         <div className="bg-white ring-2 ring-blue-600 shadow-lg rounded-lg p-8 w-[400px]">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Log In</h2>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700">
                 Username or email
@@ -43,6 +52,7 @@ const Login: React.FC = () => {
               <input
                 type="text"
                 id="username"
+                style={{ padding: '12px 16px' }} 
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 required
               />
@@ -54,6 +64,7 @@ const Login: React.FC = () => {
               <input
                 type="password"
                 id="password"
+                style={{ padding: '12px 16px' }} 
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 required
               />
@@ -66,6 +77,8 @@ const Login: React.FC = () => {
                 Log In
               </button>
             </div>
+
+            <p>New here? <Link href="/signup" className='text-blue-600 hover:underline'>Sign up</Link></p>
           </form>
         </div>
       </div>

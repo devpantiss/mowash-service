@@ -25,13 +25,13 @@ const Header = () => {
 
   return (
     <nav
-      className={`fixed z-50 top-0 w-full transition-all  duration-300 ${isScrolled ? 'bg-white shadow-lg text-black' : 'bg-transparent text-blue-600'
+      className={`fixed z-50 top-0 w-full transition-all  duration-300 ${isScrolled ? 'bg-white shadow-lg text-black' : 'bg-transparent text-white'
         }`}
     >
       <div className="flex justify-between items-center py-6 px-4">
         {/* Logo */}
         <div className="text-xl mx-[100px] font-semibold">
-          <img src='/images/mowash-logo.webp' alt="logo" className='cursor-pointer h-16 w-full'/>
+          <img src='/images/mowash-logo.webp' alt="logo" className='cursor-pointer h-12'/>
         </div>
 
         {/* Navigation Links */}
@@ -44,9 +44,6 @@ const Header = () => {
           </a>
           <a href="#" className="hover:underline">
             Rewards
-          </a>
-          <a href="#" className="hover:underline">
-            Contact
           </a>
         </div>
 

@@ -97,11 +97,11 @@ const TestimonialCarousel: React.FC = () => {
                 <h1 className="text-4xl pl-2 font-bold">Testimonials</h1>
             </div>
             <div className="flex justify-center items-center px-4">
-                <Slider {...settings} className="py-12 w-[400px] lg:w-[1000px]">
+                <Slider {...settings} className="py-12 w-[400px] lg:w-[890px]">
                     {testimonials.map((testimonial) => (
                         <div
                             key={testimonial.id}
-                            className={`testimonial bg-gradient-to-r from-blue-600 to-blue-700 m-4 flex flex-col justify-center items-center p-4 rounded-tr-none rounded-bl-none rounded-br-[25px] rounded-tl-[25px] mx-4 relative`}
+                            className={`testimonial mx-8 bg-gradient-to-r from-blue-600 to-blue-700 m-4 flex flex-col justify-center items-center p-4 rounded-tr-none rounded-bl-none rounded-br-[25px] rounded-tl-[25px] relative`}
                         >
                             <video
                                 className="w-full h-full object-cover rounded-tr-none rounded-bl-none rounded-br-[25px] rounded-tl-[25px]"

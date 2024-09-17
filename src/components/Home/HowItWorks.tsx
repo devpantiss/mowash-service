@@ -23,7 +23,7 @@ const events: Event[] = [
   {
     id: 1,
     title: "Explore the wide range of services listed.",
-    description: "Choose from a wide range of services that aligns bwst with you.",
+    description: "Choose from a wide range of services that aligns best with you.",
     imgSrc: "https://publicassets.leverageedu.com/landing-pages-new/Frame984.png",
   },
   {
@@ -58,11 +58,11 @@ const TimelineComponent: React.FC = () => {
                     alt={event.title}
                     width={350}
                     height={350}
-                    className="mx-auto"
+                    className="mx-auto mt-20"
                   />
                 </Box>
               ) : (
-                <Card className="p-4 shadow-lg">
+                <Card className="p-4 mt-20 shadow-lg">
                   <CardContent>
                     <Typography
                       variant="h6"
@@ -99,11 +99,11 @@ const TimelineComponent: React.FC = () => {
                     alt={event.title}
                     width={350}
                     height={350}
-                    className="mx-auto"
+                    className="mx-auto mt-20"
                   />
                 </Box>
               ) : (
-                <Card className="p-4 shadow-lg">
+                <Card className="p-4 mt-20 shadow-lg">
                   <CardContent>
                     <Typography
                       variant="h6"

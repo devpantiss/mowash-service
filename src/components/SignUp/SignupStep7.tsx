@@ -75,13 +75,13 @@ const SignupStep7: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[90vh] bg-gray-100">
-      <h2 className="text-3xl font-semibold mb-6">Basic Information Form</h2>
+    <div className="flex flex-col items-center justify-center h-[70vh]">
+      <h2 className="text-3xl text-white font-bold text-left mb-6">Basic Information Form</h2>
 
       <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md space-y-4">
         {/* Profile Picture Upload */}
         <div>
-          <label className="block text-sm font-medium mb-2">Profile Picture</label>
+          <label className="block text-sm text-blue-600 font-medium mb-2">Profile Picture</label>
           {!profilePreview ? (
             <input
               type="file"
@@ -97,7 +97,7 @@ const SignupStep7: React.FC = () => {
               <button
                 type="button"
                 onClick={() => handleRemoveFile('profilePicture')}
-                className="absolute top-0 right-0 bg-gray-800 text-white p-1 rounded-full"
+                className="absolute top-0 right-0 bg-gray-800 text-blue-600 p-1 rounded-full"
               >
                 <AiOutlineClose size={18} />
               </button>
@@ -107,7 +107,7 @@ const SignupStep7: React.FC = () => {
 
         {/* Name Field */}
         <div>
-          <label className="block text-sm font-medium mb-2">Name</label>
+          <label className="block text-sm text-blue-600 font-medium mb-2">Name</label>
           <input
             type="text"
             name="name"
@@ -120,7 +120,7 @@ const SignupStep7: React.FC = () => {
         <div className='flex gap-x-6 justify-between'>
           {/* Gender Selection */}
           <div>
-            <label className="block text-sm font-medium mb-2">Gender</label>
+            <label className="block text-sm text-blue-600 font-medium mb-2">Gender</label>
             <select
               name="gender"
               value={formData.gender}
@@ -137,7 +137,7 @@ const SignupStep7: React.FC = () => {
 
           {/* Age Field */}
           <div>
-            <label className="block text-sm font-medium mb-2">Age</label>
+            <label className="block text-sm text-blue-600 font-medium mb-2">Age</label>
             <input
               type="number"
               name="age"
@@ -152,7 +152,7 @@ const SignupStep7: React.FC = () => {
         <div className='flex gap-x-6 justify-between'>
           {/* Social Status Selection */}
           <div>
-            <label className="block text-sm font-medium mb-2">Social Status</label>
+            <label className="block text-sm text-blue-600 font-medium mb-2">Social Status</label>
             <select
               name="socialStatus"
               value={formData.socialStatus}
@@ -170,7 +170,7 @@ const SignupStep7: React.FC = () => {
 
           {/* Economic Status Selection */}
           <div>
-            <label className="block text-sm font-medium mb-2">Economic Status</label>
+            <label className="block text-sm text-blue-600 font-medium mb-2">Economic Status</label>
             <select
               name="economicStatus"
               value={formData.economicStatus}
@@ -188,7 +188,7 @@ const SignupStep7: React.FC = () => {
 
         {/* Aadhar Card Upload */}
         <div>
-          <label className="block text-sm font-medium mb-2">Aadhar Card</label>
+          <label className="block text-sm text-blue-600 font-medium mb-2">Aadhar Card</label>
           {!aadharPreview ? (
             <input
               type="file"
@@ -204,7 +204,7 @@ const SignupStep7: React.FC = () => {
               <button
                 type="button"
                 onClick={() => handleRemoveFile('aadharCard')}
-                className="absolute top-0 right-0 bg-gray-800 text-white p-1 rounded-full"
+                className="absolute top-0 right-0 bg-gray-800 text-blue-600 p-1 rounded-full"
               >
                 <AiOutlineClose size={18} />
               </button>
@@ -214,15 +214,15 @@ const SignupStep7: React.FC = () => {
 
         
 
-        {/* Submit Button */}
+        {/* Submit Button
         <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
           Submit
-        </button>
+        </button> */}
       </form>
 
       {/* Progress Bar */}
       <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-black" style={{ width: '48%' }}></div>
+        <div className="h-2 bg-blue-600" style={{ width: '48%' }}></div>
       </div>
     </div>
   );

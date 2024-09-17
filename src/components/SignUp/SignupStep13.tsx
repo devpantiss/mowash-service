@@ -21,78 +21,84 @@ const SignupStep13: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+    <div className="flex justify-center items-center h-[70vh] bg-blue-600">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-5xl">
         {/* Heading */}
-        <h2 className="text-2xl font-semibold text-center mb-6">Bank Details</h2>
+        <h2 className="text-3xl text-blue-600 font-bold text-left mb-6">Bank Details</h2>
 
-        {/* Bank Dropdown */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Select name of bank</label>
-          <select
-            value={selectedBank}
-            onChange={(e) => setSelectedBank(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg"
-          >
-            {banks.map((bank) => (
-              <option key={bank} value={bank}>
-                {bank}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Account Number */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Account Number</label>
-          <input
-            type="text"
-            value={accountNumber}
-            onChange={(e) => setAccountNumber(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg"
-            placeholder="Enter your account number"
-          />
-        </div>
-
-        {/* IFSC Code */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">IFSC Code</label>
-          <input
-            type="text"
-            value={ifscCode}
-            onChange={(e) => setIfscCode(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg"
-            placeholder="Enter your IFSC code"
-          />
-        </div>
-
-        {/* Branch */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Branch</label>
-          <input
-            type="text"
-            value={branch}
-            onChange={(e) => setBranch(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg"
-            placeholder="Enter your branch name"
-          />
-        </div>
-
-        {/* Passbook Image Upload */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Upload Passbook Image</label>
-          {passbookImage ? (
-            <div className="w-full flex justify-center">
-              <img src={passbookImage} alt="Passbook Preview" className="max-w-full h-auto rounded-lg" />
-            </div>
-          ) : (
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
+        {/* Form Grid Layout - 3 Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+          {/* Bank Dropdown */}
+          <div>
+            <label className="block text-blue-600 mb-2">Select Bank</label>
+            <select
+              value={selectedBank}
+              onChange={(e) => setSelectedBank(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg"
+            >
+              {banks.map((bank) => (
+                <option key={bank} value={bank}>
+                  {bank}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Account Number */}
+          <div>
+            <label className="block text-blue-600 mb-2">Account Number</label>
+            <input
+              type="text"
+              value={accountNumber}
+              onChange={(e) => setAccountNumber(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg"
+              placeholder="Enter account number"
             />
-          )}
+          </div>
+
+          {/* IFSC Code */}
+          <div>
+            <label className="block text-blue-600 mb-2">IFSC Code</label>
+            <input
+              type="text"
+              value={ifscCode}
+              onChange={(e) => setIfscCode(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg"
+              placeholder="Enter IFSC code"
+            />
+          </div>
+        </div>
+
+        {/* Second Row of the Form */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+          {/* Branch */}
+          <div>
+            <label className="block text-blue-600 mb-2">Branch Name</label>
+            <input
+              type="text"
+              value={branch}
+              onChange={(e) => setBranch(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg"
+              placeholder="Enter branch name"
+            />
+          </div>
+
+          {/* Passbook Image Upload */}
+          <div className="col-span-1 md:col-span-2">
+            <label className="block text-blue-600 mb-2">Upload Passbook Image</label>
+            {passbookImage ? (
+              <div className="w-full flex justify-center">
+                <img src={passbookImage} alt="Passbook Preview" className="max-w-full h-auto rounded-lg" />
+              </div>
+            ) : (
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="w-full p-3 border border-gray-300 rounded-lg"
+              />
+            )}
+          </div>
         </div>
 
         {/* Submit Button */}

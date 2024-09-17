@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import { useState } from "react";
 
 const SignupStep0: React.FC = () => {
@@ -24,15 +25,15 @@ const SignupStep0: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[80vh] bg-white">
+    <div className="flex relative flex-col items-center justify-center h-[80vh] bg-blue-600">
       <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+        <h2 className="text-3xl font-bold text-blue-600 text-center mb-6">
           Create Your Account
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="relative space-y-6">
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="block text-sm font-medium text-blue-600">
               Email
             </label>
             <input
@@ -49,7 +50,7 @@ const SignupStep0: React.FC = () => {
 
           {/* Phone Number */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="phone" className="block text-sm font-medium text-blue-600">
               Phone Number
             </label>
             <input
@@ -66,7 +67,7 @@ const SignupStep0: React.FC = () => {
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium text-blue-600">
               Password
             </label>
             <input
@@ -83,7 +84,7 @@ const SignupStep0: React.FC = () => {
 
           {/* Confirm Password */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-blue-600">
               Confirm Password
             </label>
             <input
@@ -108,6 +109,20 @@ const SignupStep0: React.FC = () => {
             </button>
           </div>
         </form>
+      </div>
+
+      <button
+        className="absolute top-0 right-0 text-blue-500 bg-white ring-2 ring-blue-600 font-semibold p-3 rounded-lg shadow-lg hover:bg-blue-600 hover:ring-2 hover:ring-white hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <Link href="/">
+          Back home
+        </Link>
+      </button>
+
+
+      {/* Progress Bar */}
+      <div className="fixed bottom-0 w-full h-2 bg-gray-200">
+        <div className="h-2 bg-blue-600" style={{ width: '5%' }}></div>
       </div>
     </div>
   );

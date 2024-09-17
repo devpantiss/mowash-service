@@ -212,57 +212,11 @@ const Signup: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-        <div className="w-full p-4 bg-red border border-gray-200 rounded-lg shadow sm:p-6 md:px-8 md:py-6 dark:bg-gray-800 dark:border-gray-700">
+      <div className="flex items-center justify-center h-screen bg-blue-600">
+        <div className="w-full p-4 rounded-lg shadow sm:p-6 md:px-8 md:py-6">
           <div data-hs-stepper="">
-            {/* <ul className="relative flex flex-row gap-x-2">
-              {Array.from({ length: 3 }, (_, i) => i + 1).map((index) => (
-                <li
-                  key={index}
-                  className="flex items-center gap-x-2 shrink basis-0 flex-1 group"
-                  data-hs-stepper-nav-item={`{"index": ${index}}`}
-                >
-                  <span className="min-w-7 min-h-7 group inline-flex items-center text-xs align-middle">
-                    <span
-                      className={`size-7 flex justify-center items-center shrink-0 ${
-                        index === step
-                          ? "bg-blue-600 text-white"
-                          : "bg-gray-100 text-gray-800"
-                      } font-medium rounded-full`}
-                    >
-                      {step > index ? (
-                        <svg
-                          className="shrink-0 size-3"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                      ) : (
-                        index
-                      )}
-                    </span>
-                    <span className="ms-2 text-sm font-medium text-gray-800 dark:text-neutral-200">
-                      {index === 1
-                        ? "Details"
-                        : index === 2
-                        ? "Personal Data"
-                        : "Availability"}
-                    </span>
-                  </span>
-                  <div className="w-full h-px flex-1 group-last:hidden bg-blue-600 dark:bg-neutral-700"></div>
-                </li>
-              ))}
-            </ul> */}
-            <div className="h-24">
-              <Image src="https://www.mowash.in/Images/mo-wash-logo.svg" className="h-full" width={150} height={150} alt="logo" />
+            <div className="h-24 bg-white px-8 flex justify-start items-center py-2 rounded-md">
+              <Image src="https://www.mowash.in/Images/mo-wash-logo.svg" className="h-full " width={150} height={150} alt="logo" />
             </div>
 
             <div className="mt-5 sm:mt-8">
@@ -297,23 +251,25 @@ const Signup: React.FC = () => {
                 <SignupStep9 />
               )}
               {step === 10 && (
-                <SignupStep10 />
-              )}
-              {step === 11 && (
                 <SignupStep11 />
               )}
-              {step === 12 && (
+              {step === 11 && (
                 <SignupStep12 />
               )}
-              {step === 13 && (
+              {step === 12 && (
                 <SignupStep13 />
               )}
+              {step === 13 && (
+                <SignupStep10 />
+              )}
+
+
               <div className="mt-5 flex justify-between items-center gap-x-2">
                 <button
                   type="button"
-                  className="px-6 py-2 flex bg-gray-400 text-black ring-2 ring-black rounded-lg"
+                  className="px-6 py-2 mb-2 flex bg-white text-blue-600 ring-2 ring-black rounded-lg"
                   onClick={handlePrev}
-                  disabled={step === 1}
+                  disabled={step === 0}
                 >
                   <svg
                     className="shrink-0 size-4"
@@ -336,7 +292,7 @@ const Signup: React.FC = () => {
 
                 <button
                   type="button"
-                  className="px-6 py-2 flex bg-black text-white rounded-lg"
+                  className="px-6 py-2 mb-2 flex bg-white text-blue-600 ring-2 ring-black rounded-lg"
                   onClick={handleNext}
                 >
                   Next

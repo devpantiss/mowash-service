@@ -70,7 +70,7 @@ const SignupStep11: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center h-[80vh] bg-gray-100">
+    <div className="flex flex-col items-center justify-center h-[80vh] bg-blue-600">
       {wantsWelfare === null ? (
         <div className="bg-white shadow-lg rounded-lg p-8">
           <h1 className="text-2xl font-bold text-center mb-6">
@@ -95,7 +95,7 @@ const SignupStep11: React.FC = () => {
         <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
           {/* Section 1: Health Card */}
           <div>
-            <h2 className="text-xl font-semibold text-gray-800">Health Card</h2>
+            <h2 className="text-xl font-semibold text-blue-600">Health Card</h2>
             <div className="mt-2 flex space-x-4">
               {["BSKY", "Ayushman Bharat", "ESIC", "Not Available"].map(
                 (option) => (
@@ -118,7 +118,7 @@ const SignupStep11: React.FC = () => {
 
           {/* Section 2: ATAL Pension */}
           <div className="mt-6">
-            <h2 className="text-xl font-semibold text-gray-800">ATAL Pension</h2>
+            <h2 className="text-xl font-semibold text-blue-600">ATAL Pension</h2>
             <div className="mt-2 flex space-x-4">
               {["NPS", "EPF"].map((option) => (
                 <button
@@ -139,7 +139,7 @@ const SignupStep11: React.FC = () => {
 
           {/* Section 3: Accidental Insurance */}
           <div className="mt-6">
-            <h2 className="text-xl font-semibold text-gray-800">
+            <h2 className="text-xl font-semibold text-blue-600">
               Accidental Insurance
             </h2>
             <div className="mt-2 flex space-x-4">
@@ -162,7 +162,7 @@ const SignupStep11: React.FC = () => {
 
           {/* Section 4: Let's Get Your Needs Met */}
           <div className="mt-6">
-            <h2 className="text-xl font-semibold text-gray-800">
+            <h2 className="text-xl font-semibold text-blue-600">
               Let&apos;s Get Your Needs Met
             </h2>
             <div className="mt-2 flex space-x-4">
@@ -189,7 +189,7 @@ const SignupStep11: React.FC = () => {
 
           <div className="mt-8 flex justify-end">
             <button
-              className="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600"
+              className="bg-white text-blue-600 py-2 px-4 rounded-lg ring-2 ring-blue-600 hover:bg-blue-100"
               onClick={() => alert("Skipped to next step!")}
             >
               Skip
@@ -197,13 +197,13 @@ const SignupStep11: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="text-center text-lg">
+        <div className="text-center text-white text-lg">
           You have opted not to avail any welfare schemes.
         </div>
       )}
       {/* Progress Bar */}
       <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-black" style={{ width: '80%' }}></div>
+        <div className="h-2 bg-blue-600" style={{ width: '80%' }}></div>
       </div>
     </div>
   );

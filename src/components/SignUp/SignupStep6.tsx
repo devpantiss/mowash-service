@@ -58,17 +58,17 @@ const SignupStep6: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-start h-[80vh] bg-gray-100">
-            <h2 className="text-2xl font-semibold mb-4">Choose your location</h2>
+        <div className="flex flex-col items-center justify-start h-[80vh] bg-blue-600">
+            <h2 className="text-3xl text-white font-bold text-left mb-6">Choose your location</h2>
 
-            <div className='flex justify-between items-center w-full max-w-5xl'>
+            <div className='flex justify-between gap-x-4 items-center w-full max-w-6xl'>
                 {/* Map Container */}
-                <div className="w-1/2 h-[600px] mb-4">
+                <div className="w-1/2 h-[600px] rounded-md">
                     <MapContainer
-                        center={[51.505, -0.09]} // Default center of the map
-                        zoom={13}
+                        center={[20.2961, 85.8245]} // Default center of the map
+                        zoom={9}
                         scrollWheelZoom={true}
-                        className="w-full h-full"
+                        className="w-full h-full rounded-md"
                     >
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -79,99 +79,99 @@ const SignupStep6: React.FC = () => {
                 </div>
 
                 {/* Address Form */}
-                <form onSubmit={handleFormSubmit} className="w-1/2 p-8">
+                <form onSubmit={handleFormSubmit} className="w-1/2 p-8 bg-white rounded-md">
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium">Flat/House Number</label>
+                        <label className="block text-blue-600 text-sm font-medium">Flat/House Number</label>
                         <input
                             type="text"
                             name="houseNumber"
                             value={formData.houseNumber}
                             onChange={handleInputChange}
-                            className="p-2 border rounded-lg w-full"
+                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
                             required
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium">Street Address</label>
+                        <label className="block text-blue-600 text-sm font-medium">Street Address</label>
                         <input
                             type="text"
                             name="streetAddress"
                             value={formData.streetAddress}
                             onChange={handleInputChange}
-                            className="p-2 border rounded-lg w-full"
+                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
                             required
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium">Nearby Landmark</label>
+                        <label className="block text-blue-600 text-sm font-medium">Nearby Landmark</label>
                         <input
                             type="text"
                             name="landmark"
                             value={formData.landmark}
                             onChange={handleInputChange}
-                            className="p-2 border rounded-lg w-full"
+                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium">District/Locality</label>
+                        <label className="block text-blue-600 text-sm font-medium">District/Locality</label>
                         <input
                             type="text"
                             name="locality"
                             value={formData.locality}
                             onChange={handleInputChange}
-                            className="p-2 border rounded-lg w-full"
+                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium">City/Town</label>
+                        <label className="block text-blue-600 text-sm font-medium">City/Town</label>
                         <input
                             type="text"
                             name="city"
                             value={formData.city}
                             onChange={handleInputChange}
-                            className="p-2 border rounded-lg w-full"
+                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
                             required
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium">State</label>
+                        <label className="block text-blue-600 text-sm font-medium">State</label>
                         <input
                             type="text"
                             name="state"
                             value={formData.state}
                             onChange={handleInputChange}
-                            className="p-2 border rounded-lg w-full"
+                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
                             required
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium">Pincode</label>
+                        <label className="block text-blue-600 text-sm font-medium">Pincode</label>
                         <input
                             type="text"
                             name="pincode"
                             value={formData.pincode}
                             onChange={handleInputChange}
-                            className="p-2 border rounded-lg w-full"
+                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
                             required
                         />
                     </div>
 
-                    <button type="submit" className="px-4 py-2 mt-4 bg-blue-500 text-white rounded-lg w-full">
+                    {/* <button type="submit" className="px-4 py-2 mt-4 bg-blue-500 text-white rounded-lg w-full">
                         Confirm Address
-                    </button>
+                    </button> */}
                 </form>
             </div>
 
 
             {/* Progress Bar */}
             <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-                <div className="h-2 bg-black" style={{ width: '40%' }}></div>
+                <div className="h-2 bg-blue-600" style={{ width: '40%' }}></div>
             </div>
         </div>
     );

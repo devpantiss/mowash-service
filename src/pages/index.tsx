@@ -1,9 +1,9 @@
-import Login from "@/screens/Login";
+import Home from '@/screens/Home';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <Login />
+      <Home />
     </>
   );
 }
