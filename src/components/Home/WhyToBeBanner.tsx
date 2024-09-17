@@ -1,17 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const WhyToBeBanner = () => {
-  const [offsetY, setOffsetY] = useState(0);
-
-  const handleScroll = () => {
-    setOffsetY(window.pageYOffset);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <section
@@ -19,7 +8,7 @@ const WhyToBeBanner = () => {
       style={{
         backgroundImage: 'url("/images/water.webp")',
         backgroundAttachment: 'fixed',
-        backgroundPosition: `center ${offsetY * 0.5}px`,
+        // backgroundPosition: `center ${offsetY * 0.5}px`,
         backgroundSize: 'cover',
       }}
     >

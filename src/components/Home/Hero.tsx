@@ -1,10 +1,11 @@
+import Image from "next/image";
 
 const Hero = () => {
   return (
     <div className="relative h-screen">
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
-      <video
+        <video
           autoPlay
           loop
           muted
@@ -18,18 +19,27 @@ const Hero = () => {
 
       {/* Hero Section Content */}
       <div className="flex flex-col items-center justify-center text-center h-full px-8">
-        <h1 className="text-white text-4xl md:text-6xl font-bold mb-4">Calm your mind. Change your life.</h1>
-        <p className="text-white text-lg md:text-xl mb-6">
+        <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">India's 1st Digital platform in WASH and Circular Economy</h1>
+        {/* <p className="text-white text-lg md:text-xl mb-6">
           Mental health is hard. Getting support doesn&apos;t need to be. Our app puts the tools to feel better
           in your back pocket, with personalized content to manage stress and anxiety, get better sleep, 
           and feel more present in your life.
-        </p>
-        <button className="bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition">
-          Try Calm for Free
-        </button>
+        </p> */}
+
+        <div className="flex justify-between gap-x-8 items-center">
+          <div className="px-4 py-2 bg-black/30">
+            <p className="mb-4 text-white">An Initiative by</p>
+            <Image src="https://www.mowash.in/_next/image?url=%2FImages%2Flogo1.png&w=128&q=75" width={100} height={50} alt="logo" />
+          </div>
+          <div className="px-4 py-2 bg-black/30">
+            <p className="text-white">Supported by</p>
+            <Image src="https://www.mowash.in/_next/image?url=%2FImages%2FUNICEF-logo.png&w=128&q=75" width={100} height={50} alt="logo" />
+          </div>
+        </div>
+
       </div>
-      <img 
-        src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg' 
+      <img
+        src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg'
         alt="footerImg"
         className='absolute bottom-0 w-full rotate-180'
       />

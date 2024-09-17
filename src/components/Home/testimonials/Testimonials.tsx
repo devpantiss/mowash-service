@@ -97,7 +97,7 @@ const TestimonialCarousel: React.FC = () => {
                 <h1 className="text-4xl pl-2 font-bold">Testimonials</h1>
             </div>
             <div className="flex justify-center items-center px-4">
-                <Slider {...settings} className="py-12 w-[400px] lg:w-[1600px]">
+                <Slider {...settings} className="py-12 w-[400px] lg:w-[1000px]">
                     {testimonials.map((testimonial) => (
                         <div
                             key={testimonial.id}
