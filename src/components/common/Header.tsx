@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
+
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,13 +61,13 @@ const Header = () => {
           <button className="px-4 py-2 text-[20px] rounded-full font-semibold transition-all duration-300 border ${
             isScrolled ? 'bg-blue-600 border-blue-600 text-white' : 'bg-blue-600 text-white'
           }">
-           Login
-          </button>
+            <Link href="/login">Login</Link>
+            </button>
           <div className='w-[3px] h-[35px] bg-blue-600'></div>
           <button className="px-4 py-2 text-[20px] rounded-full font-semibold transition-all duration-300 border ${
             isScrolled ? 'bg-blue-600 border-blue-600 text-white' : 'bg-blue-600 text-white'
           }">
-           Register
+            <Link href="/signup">Register</Link>
           </button>
         </div>
       </div>
