@@ -19,25 +19,26 @@ const Hero = () => {
 
       {/* Hero Section Content */}
       <div className="flex flex-col items-center justify-center text-center h-full px-8">
-        <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">India&apos;s 1st Digital platform in WASH and Circular Economy</h1>
+        <h1 className="text-white text-3xl md:text-4xl flex bg-[black]/40 rounded-md px-3 justify-center items-center font-bold mb-4"><Image src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726663506/151dcda9-7928-4436-95db-f7b98e833ff5-removebg-preview_khb1cd.png" height={80} width={80} alt="toilet"/>We are The Toilet Directors!</h1>
 
-        <div className="flex justify-between gap-x-8 items-center">
-          <div className="px-4 py-2 bg-black/30">
-            <p className="mb-4 text-white">An Initiative by</p>
-            <Image src="https://www.mowash.in/_next/image?url=%2FImages%2Flogo1.png&w=128&q=75" width={100} height={50} alt="logo" />
+        <div className="absolute bottom-0 left-[37%] z-20 flex justify-center gap-x-4 items-center">
+          <div className="px-4">
+            <Image src="https://www.mowash.in/_next/image?url=%2FImages%2Flogo1.png&w=128&q=75" width={120} height={120} alt="logo" />
+            <p className="text-black mt-2">An Initiative by</p>
           </div>
-          <div className="px-4 py-2 bg-black/30">
-            <p className="text-white">Supported by</p>
-            <Image src="https://www.mowash.in/_next/image?url=%2FImages%2FUNICEF-logo.png&w=128&q=75" width={100} height={50} alt="logo" />
+          <div className="px-4">
+            <Image src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726660522/1200px-UNICEF_Logo_gfi4tc.png" width={130} height={130} alt="logo" />
+            <p className="text-black mt-5">Supported by</p>
           </div>
         </div>
 
       </div>
-      <img
-        src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg'
-        alt="footerImg"
-        className='absolute bottom-0 w-full rotate-180'
-      />
+
+        <img
+          src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg'
+          alt="footerImg"
+          className='w-full absolute bottom-0 rotate-180'
+        />
     </div>
   );
 };

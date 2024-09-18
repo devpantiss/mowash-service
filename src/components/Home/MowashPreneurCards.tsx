@@ -2,25 +2,23 @@ import React from 'react';
 
 interface ProgramCardProps {
     title: string;
-    description: string;
     imageSrc: string;
-    link: string;
+    tagline: string;
 }
 
-const ProgramCard: React.FC<ProgramCardProps> = ({ title, description, imageSrc, link }) => {
+const ProgramCard: React.FC<ProgramCardProps> = ({ title, imageSrc, tagline }) => {
     return (
         <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col text-center">
             <div className='relative'>
-                <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
+                <img src={imageSrc} alt={title} className="h-[600px] w-full object-cover" />
                 <div className="p-4 absolute bottom-0 w-[296px] h-[150px] bg-blue-600/50 text-white">
                     <h2 className="font-bold text-2xl">{title}</h2>
-                    <p className="text-lg">{description}</p>
                 </div>
             </div>
             <div className="p-4">
-                <a href={link} className="text-blue-600 hover:underline font-semibold">
-                    Learn More
-                </a>
+                <p className="text-blue-600 hover:underline font-semibold">
+                    {tagline}
+                </p>
             </div>
         </div>
     );
@@ -36,28 +34,24 @@ const MowashPreneurCards = () => {
                 </p>
                 <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <ProgramCard
-                        title="LEAP"
-                        description="For Aspiring Women Managers"
-                        imageSrc="https://cdn.harappa.education/wp-content/uploads/2022/10/14165130/program2.png"
-                        link="#"
+                        title="HOP ON"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667664/Untitled_design_2_otps8l.png"
+                        tagline="For Early Start-Up In Green Economy"
                     />
                     <ProgramCard
-                        title="RISE"
-                        description="For High-Performing Women Managers"
-                        imageSrc="https://cdn.harappa.education/wp-content/uploads/2022/10/20122924/program1-1.png"
-                        link="#"
+                        title="FLY"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667761/Untitled_design_4_ewqjom.png"
+                        tagline="For Women WASH"
                     />
                     <ProgramCard
-                        title="GROW"
-                        description="For First-Time Managers"
-                        imageSrc="https://cdn.harappa.education/wp-content/uploads/2022/10/14165136/program3.png"
-                        link="#"
+                        title="MATURE"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667463/Untitled_design_1_prt8qb.png"
+                        tagline="For Existing WASH and Circular Economy in Plants"
                     />
                     <ProgramCard
-                        title="SOAR"
-                        description="For Mid-Level Managers"
-                        imageSrc="https://cdn.harappa.education/wp-content/uploads/2022/10/14165145/program4.png"
-                        link="#"
+                        title="EDIFICE"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726668482/Untitled_design_6_qdpm9q.png"
+                        tagline="For SHG 2 in WASH And Circular Economy"
                     />
                 </div>
             </div>
@@ -67,7 +61,7 @@ const MowashPreneurCards = () => {
                     What drives us: like-hearted, like-minded partnerships, programs that address your most urgent business problems such as attrition, retention and high-performance, with scalable and efficient solutions that work.
                 </p>
                 <a href="#" className="bg-white text-blue-600 py-3 px-8 rounded-lg shadow font-bold">
-                    Write To Us
+                    Know more
                 </a>
             </div>
         </section>

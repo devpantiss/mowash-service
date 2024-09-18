@@ -18,9 +18,9 @@ const SDGSection = () => {
         <div className="relative w-60 h-32 bg-white rounded-b-full overflow-hidden z-10">
           {/* Company logo inside the white semicircle */}
           <img
-            src="https://i.postimg.cc/7hhdCGBj/Untitled-design-2-removebg-preview.png" // Replace with actual image path
+            src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726665239/Untitled_design__3_-removebg-preview_i9zurj.png" // Replace with actual image path
             alt="Company Logo"
-            className="absolute -top-10 inset-0 mx-auto my-auto"
+            className="absolute -top-10 h-[80px] inset-0 mx-auto my-auto"
           />
         </div>
       </div>

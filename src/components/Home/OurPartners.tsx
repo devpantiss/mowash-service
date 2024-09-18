@@ -8,12 +8,12 @@ const OurPartners = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 5000, // Speed increased for smoother effect
-    slidesToShow: 4, // Show 4 logos at a time
+    speed: 5000, 
+    slidesToShow: 4, 
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 0, // This will keep the slider moving continuously
-    cssEase: "linear", // For smooth continuous scrolling
+    autoplaySpeed: 0, 
+    cssEase: "linear", 
     arrows: false,
     responsive: [
       {
@@ -50,52 +50,24 @@ const OurPartners = () => {
       <div className="container w-[400px] lg:w-[1000px]">
         {/* Slider with Marquee Effect */}
         <Slider {...settings} className="gap-x-2"> {/* Added gap using Tailwind */}
-          <div className="px-2">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/330px-DTE_pic_hrwr2q.jpg"
-              alt="Down To Earth"
-              className="h-36 w-full object-contain" // Set height and use object-contain for proper fit
-            />
-          </div>
           <div className="px-4">
             <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/CBC_logo.svg_ixkcmg.png"
-              alt="CBC"
+              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726662470/group_company_logo1_bah9rm.jpg"
+              alt="TPCODL"
               className="h-36 w-full object-contain"
             />
           </div>
           <div className="px-4">
             <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055539/the-telegraph-logo-vector-removebg-preview_ovbazt.png"
-              alt="The Telegraph"
-              className="h-36 w-full object-contain"
-            />
-          </div>
-          <div className="px-4">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/pngwing.com_7_ixeqav.png"
-              alt="TOI"
-              className="h-36 w-full object-contain"
-            />
-          </div>
-          <div className="px-4">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/Thomson_Reuters_logo.svg_hrphwf.png"
-              alt="Thomson Reuters"
-              className="h-36 w-full object-contain"
-            />
-          </div>
-          <div className="px-4">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/iForest-Global-Black-Logo-and-Text_kvvqjw.png"
+              src="https://pantiss.com/wp-content/uploads/2022/08/logo.png"
               alt="IForest"
               className="h-36 w-full object-contain"
             />
           </div>
           <div className="px-4">
             <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/Orissapost_qczf45.png"
-              alt="OrissaPost"
+              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726661960/pngwing.com-removebg-preview_gjzzge.png"
+              alt="Lixil"
               className="h-36 w-full object-contain"
             />
           </div>
