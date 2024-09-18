@@ -12,7 +12,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover" // Make sure the video covers the entire background
         >
-          <source src="https://res.cloudinary.com/du3i8e0se/video/upload/v1725774824/New_Project_-_Made_with_Clipchamp_kmplxn.mp4" type="video/mp4" /> {/* Path to your video */}
+          <source src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1726645175/banner_vid_tucbod.mp4" type="video/mp4" /> {/* Path to your video */}
           Your browser does not support the video tag.
         </video>
       </div>
@@ -20,11 +20,6 @@ const Hero = () => {
       {/* Hero Section Content */}
       <div className="flex flex-col items-center justify-center text-center h-full px-8">
         <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">India&apos;s 1st Digital platform in WASH and Circular Economy</h1>
-        {/* <p className="text-white text-lg md:text-xl mb-6">
-          Mental health is hard. Getting support doesn&apos;t need to be. Our app puts the tools to feel better
-          in your back pocket, with personalized content to manage stress and anxiety, get better sleep, 
-          and feel more present in your life.
-        </p> */}
 
         <div className="flex justify-between gap-x-8 items-center">
           <div className="px-4 py-2 bg-black/30">
@@ -38,11 +33,13 @@ const Hero = () => {
         </div>
 
       </div>
-      <img
-        src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg'
-        alt="footerImg"
-        className='absolute bottom-0 w-full rotate-180'
-      />
+      <div className="absolute bottom-0 pb-12">
+        <img
+          src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg'
+          alt="footerImg"
+          className='w-full rotate-180'
+        />
+      </div>
     </div>
   );
 };
