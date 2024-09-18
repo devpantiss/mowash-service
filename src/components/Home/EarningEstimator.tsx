@@ -45,7 +45,7 @@ const EarningsEstimator = () => {
   }, [selectedDistrict]);
 
   return (
-    <div className="flex flex-col mb-8 lg:flex-row justify-between items-center lg:items-start max-w-6xl mx-auto p-8 lg:py-12 space-y-8 lg:space-y-0 lg:space-x-12 pt-20">
+    <div className="flex flex-col mt-12 mb-8 lg:flex-row justify-between items-center lg:items-start max-w-6xl mx-auto p-8 lg:py-12 space-y-8 lg:space-y-0 lg:space-x-12 pt-20">
       {/* Left Section: Earnings Display */}
       <div className="flex-1 space-y-4">
         <h1 className="text-blue-600 text-3xl lg:text-5xl font-bold">Being a MoWash Engineer,</h1>
