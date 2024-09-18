@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaMoneyCheckAlt, FaClock, FaHeart, FaBaby } from 'react-icons/fa'; // Icons for MoWash Engineer
+import { FiMonitor, FiTrendingUp, FiGlobe, FiUsers } from 'react-icons/fi'; // Icons for MoWash Preneur
 
 const WhyToBeBanner = () => {
 
@@ -8,31 +10,29 @@ const WhyToBeBanner = () => {
       style={{
         backgroundImage: 'url("/images/water.webp")',
         backgroundAttachment: 'fixed',
-        // backgroundPosition: `center ${offsetY * 0.5}px`,
         backgroundSize: 'cover',
       }}
     >
-
-      <div className="relative max-w-7xl h-full flex items-center text-black px-8 md:px-16 z-10">
+      <div className="relative max-w-7xl h-full flex justify-center items-center text-black px-8 md:px-16 z-10">
         {/* Left Section: MoWash Engineer */}
-        <div className="w-1/2">
+        <div className="w-1/2 flex flex-col justify-center items-center mx-auto">
           <h2 className="text-[44px] md:text-4xl font-bold mb-8">Why to be <span className='text-blue-600'>MoWash</span> Engineer</h2>
-          <div className="flex justify-center items-center gap-x-6">
+          <div className="flex justify-center mt-6 items-center gap-x-6">
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">1,500</p>
-              <p className='text-center'>Successful projects</p>
+              <FaMoneyCheckAlt className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Regular payout with exciting bonuses & Incentives</p>
             </div>
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">500+</p>
-              <p className='text-center'>Trained professionals</p>
+              <FaClock className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Flexibility to work in your choice of shift</p>
             </div>
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">10,000+</p>
-              <p className='text-center'>Hours of fieldwork experience</p>
+              <FaHeart className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Insurance of Rs 5 Lac for you and your family</p>
             </div>
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">200+</p>
-              <p className='text-center'>Workshops conducted</p>
+              <FaBaby className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Maternity and period leave for women partners</p>
             </div>
           </div>
         </div>
@@ -41,24 +41,24 @@ const WhyToBeBanner = () => {
         <div className="hidden md:block h-[350px] w-[2px] bg-black mx-8"></div>
 
         {/* Right Section: MoWash Preneur */}
-        <div className="w-1/2">
+        <div className="w-1/2 flex flex-col justify-center items-center mx-auto">
           <h2 className="text-[44px] md:text-4xl font-bold mb-8">Why to be <span className='text-blue-600'>MoWash</span> Preneur</h2>
-          <div className="flex justify-center items-center gap-x-6">
+          <div className="flex justify-center mt-6 items-center gap-x-6">
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">2,000</p>
-              <p className='text-center'>Ventures launched</p>
+              <FiMonitor className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Robust Incubation</p>
             </div>
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">300+</p>
-              <p className='text-center'>partnerships and collaborations</p>
+              <FiTrendingUp className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Hi-Tech Innovation</p>
             </div>
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">50+</p>
-              <p className='text-center'>Cities served</p>
+              <FiGlobe className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Sustainable Business Model</p>
             </div>
             <div className='flex flex-col justify-center items-center'>
-              <p className="text-3xl font-bold text-blue-600">1,200+</p>
-              <p className='text-center'>Innovative solutions</p>
+              <FiUsers className="text-6xl text-blue-600" />
+              <p className='text-center text-sm mt-2'>Empathetic Entrepreneurs</p>
             </div>
           </div>
         </div>
