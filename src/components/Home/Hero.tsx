@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="relative h-screen bg-black">
+    <div className="relative h-screen">
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
         <video
@@ -12,7 +12,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover" // Make sure the video covers the entire background
         >
-          <source src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1726645175/banner_vid_tucbod.mp4" type="video/mp4" /> {/* Path to your video */}
+          <source src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726530988/mo-wash-logo_eiq199.svg" type="video/mp4" /> {/* Path to your video */}
           Your browser does not support the video tag.
         </video>
       </div>
