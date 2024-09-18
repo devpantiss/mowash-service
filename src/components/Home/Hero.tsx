@@ -12,7 +12,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover" // Make sure the video covers the entire background
         >
-          <source src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726530988/mo-wash-logo_eiq199.svg" type="video/mp4" /> {/* Path to your video */}
+          <source src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1726648742/video_2024-09-18_14-07-28_yvaji6.mp4" type="video/mp4" /> {/* Path to your video */}
           Your browser does not support the video tag.
         </video>
       </div>
