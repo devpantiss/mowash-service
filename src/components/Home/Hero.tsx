@@ -33,13 +33,11 @@ const Hero = () => {
         </div>
 
       </div>
-      <div className="absolute bottom-0 pb-12">
-        <img
-          src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg'
-          alt="footerImg"
-          className='w-full rotate-180'
-        />
-      </div>
+      <img
+        src='https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726436377/header-bottom_mjvqka.svg'
+        alt="footerImg"
+        className='absolute bottom-0 w-full rotate-180'
+      />
     </div>
   );
 };
