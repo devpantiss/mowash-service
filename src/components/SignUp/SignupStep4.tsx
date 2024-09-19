@@ -21,16 +21,16 @@ const SignupStep4: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[77vh]">
+    <div className="flex h-[80vh]">
       {/* Left Side */}
-      <div className="w-1/2 flex items-center justify-center bg-blue-600 text-black p-8">
+      <div className="w-1/2 flex items-center justify-center bg-gradient-to-b from-black to-blue-800 text-black p-8">
         <div className="text-center space-y-6">
           <h1 className="text-5xl font-bold text-white">It&apos;s easy to get started as an <span className='text-white'>MWC Partner</span></h1>
         </div>
       </div>
 
       {/* Right Side */}
-      <div className="w-1/2 bg-[white] rounded-md text-black flex flex-col items-center justify-between p-8">
+      <div className="w-1/2 bg-[white] rounded-md text-black flex flex-col items-center justify-center p-8">
         {/* Steps */}
         <div className="space-y-6">
           {options.map((option, index) => (
@@ -48,11 +48,6 @@ const SignupStep4: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* Progress Bar */}
-      {/* <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-black" style={{ width: '24%' }}></div>
-      </div> */}
     </div>
   );
 };

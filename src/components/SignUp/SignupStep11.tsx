@@ -1,76 +1,48 @@
-// components/SignupStep11.tsx
-
 import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaHeartbeat, FaShieldAlt, FaConciergeBell } from "react-icons/fa";
 
 type Section = "healthCard" | "pension" | "insurance" | "needs";
 
 const SignupStep11: React.FC = () => {
   const [wantsWelfare, setWantsWelfare] = useState<boolean | null>(null);
-  const [selectedOptions, setSelectedOptions] = useState({
-    healthCard: "",
-    pension: "",
-    insurance: "",
-    needs: "",
-  });
+  const [selectedSection, setSelectedSection] = useState<Section | null>(null);
+  const [selectedOrganization, setSelectedOrganization] = useState<string | null>(null);
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
 
-  // Define the image uploads with strict section keys
-  const [uploadedImages, setUploadedImages] = useState<{
-    healthCardImage: File | null;
-    pensionImage: File | null;
-    insuranceImage: File | null;
-    needsImage: File | null;
-  }>({
-    healthCardImage: null,
-    pensionImage: null,
-    insuranceImage: null,
-    needsImage: null,
-  });
-
-  const handleSelection = (section: Section, option: string) => {
-    setSelectedOptions({ ...selectedOptions, [section]: option });
+  const organizations = {
+    healthCard: [
+      { name: "BSKY", premium: "₹500/month", payout: "₹5 Lac", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/BSKY_Logo_umdrqn.png" },
+      { name: "Ayushman Bharat", premium: "₹300/month", payout: "₹3 Lac", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749583/ayushman_bharat_ngycj4.png" },
+      { name: "ESIC", premium: "₹200/month", payout: "₹2 Lac", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/ESIC_ae49xe.png" },
+      // { name: "Not Available", premium: "N/A", payout: "N/A", logo: "/path/to/not-available-logo.png" },
+    ],
+    pension: [
+      { name: "NPS", premium: "₹1000/month", payout: "₹10 Lac", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749889/logo_uupd0f.png" },
+      { name: "EPF", premium: "₹1500/month", payout: "₹8 Lac", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749878/epf_bwvokn.jpg" },
+    ],
+    insurance: [
+      { name: "PMSBY", premium: "₹12/year", payout: "₹2 Lac", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750007/site-logo_k7ejwo.jpg" },
+      { name: "PMJJBY", premium: "₹330/year", payout: "₹2 Lac", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750296/a_bsuthv.jpg" },
+    ],
+    needs: [
+      { name: "1 Nation 1 Ration Card", premium: "N/A", payout: "Food Security", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750295/1ration_ckvjas.jpg" },
+      { name: "LPG", premium: "₹100/month", payout: "Subsidized LPG", logo: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750407/download_ejbyiw.png" },
+      // { name: "Not Available", premium: "N/A", payout: "N/A", logo: "/path/to/not-available-logo.png" },
+    ],
   };
 
-  const handleImageUpload = (section: Section, file: File) => {
-    setUploadedImages((prev) => ({ ...prev, [`${section}Image`]: file }));
+  const handleSectionClick = (section: Section) => {
+    setSelectedSection(section);
+    setSelectedOrganization(null);
+    setShowConfirmation(false); // Reset confirmation state
   };
 
-  const removeImage = (section: Section) => {
-    setUploadedImages((prev) => ({ ...prev, [`${section}Image`]: null }));
+  const handleCallRequest = () => {
+    setShowConfirmation(true); // Show confirmation on button click
   };
-
-  const renderImageUpload = (section: Section) => (
-    <div className="mt-4">
-      <label className="block text-gray-700 font-medium">
-        Upload Document (Optional)
-      </label>
-      {!uploadedImages[`${section}Image`] ? (
-        <input
-          type="file"
-          onChange={(e) =>
-            e.target.files && handleImageUpload(section, e.target.files[0])
-          }
-          className="mt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200"
-        />
-      ) : (
-        <div className="flex items-center mt-2">
-          <span className="text-sm text-gray-600">
-            {uploadedImages[`${section}Image`]?.name}
-          </span>
-          <button
-            type="button"
-            className="ml-2 text-red-500"
-            onClick={() => removeImage(section)}
-          >
-            <FaTimes />
-          </button>
-        </div>
-      )}
-    </div>
-  );
 
   return (
-    <div className="flex flex-col items-center justify-center h-[80vh] bg-blue-600">
+    <div className="flex flex-col items-center justify-center h-[80vh] bg-gradient-to-b from-black to-blue-800">
       {wantsWelfare === null ? (
         <div className="bg-white shadow-lg rounded-lg p-8">
           <h1 className="text-2xl font-bold text-center mb-6">
@@ -93,115 +65,88 @@ const SignupStep11: React.FC = () => {
         </div>
       ) : wantsWelfare ? (
         <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
-          {/* Section 1: Health Card */}
-          <div>
-            <h2 className="text-xl font-semibold text-blue-600">Health Card</h2>
-            <div className="mt-2 flex space-x-4">
-              {["BSKY", "Ayushman Bharat", "ESIC", "Not Available"].map(
-                (option) => (
-                  <button
-                    key={option}
-                    onClick={() => handleSelection("healthCard", option)}
-                    className={`${
-                      selectedOptions.healthCard === option
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200"
-                    } px-4 py-2 rounded-lg hover:bg-blue-400`}
-                  >
-                    {option}
-                  </button>
-                )
+          {!selectedSection ? (
+            <div className="grid grid-cols-2 gap-6">
+              <div
+                onClick={() => handleSectionClick("healthCard")}
+                className="cursor-pointer bg-gray-100 p-4 rounded-lg hover:bg-blue-200"
+              >
+                <FaHeartbeat className="text-blue-500 text-5xl mx-auto" />
+                <h2 className="text-center mt-4 text-xl font-semibold text-blue-600">Health Insurance</h2>
+              </div>
+              <div
+                onClick={() => handleSectionClick("pension")}
+                className="cursor-pointer bg-gray-100 p-4 rounded-lg hover:bg-blue-200"
+              >
+              <FaShieldAlt className="text-blue-500 text-5xl mx-auto" />
+                <h2 className="text-center mt-4 text-xl font-semibold text-blue-600">Pension</h2>
+              </div>
+              <div
+                onClick={() => handleSectionClick("insurance")}
+                className="cursor-pointer bg-gray-100 p-4 rounded-lg hover:bg-blue-200"
+              >
+                <FaShieldAlt className="text-blue-500 text-5xl mx-auto" />
+                <h2 className="text-center mt-4 text-xl font-semibold text-blue-600">Accidental Insurance</h2>
+              </div>
+              <div
+                onClick={() => handleSectionClick("needs")}
+                className="cursor-pointer bg-gray-100 p-4 rounded-lg hover:bg-blue-200"
+              >
+                <FaConciergeBell className="text-blue-500 text-5xl mx-auto" />
+                <h2 className="text-center mt-4 text-xl font-semibold text-blue-600">Food Security</h2>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <h2 className="text-2xl font-semibold text-blue-600 mb-4">
+                Available Options for {selectedSection === "healthCard"
+                  ? "Health Insurance"
+                  : selectedSection === "pension"
+                  ? "Pension"
+                  : selectedSection === "insurance"
+                  ? "Accidental Insurance"
+                  : "Food Security"}
+              </h2>
+              <div className="grid grid-cols-2 gap-4">
+                {organizations[selectedSection].map((organization) => (
+                  <div key={organization.name} className="p-4 bg-gray-100 rounded-lg shadow-md">
+                    <img src={organization.logo} alt={organization.name} className="h-16 mx-auto mb-4" />
+                    <h3 className="text-center text-xl font-semibold mb-2">{organization.name}</h3>
+                    <p className="text-center mb-2">Premium: {organization.premium}</p>
+                    <p className="text-center mb-4">Payout: {organization.payout}</p>
+                    <button
+                      onClick={handleCallRequest}
+                      className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600"
+                    >
+                      Book a Call
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {showConfirmation && (
+                <div className="text-center mt-4 text-green-500">
+                  Your request has been sent successfully. Our team will help you with further process.
+                </div>
               )}
-            </div>
-            {selectedOptions.healthCard && renderImageUpload("healthCard")}
-          </div>
 
-          {/* Section 2: ATAL Pension */}
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold text-blue-600">ATAL Pension</h2>
-            <div className="mt-2 flex space-x-4">
-              {["NPS", "EPF"].map((option) => (
+              <div className="mt-6">
                 <button
-                  key={option}
-                  onClick={() => handleSelection("pension", option)}
-                  className={`${
-                    selectedOptions.pension === option
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  } px-4 py-2 rounded-lg hover:bg-blue-400`}
+                  className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                  onClick={() => setSelectedSection(null)}
                 >
-                  {option}
+                  Back
                 </button>
-              ))}
+              </div>
             </div>
-            {selectedOptions.pension && renderImageUpload("pension")}
-          </div>
-
-          {/* Section 3: Accidental Insurance */}
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold text-blue-600">
-              Accidental Insurance
-            </h2>
-            <div className="mt-2 flex space-x-4">
-              {["PMSBY", "PMJJBY"].map((option) => (
-                <button
-                  key={option}
-                  onClick={() => handleSelection("insurance", option)}
-                  className={`${
-                    selectedOptions.insurance === option
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  } px-4 py-2 rounded-lg hover:bg-blue-400`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-            {selectedOptions.insurance && renderImageUpload("insurance")}
-          </div>
-
-          {/* Section 4: Let's Get Your Needs Met */}
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold text-blue-600">
-              Let&apos;s Get Your Needs Met
-            </h2>
-            <div className="mt-2 flex space-x-4">
-              {[
-                "1 Nation 1 Ration Card",
-                "LPG",
-                "Not Available",
-              ].map((option) => (
-                <button
-                  key={option}
-                  onClick={() => handleSelection("needs", option)}
-                  className={`${
-                    selectedOptions.needs === option
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  } px-4 py-2 rounded-lg hover:bg-blue-400`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-            {selectedOptions.needs && renderImageUpload("needs")}
-          </div>
-
-          <div className="mt-8 flex justify-end">
-            <button
-              className="bg-white text-blue-600 py-2 px-4 rounded-lg ring-2 ring-blue-600 hover:bg-blue-100"
-              onClick={() => alert("Skipped to next step!")}
-            >
-              Skip
-            </button>
-          </div>
+          )}
         </div>
       ) : (
         <div className="text-center text-white text-lg">
           You have opted not to avail any welfare schemes.
         </div>
       )}
-      {/* Progress Bar */}
+
       <div className="fixed bottom-0 w-full h-2 bg-gray-200">
         <div className="h-2 bg-blue-600" style={{ width: '80%' }}></div>
       </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 
 const Login: React.FC = () => {
@@ -26,14 +27,14 @@ const Login: React.FC = () => {
           <img src="/images/mowash-logo.webp" className='h-12' />
         </div>
         <div className='flex justify-between items-center'>
-          <div className='p-6'>
+          <div className='p-4'>
             <p>Initiative By</p>
-            <img src='https://pantiss.com/wp-content/uploads/2022/08/logo.png' className='h-16' />
+            <Image src='https://pantiss.com/wp-content/uploads/2022/08/logo.png' height={100} width={200} alt="pantiss" />
           </div>
 
-          <div className='p-6'>
+          <div className='p-4'>
             <p>Supported By</p>
-            <img src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/1200px-UNICEF_Logo_g3gwyz.png" className='h-16' />
+            <Image src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/1200px-UNICEF_Logo_g3gwyz.png" height={100} width={200} alt="unicef"/>
           </div>
         </div>
       </div>

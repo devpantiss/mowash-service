@@ -28,30 +28,30 @@ const MowashPreneurCards = () => {
     return (
         <section className="bg-blue-600 py-12">
             <div className="relative max-w-7xl mx-auto text-center">
-                <h2 className="text-4xl font-bold text-white mb-6">MoWash-Preneur Services</h2>
+                <h2 className="text-4xl font-bold text-white mb-6">Sell Your Wash Products with us</h2>
                 <p className="text-lg text-white mb-12">
                     Rich blended journeys that your people will love for making them more productive, effective and happier.
                 </p>
                 <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <ProgramCard
-                        title="HOP ON"
+                        title="For Hand Hygiene"
                         imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667664/Untitled_design_2_otps8l.png"
-                        tagline="For Early Start-Up In Green Economy"
+                        tagline="Clean hands, safe life."
                     />
                     <ProgramCard
-                        title="FLY"
+                        title="For Menstural Hygiene"
                         imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667761/Untitled_design_4_ewqjom.png"
-                        tagline="For Women WASH"
+                        tagline="Comfort in care."
                     />
                     <ProgramCard
-                        title="MATURE"
+                        title="For Leg Hygiene"
                         imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667463/Untitled_design_1_prt8qb.png"
-                        tagline="For Existing WASH and Circular Economy in Plants"
+                        tagline="Fresh legs, strong steps."
                     />
                     <ProgramCard
-                        title="EDIFICE"
+                        title="For Facility Hygiene"
                         imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726668482/Untitled_design_6_qdpm9q.png"
-                        tagline="For SHG 2 in WASH And Circular Economy"
+                        tagline="Clean spaces, healthy places."
                     />
                 </div>
             </div>

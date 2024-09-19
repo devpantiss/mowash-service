@@ -19,18 +19,19 @@ const Impact: React.FC = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-lg md:text-xl">
                         <div className="flex flex-col items-center">
-                            <span className="text-3xl font-bold">1,200</span>
-                            <span>Installations across various segments</span>
+                            <span className="text-3xl font-bold">22,000</span>
+                            <span>people accessed safe drinking water through various technologies suiting the geohydrological conditions of their areas
+                            </span>
                         </div>
 
                         <div className="flex flex-col items-center">
-                            <span className="text-3xl font-bold">~12,000 MLD</span>
-                            <span>Water & Wastewater treated through Triveni projects</span>
+                            <span className="text-3xl font-bold">~15,000</span>
+                            <span>people gained access to hygienic latrines</span>
                         </div>
 
                         <div className="flex flex-col items-center">
-                            <span className="text-3xl font-bold">2,000+</span>
-                            <span>Process equipment supplied and commissioned</span>
+                            <span className="text-3xl font-bold">4,000+</span>
+                            <span>students and teachers received WASH facilities and hygiene education</span>
                         </div>
                     </div>
                 </div>

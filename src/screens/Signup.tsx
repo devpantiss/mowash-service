@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-// import SignUpStep1 from "@/components/SignUpStep1";
-// import SignUpStep2 from "@/components/SignUpStep2";
-// import SignUpStep3 from "@/components/SignUpStep3";
 import SignupStep1 from "@/components/SignUp/SignupStep1";
 import SignupStep2 from "@/components/SignUp/SignupStep2";
 import SignupStep3 from "@/components/SignUp/SignupStep3";
@@ -18,76 +15,14 @@ import SignupStep11 from "@/components/SignUp/SignupStep11";
 import SignupStep13 from "@/components/SignUp/SignupStep13";
 import SignupStep12 from "@/components/SignUp/SignupStep12";
 
-// interface WorkingHour {
-//   start: string;
-//   end: string;
-// }
 
-// interface FormData {
-//   profilePicture?: string;
-//   fullName?: string;
-//   email?: string;
-//   password?: string;
-//   confirmPassword?: string;
-//   age?: number;
-//   gender?: string;
-//   healthInsurance?: string;
-//   aadharCard?: string;
-//   workerCertificate?: string;
-//   aadharNumber?: string;
-//   opt_class?: string;
-//   working_hour?: WorkingHour[];
-//   working_day?: string[];
-//   work_history_pic?: string[];
-//   category: string;
-//   service: string;
-//   sub_service: string;
-// }
 
-// interface Errors {
-//   fullName?: string;
-//   email?: string;
-//   password?: string;
-//   confirmPassword?: string;
-//   age?: string;
-//   gender?: string;
-//   healthInsurance?: string;
-//   aadharCard?: string;
-//   workerCertificate?: string;
-//   aadharNumber?: string;
-//   opt_class?: string;
-//   working_hour?: string;
-//   working_day?: string;
-//   work_history_pic?: string;
-// }
 
 const Signup: React.FC = () => {
-  // const router = useRouter();
-  // const [loader, setLoader] = useState(false);
+ 
 
   const [step, setStep] = useState<number>(0);
-  // const [formData, setFormData] = useState<FormData>({
-  //   fullName: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  //   age: undefined,
-  //   gender: "",
-  //   profilePicture: "",
-  //   healthInsurance: "",
-  //   aadharCard: "",
-  //   workerCertificate: "",
-  //   aadharNumber: "",
-  //   opt_class: "",
-  //   working_hour: [],
-  //   working_day: [],
-  //   work_history_pic: [],
-  //   category: "",
-  //   service: "",
-  //   sub_service: "",
-  // });
-  // const [errors, setErrors] = useState<Errors>({});
-
+  
 
   const handleNext = () => {
     if (step === 0) {
@@ -125,94 +60,9 @@ const Signup: React.FC = () => {
     setStep((prevStep) => Math.max(prevStep - 1, 0));
   };
 
-  // const handleChange = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  // ) => {
-  //   const { name, value, type } = e.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-  // };
-
-  // const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   if (/^\d*$/.test(value)) {
-  //     setFormData((prevData) => ({
-  //       ...prevData,
-  //       [name]: parseInt(value, 10),
-  //     }));
-  //   }
-  // };
-
-  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = e.target.files;
-  //   const { name } = e.target;
-  //   if (files && files.length > 0) {
-  //     onUploadImage(name, files[0]);
-  //   }
-  // };
-
-  // const onUploadImage = async (name: string, file: File) => {
-  //   try {
-  //     setLoader(true);
-  //     setLoader(false);
-  //   } catch (error) {
-  //     setLoader(false);
-  //     console.error("Error uploading image:", error);
-  //   }
-  // };
-
-  // const formatTime = (time: string): string => {
-  //   const [hours, minutes] = time.split(":").map(Number);
-  //   const period = hours >= 12 ? "PM" : "AM";
-  //   const formattedHours = hours % 12 || 12;
-  //   return `${formattedHours}:${minutes < 10 ? "0" : ""}${minutes}${period}`;
-  // };
-
-  // const onSignUp = async () => {
-  //   setLoader(true);
-  //   try {
-  //     const formattedWorkingHour =
-  //       formData.working_hour?.map((hour) => {
-  //         const startTime = formatTime(hour.start);
-  //         const endTime = formatTime(hour.end);
-  //         return `${startTime}-${endTime}`;
-  //       }) || [];
-
-  //     const data = {
-  //       name: formData.fullName,
-  //       email: formData.email,
-  //       password: formData.password,
-  //       age: formData.age,
-  //       aadharNumber: formData.aadharNumber,
-  //       aadharPhoto: formData.aadharCard,
-  //       userType: "service",
-  //       profilePicture: formData.profilePicture,
-  //       working_hour: formattedWorkingHour,
-  //       working_day: formData.working_day,
-  //       work_history_pic: formData.work_history_pic,
-  //       opt_class: formData.opt_class,
-  //       gender: formData.gender,
-  //       health_insurace: formData.healthInsurance,
-  //       worker_certificate: formData.workerCertificate,
-  //       category: formData.category,
-  //       service: formData.service,
-  //       sub_service: formData.sub_service,
-  //     };
-  //     await http.post("/api/signup", data);
-  //     setLoader(false);
-
-  //     router.push("/");
-  //   } catch (error: any) {
-  //     setLoader(false);
-  //     const errorMessage = error.response?.data.Message;
-  //   }
-  // };
-
   return (
     <>
-      <div className="flex items-center justify-center h-screen bg-blue-600">
+      <div className="flex items-center justify-center h-screen bg-gradient-to-b from-black to-blue-800">
         <div className="w-full p-4 rounded-lg shadow sm:p-6 md:px-8 md:py-6">
           <div data-hs-stepper="">
             <div className="h-24 bg-white px-8 flex justify-start items-center py-2 rounded-md">
@@ -264,7 +114,7 @@ const Signup: React.FC = () => {
               )}
 
 
-              <div className="mt-5 flex justify-between items-center gap-x-2">
+              <div className="flex bg-transparent py-4 justify-between items-center gap-x-2">
                 <button
                   type="button"
                   className="px-6 py-2 mb-2 flex bg-white text-blue-600 ring-2 ring-black rounded-lg"

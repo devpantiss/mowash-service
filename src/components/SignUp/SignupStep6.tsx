@@ -58,7 +58,7 @@ const SignupStep6: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-start h-[80vh] bg-blue-600">
+        <div className="flex flex-col items-center justify-start h-[80vh] bg-gradient-to-b from-black to-blue-800">
             <h2 className="text-3xl text-white font-bold text-left mb-6">Choose your location</h2>
 
             <div className='flex justify-between gap-x-4 items-center w-full max-w-6xl'>
@@ -79,85 +79,92 @@ const SignupStep6: React.FC = () => {
                 </div>
 
                 {/* Address Form */}
-                <form onSubmit={handleFormSubmit} className="w-1/2 p-8 bg-white rounded-md">
-                    <div className="space-y-2">
-                        <label className="block text-blue-600 text-sm font-medium">Flat/House Number</label>
+                <form onSubmit={handleFormSubmit} className="w-1/2 p-8 bg-transparent rounded-md">
+                    <div className="space-y-2 mt-2">
+                        <label className="block text-white text-sm font-medium">Flat/House Number</label>
                         <input
                             type="text"
                             name="houseNumber"
                             value={formData.houseNumber}
                             onChange={handleInputChange}
-                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
+                            className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
+                            placeholder='Enter Your House Number or Relevant details'
                             required
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="block text-blue-600 text-sm font-medium">Street Address</label>
+                    <div className="space-y-2 mt-2">
+                        <label className="block text-white text-sm font-medium">Street Address</label>
                         <input
                             type="text"
                             name="streetAddress"
                             value={formData.streetAddress}
                             onChange={handleInputChange}
-                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
+                            className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
+                            placeholder='Enter Your Locality Details'
                             required
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="block text-blue-600 text-sm font-medium">Nearby Landmark</label>
+                    <div className="space-y-2 mt-2">
+                        <label className="block text-white text-sm font-medium">Nearby Landmark</label>
                         <input
                             type="text"
                             name="landmark"
                             value={formData.landmark}
                             onChange={handleInputChange}
-                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
+                            className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
+                            placeholder='Enter Your NEarest Landmark Feature'
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="block text-blue-600 text-sm font-medium">District/Locality</label>
+                    <div className="space-y-2 mt-2">
+                        <label className="block text-white text-sm font-medium">District/Locality</label>
                         <input
                             type="text"
                             name="locality"
                             value={formData.locality}
                             onChange={handleInputChange}
-                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
+                            className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
+                            placeholder='Enter Your District'
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="block text-blue-600 text-sm font-medium">City/Town</label>
+                    <div className="space-y-2 mt-2">
+                        <label className="block text-white text-sm font-medium">City/Town</label>
                         <input
                             type="text"
                             name="city"
                             value={formData.city}
                             onChange={handleInputChange}
-                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
+                            className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
+                            placeholder='Enter Your House City/Town Name'
                             required
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="block text-blue-600 text-sm font-medium">State</label>
+                    <div className="space-y-2 mt-2">
+                        <label className="block text-white text-sm font-medium">State</label>
                         <input
                             type="text"
                             name="state"
                             value={formData.state}
                             onChange={handleInputChange}
-                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
+                            className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
+                            placeholder='Enter Your State'
                             required
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="block text-blue-600 text-sm font-medium">Pincode</label>
+                    <div className="space-y-2 mt-2">
+                        <label className="block text-white text-sm font-medium">Pincode</label>
                         <input
                             type="text"
                             name="pincode"
                             value={formData.pincode}
                             onChange={handleInputChange}
-                            className="p-2 border-2 border-blue-200 rounded-lg w-full"
+                            className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
+                            placeholder='Enter Your Pincode'
                             required
                         />
                     </div>

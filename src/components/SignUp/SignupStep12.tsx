@@ -1,115 +1,188 @@
 import React, { useState } from 'react';
-import { FaHeart, FaLungs, FaBrain, FaEye, FaTooth, FaStethoscope } from 'react-icons/fa';
 
 const HealthCheckup: React.FC = () => {
-  const [selectedDisease, setSelectedDisease] = useState<string | null>(null);
-  const [symptoms, setSymptoms] = useState<string>('');
-  const [checkupRequested, setCheckupRequested] = useState(false);
-  const [fitnessReport, setFitnessReport] = useState<string | null>(null);
+  // Define the type of hospitals object
+  const hospitals: { [key: string]: string[] } = {
+    Bhubaneswar: ['AIIMS Bhubaneswar', 'Capital Hospital', 'KIMS Hospital'],
+    Cuttack: ['SCB Medical College', 'Acharya Harihar Hospital'],
+    Puri: ['District Headquarters Hospital', 'Puri Government Hospital'],
+    // Add more districts and hospitals as needed
+  };
 
-  const diseases = [
-    { name: 'Heart Disease', icon: <FaHeart className="text-red-500 text-3xl" /> },
-    { name: 'Lung Disease', icon: <FaLungs className="text-blue-500 text-3xl" /> },
-    { name: 'Brain Disorder', icon: <FaBrain className="text-purple-500 text-3xl" /> },
-    { name: 'Eye Issues', icon: <FaEye className="text-yellow-500 text-3xl" /> },
-    { name: 'Dental Problems', icon: <FaTooth className="text-gray-500 text-3xl" /> },
-    { name: 'None', icon: <FaStethoscope className="text-green-500 text-3xl" /> },
+  // Set selectedDistrict to be one of the keys of the hospitals object
+  const [selectedDistrict, setSelectedDistrict] = useState<keyof typeof hospitals | ''>('');
+  const [selectedHospital, setSelectedHospital] = useState('');
+  const [selectedCheckup, setSelectedCheckup] = useState<string | null>(null);
+  const [isBookingCreated, setIsBookingCreated] = useState(false);
+
+  const checkups = [
+    {
+      name: 'Full Body Checkup',
+      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751404/fullbody_Magazine-02_dl7cqu.webp',
+      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751403/FitCheckHero012020.2_t63ptt.webp',
+      description:
+        'A comprehensive health checkup that includes blood tests, imaging, and physical examination to assess overall health.',
+      discountedCost: '₹1999',
+    },
+    {
+      name: 'Alcohol Risk',
+      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751308/Alcohol_magazine_bnluqd.webp',
+      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751182/Alcohol_Hero_zgq3jp.webp',
+      description:
+        'This test evaluates liver function and other parameters to assess the risk of alcohol-related diseases.',
+      discountedCost: '₹999',
+    },
+    {
+      name: 'Anemia Profile',
+      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751403/Anemia_Magazine_Web_new_xehmlm.webp',
+      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751404/AnemiaHero_zrfac0.webp',
+      description:
+        'This profile includes a complete blood count and iron studies to detect and evaluate anemia.',
+      discountedCost: '₹799',
+    },
+    {
+      name: 'Womens Health',
+      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751405/women_health_kj1mwd.webp',
+      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751407/WomensHealthScreening_Hero_iyofao.webp',
+      description:
+        'A set of tests focused on reproductive and overall health for women, including hormone evaluation.',
+      discountedCost: '₹1499',
+    },
   ];
 
-  const handleSelectDisease = (disease: string) => {
-    setSelectedDisease(disease);
-    setSymptoms(''); // Reset symptoms input when a new disease is selected
-    setCheckupRequested(false); // Reset the checkup request
-    setFitnessReport(null); // Reset the fitness report when a new disease is selected
+  const handleCheckupSelection = (checkup: string) => {
+    setSelectedCheckup(checkup);
+    setSelectedDistrict('');
+    setSelectedHospital('');
+    setIsBookingCreated(false); // Reset booking when a new checkup is selected
   };
 
-  const handleRequestCheckup = () => {
-    if (!selectedDisease) return;
-    setCheckupRequested(true);
+  const handleDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedDistrict(event.target.value as keyof typeof hospitals);
+    setSelectedHospital(''); // Reset hospital selection when district changes
   };
 
-  const handleFitnessReportUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFitnessReport(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+  const handleHospitalChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedHospital(event.target.value);
+  };
+
+  const handleCreateBooking = () => {
+    if (selectedDistrict && selectedHospital) {
+      setIsBookingCreated(true);
     }
   };
 
+  const resetSelection = () => {
+    setSelectedCheckup(null); // Reset the selected checkup to show the cards again
+  };
+
   return (
-    <div className="flex h-[70vh] bg-blue-600 p-6">
-      {/* Left section: Grid of common diseases */}
-      <div className="w-1/2 pr-6">
-        <h2 className="text-3xl text-white font-bold mb-6">Health Checkup</h2>
-        <div className="grid grid-cols-2 gap-6">
-          {diseases.map((disease) => (
+    <div className="flex h-[80vh] bg-gradient-to-b from-black to-blue-800 p-6">
+      {!selectedCheckup ? (
+        <div className="w-full grid grid-cols-4">
+          {checkups.map((checkup) => (
             <button
-              key={disease.name}
-              onClick={() => handleSelectDisease(disease.name)}
-              className={`p-6 bg-white rounded-lg shadow-lg flex flex-col items-center justify-center text-center border 
-                ${selectedDisease === disease.name ? 'border-black' : 'border-gray-300'}`}
+              key={checkup.name}
+              onClick={() => handleCheckupSelection(checkup.name)}
+              className=" bg-transparent rounded-lg flex flex-col items-center justify-center text-center"
             >
-              {disease.icon}
-              <h3 className="mt-4 text-lg font-semibold">{disease.name}</h3>
+              <img
+                src={checkup.image}
+                alt={checkup.name}
+                className="w-[200px] object-cover rounded-md"
+              />
             </button>
           ))}
         </div>
-      </div>
-
-      {/* Right section: Input for symptoms or fitness report */}
-      <div className="w-1/2 mt-4 pl-6">
-        {selectedDisease && selectedDisease !== 'None' && (
-          <>
-            {/* Symptoms input */}
-            <h4 className="text-lg text-white font-semibold mb-2">
-              Please describe your symptoms for {selectedDisease}:
-            </h4>
-            <textarea
-              value={symptoms}
-              onChange={(e) => setSymptoms(e.target.value)}
-              className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
-              rows={4}
-              placeholder="Enter the details of your symptoms here..."
+      ) : (
+        <div className="flex w-full h-full">
+          <div className="w-1/3">
+            <img
+              src={
+                checkups.find((c) => c.name === selectedCheckup)?.image2 || ''
+              }
+              alt={selectedCheckup}
+              className="w-full h-auto rounded-lg shadow-lg"
             />
-          </>
-        )}
+          </div>
 
-        {/* Request Checkup Button */}
-        {!checkupRequested && selectedDisease ? (
-          <button
-            onClick={handleRequestCheckup}
-            className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition-colors"
-          >
-            Request a Checkup
-          </button>
-        ) : (
-          checkupRequested && (
-            <div className="mt-6">
-              {/* Success Message */}
-              <p className="text-lg text-white font-semibold mb-4">
-                Your checkup request has been processed. Please upload your MWC Fitness Report.
-              </p>
+          <div className="w-2/3 pl-8">
+            <h2 className="text-3xl text-white font-bold mb-4 capitalize">
+              {selectedCheckup}
+            </h2>
+            <p className="text-lg text-white mb-4">
+              {checkups.find((c) => c.name === selectedCheckup)?.description}
+            </p>
+            <p className="text-2xl text-yellow-400 mb-4">
+              Discounted Cost: {checkups.find((c) => c.name === selectedCheckup)?.discountedCost}
+            </p>
 
-              {/* Upload Fitness Report */}
-              <div className="flex justify-center">
-                {fitnessReport ? (
-                  <img src={fitnessReport} alt="MWC Fitness Report" className="w-64 h-auto rounded-lg shadow-lg" />
-                ) : (
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFitnessReportUpload}
-                    className="p-3 border text-white border-gray-300 rounded-lg"
-                  />
-                )}
-              </div>
+            <div className="mb-4">
+              <label className="block text-white mb-2">Select your district:</label>
+              <select
+                value={selectedDistrict}
+                onChange={handleDistrictChange}
+                className="w-full p-3 rounded-lg bg-white"
+              >
+                <option value="">Select District</option>
+                {Object.keys(hospitals).map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </select>
             </div>
-          )
-        )}
-      </div>
+
+            {selectedDistrict && (
+              <div className="mb-4">
+                <label className="block text-white mb-2">
+                  Select a hospital in {selectedDistrict}:
+                </label>
+                <select
+                  value={selectedHospital}
+                  onChange={handleHospitalChange}
+                  className="w-full p-3 rounded-lg bg-white"
+                >
+                  <option value="">Select Hospital</option>
+                  {hospitals[selectedDistrict]?.map((hospital) => (
+                    <option key={hospital} value={hospital}>
+                      {hospital}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {selectedDistrict && selectedHospital && (
+              <button
+                onClick={handleCreateBooking}
+                className="px-6 py-3 mx-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition-colors"
+              >
+                Book Now
+              </button>
+            )}
+
+            {isBookingCreated && (
+              <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
+                <h3 className="text-lg font-bold mb-2">Booking Details</h3>
+                <p>Checkup: {selectedCheckup}</p>
+                <p>Hospital: {selectedHospital}</p>
+                <p>Date: {new Date().toLocaleDateString()}</p>
+                <p>Time: {new Date().toLocaleTimeString()}</p>
+                <p>Doctor: Dr. Mohanty</p>
+                <p>MoWash Representative: +91 9876543210</p>
+              </div>
+            )}
+
+            <button
+              onClick={resetSelection}
+              className="mt-4 px-6 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition-colors"
+            >
+              Back to Checkups
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
