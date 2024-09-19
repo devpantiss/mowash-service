@@ -94,45 +94,42 @@ const SignupStep0: React.FC = () => {
         <div className="grid grid-cols-2 gap-6">
           {/* Card 1 */}
           <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-yellow-400 mb-1">Unlimited Access to</h3>
-            <p className="text-5xl font-bold text-yellow-300 mb-1">300+</p>
-            <p className="text-sm text-gray-400">ELITE & PRO GYMS</p>
+            <h3 className="text-xl font-semibold text-blue-400 mb-1">Unlimited Access to</h3>
+            <p className="text-5xl font-bold text-blue-300 mb-1">30+</p>
+            <p className="text-sm text-gray-400">services</p>
           </div>
 
           {/* Card 2 */}
           <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center row-span-2 justify-center">
-            <h3 className="text-xl font-semibold text-yellow-400 mb-2">Multiple workout formats</h3>
+            <h3 className="text-xl font-semibold text-blue-400 mb-2">Multiple services formats</h3>
             <div className="grid grid-cols-3 gap-2">
-              <div className="text-yellow-300">
-                <p>YOGA</p>
+              <div className="text-blue-300">
+                <p>Toilet Mason</p>
               </div>
               <div className="text-yellow-300">
-                <p>HIIT</p>
+                <p>Electrician</p>
               </div>
               <div className="text-yellow-300">
-                <p>BOXING</p>
+                <p>Plumbing</p>
               </div>
               <div className="text-yellow-300">
-                <p>HRX</p>
-              </div>
-              <div className="text-yellow-300">
-                <p>DANCE</p>
+                <p>Cesspool</p>
               </div>
             </div>
           </div>
 
           {/* Card 3 */}
           <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-yellow-400 mb-1">At Home</h3>
-            <p className="text-sm text-gray-400 mb-1">LIVE WORKOUTS</p>
-            <div className="h-12 w-12 bg-yellow-500 rounded-full flex items-center justify-center">
+            <h3 className="text-xl font-semibold text-blue-400 mb-1">At Home</h3>
+            <p className="text-sm text-gray-400 mb-1">Avail services</p>
+            <div className="h-12 w-12 bg-blue-500 rounded-full flex items-center justify-center">
               <p className="text-white">💎</p>
             </div>
           </div>
 
           {/* Card 4 */}
           <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-yellow-400 mb-1">At center Group Classes</h3>
+            <h3 className="text-xl font-semibold text-blue-400 mb-1">At center Group Classes</h3>
             <img
               src="/group-class-image.png" // Replace with appropriate image link or icon
               alt="Group Class"
@@ -142,9 +139,9 @@ const SignupStep0: React.FC = () => {
 
           {/* Card 5 */}
           <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-yellow-400 mb-1">SMART</h3>
+            <h3 className="text-xl font-semibold text-blue-400 mb-1">SMART</h3>
             <p className="text-sm text-gray-400 mb-1">Workout plans</p>
-            <div className="h-12 w-12 bg-yellow-500 rounded-full flex items-center justify-center">
+            <div className="h-12 w-12 bg-blue-500 rounded-full flex items-center justify-center">
               <p className="text-white">🔊</p>
             </div>
           </div>
