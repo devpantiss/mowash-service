@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -25,45 +24,41 @@ const Header = () => {
 
   return (
     <nav
-      className={`sticky z-50 top-0 w-full transition-all  duration-300 ${isScrolled ? 'bg-white shadow-lg text-black' : 'bg-transparent text-black'
+      className={`sticky z-50 top-0 w-full transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg text-black' : 'bg-transparent text-black'
         }`}
     >
-      <div className="flex justify-between items-center py-6 px-4">
+      <div className="flex justify-between items-center py-4 px-8 mx-auto max-w-[1200px]">
         {/* Logo */}
-        <div className="text-xl mx-[100px] font-semibold">
-          <img src='/images/mowash-logo.webp' alt="logo" className='cursor-pointer h-12'/>
+        <div className="flex items-center text-xl font-semibold">
+          <img src='/images/mowash-logo.webp' alt="logo" className='cursor-pointer h-12' />
         </div>
 
         {/* Navigation Links */}
-        <div className="flex text-[20px] space-x-6">
-          <a href="#" className="hover:underline">
+        <div className="hidden md:flex space-x-8 text-lg font-medium">
+          <a href="#" className="hover:underline hover:text-blue-600 transition duration-300">
             MWC
           </a>
-          <a href="#" className="hover:underline">
-            Benefits   
+          <a href="#" className="hover:underline hover:text-blue-600 transition duration-300">
+            Benefits
           </a>
-          <a href="#" className="hover:underline">
+          <a href="#" className="hover:underline hover:text-blue-600 transition duration-300">
             Rewards
           </a>
         </div>
 
         {/* Right-side buttons */}
-        <div className="flex text-[20px] items-center space-x-4">
-          {/* <a href="#" className="hover:underline">
-            Calm Business
-          </a>
-          <a href="#" className="hover:underline">
-            Calm Health
-          </a> */}
-          <button className="px-4 py-2 text-[20px] rounded-full font-semibold transition-all duration-300 border ${
-            isScrolled ? 'bg-blue-600 border-blue-600 text-white' : 'bg-blue-600 text-white'
-          }">
+        <div className="flex items-center space-x-4">
+          <button
+            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${isScrolled ? 'bg-blue-600 text-white border-blue-600' : 'bg-blue-600 text-white'}`}
+          >
             <Link href="/login">Login</Link>
-            </button>
-          <div className='w-[3px] h-[35px] bg-blue-600'></div>
-          <button className="px-4 py-2 text-[20px] rounded-full font-semibold transition-all duration-300 border ${
-            isScrolled ? 'bg-blue-600 border-blue-600 text-white' : 'bg-blue-600 text-white'
-          }">
+          </button>
+
+          <div className='w-[2px] h-[35px] bg-gray-300'></div>
+
+          <button
+            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${isScrolled ? 'bg-blue-600 text-white border-blue-600' : 'bg-blue-600 text-white'}`}
+          >
             <Link href="/signup">Register</Link>
           </button>
         </div>
