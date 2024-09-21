@@ -52,7 +52,7 @@ const SignupStep5: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row h-[80vh] bg-gradient-to-b from-black to-blue-800">
+    <div className="flex flex-row h-[80vh] bg-transparent">
       {/* Details Section */}
       <div className="relative w-2/5 overflow-y-auto p-8 text-white" ref={detailRef}>
         <div className="absolute inset-0 bg-black opacity-50 z-10"></div>

@@ -48,7 +48,7 @@ const SignupStep3: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row h-[80vh] bg-gradient-to-b from-black to-blue-800">
+    <div className="flex flex-row h-[80vh] bg-transparent">
       {/* Options Section */}
       <div className="flex flex-col w-3/5 p-8">
         <h2 className="text-3xl text-white font-bold mb-6">My Expertise is...</h2>

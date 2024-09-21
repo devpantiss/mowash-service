@@ -77,7 +77,7 @@ const HealthCheckup: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[80vh] bg-gradient-to-b from-black to-blue-800 p-6">
+    <div className="flex h-[80vh] bg-transparent p-6">
       {!selectedCheckup ? (
         <div className="w-full grid grid-cols-4">
           {checkups.map((checkup) => (

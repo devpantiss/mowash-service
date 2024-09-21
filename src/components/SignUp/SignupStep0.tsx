@@ -24,7 +24,7 @@ const SignupStep0: React.FC = () => {
   return (
     <div className="flex h-[80vh]" >
       {/* Left Side: Form Section */}
-      <div className="w-1/2 bg-gradient-to-b from-black to-blue-800 p-10 text-white flex flex-col justify-center">
+      <div className="w-1/2 bg-transparent p-10 text-white flex flex-col justify-center">
         <h1 className="text-4xl font-bold mb-8">Please Enter your details</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>

@@ -58,7 +58,7 @@ const SignupStep6: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-start h-[80vh] bg-gradient-to-b from-black to-blue-800">
+        <div className="flex flex-col items-center justify-start h-[80vh] bg-transparent">
             <h2 className="text-3xl text-white font-bold text-left mb-6">Choose your location</h2>
 
             <div className='flex justify-between gap-x-4 items-center w-full max-w-6xl'>
