@@ -4,6 +4,7 @@ import { useState } from "react";
 const SignupStep0: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
+    number: "",
     password: "",
     confirmPassword: "",
   });
@@ -22,7 +23,7 @@ const SignupStep0: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[80vh]" >
+    <div className="flex h-[100vh]" >
       {/* Left Side: Form Section */}
       <div className="w-1/2 bg-transparent p-10 text-white flex flex-col justify-center">
         <h1 className="text-4xl font-bold mb-8">Please Enter your details</h1>
@@ -38,6 +39,19 @@ const SignupStep0: React.FC = () => {
               required
               className="w-full p-3 mt-1 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500"
               placeholder="you@example.com"
+            />
+          </div>
+          <div>
+            <label htmlFor="number" className="block text-sm font-medium">Number</label>
+            <input
+              type="number"
+              name="number"
+              id="number"
+              value={formData.number}
+              onChange={handleChange}
+              required
+              className="w-full p-3 mt-1 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500"
+              placeholder="+91 54223 54223"
             />
           </div>
 
@@ -68,28 +82,11 @@ const SignupStep0: React.FC = () => {
               placeholder="••••••••"
             />
           </div>
-
-          <div className="flex justify-between items-center text-sm">
-            <Link href="#" className="text-blue-400">Forgot Password?</Link>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white font-semibold p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              Sign in
-            </button>
-          </div>
-        </form>        
-
-        <div className="mt-6 text-center">
-          <Link href="/signup" className="text-blue-400">Create an account</Link>
-        </div>
+        </form>
       </div>
 
       {/* Right Side: Cards Section */}
-      <div className="w-1/2 bg-black flex flex-col justify-center p-8">
+      <div className="w-1/2 bg-black/40 flex flex-col justify-center p-8">
         {/* Cards Section */}
         <div className="grid grid-cols-2 gap-6">
           {/* Card 1 */}
@@ -130,11 +127,11 @@ const SignupStep0: React.FC = () => {
           {/* Card 4 */}
           <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
             <h3 className="text-xl font-semibold text-blue-400 mb-1">At center Group Classes</h3>
-            <img
+            {/* <img
               src="/group-class-image.png" // Replace with appropriate image link or icon
               alt="Group Class"
               className="h-16 w-16 rounded-full mt-2"
-            />
+            /> */}
           </div>
 
           {/* Card 5 */}

@@ -56,7 +56,7 @@ const SignupStep9: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center bg-transparent">
+        <div className="flex flex-col h-[100vh] items-center justify-center bg-transparent">
             <h2 className="text-3xl text-white font-bold text-left mb-6">Upload Your Photo in Safety Kit</h2>
 
             <div className="flex gap-8 w-full max-w-4xl">

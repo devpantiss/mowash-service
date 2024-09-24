@@ -65,7 +65,7 @@ const SignupStep2: React.FC = () => {
     };
 
   return (
-    <div className="flex items-center justify-center h-[80vh] bg-transparent">
+    <div className="flex items-center justify-center h-[100vh] bg-transparent">
       {/* Form Content */}
       <div className="w-full px-8 py-2 bg-transparent rounded-lg flex gap-8">
         <div className='flex flex-col justify-center space-y-4 w-2/5'>

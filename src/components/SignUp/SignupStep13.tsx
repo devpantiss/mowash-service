@@ -21,7 +21,7 @@ const SignupStep13: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-[70vh] bg-transparent">
+    <div className="flex justify-center items-center h-[100vh] bg-transparent">
       <div className="bg-transparent p-8 rounded-lg w-full max-w-5xl">
         {/* Heading */}
         <h2 className="text-3xl text-white font-bold text-left mb-6">Bank Details</h2>

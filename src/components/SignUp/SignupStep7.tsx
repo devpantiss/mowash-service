@@ -78,8 +78,8 @@ const SignupStep7: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h2 className="text-3xl text-white font-bold text-left mb-6">Basic Information Form</h2>
+    <div className="flex flex-col py-28 items-center h-[100vh] justify-center">
+      <h2 className="text-3xl text-white font-bold text-left mb-2">Basic Information Form</h2>
 
       <form onSubmit={handleSubmit} className="w-full bg-transparent p-8 rounded-lg space-y-6">
         
@@ -183,7 +183,7 @@ const SignupStep7: React.FC = () => {
         <div className="grid grid-cols-2 gap-8">
           {/* Left Section: Social Status */}
           <div>
-            <label className="block text-sm text-white font-medium mb-2">Social Status</label>
+            <label className="block text-sm text-white font-medium mb-2">Economic Status</label>
             <div className="flex gap-4 mt-2">
               <div
                 onClick={() => setFormData({ ...formData, socialStatus: 'Ultra Poor' })}
@@ -217,7 +217,7 @@ const SignupStep7: React.FC = () => {
 
           {/* Right Section: Economic Status */}
           <div>
-            <label className="block text-sm text-white font-medium mb-2">Economic Status</label>
+            <label className="block text-sm text-white font-medium mb-2">Social Status</label>
             <div className="flex gap-4 mt-2">
               <div
                 onClick={() => setFormData({ ...formData, economicStatus: 'SC' })}

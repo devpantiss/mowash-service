@@ -58,12 +58,12 @@ const SignupStep6: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-start h-[80vh] bg-transparent">
+        <div className="flex flex-col py-28 items-center justify-start h-[100vh] bg-transparent">
             <h2 className="text-3xl text-white font-bold text-left mb-6">Choose your location</h2>
 
             <div className='flex justify-between gap-x-4 items-center w-full max-w-6xl'>
                 {/* Map Container */}
-                <div className="w-1/2 h-[600px] rounded-md">
+                <div className="w-1/2 h-[450px] rounded-md">
                     <MapContainer
                         center={[20.2961, 85.8245]} // Default center of the map
                         zoom={9}
@@ -79,8 +79,8 @@ const SignupStep6: React.FC = () => {
                 </div>
 
                 {/* Address Form */}
-                <form onSubmit={handleFormSubmit} className="w-1/2 p-8 bg-transparent rounded-md">
-                    <div className="space-y-2 mt-2">
+                <form onSubmit={handleFormSubmit} className="w-1/2 h-[450px] px-4 pb-2 bg-transparent rounded-md">
+                    <div className="mt-2">
                         <label className="block text-white text-sm font-medium">Flat/House Number</label>
                         <input
                             type="text"
@@ -93,7 +93,7 @@ const SignupStep6: React.FC = () => {
                         />
                     </div>
 
-                    <div className="space-y-2 mt-2">
+                    <div className="mt-2">
                         <label className="block text-white text-sm font-medium">Street Address</label>
                         <input
                             type="text"
@@ -106,7 +106,7 @@ const SignupStep6: React.FC = () => {
                         />
                     </div>
 
-                    <div className="space-y-2 mt-2">
+                    <div className="mt-2">
                         <label className="block text-white text-sm font-medium">Nearby Landmark</label>
                         <input
                             type="text"
@@ -118,7 +118,7 @@ const SignupStep6: React.FC = () => {
                         />
                     </div>
 
-                    <div className="space-y-2 mt-2">
+                    <div className="mt-2">
                         <label className="block text-white text-sm font-medium">District/Locality</label>
                         <input
                             type="text"
@@ -130,7 +130,7 @@ const SignupStep6: React.FC = () => {
                         />
                     </div>
 
-                    <div className="space-y-2 mt-2">
+                    <div className="mt-2">
                         <label className="block text-white text-sm font-medium">City/Town</label>
                         <input
                             type="text"
@@ -143,7 +143,7 @@ const SignupStep6: React.FC = () => {
                         />
                     </div>
 
-                    <div className="space-y-2 mt-2">
+                    <div className="mt-2">
                         <label className="block text-white text-sm font-medium">State</label>
                         <input
                             type="text"
@@ -156,7 +156,7 @@ const SignupStep6: React.FC = () => {
                         />
                     </div>
 
-                    <div className="space-y-2 mt-2">
+                    <div className="mt-2">
                         <label className="block text-white text-sm font-medium">Pincode</label>
                         <input
                             type="text"

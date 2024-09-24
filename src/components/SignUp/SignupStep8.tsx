@@ -36,7 +36,7 @@ const SignupStep8: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-[75vh] bg-transparent p-4">
+        <div className="flex flex-col items-center justify-center h-[100vh] bg-transparent p-4">
             <h1 className="text-3xl text-white font-bold mt-3 text-left mb-2">Are You Certified?</h1>
 
             {/* Yes/No options */}

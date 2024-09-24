@@ -3,7 +3,7 @@ import React from "react";
 
 const SignupStep10: React.FC = () => {
   return (
-    <div className="relative  text-white flex flex-col items-center justify-center h-[80vh] bg-transparent">
+    <div className="relative  text-white flex flex-col items-center justify-center h-[100vh] bg-transparent">
       <h1 className="text-3xl font-bold mb-6 text-green-600 text-center">
         Congrats, You are now a Member of the <p className="text-blue-600">Mo Wash</p> Community!
       </h1>
