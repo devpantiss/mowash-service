@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   FaHeartbeat,
   FaShieldAlt,
@@ -8,6 +8,7 @@ import {
 import InsuranceSlider from "./slider/InsuranceSlider";
 import Step11Banner from "./banner/Step11Banner";
 import Card from "./card/Card";
+import jsPDF from "jspdf";
 
 type Section = "healthCard" | "pension" | "insurance";
 
@@ -15,7 +16,7 @@ interface SignupStep11Props {
   goToStep: (stepIndex: number) => void; // Pass a function to change the step
 }
 const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
-  const [wantsWelfare, setWantsWelfare] = useState<boolean | null>(true);
+  const [wantsWelfare, setWantsWelfare] = useState(true);
   const [selectedSection, setSelectedSection] = useState<Section | null>(null);
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
   const [showCSPPage, setShowCSPPage] = useState<boolean>(false);
@@ -128,18 +129,77 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
 
   const customerServicePoints = [
     {
-      name: "CSP 1",
+      name: "Customer Service Point 1",
       contact: "John Doe",
       number: "9876543210",
       address: "123 Street, City",
     },
     {
-      name: "CSP 2",
+      name: "Customer Service Point 2",
       contact: "Jane Smith",
       number: "9123456780",
       address: "456 Lane, Town",
     },
   ];
+
+  const downloadCSPAsPDF = (selectedCSP: string) => {
+    const csp = customerServicePoints.find((csp) => csp.name === selectedCSP);
+
+    if (csp) {
+      const doc = new jsPDF();
+
+      // Set title font
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(18);
+      doc.text("Customer Service Point Details", 105, 20, { align: "center" });
+
+      // Add some spacing
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal");
+
+      // Add details with formatting and spacing
+      const leftMargin = 20;
+      const lineSpacing = 10;
+      let yOffset = 40;
+
+      // Add CSP Name
+      doc.setFont("helvetica", "bold");
+      doc.text("Customer Service Point:", leftMargin, yOffset);
+      doc.setFont("helvetica", "normal");
+      doc.text(csp.name, leftMargin + 60, yOffset);
+
+      // Add Person of Contact
+      yOffset += lineSpacing;
+      doc.setFont("helvetica", "bold");
+      doc.text("Person of Contact:", leftMargin, yOffset);
+      doc.setFont("helvetica", "normal");
+      doc.text(csp.contact, leftMargin + 60, yOffset);
+
+      // Add Contact Number
+      yOffset += lineSpacing;
+      doc.setFont("helvetica", "bold");
+      doc.text("Contact Number:", leftMargin, yOffset);
+      doc.setFont("helvetica", "normal");
+      doc.text(csp.number, leftMargin + 60, yOffset);
+
+      // Add Address
+      yOffset += lineSpacing;
+      doc.setFont("helvetica", "bold");
+      doc.text("Address:", leftMargin, yOffset);
+      doc.setFont("helvetica", "normal");
+      doc.text(csp.address, leftMargin + 60, yOffset, { maxWidth: 160 });
+
+      // Add footer (optional)
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(10);
+      doc.text("Generated on " + new Date().toLocaleDateString(), 105, 280, {
+        align: "center",
+      });
+
+      // Save the PDF with a formatted name
+      doc.save(`${csp.name}_CSP_Details.pdf`);
+    }
+  };
 
   const handleSectionClick = (section: Section) => {
     setSelectedSection(section);
@@ -196,37 +256,37 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
               </div>
             </div>
           ) : showCSPPage ? (
-            <div className="flex justify-center items-center h-[100vh] py-16 gap-x-6">
+            <div className="flex items-center h-[100vh] py-16 gap-x-8">
               <div className="w-1/2 p-4">
                 <div className="flex gap-4">
                   <div className="flex flex-col mt-10 gap-y-8">
                     {/* Card 1: Show organization from one of the remaining sections */}
-                    <div className="bg-green-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                    <div className="bg-green-100 w-[250px] h-[300px] p-4 rounded-lg shadow-md">
                       <h3 className="text-green-600 capitalize font-bold">
                         Govt. of Odisha
                       </h3>
                       <img
                         src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727174742/biodiversity-removebg-preview_c36mo1.png"
                         alt="alt"
-                        className="h-16 w-16 mb-2 mt-4"
+                        className="h-16 w-16 mb-2"
                       />
-                      <p className="text-green-700 mt-4 font-semibold text-3xl">
+                      <p className="text-green-700 mt-2 font-bold text-xl">
                         Empowering lives with comprehensive welfare schemes for
                         a secure future.
                       </p>
                     </div>
 
                     {/* Card 2: Show organization from another remaining section */}
-                    <div className="bg-blue-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                    <div className="bg-blue-100 w-[250px] h-[300px] p-4 rounded-lg shadow-md">
                       <h3 className="text-blue-600 capitalize font-bold">
                         Govt. of Odisha
                       </h3>
                       <img
                         src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727174743/welfare-removebg-preview_rxlqwp.png"
                         alt="alt"
-                        className="h-16 w-16 mt-4 mb-2"
+                        className="h-16 w-16 mb-2"
                       />
-                      <p className="text-blue-700 mt-4 font-semibold text-3xl">
+                      <p className="text-blue-700 mt-2 font-bold text-xl">
                         Welfare schemes are essential for providing safety,
                         security, and support during challenging times.
                       </p>
@@ -235,7 +295,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
 
                   <div className="flex flex-col mt-30 gap-y-8">
                     {/* Card 3 */}
-                    <div className="bg-yellow-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                    <div className="bg-yellow-100 w-[250px] h-[300px] p-4 rounded-lg shadow-md">
                       {selectedSection &&
                         organizations[selectedSection].length > 0 && (
                           <div className="flex flex-col mt-4">
@@ -250,7 +310,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                             <p className="text-yellow-700 font-semibold text-xl">
                               {organizations[selectedSection][1].name}
                             </p>
-                            <p className="text-yellow-700 font-semibold text-4xl">
+                            <p className="text-yellow-700 font-bold text-xl">
                               {organizations[selectedSection][1].text}
                             </p>
                           </div>
@@ -258,7 +318,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                     </div>
 
                     {/* Card 4 */}
-                    <div className="bg-purple-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                    <div className="bg-purple-100 w-[250px] h-[300px] p-4 rounded-lg shadow-md">
                       {selectedSection &&
                         organizations[selectedSection].length > 0 && (
                           <div className="flex flex-col mt-4">
@@ -273,7 +333,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                             <p className="text-purple-700 font-bold text-xl">
                               {organizations[selectedSection][0].name}
                             </p>
-                            <p className="text-purple-700 font-semibold text-4xl">
+                            <p className="text-purple-700 font-bold text-xl">
                               {organizations[selectedSection][0].text}
                             </p>
                           </div>
@@ -282,7 +342,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-2/5 pt-8">
+              <div className="w-1/2 pt-8">
                 <h2 className="text-2xl font-semibold text-white mb-4">
                   Choose Your Nearest Customer Service Point
                 </h2>
@@ -305,19 +365,32 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                       .filter((csp) => csp.name === selectedCSP)
                       .map((csp) => (
                         <div key={csp.name}>
+                          <p className="font-bold text-blue-600">{csp.name}</p>
                           <p>
-                            <strong>Person of Contact:</strong> {csp.contact}
+                            <strong className="font-bold text-blue-600">
+                              Person of Contact:
+                            </strong>{" "}
+                            {csp.contact}
                           </p>
                           <p>
-                            <strong>Contact Number:</strong> {csp.number}
+                            <strong className="font-bold text-blue-600">
+                              Contact Number:
+                            </strong>{" "}
+                            {csp.number}
                           </p>
                           <p>
-                            <strong>Address:</strong> {csp.address}
+                            <strong className="font-bold text-blue-600">
+                              Address:
+                            </strong>{" "}
+                            {csp.address}
                           </p>
                         </div>
                       ))}
                     <button
-                      onClick={handleProceed}
+                      onClick={() => {
+                        downloadCSPAsPDF(selectedCSP); // Download PDF
+                        handleProceed(); // Proceed with whatever function is next
+                      }}
                       className="bg-green-500 text-white py-2 px-4 rounded-lg w-full hover:bg-green-600 mt-4"
                     >
                       Proceed to Generate Proposal
@@ -424,7 +497,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
             Thank you! You have chosen not to avail welfare schemes.
           </h2>
           <button
-            onClick={() => setWantsWelfare(null)}
+            onClick={() => setWantsWelfare(false)}
             className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600 mt-4"
           >
             Back

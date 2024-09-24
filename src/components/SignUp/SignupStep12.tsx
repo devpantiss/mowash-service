@@ -1,68 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const HealthCheckup: React.FC = () => {
   // Define the type of hospitals object
   const hospitals: { [key: string]: string[] } = {
-    Bhubaneswar: ['AIIMS Bhubaneswar', 'Capital Hospital', 'KIMS Hospital'],
-    Cuttack: ['SCB Medical College', 'Acharya Harihar Hospital'],
-    Puri: ['District Headquarters Hospital', 'Puri Government Hospital'],
+    Bhubaneswar: ["AIIMS Bhubaneswar", "Capital Hospital", "KIMS Hospital"],
+    Cuttack: ["SCB Medical College", "Acharya Harihar Hospital"],
+    Puri: ["District Headquarters Hospital", "Puri Government Hospital"],
     // Add more districts and hospitals as needed
   };
 
   // Set selectedDistrict to be one of the keys of the hospitals object
-  const [selectedDistrict, setSelectedDistrict] = useState<keyof typeof hospitals | ''>('');
-  const [selectedHospital, setSelectedHospital] = useState('');
+  const [selectedDistrict, setSelectedDistrict] = useState<
+    keyof typeof hospitals | ""
+  >("");
+  const [selectedHospital, setSelectedHospital] = useState("");
   const [selectedCheckup, setSelectedCheckup] = useState<string | null>(null);
   const [isBookingCreated, setIsBookingCreated] = useState(false);
 
   const checkups = [
     {
-      name: 'Full Body Checkup',
-      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751404/fullbody_Magazine-02_dl7cqu.webp',
-      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751403/FitCheckHero012020.2_t63ptt.webp',
+      name: "Full Body Checkup",
+      image:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751404/fullbody_Magazine-02_dl7cqu.webp",
+      image2:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751403/FitCheckHero012020.2_t63ptt.webp",
       description:
-        'A comprehensive health checkup that includes blood tests, imaging, and physical examination to assess overall health.',
-      discountedCost: '₹1999',
+        "A comprehensive health checkup that includes blood tests, imaging, and physical examination to assess overall health.",
+      discountedCost: "₹1999",
     },
     {
-      name: 'Alcohol Risk',
-      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751308/Alcohol_magazine_bnluqd.webp',
-      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751182/Alcohol_Hero_zgq3jp.webp',
+      name: "Alcohol Risk",
+      image:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751308/Alcohol_magazine_bnluqd.webp",
+      image2:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751182/Alcohol_Hero_zgq3jp.webp",
       description:
-        'This test evaluates liver function and other parameters to assess the risk of alcohol-related diseases.',
-      discountedCost: '₹999',
+        "This test evaluates liver function and other parameters to assess the risk of alcohol-related diseases.",
+      discountedCost: "₹999",
     },
     {
-      name: 'Anemia Profile',
-      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751403/Anemia_Magazine_Web_new_xehmlm.webp',
-      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751404/AnemiaHero_zrfac0.webp',
+      name: "Anemia Profile",
+      image:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751403/Anemia_Magazine_Web_new_xehmlm.webp",
+      image2:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751404/AnemiaHero_zrfac0.webp",
       description:
-        'This profile includes a complete blood count and iron studies to detect and evaluate anemia.',
-      discountedCost: '₹799',
+        "This profile includes a complete blood count and iron studies to detect and evaluate anemia.",
+      discountedCost: "₹799",
     },
     {
-      name: 'Womens Health',
-      image: 'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751405/women_health_kj1mwd.webp',
-      image2:'https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751407/WomensHealthScreening_Hero_iyofao.webp',
+      name: "Womens Health",
+      image:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751405/women_health_kj1mwd.webp",
+      image2:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726751407/WomensHealthScreening_Hero_iyofao.webp",
       description:
-        'A set of tests focused on reproductive and overall health for women, including hormone evaluation.',
-      discountedCost: '₹1499',
+        "A set of tests focused on reproductive and overall health for women, including hormone evaluation.",
+      discountedCost: "₹1499",
     },
   ];
 
   const handleCheckupSelection = (checkup: string) => {
     setSelectedCheckup(checkup);
-    setSelectedDistrict('');
-    setSelectedHospital('');
+    setSelectedDistrict("");
+    setSelectedHospital("");
     setIsBookingCreated(false); // Reset booking when a new checkup is selected
   };
 
-  const handleDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleDistrictChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setSelectedDistrict(event.target.value as keyof typeof hospitals);
-    setSelectedHospital(''); // Reset hospital selection when district changes
+    setSelectedHospital(""); // Reset hospital selection when district changes
   };
 
-  const handleHospitalChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleHospitalChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setSelectedHospital(event.target.value);
   };
 
@@ -77,29 +91,31 @@ const HealthCheckup: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[100vh] bg-transparent p-6">
+    <div className="flex bg-transparent p-6">
       {!selectedCheckup ? (
-        <div className="w-full grid grid-cols-4">
-          {checkups.map((checkup) => (
-            <button
-              key={checkup.name}
-              onClick={() => handleCheckupSelection(checkup.name)}
-              className=" bg-transparent rounded-lg flex flex-col items-center justify-center text-center"
-            >
-              <img
-                src={checkup.image}
-                alt={checkup.name}
-                className="w-[200px] object-cover rounded-md"
-              />
-            </button>
-          ))}
+        <div className="w-full max-w-7xl h-[100vh] pt-36 flex items-center">
+          <div className="grid grid-cols-4 gap-x-12">
+            {checkups.map((checkup) => (
+              <button
+                key={checkup.name}
+                onClick={() => handleCheckupSelection(checkup.name)}
+                className=" bg-transparent rounded-lg flex flex-col items-center justify-center text-center"
+              >
+                <img
+                  src={checkup.image}
+                  alt={checkup.name}
+                  className="w-[200px] object-cover rounded-md"
+                />
+              </button>
+            ))}
+          </div>
         </div>
       ) : (
         <div className="flex w-full h-full">
           <div className="w-1/3">
             <img
               src={
-                checkups.find((c) => c.name === selectedCheckup)?.image2 || ''
+                checkups.find((c) => c.name === selectedCheckup)?.image2 || ""
               }
               alt={selectedCheckup}
               className="w-full h-auto rounded-lg shadow-lg"
@@ -114,11 +130,14 @@ const HealthCheckup: React.FC = () => {
               {checkups.find((c) => c.name === selectedCheckup)?.description}
             </p>
             <p className="text-2xl text-yellow-400 mb-4">
-              Discounted Cost: {checkups.find((c) => c.name === selectedCheckup)?.discountedCost}
+              Discounted Cost:{" "}
+              {checkups.find((c) => c.name === selectedCheckup)?.discountedCost}
             </p>
 
             <div className="mb-4">
-              <label className="block text-white mb-2">Select your district:</label>
+              <label className="block text-white mb-2">
+                Select your district:
+              </label>
               <select
                 value={selectedDistrict}
                 onChange={handleDistrictChange}
