@@ -3,12 +3,18 @@ import Slider from "react-slick";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+// Define the interface for slide data
 interface SlideData {
   id: number;
   title: string;
   description: string;
   imageUrl: string;
   linkText: string;
+}
+
+// Define the type for the custom arrow props
+interface ArrowProps {
+  onClick?: () => void;
 }
 
 const CardSlider: React.FC = () => {
@@ -48,8 +54,7 @@ const CardSlider: React.FC = () => {
   ];
 
   // Custom Next Arrow
-  const NextArrow = (props: any) => {
-    const { onClick } = props;
+  const NextArrow: React.FC<ArrowProps> = ({ onClick }) => {
     return (
       <div
         className="absolute -right-5 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
@@ -61,8 +66,7 @@ const CardSlider: React.FC = () => {
   };
 
   // Custom Previous Arrow
-  const PrevArrow = (props: any) => {
-    const { onClick } = props;
+  const PrevArrow: React.FC<ArrowProps> = ({ onClick }) => {
     return (
       <div
         className="absolute -left-5 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
