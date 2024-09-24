@@ -9,9 +9,12 @@ import InsuranceSlider from "./slider/InsuranceSlider";
 import Step11Banner from "./banner/Step11Banner";
 import Card from "./card/Card";
 
-type Section = "healthCard" | "pension" | "insurance" | "needs";
+type Section = "healthCard" | "pension" | "insurance";
 
-const SignupStep11: React.FC = () => {
+interface SignupStep11Props {
+  goToStep: (stepIndex: number) => void; // Pass a function to change the step
+}
+const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
   const [wantsWelfare, setWantsWelfare] = useState<boolean | null>(true);
   const [selectedSection, setSelectedSection] = useState<Section | null>(null);
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
@@ -26,6 +29,7 @@ const SignupStep11: React.FC = () => {
         cover: "₹7 Lac",
         hospitals: 187,
         renewalBonus: "₹10.5 Lac Renewal Bonus",
+        text: "Get the best health insurance plan with extensive coverage.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/BSKY_Logo_umdrqn.png",
         link: "https://example.com/view-plan",
@@ -36,6 +40,7 @@ const SignupStep11: React.FC = () => {
         cover: "₹7 Lac",
         hospitals: 187,
         renewalBonus: "₹10.5 Lac Renewal Bonus",
+        text: "Get the best health insurance plan with extensive coverage.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749583/ayushman_bharat_ngycj4.png",
         link: "https://example.com/view-plan",
@@ -48,6 +53,7 @@ const SignupStep11: React.FC = () => {
         cover: "₹10 Lac",
         hospitals: 0,
         renewalBonus: "N/A",
+        text: "Get the best health insurance plan with extensive coverage.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749889/logo_uupd0f.png",
         link: "https://example.com/nps-plan",
@@ -58,6 +64,7 @@ const SignupStep11: React.FC = () => {
         cover: "₹8 Lac",
         hospitals: 0,
         renewalBonus: "N/A",
+        text: "Get the best health insurance plan with extensive coverage.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749878/epf_bwvokn.jpg",
         link: "https://example.com/epf-plan",
@@ -70,6 +77,7 @@ const SignupStep11: React.FC = () => {
         cover: "₹2 Lac",
         hospitals: 0,
         renewalBonus: "N/A",
+        text: "Secure Tomorrow: Protect Your Loved Ones Today.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750007/site-logo_k7ejwo.jpg",
         link: "https://example.com/pmsby-plan",
@@ -80,31 +88,10 @@ const SignupStep11: React.FC = () => {
         cover: "₹2 Lac",
         hospitals: 0,
         renewalBonus: "N/A",
+        text: "Peace of Mind: Life Insurance for a Brighter Future.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750296/a_bsuthv.jpg",
         link: "https://example.com/pmjjby-plan",
-      },
-    ],
-    needs: [
-      {
-        name: "1 Nation 1 Ration Card",
-        premium: "N/A",
-        cover: "Food Security",
-        hospitals: 0,
-        renewalBonus: "N/A",
-        imageUrl:
-          "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750295/1ration_ckvjas.jpg",
-        link: "https://example.com/1nation-1ration-card",
-      },
-      {
-        name: "LPG",
-        premium: "₹100/month",
-        cover: "Subsidized LPG",
-        hospitals: 0,
-        renewalBonus: "N/A",
-        imageUrl:
-          "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750407/download_ejbyiw.png",
-        link: "https://example.com/lpg-plan",
       },
     ],
   };
@@ -167,6 +154,10 @@ const SignupStep11: React.FC = () => {
     setShowConfirmation(true);
   };
 
+  const handleSkip = () => {
+    goToStep(11);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center bg-transparent">
       {wantsWelfare ? (
@@ -191,12 +182,106 @@ const SignupStep11: React.FC = () => {
                 ))}
               </div>
 
+              <div className="text-center mt-8">
+                <button
+                  onClick={handleSkip}
+                  className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                >
+                  Skip
+                </button>
+              </div>
+
               <div>
                 <Step11Banner />
               </div>
             </div>
           ) : showCSPPage ? (
-            <div className="flex h-[100vh] py-16 gap-x-6">
+            <div className="flex justify-center items-center h-[100vh] py-16 gap-x-6">
+              <div className="w-1/2 p-4">
+                <div className="flex gap-4">
+                  <div className="flex flex-col mt-10 gap-y-8">
+                    {/* Card 1: Show organization from one of the remaining sections */}
+                    <div className="bg-green-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                      <h3 className="text-green-600 capitalize font-bold">
+                        Govt. of Odisha
+                      </h3>
+                      <img
+                        src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727174742/biodiversity-removebg-preview_c36mo1.png"
+                        alt="alt"
+                        className="h-16 w-16 mb-2 mt-4"
+                      />
+                      <p className="text-green-700 mt-4 font-semibold text-3xl">
+                        Empowering lives with comprehensive welfare schemes for
+                        a secure future.
+                      </p>
+                    </div>
+
+                    {/* Card 2: Show organization from another remaining section */}
+                    <div className="bg-blue-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                      <h3 className="text-blue-600 capitalize font-bold">
+                        Govt. of Odisha
+                      </h3>
+                      <img
+                        src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727174743/welfare-removebg-preview_rxlqwp.png"
+                        alt="alt"
+                        className="h-16 w-16 mt-4 mb-2"
+                      />
+                      <p className="text-blue-700 mt-4 font-semibold text-3xl">
+                        Welfare schemes are essential for providing safety,
+                        security, and support during challenging times.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col mt-30 gap-y-8">
+                    {/* Card 3 */}
+                    <div className="bg-yellow-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                      {selectedSection &&
+                        organizations[selectedSection].length > 0 && (
+                          <div className="flex flex-col mt-4">
+                            <h3 className="text-yellow-600 capitalize font-bold">
+                              {selectedSection}
+                            </h3>
+                            <img
+                              src={organizations[selectedSection][1].imageUrl}
+                              alt={organizations[selectedSection][1].name}
+                              className="h-16 w-16 mb-2"
+                            />
+                            <p className="text-yellow-700 font-semibold text-xl">
+                              {organizations[selectedSection][1].name}
+                            </p>
+                            <p className="text-yellow-700 font-semibold text-4xl">
+                              {organizations[selectedSection][1].text}
+                            </p>
+                          </div>
+                        )}
+                    </div>
+
+                    {/* Card 4 */}
+                    <div className="bg-purple-100 w-[300px] h-[400px] p-4 rounded-lg shadow-md">
+                      {selectedSection &&
+                        organizations[selectedSection].length > 0 && (
+                          <div className="flex flex-col mt-4">
+                            <h3 className="text-purple-600 capitalize font-bold">
+                              {selectedSection}
+                            </h3>
+                            <img
+                              src={organizations[selectedSection][0].imageUrl}
+                              alt={organizations[selectedSection][0].name}
+                              className="h-16 w-16 mb-2"
+                            />
+                            <p className="text-purple-700 font-bold text-xl">
+                              {organizations[selectedSection][0].name}
+                            </p>
+                            <p className="text-purple-700 font-semibold text-4xl">
+                              {organizations[selectedSection][0].text}
+                            </p>
+                          </div>
+                        )}
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="w-2/5 pt-8">
                 <h2 className="text-2xl font-semibold text-white mb-4">
                   Choose Your Nearest Customer Service Point
@@ -251,7 +336,7 @@ const SignupStep11: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col h-[100vh] justify-between items-center gap-x-8">
+            <div className="flex flex-col h-[100vh] justify-center items-center gap-x-8">
               <div className="w-full max-w-2xl pt-20">
                 <h2 className="text-2xl font-semibold text-white mb-4">
                   Available Options for{" "}
@@ -261,7 +346,7 @@ const SignupStep11: React.FC = () => {
                     ? "Pension"
                     : selectedSection === "insurance"
                     ? "Insurance"
-                    : "Grameen Needs"}
+                    : ""}
                 </h2>
                 <div className="grid grid-cols-1 gap-y-12">
                   {organizations[selectedSection].map((organization) => (
@@ -325,6 +410,10 @@ const SignupStep11: React.FC = () => {
               </div>
               <div className="w-full">
                 <InsuranceSlider />
+              </div>
+
+              <div>
+                <Step11Banner />
               </div>
             </div>
           )}

@@ -21,6 +21,11 @@ const Signup: React.FC = () => {
     }
   };
 
+  // Function to go to a specific step
+  const goToStep = (stepIndex: number) => {
+    setStep(stepIndex);
+  };
+
   // Dynamically render the current step
   const StepComponent = steps[step];
 
@@ -59,7 +64,7 @@ const Signup: React.FC = () => {
 
           <div className="">
             {/* Render the current step */}
-            <StepComponent />
+            <StepComponent goToStep={goToStep}/>
           </div>
         </div>
       </div>
