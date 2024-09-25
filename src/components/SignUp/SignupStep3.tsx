@@ -81,7 +81,7 @@ const SignupStep3: React.FC = () => {
           <h3 className="text-2xl font-bold mb-4">Service Details</h3>
 
           {/* Top Section: One-liner descriptions */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {options.map((option, index) => (
               <div key={index} className="flex justify-between">
                 <span>{option.label}</span>
@@ -94,7 +94,7 @@ const SignupStep3: React.FC = () => {
           <div className="my-6 border-t border-white"></div>
 
           {/* Bottom Section: Counter Numbers */}
-          <div className="space-x-4 grid grid-cols-4">
+          <div className="space-x-4 grid grid-cols-5">
             {options.map((option, index) => (
               <div key={index} className="text-center">
                 <span className="text-2xl font-bold">{isInView ? <Counter target={option.target} /> : 0}</span>

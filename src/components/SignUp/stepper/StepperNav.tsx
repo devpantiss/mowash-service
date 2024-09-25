@@ -24,7 +24,7 @@ const StepperNav: React.FC<StepperNavProps> = ({
         disabled={currentStep === 0}
       >
         <svg
-          className="shrink-0 size-4"
+          className="shrink-0 size-6"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -49,7 +49,7 @@ const StepperNav: React.FC<StepperNavProps> = ({
       >
         Next
         <svg
-          className="shrink-0 size-4"
+          className="shrink-0 size-6"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"

@@ -410,77 +410,95 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
             </div>
           ) : (
             <div className="flex flex-col h-[100vh] justify-center items-center gap-x-8">
-              <div className="w-full max-w-2xl pt-20">
-                <h2 className="text-2xl font-semibold text-white mb-4">
-                  Available Options for{" "}
-                  {selectedSection === "healthCard"
-                    ? "Health Insurance"
-                    : selectedSection === "pension"
-                    ? "Pension"
-                    : selectedSection === "insurance"
-                    ? "Insurance"
-                    : ""}
-                </h2>
-                <div className="grid grid-cols-1 gap-y-12">
-                  {organizations[selectedSection].map((organization) => (
-                    <div
-                      key={organization.name}
-                      className="px-8 py-6 relative bg-gray-100 rounded-lg flex items-center space-x-4"
-                    >
-                      <div className="absolute -left-14 px-2 py-4 rounded-bl-md rounded-tl-md top-0 bg-gray-100">
-                        <img
-                          src={organization.imageUrl}
-                          alt={organization.name}
-                          className="h-16 w-16"
-                        />
-                      </div>
+              <div className="flex gap-x-16 w-full">
+                {/* Left Section */}
+                <div className="w-3/5 pt-20">
+                  <h2 className="text-4xl text-left font-semibold text-white mb-6">
+                    Available Options for{" "}
+                    {selectedSection === "healthCard"
+                      ? "Health Insurance"
+                      : selectedSection === "pension"
+                      ? "Pension"
+                      : selectedSection === "insurance"
+                      ? "Insurance"
+                      : ""}
+                  </h2>
+                  <div className="grid grid-cols-1 gap-y-12">
+                    {organizations[selectedSection].map((organization) => (
+                      <div
+                        key={organization.name}
+                        className="px-8 py-6 relative bg-gray-100 rounded-lg flex items-center space-x-4"
+                      >
+                        <div className="absolute -left-14 px-2 py-4 rounded-bl-md rounded-tl-md top-0 bg-gray-100">
+                          <img
+                            src={organization.imageUrl}
+                            alt={organization.name}
+                            className="h-16 w-16"
+                          />
+                        </div>
 
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold mb-2">
-                          {organization.name}
-                        </h3>
-                        <p className="text-gray-600">No Room Rent Limit</p>
-                        <p className="text-gray-600">
-                          {organization.renewalBonus}
-                        </p>
-                        <p className="text-gray-600">
-                          Unlimited Restoration of cover
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <div className="flex justify-between gap-x-4 items-center">
-                          <p className="flex flex-col">
-                            <strong className="text-xl">
-                              {organization.cover}
-                            </strong>{" "}
-                            <p className="text-[12px]">Cover Amount</p>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold mb-2">
+                            {organization.name}
+                          </h3>
+                          <p className="text-gray-600">No Room Rent Limit</p>
+                          <p className="text-gray-600">
+                            {organization.renewalBonus}
                           </p>
-                          <p className="flex flex-col">
-                            <strong className="text-xl">
-                              {organization.hospitals}
-                            </strong>
-                            <p className="text-[12px]">Cashless hospitals</p>
+                          <p className="text-gray-600">
+                            Unlimited Restoration of cover
                           </p>
                         </div>
-                        <button
-                          onClick={handleCallRequest}
-                          className="text-blue-500 shadow-lg shadow-blue-500 ring-2 ring-blue-500 py-2 px-4 rounded-lg w-full hover:bg-blue-100 mt-4"
-                        >
-                          {organization.premium}
-                        </button>
+                        <div className="text-right">
+                          <div className="flex justify-between gap-x-4 items-center">
+                            <p className="flex flex-col">
+                              <strong className="text-xl">
+                                {organization.cover}
+                              </strong>{" "}
+                              <p className="text-[12px]">Cover Amount</p>
+                            </p>
+                            <p className="flex flex-col">
+                              <strong className="text-xl">
+                                {organization.hospitals}
+                              </strong>
+                              <p className="text-[12px]">Cashless hospitals</p>
+                            </p>
+                          </div>
+                          <button
+                            onClick={handleCallRequest}
+                            className="text-blue-500 shadow-lg shadow-blue-500 ring-2 ring-blue-500 py-2 px-4 rounded-lg w-full hover:bg-blue-100 mt-4"
+                          >
+                            {organization.premium}
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  <div className="mt-6">
+                    <button
+                      className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                      onClick={() => setSelectedSection(null)}
+                    >
+                      Back
+                    </button>
+                  </div>
                 </div>
-                <div className="mt-6">
-                  <button
-                    className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
-                    onClick={() => setSelectedSection(null)}
-                  >
-                    Back
-                  </button>
+
+                {/* Right Section with YouTube Embed */}
+                <div className="w-2/5 pt-32 flex justify-center items-center">
+                  <iframe
+                    width="100%"
+                    height="315"
+                    src="https://www.youtube.com/embed/RsQWsFXbMLA?si=z28WAn5NoAt2asUx"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-64 rounded-lg border"
+                  />
                 </div>
               </div>
+
               <div className="w-full">
                 <InsuranceSlider />
               </div>

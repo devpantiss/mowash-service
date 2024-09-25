@@ -22,7 +22,7 @@ const config: Config = {
         },
       },
       animation: {
-        marquee: 'marquee 15s linear infinite', // Adjust the speed by changing the duration (15s here)
+        marquee: 'marquee 30s linear infinite', // Adjust the speed by changing the duration (15s here)
       },
     },
   },

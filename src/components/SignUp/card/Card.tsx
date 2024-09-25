@@ -23,12 +23,12 @@ const Card: React.FC<CardProps> = ({ title, tagline, text, bgImageSrc, icon: Ico
                     <h2 className="font-bold text-2xl">{title}</h2>
                 </div>
             </div>
-            <div className="p-4">
+            {/* <div className="p-4">
                 <p className="text-gray-600">{text}</p>
                 <p className="text-blue-600 hover:underline font-semibold mt-2">
                     {tagline}
                 </p>
-            </div>
+            </div> */}
         </div>
     );
 };

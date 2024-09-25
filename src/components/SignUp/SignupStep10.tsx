@@ -32,7 +32,7 @@ const SignupStep10: React.FC = () => {
       </div>
 
       <button
-        className="absolute top-5 right-5 text-blue-500 bg-white ring-2 ring-blue-600 font-semibold p-3 rounded-lg shadow-lg hover:bg-blue-600 hover:ring-2 hover:ring-white hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="absolute bottom-5 right-5 text-blue-500 bg-white ring-2 ring-blue-600 font-semibold p-3 rounded-lg shadow-lg hover:bg-blue-600 hover:ring-2 hover:ring-white hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <Link href="/">
           Back home
