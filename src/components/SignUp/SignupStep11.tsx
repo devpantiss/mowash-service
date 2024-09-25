@@ -8,7 +8,7 @@ import {
 import InsuranceSlider from "./slider/InsuranceSlider";
 import Step11Banner from "./banner/Step11Banner";
 import Card from "./card/Card";
-import jsPDF from "jspdf";
+import {jsPDF} from "jspdf";
 
 type Section = "healthCard" | "pension" | "insurance";
 
@@ -121,7 +121,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       tagline: "Know more",
       text: "Protect your family with our life insurance plans.",
       bgImageSrc:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727161985/Screenshot_2024-09-24_at_12.42.04_PM_ctxtld.png",
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727258506/Screenshot_2024-09-25_at_3.27.27_PM_aozx74.png",
       icon: FaShieldAlt,
       onClick: () => handleSectionClick("insurance"),
     },

@@ -10,6 +10,8 @@ import OurPartners from "@/components/Home/OurPartners";
 import SDGBanner from "@/components/Home/SDGSection/SDGBanner";
 import Testimonials from "@/components/Home/testimonials/Testimonials";
 import WhyToBeBanner from "@/components/Home/WhyToBeBanner";
+// import Globe from "@/components/Home/Globe";
+
 
 const Home = () => {
   return (
@@ -25,6 +27,7 @@ const Home = () => {
         <HowItWorks />
         <Testimonials />
         <Impact />
+        {/* <Globe /> */}
         <OurPartners />
         <Footer />
       </div>

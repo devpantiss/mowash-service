@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { jsPDF } from "jspdf";
 
 interface SignupStep12Props {
   goToStep: (stepIndex: number) => void; // Pass a function to change the step
@@ -179,6 +179,29 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
     goToStep(12);
   };
 
+  // Generate and Download PDF
+  const handleDownloadPdf = () => {
+    const pdf = new jsPDF();
+    const checkup = selectedCheckup || "";
+    const hospital = selectedHospital || "";
+    const date = new Date().toLocaleDateString();
+    const time = new Date().toLocaleTimeString();
+
+    // Add content to the PDF
+    pdf.setFontSize(16);
+    pdf.text("Booking Details", 20, 20);
+    pdf.setFontSize(12);
+    pdf.text(`Checkup: ${checkup}`, 20, 40);
+    pdf.text(`Hospital: ${hospital}`, 20, 50);
+    pdf.text(`Date: ${date}`, 20, 60);
+    pdf.text(`Time: ${time}`, 20, 70);
+    pdf.text("MoWash Representative contact: +91 9876543210", 20, 80);
+    pdf.text("Doctor: Dr. Mohanty", 20, 90);
+
+    // Save the generated PDF
+    pdf.save("BookingDetails.pdf");
+  };
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -195,7 +218,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
             <h2 className="text-4xl font-semibold text-white mb-4">
               Health Checkup
             </h2>
-            <div className="grid grid-cols-4 gap-x-4">
+            <div className="grid grid-cols-3 gap-y-4 gap-x-4">
               {checkups.map((checkup) => (
                 <button
                   key={checkup.name}
@@ -210,7 +233,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                 </button>
               ))}
 
-<div className="text-center mt-8">
+              <div className="text-center mt-8">
                 <button
                   onClick={handleSkip}
                   className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
@@ -228,7 +251,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
           </div>
         </div>
       ) : (
-        <div className="flex w-full pt-36">
+        <div className="flex w-full py-36">
           <div className="w-1/3">
             <img
               src={
@@ -250,6 +273,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
               Discounted Cost:{" "}
               {checkups.find((c) => c.name === selectedCheckup)?.discountedCost}
             </p>
+
             {/* Slider for Tests Included */}
             <div className="mt-6">
               <h3 className="text-white text-2xl font-bold mb-4">
@@ -274,6 +298,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                   ))}
               </Slider>
             </div>
+
             <div className="mb-4">
               <label className="block text-white mb-2">
                 Select your district:
@@ -303,7 +328,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                   className="w-full p-3 rounded-lg bg-white"
                 >
                   <option value="">Select Hospital</option>
-                  {hospitals[selectedDistrict]?.map((hospital) => (
+                  {hospitals[selectedDistrict].map((hospital) => (
                     <option key={hospital} value={hospital}>
                       {hospital}
                     </option>
@@ -311,34 +336,62 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                 </select>
               </div>
             )}
-
-            {selectedDistrict && selectedHospital && (
-              <button
-                onClick={handleCreateBooking}
-                className="px-6 py-3 mx-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition-colors"
-              >
-                Book Now
-              </button>
-            )}
-
             {isBookingCreated && (
               <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
                 <h3 className="text-lg font-bold mb-2">Booking Details</h3>
-                <p>Checkup: {selectedCheckup}</p>
-                <p>Hospital: {selectedHospital}</p>
-                <p>Date: {new Date().toLocaleDateString()}</p>
-                <p>Time: {new Date().toLocaleTimeString()}</p>
-                <p>Doctor: Dr. Mohanty</p>
-                <p>MoWash Representative: +91 9876543210</p>
+                <div className="flex justify-between">
+                  <p>
+                    <strong>Checkup:</strong> {selectedCheckup}
+                  </p>
+                  <p>
+                    <strong>Hospital:</strong> {selectedHospital}
+                  </p>
+                </div>
+
+                <div className="flex justify-between">
+                  <p>
+                    <strong>Date:</strong> {new Date().toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Time:</strong> {new Date().toLocaleTimeString()}
+                  </p>
+                </div>
+                <div className="flex justify-between">
+                  <p>
+                    <strong>MoWash Representative contact:</strong> <br />
+                    +91 9876543210
+                  </p>
+                  <p>
+                    <strong>Doctor:</strong> Dr. Mohanty
+                  </p>
+                </div>
               </div>
             )}
+            <div className="flex justify-end mt-8">
+              {!isBookingCreated ? (
+                <button
+                  onClick={handleCreateBooking}
+                  disabled={!selectedDistrict || !selectedHospital}
+                  className="bg-yellow-400 text-black py-2 px-6 rounded-lg hover:bg-yellow-500"
+                >
+                  Create Booking
+                </button>
+              ) : (
+                <button
+                  onClick={handleDownloadPdf}
+                  className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
+                >
+                  Download PDF
+                </button>
+              )}
 
-            <button
-              onClick={resetSelection}
-              className="mt-4 px-6 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition-colors"
-            >
-              Back to Checkups
-            </button>
+              <button
+                onClick={resetSelection}
+                className="ml-4 bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+              >
+                Back
+              </button>
+            </div>
           </div>
         </div>
       )}

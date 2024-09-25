@@ -78,8 +78,8 @@ const SignupStep7: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col py-28 items-center h-[100vh] justify-center">
-      <h2 className="text-3xl text-white font-bold text-left mb-2">Basic Information Form</h2>
+    <div className="flex flex-col py-36 items-center md:h-full lg:h-[100vh] justify-center">
+      <h2 className="text-3xl text-white font-bold text-left mt-6 mb-2">Basic Information Form</h2>
 
       <form onSubmit={handleSubmit} className="w-full bg-transparent p-8 rounded-lg space-y-6">
         
