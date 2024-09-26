@@ -5,6 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Import icons
 
+type ArrowProps = {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+};
+
 type SlideItem = {
   id: number;
   title: string;
@@ -40,7 +46,7 @@ const slides: SlideItem[] = [
   },
   {
     id: 3,
-    title: "Wasste Collection, Segregation & Processing",
+    title: "Waste Collection, Segregation & Processing",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
@@ -88,7 +94,7 @@ const slides: SlideItem[] = [
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
-      'https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842985%2Fuploads%2F1721842985878-7.png.jpg&w=256&q=75',
+      "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842985%2Fuploads%2F1721842985878-7.png.jpg&w=256&q=75",
     videoUrl:
       "https://aceblend.com/cdn/shop/files/quinn_vqxksymjj7u43ugmx7t1643h.mp4", // Add video URL for each product
     description: "Shivoham - Celebrity Fitness Coach",
@@ -130,8 +136,7 @@ const slides: SlideItem[] = [
   // Add more items as required...
 ];
 
-const PrevArrow = (props: any) => {
-  const { className, onClick } = props;
+const PrevArrow: React.FC<ArrowProps> = ({ className, style, onClick }) => {
   return (
     <div
       className={`${className} custom-arrow prev-arrow`}
@@ -153,8 +158,7 @@ const PrevArrow = (props: any) => {
 };
 
 // Custom Next Arrow
-const NextArrow = (props: any) => {
-  const { className, onClick } = props;
+const NextArrow: React.FC<ArrowProps> = ({ className, style, onClick }) => {
   return (
     <div
       className={`${className} custom-arrow next-arrow`}
@@ -180,7 +184,7 @@ const MWEngineerSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -193,7 +197,7 @@ const MWEngineerSlider: React.FC = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -211,13 +215,6 @@ const MWEngineerSlider: React.FC = () => {
 
   return (
     <div className="px-4 py-6 relative">
-      {/* Slider Indicator */}
-      <div className="text-center mb-4">
-        {/* Numeric Slider Indicator */}
-        <span className="text-gray-700 text-lg font-semibold">
-          {currentSlide + 1}/{slides.length}
-        </span>
-      </div>
       <Slider
         {...settings}
         className="py-12 w-[400px] md:w-[768px] lg:w-[1400px]"
@@ -253,14 +250,14 @@ const MWEngineerSlider: React.FC = () => {
                   {slide.title}
                 </h3>
                 {/* Product Price */}
-                <div className="mt-2">
+                {/* <div className="mt-2">
                   <span className="line-through text-gray-400">
                     {slide.price}
                   </span>
                   <span className="ml-2 text-red-500 font-bold">
                     {slide.discountedPrice}
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
