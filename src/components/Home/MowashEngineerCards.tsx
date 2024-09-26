@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import MWEngineerSlider from './MWEngineerSlider/MWEngineerSlider';
 
 
 const services = [
@@ -29,30 +30,30 @@ const ServiceSection = () => {
           </p>
         </div>
 
+
+        <div className='flex justify-center items-center'>
+          <MWEngineerSlider />
+        </div>
         {/* Services Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <Link key={index} href="#">
               <div
                 className="hover:bg-blue-500 h-[250px] hover:text-white hover:ring-white bg-white ring-2 ring-blue-500 text-blue-500 rounded-lg shadow p-6 flex flex-col justify-center items-center space-y-4 relative"
               >
-                {/* Display 'New' tag if applicable */}
                 {service.isNew && (
                   <span className="absolute top-2 right-2 text-xs text-red-600 font-semibold">New</span>
                 )}
 
-                {/* Icon - Replace with actual icon component */}
                 <div className="h-28 w-28 bg-gray-200 flex justify-center items-center rounded-full">
                   <img src={service.icon} alt={service.title} className="h-28 w-28" />
                 </div>
 
-                {/* Service Title */}
                 <h3 className="text-md text-center font-semibold">{service.title}</h3>
               </div>
             </Link>
-
           ))}
-        </div>
+        </div> */}
       </section>
     </div>
   );

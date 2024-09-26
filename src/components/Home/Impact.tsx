@@ -2,7 +2,7 @@ import React from 'react';
 
 const Impact: React.FC = () => {
     return (
-        <div className="relative w-full h-[500px] overflow-hidden">
+        <div className="relative w-full h-[500px] px-8 overflow-hidden">
             {/* Video Background */}
             <video
                 className="absolute top-0 left-0 w-full h-full object-cover"

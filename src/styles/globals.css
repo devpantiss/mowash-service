@@ -69,6 +69,13 @@ input[type="range"]::-webkit-slider-thumb {
   .bounce {
     animation: bounce 2s infinite;
   }
+
+
+  .slick-slide {
+    padding: 0 10px; /* This creates spacing on both sides of each slide */
+    }
+
+  
   
   
   

@@ -62,9 +62,6 @@ const Footer2: React.FC = () => {
                         <div className="text-white">
                             © 2024 PANTISS Foundation | PANTISS Communication
                         </div>
-                        <div className="flex justify-center space-x-4 mt-2 md:mt-0">
-                            Developed by (ADITYA SAHU)
-                        </div>
                     </div>
                 </div>
             </div>
