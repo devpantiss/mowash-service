@@ -252,17 +252,19 @@ const SignupStep8: React.FC = () => {
 
       {/* If user selects 'No' */}
       {isCertified === false && (
-        <div className="w-full max-w-xl mt-6 px-6 py-4 bg-white ring-2 ring-blue-600 text-blue-600">
-          <h2 className="text-2xl font-semibold mb-4 text-center">
-            Join Mo Wash <p className="text-green-500">Green</p> Jobs Academy
-          </h2>
-          <p className="text-center">
-            Become part of the Green Jobs Academy and start your certification
-            journey today.
-          </p>
-          <button className="mt-4 w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-            Learn More
-          </button>
+        <div className=" flex justify-center items-center">
+          <div className="w-full max-w-xl mt-36 flex flex-col justify-center items-center px-6 py-4 bg-white ring-2 ring-blue-600 text-blue-600">
+            <h2 className="text-2xl font-semibold mb-4 text-center">
+              Join Mo Wash <p className="text-green-500">Green</p> Jobs Academy
+            </h2>
+            <p className="text-center">
+              Become part of the Green Jobs Academy and start your certification
+              journey today.
+            </p>
+            <button className="mt-4 w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+              Learn More
+            </button>
+          </div>
         </div>
       )}
 
