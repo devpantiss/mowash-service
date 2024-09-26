@@ -46,7 +46,7 @@ const slides: SlideItem[] = [
   },
   {
     id: 3,
-    title: "Waste Collection, Segregation & Processing",
+    title: "Waste Collection, Segregation",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
@@ -190,6 +190,8 @@ const MWEngineerSlider: React.FC = () => {
     slidesToShow: 5,
     slidesToScroll: 1,
     arrows: false,
+    swipe: true, // Enable swipe
+    swipeToSlide: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     afterChange: (index: number) => setCurrentSlide(index),

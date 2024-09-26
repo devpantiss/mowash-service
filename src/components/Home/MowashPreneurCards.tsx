@@ -11,7 +11,7 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ title, imageSrc, tagline }) =
         <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col text-center">
             <div className='relative'>
                 <img src={imageSrc} alt={title} className="h-[600px] w-full object-cover" />
-                <div className="p-4 absolute bottom-0 w-[296px] h-[100px] bg-blue-600/50 text-white">
+                <div className="p-4 absolute bottom-0 w-[100%] h-[100px] bg-blue-600/50 text-white">
                     <h2 className="font-bold text-2xl">{title}</h2>
                 </div>
             </div>
