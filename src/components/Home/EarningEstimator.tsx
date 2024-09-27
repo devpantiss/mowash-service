@@ -73,12 +73,12 @@ const EarningsEstimator = () => {
     >
       <div className="flex flex-col py-12 lg:flex-row justify-between items-center lg:items-start max-w-6xl mx-auto p-8 lg:py-12 space-y-8 lg:space-y-0 lg:space-x-12 pt-20">
         {/* Left Section: Earnings Display */}
-        <div className="flex-1 bg-blue-300/90 p-4 space-y-4">
+        <div className="flex-1 bg-white/90 p-4 space-y-4">
           <h1 className="text-blue-600 text-3xl lg:text-5xl font-bold">
             Being a MoWash Engineer,
           </h1>
-          <p className="text-2xl lg:text-3xl text-white font-semibold">You could earn</p>
-          <div className="text-5xl flex gap-x-3 lg:text-7xl text-white font-bold">
+          <p className="text-2xl lg:text-3xl text-black font-semibold">You could earn</p>
+          <div className="text-5xl flex gap-x-3 lg:text-7xl text-black font-bold">
             ₹
             <AnimatedNumbers
               includeComma
@@ -86,7 +86,7 @@ const EarningsEstimator = () => {
               fontStyle={{ fontSize: 70 }}
             />
           </div>
-          <p className="text-lg text-white">
+          <p className="text-lg text-black">
             1 day working at an estimated ₹{animatedEarnings.toLocaleString()} a
             day
           </p>
@@ -99,7 +99,7 @@ const EarningsEstimator = () => {
                 max="24"
                 value={hoursWorked}
                 onChange={(e) => setHoursWorked(Number(e.target.value))}
-                className="w-full h-2 bg-blue-800 rounded-lg appearance-none text-white cursor-pointer range-slider"
+                className="w-full h-2 bg-blue-500 rounded-lg appearance-none text-white cursor-pointer range-slider"
                 style={{
                   WebkitAppearance: "none",
                   appearance: "none",
@@ -107,17 +107,17 @@ const EarningsEstimator = () => {
                 }}
               />
             </div>
-            <p className="text-sm text-white">
+            <p className="text-sm text-black">
               Adjust hours worked per day: {hoursWorked} hours
             </p>
           </div>
           {/* District Selection */}
           <div className="space-y-2">
-            <label className="text-sm text-white">
+            <label className="text-sm text-black">
               Select a District in Odisha:
             </label>
             <select
-              className="w-full p-2 border rounded-lg"
+              className="w-full p-2 border border-blue-500 rounded-lg"
               value={selectedDistrict.name}
               onChange={(e) => {
                 const district = districts.find(
@@ -133,7 +133,7 @@ const EarningsEstimator = () => {
               ))}
             </select>
           </div>
-          <p className="text-sm text-white underline cursor-pointer">
+          <p className="text-sm text-black underline cursor-pointer">
             Learn how we estimate your earnings
           </p>
         </div>
