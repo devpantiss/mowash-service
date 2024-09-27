@@ -35,22 +35,22 @@ const MowashPreneurCards = () => {
                 <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <ProgramCard
                         title="For Hand Hygiene"
-                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667664/Untitled_design_2_otps8l.png"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727430056/hand_qpwdxw.png"
                         tagline="Clean hands, safe life."
                     />
                     <ProgramCard
                         title="For Menstural Hygiene"
-                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667761/Untitled_design_4_ewqjom.png"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727430057/menstural_repqrx.png"
                         tagline="Comfort in care."
                     />
                     <ProgramCard
                         title="For Leg Hygiene"
-                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726667463/Untitled_design_1_prt8qb.png"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727430057/leg_bo15nt.png"
                         tagline="Fresh legs, strong steps."
                     />
                     <ProgramCard
                         title="For Facility Hygiene"
-                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726668482/Untitled_design_6_qdpm9q.png"
+                        imageSrc="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727430056/360_ilnxcw.png"
                         tagline="Clean spaces, healthy places."
                     />
                 </div>

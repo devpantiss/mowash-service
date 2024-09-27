@@ -20,8 +20,7 @@ const Impact: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-lg md:text-xl">
                         <div className="flex flex-col items-center">
                             <span className="text-3xl font-bold">22,000</span>
-                            <span>people accessed safe drinking water through various technologies suiting the geohydrological conditions of their areas
-                            </span>
+                            <span>People accessed safe drinking water via locally suited technologies</span>
                         </div>
 
                         <div className="flex flex-col items-center">

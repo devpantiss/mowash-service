@@ -72,7 +72,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 
   .slick-slide {
-    padding: 0 10px; /* This creates spacing on both sides of each slide */
+    padding: 0 5px; /* This creates spacing on both sides of each slide */
     }
 
   
