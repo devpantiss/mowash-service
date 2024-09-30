@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
 
   // Scroll event listener to toggle Header background color
   useEffect(() => {
@@ -35,13 +37,13 @@ const Header = () => {
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8 text-lg font-medium">
-          <a href="#" className="hover:underline hover:text-blue-600 transition duration-300">
+          <a href="/" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/" ? 'text-blue-600 underline' : ''}  duration-300`}>
             MWC
           </a>
-          <a href="#" className="hover:underline hover:text-blue-600 transition duration-300">
+          <a href="/benefits" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/benefits" ? 'text-blue-600 underline' : ''}  duration-300`}>
             Benefits
           </a>
-          <a href="#" className="hover:underline hover:text-blue-600 transition duration-300">
+          <a href="/rewards" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/rewards" ? 'text-blue-600 underline' : ''}  duration-300`}>
             Rewards
           </a>
         </div>
