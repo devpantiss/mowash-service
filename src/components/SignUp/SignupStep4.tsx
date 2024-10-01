@@ -21,7 +21,7 @@ const SignupStep4: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[100vh] pt-20">
+    <div className="flex flex-col lg:flex-row lg:h-[100vh] h-[100%] pt-20">
       {/* Left Side */}
       <div className="w-1/2 flex items-center justify-center bg-transparent text-black p-8">
         <div className="text-center space-y-6">

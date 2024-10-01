@@ -115,7 +115,7 @@ const SignupStep1: React.FC = () => {
             <button
               onClick={() => handleOptionClick('MoWash Engineer')}
               className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'MoWash Engineer' ? 'border-blue-500 text-black bg-blue-100' : 'text-white border-gray-300'}`}
+                ${selectedOption === 'MoWash Engineer' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
             >
               <span className="font-semibold">Mo WashEngineer</span>
               <MdEngineering className="text-8xl"/>
@@ -124,7 +124,7 @@ const SignupStep1: React.FC = () => {
             <button
               onClick={() => handleOptionClick('MoWash Preneur')}
               className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'MoWash Preneur' ? 'border-blue-500 text-black bg-blue-100' : 'text-white border-gray-300'}`}
+                ${selectedOption === 'MoWash Preneur' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
             >
               <span className="font-semibold">Mo WashPreneur</span>
               <GrUserManager className="text-8xl"/>

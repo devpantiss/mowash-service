@@ -48,11 +48,11 @@ const SignupStep3: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row h-[100vh] pt-20 bg-transparent">
+    <div className="flex flex-row pt-20 bg-transparent">
       {/* Options Section */}
       <div className="flex flex-col w-3/5 p-8">
         <h2 className="text-3xl text-white font-bold mb-6">My Expertise is...</h2>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {options.map((option, index) => (
             <button
               key={index}
@@ -94,7 +94,7 @@ const SignupStep3: React.FC = () => {
           <div className="my-6 border-t border-white"></div>
 
           {/* Bottom Section: Counter Numbers */}
-          <div className="space-x-4 grid grid-cols-5">
+          <div className="space-x-4 grid grid-cols-3 lg:grid-cols-5">
             {options.map((option, index) => (
               <div key={index} className="text-center">
                 <span className="text-2xl font-bold">{isInView ? <Counter target={option.target} /> : 0}</span>

@@ -77,7 +77,7 @@ const SignupStep2: React.FC = () => {
             <button
               onClick={() => handleOptionClick('Nano Contractor')}
               className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'Nano Contractor' ? 'border-blue-500 text-black bg-blue-100' : 'text-white border-gray-300'}`}
+                ${selectedOption === 'Nano Contractor' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
             >
               <span className="font-semibold">Nano Contractor</span>
               <FaPeopleGroup className="text-8xl" />
@@ -86,7 +86,7 @@ const SignupStep2: React.FC = () => {
             <button
               onClick={() => handleOptionClick('MWC Partner')}
               className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'MWC Partner' ? 'border-blue-500 text-black bg-blue-100' : 'text-white border-gray-300'}`}
+                ${selectedOption === 'MWC Partner' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
             >
               <span className="font-semibold">MWC Partner</span>
               <FaUserGraduate className="text-8xl" />
