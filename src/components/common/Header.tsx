@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
@@ -37,15 +38,15 @@ const Header = () => {
 
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8 text-lg font-medium">
-          <a href="/" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/" ? 'text-blue-600 underline' : ''}  duration-300`}>
+          <Link href="/" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/" ? 'text-blue-600 underline' : ''}  duration-300`}>
             MWC
-          </a>
-          <a href="/benefits" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/benefits" ? 'text-blue-600 underline' : ''}  duration-300`}>
+          </Link>
+          <Link href="/benefits" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/benefits" ? 'text-blue-600 underline' : ''}  duration-300`}>
             Benefits
-          </a>
-          <a href="/rewards" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/rewards" ? 'text-blue-600 underline' : ''}  duration-300`}>
+          </Link>
+          <Link href="/rewards" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/rewards" ? 'text-blue-600 underline' : ''}  duration-300`}>
             Rewards
-          </a>
+          </Link>
         </div>
 
         {/* Right-side buttons */}
