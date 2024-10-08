@@ -7,11 +7,9 @@ import { useRouter } from "next/router"; // Import useRouter
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-interface LoginProps {
-  goToStep: (stepIndex: number) => void; // Accept goToStep as a prop
-}
 
-const Login: React.FC<LoginProps> = () => {
+
+const Login: React.FC = () => {
   const router = useRouter(); // Initialize router
 
   const [formData, setFormData] = useState({
