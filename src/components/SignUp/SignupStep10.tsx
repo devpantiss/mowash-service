@@ -15,14 +15,14 @@ const SignupStep10: React.FC = () => {
       // Hide confetti after 1 second (duration for the falling effect)
       setTimeout(() => {
         setShowConfetti(false);
-      }, 2000);
+      }, 10000);
     };
 
     // Start the confetti effect immediately
     startConfetti();
 
     // Set an interval to restart the confetti effect every 2 seconds (1 second for confetti fall + 1 second wait)
-    const intervalId = setInterval(startConfetti, 1000);
+    const intervalId = setInterval(startConfetti, 4000);
 
     // Cleanup the interval on component unmount
     return () => clearInterval(intervalId);
