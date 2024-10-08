@@ -1,4 +1,5 @@
 import React from "react";
+import DashTable from "@/components/Dash/DashTable";
 
 interface StatCardProps {
   title: string;
@@ -35,7 +36,7 @@ const StatCard: React.FC<StatCardProps> = ({
 
 const ProfileCard: React.FC = () => {
   return (
-    <div className="bg-black/40 shadow-lg rounded-lg w-80 p-6 ring-2 ring-blue-600 mx-auto">
+    <div className="bg-black/40 shadow-lg rounded-lg w-80 h-[400px] p-6 ring-2 ring-blue-600 mx-auto">
       <img
         src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
         alt="Profile"
@@ -69,9 +70,9 @@ const ProfileCard: React.FC = () => {
 
 const Row1: React.FC = () => {
   return (
-    <div className="p-4 space-y-6">
+    <div className="w-full space-y-6 container pt-10">
       {/* First Row */}
-      <div className="flex flex-col lg:flex-row w-full gap-4">
+      <div className="flex flex-col lg:flex-row w-full px-2 gap-4">
         <div className="space-y-4 lg:w-1/2 w-full">
           <StatCard
             title="Today's Orders"
@@ -94,28 +95,21 @@ const Row1: React.FC = () => {
             bgColor="bg-blue-200"
           />
         </div>
-        <div className="lg:w-1/2 w-full flex flex-col lg:flex-row justify-between items-center">
-          <div className="lg:w-1/2 w-full bg-white p-4 rounded-lg shadow-lg">
+        <div className="lg:w-1/2 w-full flex flex-col lg:flex-row justify-between lg:space-x-16 items-center">
+          <div className="w-full bg-white p-4 rounded-lg shadow-lg">
             <h3 className="text-lg font-bold">COD Status (Last 30 days)</h3>
-            <div className="grid grid-cols-3 gap-4 mt-4">
-              <StatCard
-                title="Total COD"
-                flexCol="flex-col"
-                value="₹ 0"
-                icon={<span>💵</span>}
-              />
+            <div className="grid grid-cols-1 gap-4 mt-4">
+              <StatCard title="Total COD" value="₹ 0" icon={<span>💵</span>} />
               <StatCard
                 title="COD Available"
                 value="₹ 0"
                 icon={<span>💸</span>}
-                flexCol="flex-col"
               />
               <StatCard
                 title="COD Pending"
                 value="₹ 0"
                 subtitle="Greater than 8 days"
                 icon={<span>⏳</span>}
-                flexCol="flex-col"
               />
               {/* <StatCard
               title="Last COD Remitted"
@@ -132,12 +126,12 @@ const Row1: React.FC = () => {
       </div>
 
       {/* Second Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid ring-2 ring-gray-500 p-6 rounded-md grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-purple-200 p-4 rounded-lg shadow-lg">
           <h3 className="text-lg font-bold">
             Shipments Details (Last 30 days)
           </h3>
-          <div className="grid grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
             <StatCard
               title="Total Shipments"
               value="0"
@@ -152,7 +146,7 @@ const Row1: React.FC = () => {
         </div>
         <div className="bg-white p-4 rounded-lg shadow-lg">
           <h3 className="text-lg font-bold">NDR Details (Last 30 days)</h3>
-          <div className="grid grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
             <StatCard title="Total NDR" value="0" icon={<span>⚠️</span>} />
             <StatCard
               title="Your Reattempt Request"
@@ -170,7 +164,9 @@ const Row1: React.FC = () => {
       </div>
 
       {/* Third Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+      <div className="p-6 ring-2 ring-gray-500 rounded-md flex flex-col gap-4">
+        <DashTable />
+      </div>
     </div>
   );
 };

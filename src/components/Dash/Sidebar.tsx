@@ -32,32 +32,32 @@ const Sidebar: FC = () => {
       <div className="space-y-6 py-6 px-2">
         {/* Home */}
         <Link href="/">
-          <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md transition-all duration-300">
+          <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
             <AiFillHome size={24} />
             <span className="hidden group-hover:block">Home</span>
           </div>
         </Link>
 
         {/* Dashboard */}
-        <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md transition-all duration-300">
+        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
           <AiFillDashboard size={24} />
           <span className="hidden group-hover:block">Dashboard</span>
         </div>
 
         {/* Services */}
-        <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md transition-all duration-300">
+        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
           <AiFillSetting size={24} />
           <span className="hidden group-hover:block">Services</span>
         </div>
 
         {/* Earnings */}
-        <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md transition-all duration-300">
+        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
           <AiFillDollarCircle size={24} />
           <span className="hidden group-hover:block">Earnings</span>
         </div>
 
         {/* Profile */}
-        <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md transition-all duration-300">
+        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
           <AiFillProfile size={24} />
           <span className="hidden group-hover:block">Profile</span>
         </div>
@@ -66,7 +66,7 @@ const Sidebar: FC = () => {
         <div className="space-y-1">
           <div
             onClick={toggleAccordion}
-            className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md cursor-pointer transition-all duration-300"
+            className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md cursor-pointer transition-all duration-300"
           >
             <FaUserShield size={24} />
             <span className="hidden group-hover:block">Welfare Services</span>
@@ -75,23 +75,23 @@ const Sidebar: FC = () => {
           {/* Accordion Content */}
           {isAccordionOpen && (
             <div className="ml-6 space-y-2 transition-all duration-300">
-              <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md">
+              <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md">
                 <BsFillHeartPulseFill size={20} />
                 <span className="hidden group-hover:block">
                   Health & Wellness
                 </span>
               </div>
-              <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md">
+              <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md">
                 <BsFillShieldLockFill size={20} />
                 <span className="hidden group-hover:block">
                   Social Security
                 </span>
               </div>
-              <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md">
+              <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md">
                 <AiFillSetting size={20} />
                 <span className="hidden group-hover:block">Insurance</span>
               </div>
-              <div className="flex items-center space-x-2 hover:bg-indigo-800 rounded-md">
+              <div className="flex items-center space-x-2 hover:bg-blue-400 rounded-md">
                 <BsCardChecklist size={20} />
                 <span className="hidden group-hover:block">Certification</span>
               </div>
@@ -100,7 +100,7 @@ const Sidebar: FC = () => {
         </div>
 
         {/* Help & Support */}
-        <div className="flex items-center space-x-2 hover:bg-indigo-800 p-2 rounded-md transition-all duration-300">
+        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
           <AiFillQuestionCircle size={24} />
           <span className="hidden group-hover:block">Help & Support</span>
         </div>

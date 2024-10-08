@@ -19,7 +19,7 @@ const Layout: NextPage<LayoutProps> = ({ children }) => {
         <Navbar />
 
         {/* Page Content */}
-        <main className="flex-1 ml-10 p-10 pt-16 md:pt-20 transition-all duration-300">
+        <main className="flex-1 ml-10 w-full lg:ml-8 px-10 lg:px-6 pt-8 md:pt-20 transition-all duration-300">
           {children}
         </main>
       </div>
