@@ -4,7 +4,9 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <div>
+      <div style={{
+            background: "linear-gradient(to bottom, black, #001f3f)",
+          }}>
         <Login />
       </div>
     </>

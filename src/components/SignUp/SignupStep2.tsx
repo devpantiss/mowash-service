@@ -1,143 +1,261 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaPeopleGroup } from "react-icons/fa6";
-import { FaUserGraduate } from "react-icons/fa6";
+import React, { useState } from "react";
+import { RiLayoutMasonryFill } from "react-icons/ri";
+import { MdOutlineElectricalServices } from "react-icons/md";
+import {
+  FaToolbox,
+  FaTruck,
+  FaRecycle,
+  FaWater,
+  FaLeaf,
+  FaSolarPanel,
+  FaSeedling,
+  FaMoneyBillWave,
+  FaBuilding,
+  FaIndustry,
+  FaDumpster,
+  FaTools,
+} from "react-icons/fa";
 
-const SignupStep2: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [contractorCount, setContractorCount] = useState(0);
-  const [partnerCount, setPartnerCount] = useState(0);
+interface CardProps {
+  title: string;
+  description: string;
+  icon: JSX.Element;
+  iconColor: string; // Prop to hold icon color
+  isSelected: boolean;
+  onSelect: () => void;
+}
 
-  const engineerTarget = 120; // Actual number for MoWash Engineers
-  const preneurTarget = 85;   // Actual number for MoWash Preneurs
+const Card: React.FC<CardProps> = ({ title, description, icon, iconColor, isSelected, onSelect }) => {
+  return (
+    <div
+      className={`cursor-pointer bg-transparent rounded-lg shadow-md p-3 hover:shadow-lg transition duration-300 
+      ${isSelected ? `border-4` : "border-2"}`}
+      style={{ borderColor: isSelected ? iconColor : "white" }} // Apply dynamic border color
+      onClick={onSelect}
+    >
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center justify-center space-x-12 lg:space-x-32">
+          {icon}
+          <h3 className="text-lg text-white font-semibold">{title}</h3>
+        </div>
+      </div>
+      <p className="text-sm text-white mb-4">{description}</p>
+    </div>
+  );
+};
 
-  const counterRef = useRef<HTMLDivElement>(null);
-    // Function to animate the counters
-    const animateCounter = (start: number, end: number, setter: React.Dispatch<React.SetStateAction<number>>) => {
-      let current = start;
-      const duration = 1000; // Animation duration in ms
-      const stepTime = Math.abs(Math.floor(duration / end));
-  
-      const step = () => {
-        current += 1;
-        setter(current);
-        if (current < end) {
-          requestAnimationFrame(step);
-        } else {
-          setter(end);
-        }
-      };
-      requestAnimationFrame(step);
-    };
-  
-    useEffect(() => {
-      // Set up Intersection Observer to detect when the counter section comes into view
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            setIsVisible(true);
-          }
-        },
-        { threshold: 0.5 } // Counter section must be 50% visible
-      );
-  
-      if (counterRef.current) {
-        observer.observe(counterRef.current);
-      }
-  
-      return () => {
-        if (counterRef.current) {
-          observer.unobserve(counterRef.current);
-        }
-      };
-    }, []);
-  
-    useEffect(() => {
-      // Start the counters when the section becomes visible
-      if (isVisible) {
-        animateCounter(0, engineerTarget, setContractorCount);
-        animateCounter(0, preneurTarget, setPartnerCount);
-      }
-    }, [isVisible]);
-  
-    const handleOptionClick = (option: string) => {
-      setSelectedOption(option);
-    };
+const ServiceCards: React.FC = () => {
+  const [selectedCards, setSelectedCards] = useState<string[]>([]); // State to store selected cards
+
+  // Toggle selection for a card
+  const handleSelect = (label: string) => {
+    setSelectedCards(
+      (prevSelected) =>
+        prevSelected.includes(label)
+          ? prevSelected.filter((item) => item !== label) // Deselect if already selected
+          : [...prevSelected, label] // Add to selection if not selected
+    );
+  };
+
+  // First section options
+  const options = [
+    {
+      label: "Toilet Mason",
+      icon: (
+        <RiLayoutMasonryFill
+          className="text-8xl"
+          style={{ color: "#ff5733" }}
+        />
+      ),
+      iconColor: "#ff5733",
+      target: 1200,
+      description: "Handles masonry for toilets",
+    },
+    {
+      label: "Electrician",
+      icon: (
+        <MdOutlineElectricalServices
+          className="text-8xl"
+          style={{ color: "#33c2ff" }}
+        />
+      ),
+      iconColor: "#33c2ff",
+      target: 800,
+      description: "Fixes electrical systems",
+    },
+    {
+      label: "Toilet Plumber",
+      icon: <FaToolbox className="text-8xl" style={{ color: "#f1c40f" }} />,
+      iconColor: "#f1c40f",
+      target: 900,
+      description: "Manages plumbing for toilets",
+    },
+    {
+      label: "Cess Pool Operator",
+      icon: <FaTruck className="text-8xl" style={{ color: "#27ae60" }} />,
+      iconColor: "#27ae60",
+      target: 500,
+      description: "Operates cesspool trucks",
+    },
+    {
+      label: "Sanitation Crew",
+      icon: <FaRecycle className="text-8xl" style={{ color: "#9b59b6" }} />,
+      iconColor: "#9b59b6",
+      target: 1000,
+      description: "Ensures sanitation services",
+    },
+    {
+      label: "Nal Jal Mitra",
+      icon: <FaWater className="text-8xl" style={{ color: "#3498db" }} />,
+      iconColor: "#3498db",
+      target: 1100,
+      description: "Works with water supply",
+    },
+    {
+      label: "STP Operator",
+      icon: <FaLeaf className="text-8xl" style={{ color: "#2ecc71" }} />,
+      iconColor: "#2ecc71",
+      target: 750,
+      description: "Operates sewage treatment plants",
+    },
+    {
+      label: "Solar Pump Operator",
+      icon: <FaSolarPanel className="text-8xl" style={{ color: "#f39c12" }} />,
+      iconColor: "#f39c12",
+      target: 600,
+      description: "Handles solar pump operations",
+    },
+    {
+      label: "Pond Excavator",
+      icon: <FaSeedling className="text-8xl" style={{ color: "#16a085" }} />,
+      iconColor: "#16a085",
+      target: 950,
+      description: "Excavates and maintains ponds",
+    },
+    {
+      label: "Water Bill Collector",
+      icon: (
+        <FaMoneyBillWave className="text-8xl" style={{ color: "#e74c3c" }} />
+      ),
+      iconColor: "#e74c3c",
+      target: 1200,
+      description: "Collects water bills",
+    },
+  ];
+
+  // Sub-section options
+  const options2 = [
+    {
+      label: "Residential Facilities",
+      icon: <FaBuilding className="text-8xl" style={{ color: "#ff6347" }} />, // Custom color
+      iconColor: "#ff6347",
+      target: 1500,
+      description: "Service for residential buildings",
+    },
+    {
+      label: "Industrial Facilities",
+      icon: <FaIndustry className="text-8xl" style={{ color: "#4682b4" }} />, // Custom color
+      iconColor: "#4682b4",
+      target: 1200,
+      description: "Service for industrial plants",
+    },
+    {
+      label: "Container and Dumpster",
+      icon: <FaDumpster className="text-8xl" style={{ color: "#32cd32" }} />, // Custom color
+      iconColor: "#32cd32",
+      target: 800,
+      description: "Handling containers and dumpsters",
+    },
+    {
+      label: "Healthcare Facilities",
+      icon: <FaBuilding className="text-8xl" style={{ color: "#ffa500" }} />, // Custom color
+      iconColor: "#ffa500",
+      target: 1000,
+      description: "Service for healthcare centers",
+    },
+    {
+      label: "Shopping Mall",
+      icon: <FaBuilding className="text-8xl" style={{ color: "#db7093" }} />, // Custom color
+      iconColor: "#db7093",
+      target: 900,
+      description: "Service for shopping malls",
+    },
+    {
+      label: "Urban Local Body",
+      icon: <FaTools className="text-8xl" style={{ color: "#20b2aa" }} />, // Custom color
+      iconColor: "#20b2aa",
+      target: 1100,
+      description: "Services for municipal bodies",
+    },
+    {
+      label: "Waste Segregation Center",
+      icon: <FaTruck className="text-8xl" style={{ color: "#9932cc" }} />, // Custom color
+      iconColor: "#9932cc",
+      target: 950,
+      description: "Waste segregation services",
+    },
+  ];
 
   return (
-    <div className="flex items-center justify-center h-[100vh] bg-transparent">
-      {/* Form Content */}
-      <div className="w-full px-8 py-2 bg-transparent rounded-lg flex gap-8">
-        <div className='flex flex-col justify-center space-y-4 w-2/5'>
-          {/* Heading */}
-        <h2 className="text-3xl text-white font-bold text-left mb-6">Are you a....</h2>
+    <div className="container mx-auto px-4 py-8">
+      <h2 className="text-5xl font-bold text-left text-white mb-8">
+        Welcome to MoWash Partners Platform!
+      </h2>
+      <p className="text-left text-white text-xl mb-12">
+        Ready to scale your business? Select the option that works best for you.
+      </p>
 
-          {/* Options */}
-          <div className="flex flex-col space-y-4">
-            <button
-              onClick={() => handleOptionClick('Nano Contractor')}
-              className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'Nano Contractor' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
-            >
-              <span className="font-semibold">Nano Contractor</span>
-              <FaPeopleGroup className="text-8xl" />
-            </button>
-
-            <button
-              onClick={() => handleOptionClick('MWC Partner')}
-              className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'MWC Partner' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
-            >
-              <span className="font-semibold">MWC Partner</span>
-              <FaUserGraduate className="text-8xl" />
-            </button>
-          </div>
+      {/* Service Selection Section */}
+      <div>
+        <h3 className="text-xl text-white font-semibold mb-4">
+          Choose a Service
+        </h3>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {options.map((option, index) => (
+            <Card
+              key={index}
+              title={option.label}
+              description={option.description}
+              icon={option.icon}
+              iconColor={option.iconColor}
+              isSelected={selectedCards.includes(option.label)}
+              onSelect={() => handleSelect(option.label)}
+            />
+          ))}
         </div>
-
-
-        <div 
-          className="flex w-3/5 relative flex-col justify-center text-white p-8 rounded-lg"
-          style={{
-            backgroundImage: "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726744112/josue-isai-ramos-figueroa-Pj4je7OjrME-unsplash_r5gxn2.jpg')", // Replace with your image URL
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className='absolute inset-0 z-10 bg-black/50'></div>
-          <div className='z-30'>
-            {/* Descriptions */}
-          <h2 className="text-3xl font-bold mb-4">Who are we?</h2>
-          <div className="mb-6">
-            <p className="font-semibold text-lg">Nano Contractors:</p>
-            <p className="text-sm">Small scale independent contractors or businesses, who want to partner with us to get clients for their services business.</p>
-          </div>
-          <div className="mb-6">
-            <p className="font-semibold text-lg">MWC Partners:</p>
-            <p className="text-sm">Individuals who want to list their services on our platform to cater to the needs of ours users.</p>
-          </div>
-
-          {/* Counters */}
-          <div ref={counterRef} className="flex space-x-6">
-            <div className="text-center">
-              <p className="text-4xl font-bold">{contractorCount}</p>
-              <p className="text-sm">Nano Contractors</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl font-bold">{partnerCount}</p>
-              <p className="text-sm">Mo Wash Company Partners</p>
-            </div>
-          </div>
-          </div>
-        </div>
-        
       </div>
 
-      {/* Progress Bar */}
-      <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-blue-600" style={{ width: '16%' }}></div>
+      {/* Sub-Service Selection Section */}
+      <div className="mt-12">
+        <h3 className="text-xl font-semibold text-white mb-4">
+          Choose a Sub-Service
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {options2.map((option, index) => (
+            <Card
+              key={index}
+              title={option.label}
+              description={option.description}
+              icon={option.icon}
+              iconColor={option.iconColor}
+              isSelected={selectedCards.includes(option.label)}
+              onSelect={() => handleSelect(option.label)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Display selected services for reference */}
+      <div className="mt-8 text-white">
+        <h4 className="text-xl font-semibold mb-2">Selected Services:</h4>
+        <ul>
+          {selectedCards.map((selected, index) => (
+            <li key={index}>{selected}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 };
 
-export default SignupStep2;
+export default ServiceCards;

@@ -80,12 +80,12 @@ const SignupStep8: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-[100vh] bg-transparent p-4">
+    <div className="flex flex-col lg:h-[90vh] h-[100vh] bg-transparent">
       <div>
         {/* Yes/No options */}
         {isCertified === null && (
-          <div className="flex flex-row-reverse space-x-4 w-full">
-            <div className="w-1/2 flex flex-col justify-center items-center">
+          <div className="flex flex-col lg:flex-row-reverse space-x-4 lg:space-y-0 space-y-14 w-full">
+            <div className="lg:w-1/2 w-full flex mb-6 flex-col justify-center items-center">
               <h1 className="text-3xl text-white font-bold mt-3 text-left mb-2">
                 Are You Certified?
               </h1>
@@ -107,7 +107,7 @@ const SignupStep8: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-3/5 bg-white flex flex-col justify-center items-center text-black h-[100vh]  px-24 py-4">
+            <div className="lg:w-3/5 w-full bg-white flex flex-col justify-center items-center text-black lg:h-[90vh] lg:px-24 px-8 py-4">
               <h1 className="text-3xl text-blue-600 font-bold mt-3 mb-4">
                 Skill Certifications and Their Importance
               </h1>
@@ -267,11 +267,6 @@ const SignupStep8: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Progress Bar */}
-      <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-blue-600" style={{ width: "56%" }}></div>
-      </div>
     </div>
   );
 };

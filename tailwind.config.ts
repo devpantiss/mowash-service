@@ -20,8 +20,15 @@ const config: Config = {
           '0%': { transform: 'translateX(100%)' },
           '100%': { transform: 'translateX(-100%)' },
         },
+        rotateEffect: {
+          '0%, 100%': { transform: 'rotate(0deg)' }, // normal position
+          '25%': { transform: 'rotate(30deg)' }, // rotate clockwise
+          '50%': { transform: 'rotate(0deg)' }, // back to normal
+          '75%': { transform: 'rotate(-30deg)' }, // rotate counterclockwise
+        },
       },
       animation: {
+        vibration: 'rotateEffect 1.5s ease-in-out infinite', // 3s for the full cycle
         marquee: 'marquee 30s linear infinite', // Adjust the speed by changing the duration (15s here)
       },
     },

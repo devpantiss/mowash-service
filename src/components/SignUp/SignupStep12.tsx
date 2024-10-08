@@ -3,6 +3,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { jsPDF } from "jspdf";
+import animationData from "../assets/health.json";
+import dynamic from "next/dynamic";
+
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 interface SignupStep12Props {
   goToStep: (stepIndex: number) => void; // Pass a function to change the step
@@ -55,34 +60,34 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
         },
       ],
     },
-    {
-      name: "Alcohol Risk",
-      image:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727183284/Screenshot_2024-09-24_at_6.28.15_PM_ld5mcs.png",
-      image2:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727183284/Screenshot_2024-09-24_at_6.35.44_PM_lyruif.png",
-      description:
-        "This test evaluates liver function and other parameters to assess the risk of alcohol-related diseases.",
-      discountedCost: "₹999",
-      testsIncluded: [
-        {
-          name: "Liver Function Test (LFT)",
-          icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249189/liver_function_onaw3h.jpg",
-        },
-        {
-          name: "Gamma-Glutamyl Transferase (GGT)",
-          icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
-        },
-        {
-          name: "Blood Urea Nitrogen (BUN)",
-          icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
-        },
-        {
-          name: "Complete Blood Count (CBC)",
-          icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/haemogram_ifibzh.jpg",
-        },
-      ],
-    },
+    // {
+    //   name: "Alcohol Risk",
+    //   image:
+    //     "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727183284/Screenshot_2024-09-24_at_6.28.15_PM_ld5mcs.png",
+    //   image2:
+    //     "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727183284/Screenshot_2024-09-24_at_6.35.44_PM_lyruif.png",
+    //   description:
+    //     "This test evaluates liver function and other parameters to assess the risk of alcohol-related diseases.",
+    //   discountedCost: "₹999",
+    //   testsIncluded: [
+    //     {
+    //       name: "Liver Function Test (LFT)",
+    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249189/liver_function_onaw3h.jpg",
+    //     },
+    //     {
+    //       name: "Gamma-Glutamyl Transferase (GGT)",
+    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
+    //     },
+    //     {
+    //       name: "Blood Urea Nitrogen (BUN)",
+    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
+    //     },
+    //     {
+    //       name: "Complete Blood Count (CBC)",
+    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/haemogram_ifibzh.jpg",
+    //     },
+    //   ],
+    // },
     {
       name: "Anemia Profile",
       image:
@@ -176,7 +181,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
   };
 
   const handleSkip = () => {
-    goToStep(12);
+    goToStep(8);
   };
 
   // Generate and Download PDF
@@ -211,14 +216,12 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-transparent p-6">
+    <div className="flex flex-col justify-center items-center bg-transparent p-6">
+      <h2 className="text-4xl font-semibold text-white mt-6 lg:mb-0 mb-4">Health Checkup</h2>
       {!selectedCheckup ? (
-        <div className="w-full gap-x-8 h-[100vh] pt-24 flex justify-center items-center">
-          <div className="w-1/2">
-            <h2 className="text-4xl font-semibold text-white mb-4">
-              Health Checkup
-            </h2>
-            <div className="grid grid-cols-3 gap-y-4 gap-x-4">
+        <div className="w-full gap-x-8 lg:h-[90vh] max-w-8xl flex flex-col-reverse lg:flex-row lg:justify-start items-center">
+          <div className="lg:w-1/2 w-full">
+            <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-4 gap-x-4">
               {checkups.map((checkup) => (
                 <button
                   key={checkup.name}
@@ -228,31 +231,36 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                   <img
                     src={checkup.image}
                     alt={checkup.name}
-                    className="w-[300px] object-cover rounded-md"
+                    className="lg:w-[300px] w-full object-cover rounded-md"
                   />
                 </button>
               ))}
-
-              <div className="text-center mt-8">
-                <button
-                  onClick={handleSkip}
-                  className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
-                >
-                  Skip
-                </button>
-              </div>
+            </div>
+            <div className="text-center mt-8">
+              <button
+                onClick={() => goToStep(6)}
+                className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+              >
+                back
+              </button>
             </div>
           </div>
-          <div className="w-1/2">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727246302/Screenshot_2024-09-25_at_12.01.11_PM-removebg-preview_n0inhm.png"
-              className="w-[800px] h-[600px]"
+          {/* flow chart image */}
+          <div className="lg:w-1/2 w-full flex justify-center items-center rounded-md mb-6 lg:mb-0">
+          <Lottie
+              animationData={animationData}
+              loop={true}
+              style={{
+                width: "100%",
+                height: "600px",
+              }}
+              className="block "
             />
           </div>
         </div>
       ) : (
-        <div className="flex w-full py-36">
-          <div className="w-1/3">
+        <div className="flex lg:h-[100vh] w-full flex-col lg:flex-row">
+          <div className="lg:w-1/3 w-full mb-6">
             <img
               src={
                 checkups.find((c) => c.name === selectedCheckup)?.image2 || ""
@@ -262,7 +270,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
             />
           </div>
 
-          <div className="w-2/3 pl-8">
+          <div className="lg:w-2/3 lg:pl-8 w-full">
             <h2 className="text-3xl text-white font-bold mb-4 capitalize">
               {selectedCheckup}
             </h2>

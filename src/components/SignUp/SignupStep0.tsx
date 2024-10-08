@@ -1,17 +1,35 @@
-import Link from "next/link";
 import { useState } from "react";
 import style from "@/components/common/input/input.module.css";
+import Link from "next/link";
+import { MdEngineering } from "react-icons/md";
+import { GrUserManager } from "react-icons/gr";
+import dynamic from "next/dynamic";
+import animation from "@/components/assets/animation.json";
 
-const SignupStep0: React.FC = () => {
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
+interface SignupStep0Props {
+  goToStep: (stepIndex: number) => void; // Accept goToStep as a prop
+}
+
+const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
   const [formData, setFormData] = useState({
-    email: "",
+    firstName: "",
+    lastName: "",
+    companyName: "",
     number: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleOptionClick = (option: string) => {
+    setSelectedOption(option);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,186 +39,206 @@ const SignupStep0: React.FC = () => {
       return;
     }
     console.log("Form data submitted:", formData);
+
+    // Navigate to the next step
+    goToStep(1); // Moves to the next step in the stepper
   };
 
   return (
-    <div className="flex h-[100vh]">
-      {/* Left Side: Form Section */}
-      <div className="w-1/2 bg-transparent p-10 text-white flex flex-col justify-center">
-        <h1 className="text-4xl font-bold mb-8">Please Enter your details</h1>
-        <form onSubmit={handleSubmit} className="space-y-12">
-          {/* <div>
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 mt-1 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500"
-              placeholder="you@example.com"
-            />
-          </div>
-          <div>
-            <label htmlFor="number" className="block text-sm font-medium">
-              Number
-            </label>
-            <input
-              type="number"
-              name="number"
-              id="number"
-              value={formData.number}
-              onChange={handleChange}
-              required
-              className="w-full p-3 mt-1 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500"
-              placeholder="+91 54223 54223"
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full p-3 mt-1 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="confirmPassword"
-              className="block text-sm font-medium"
-            >
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-              className="w-full p-3 mt-1 border border-gray-600 rounded-lg bg-black text-white focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
-            />
-          </div> */}
-
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your Email"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}>EMAIL</label>
-          </div>
-
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your Phone Number"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="number"
-            />
-            <label className={`${style.brutalist_label}`}>NUMBER</label>
-          </div>
-
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your Password"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="password"
-            />
-            <label className={`${style.brutalist_label}`}>PASSWORD</label>
-          </div>
-
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your Password Again"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="password"
-            />
-            <label className={`${style.brutalist_label}`}>
-              CONFIRM PASSWORD
-            </label>
-          </div>
-        </form>
-      </div>
-
-      {/* Right Side: Cards Section */}
-      <div className="w-1/2 bg-black/40 flex flex-col justify-center p-8">
-        {/* Cards Section */}
-        <div className="grid grid-cols-2 gap-6">
-          {/* Card 1 */}
-          <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-blue-400 mb-1">
-              Unlimited Access to
-            </h3>
-            <p className="text-5xl font-bold text-blue-300 mb-1">30+</p>
-            <p className="text-sm text-gray-400">services</p>
-          </div>
-
-          {/* Card 2 */}
-          <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center row-span-2 justify-center">
-            <h3 className="text-xl font-semibold text-blue-400 mb-2">
-              Multiple services formats
-            </h3>
-            <div className="grid grid-cols-3 gap-2">
-              <div className="text-blue-300">
-                <p>Toilet Mason</p>
-              </div>
-              <div className="text-yellow-300">
-                <p>Electrician</p>
-              </div>
-              <div className="text-yellow-300">
-                <p>Plumbing</p>
-              </div>
-              <div className="text-yellow-300">
-                <p>Cesspool</p>
-              </div>
+    <>
+      <div className="mx-auto h-full container">
+        <div className="lg:ml-20 ml-0 flex justify-center cursor lg:justify-start">
+          <Link href="/">
+            <img src="/images/mowash-logo.webp" className="h-12" />
+          </Link>
+        </div>
+        <div className="flex flex-col-reverse lg:flex-row">
+          {/* Left Side: Information Section */}
+          <div className="w-full lg:h-[100vh] h-full relative lg:w-1/2 flex flex-col items-center p-10">
+            <div className="z-10">
+              <h1 className="text-3xl font-bold mb-2 text-white">
+                We Are More than Just your Wash Partner
+              </h1>
+              <ul className="list-none text-lg my-6 text-white">
+                <li className="flex items-center gap-x-3 mb-2">
+                  <img
+                    src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
+                    className="h-6"
+                  />{" "}
+                  AI-Powered Courier Selection
+                </li>
+                <li className="flex items-center gap-x-3 mb-2">
+                  <img
+                    src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
+                    className="h-6"
+                  />{" "}
+                  Branded Order Tracking Page
+                </li>
+                <li className="flex items-center gap-x-3 mb-2">
+                  <img
+                    src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
+                    className="h-6"
+                  />{" "}
+                  Automated NDR Management
+                </li>
+                <li className="flex items-center gap-x-3 mb-2">
+                  <img
+                    src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
+                    className="h-6"
+                  />{" "}
+                  Up to 45% Lesser RTOs
+                </li>
+              </ul>
             </div>
+
+            <Lottie
+              animationData={animation}
+              loop={true}
+              style={{
+                width: "100%",
+                height: "auto",
+                maxWidth: "350px",
+                // position: "absolute",
+                // right: "-25%",
+                // bottom: "0",
+              }}
+              className="lg:block hidden"
+            />
           </div>
 
-          {/* Card 3 */}
-          <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-blue-400 mb-1">
-              At Home
-            </h3>
-            <p className="text-sm text-gray-400 mb-1">Avail services</p>
-            <div className="h-12 w-12 bg-blue-500 rounded-full flex items-center justify-center">
-              <p className="text-white">💎</p>
-            </div>
-          </div>
+          {/* Right Side: Form Section */}
+          <div className="w-full lg:w-1/2 lg:max-w-2xl z-10 bg-transparent p-10">
+            <div className="ring-2 ring-white rounded-md px-6 py-8 flex flex-col justify-center">
+              <div className="space-x-4 mb-4 justify-center flex">
+                <button
+                  onClick={() => handleOptionClick("MoWash Engineer")}
+                  className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
+                ${
+                  selectedOption === "MoWash Engineer"
+                    ? "border-blue-500 text-blue-500 bg-blue-100"
+                    : "text-white border-gray-300"
+                }`}
+                >
+                  <MdEngineering className="text-2xl" />
+                  <span className="font-semibold">Mo WashEngineer</span>
+                </button>
 
-          {/* Card 4 */}
-          <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-blue-400 mb-1">
-              At center Group Classes
-            </h3>
-            {/* <img
-              src="/group-class-image.png" // Replace with appropriate image link or icon
-              alt="Group Class"
-              className="h-16 w-16 rounded-full mt-2"
-            /> */}
-          </div>
+                <button
+                  onClick={() => handleOptionClick("MoWash Preneur")}
+                  className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
+                ${
+                  selectedOption === "MoWash Preneur"
+                    ? "border-blue-500 text-blue-500 bg-blue-100"
+                    : "text-white border-gray-300"
+                }`}
+                >
+                  <GrUserManager className="text-2xl" />
+                  <span className="font-semibold">Mo WashPreneur</span>
+                </button>
+              </div>
 
-          {/* Card 5 */}
-          <div className="bg-gray-900 p-6 rounded-xl text-center text-white flex flex-col items-center justify-center">
-            <h3 className="text-xl font-semibold text-blue-400 mb-1">SMART</h3>
-            <p className="text-sm text-gray-400 mb-1">Workout plans</p>
-            <div className="h-12 w-12 bg-blue-500 rounded-full flex items-center justify-center">
-              <p className="text-white">🔊</p>
+              <h1 className="text-2xl font-bold text-white text-center">
+                Get Started with a Free Account
+              </h1>
+
+              {/* Social Signup Options */}
+              <div className="flex justify-center space-x-4 my-6">
+                <button className="px-4 flex py-2 bg-white border border-gray-300 rounded-md">
+                  <img
+                    src="https://app.shiprocket.in/sr_login/assets/images/google.png"
+                    className="h-6 w-6"
+                  />
+                  Google
+                </button>
+                <button className="px-4 flex py-2 bg-white border border-gray-300 rounded-md">
+                  <img
+                    src="https://app.shiprocket.in/sr_login/assets/images/Whatsapp.png"
+                    className="h-6 w-6"
+                  />
+                  WhatsApp
+                </button>
+              </div>
+
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6 flex flex-col justify-center"
+              >
+                <div className={style.inputContainer}>
+                  <input
+                    placeholder="Name"
+                    className={style.inputField}
+                    type="text"
+                  />
+                  <label className={style.inputLabel}>Name</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                <div className={style.inputContainer}>
+                  <input
+                    placeholder="Email"
+                    className={style.inputField}
+                    type="email"
+                  />
+                  <label className={style.inputLabel}>Email</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                <div className={style.inputContainer}>
+                  <input
+                    placeholder="Phone Number"
+                    className={style.inputField}
+                    type="number"
+                  />
+                  <label className={style.inputLabel}>Phone Number</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                <div className={style.inputContainer}>
+                  <input
+                    placeholder="Password"
+                    className={style.inputField}
+                    type="password"
+                  />
+                  <label className={style.inputLabel}>Password</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+                <div className={style.inputContainer}>
+                  <input
+                    placeholder="Confirm Password"
+                    className={style.inputField}
+                    type="password"
+                  />
+                  <label className={style.inputLabel}>Confirm Password</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                <div className="py-2">
+                  <button
+                    type="submit"
+                    className="p-4 rounded-lg bg-blue-500 text-center text-white w-full"
+                  >
+                    Sign up for Free
+                  </button>
+                </div>
+              </form>
+
+              <div className="text-center mt-2 text-white">
+                <span>Already have an account?</span>
+                <Link href="/login" className="text-blue-400 ml-2">
+                  Login
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* <img
+        src="https://app.shiprocket.in/sr_login/assets/images/regbackground2.png"
+        alt="Login"
+        className="absolute w-100 -bottom-10 lg:block hidden z-0"
+      /> */}
+    </>
   );
 };
 

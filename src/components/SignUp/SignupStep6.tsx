@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 import style from "@/components/common/input/input.module.css";
+import DistrictMarquee from "./DistrictMarquee";
 
 // Ensure dynamic import of Leaflet and its components
 const MapContainer = dynamic(
@@ -65,14 +66,14 @@ const SignupStep6: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col py-28 items-center h-[100vh] justify-start bg-transparent">
-      <h2 className="text-3xl text-white font-bold text-left mb-6">
+    <div className="flex flex-col items-center lg:h-[90vh] justify-center bg-transparent">
+      <h2 className="text-3xl text-white font-bold text-left mb-2">
         Choose your location
       </h2>
 
-      <div className="flex justify-between gap-x-4 items-center w-full max-w-6xl">
+      <div className="flex flex-col lg:flex-row justify-between lg: items-center w-full max-w-6xl">
         {/* Map Container */}
-        <div className="w-1/2 h-[600px] rounded-md">
+        <div className="lg:w-1/2 w-full h-[600px] ring-2 ring-white rounded-tl-md rounded-bl-md">
           <MapContainer
             center={[20.2961, 85.8245]} // Default center of the map
             zoom={9}
@@ -90,187 +91,86 @@ const SignupStep6: React.FC = () => {
         {/* Address Form */}
         <form
           onSubmit={handleFormSubmit}
-          className="w-1/2 space-y-6 px-4 pb-2 bg-transparent rounded-md"
+          className="lg:w-1/2 w-full ring-2 h-[600px] ring-white space-y-6 px-4 pb-2 bg-transparent rounded-tr-md rounded-br-md"
         >
-          {/* <div className="mt-2">
-            <label className="block text-white text-sm font-medium">
-              Flat/House Number
-            </label>
+          <div className={style.inputContainer}>
             <input
+              placeholder="Flat/House Number"
+              className={style.inputField}
               type="text"
-              name="houseNumber"
-              value={formData.houseNumber}
-              onChange={handleInputChange}
-              className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
-              placeholder="Enter Your House Number or Relevant details"
-              required
             />
+            <label className={style.inputLabel}>Flat/House Number</label>
+            <span className={style.inputHighlight}></span>
+          </div>
+          <div className={style.inputContainer}>
+            <input
+              placeholder="Street Address"
+              className={style.inputField}
+              type="text"
+            />
+            <label className={style.inputLabel}>Street Address</label>
+            <span className={style.inputHighlight}></span>
+          </div>
+          <div className={style.inputContainer}>
+            <input
+              placeholder="Nearest Landmark"
+              className={style.inputField}
+              type="text"
+            />
+            <label className={style.inputLabel}>Nearest Landmark</label>
+            <span className={style.inputHighlight}></span>
+          </div>
+          <div className={style.inputContainer}>
+            <input
+              placeholder="City/Town"
+              className={style.inputField}
+              type="text"
+            />
+            <label className={style.inputLabel}>City/Town</label>
+            <span className={style.inputHighlight}></span>
+          </div>
+          <div className={style.inputContainer}>
+            <input
+              placeholder="District"
+              className={style.inputField}
+              type="text"
+            />
+            <label className={style.inputLabel}>District</label>
+            <span className={style.inputHighlight}></span>
+          </div>
+          <div className={style.inputContainer}>
+            <input
+              placeholder="State"
+              className={style.inputField}
+              type="text"
+            />
+            <label className={style.inputLabel}>State</label>
+            <span className={style.inputHighlight}></span>
+          </div>
+          <div className={style.inputContainer}>
+            <input
+              placeholder="Pincode"
+              className={style.inputField}
+              type="number"
+            />
+            <label className={style.inputLabel}>Pincode</label>
+            <span className={style.inputHighlight}></span>
           </div>
 
-          <div className="mt-2">
-            <label className="block text-white text-sm font-medium">
-              Street Address
-            </label>
-            <input
-              type="text"
-              name="streetAddress"
-              value={formData.streetAddress}
-              onChange={handleInputChange}
-              className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
-              placeholder="Enter Your Locality Details"
-              required
-            />
-          </div>
-
-          <div className="mt-2">
-            <label className="block text-white text-sm font-medium">
-              Nearby Landmark
-            </label>
-            <input
-              type="text"
-              name="landmark"
-              value={formData.landmark}
-              onChange={handleInputChange}
-              className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
-              placeholder="Enter Your NEarest Landmark Feature"
-            />
-          </div>
-
-          <div className="mt-2">
-            <label className="block text-white text-sm font-medium">
-              District/Locality
-            </label>
-            <input
-              type="text"
-              name="locality"
-              value={formData.locality}
-              onChange={handleInputChange}
-              className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
-              placeholder="Enter Your District"
-            />
-          </div>
-
-          <div className="mt-2">
-            <label className="block text-white text-sm font-medium">
-              City/Town
-            </label>
-            <input
-              type="text"
-              name="city"
-              value={formData.city}
-              onChange={handleInputChange}
-              className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
-              placeholder="Enter Your House City/Town Name"
-              required
-            />
-          </div>
-
-          <div className="mt-2">
-            <label className="block text-white text-sm font-medium">
-              State
-            </label>
-            <input
-              type="text"
-              name="state"
-              value={formData.state}
-              onChange={handleInputChange}
-              className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
-              placeholder="Enter Your State"
-              required
-            />
-          </div>
-
-          <div className="mt-2">
-            <label className="block text-white text-sm font-medium">
-              Pincode
-            </label>
-            <input
-              type="text"
-              name="pincode"
-              value={formData.pincode}
-              onChange={handleInputChange}
-              className="p-2 border-2 border-white bg-black text-white rounded-lg w-full"
-              placeholder="Enter Your Pincode"
-              required
-            />
-          </div> */}
-
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your House Number or Relevant details"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}>
-              {" "}
-              Flat/House Number
-            </label>
-          </div>
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your Locality Details"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}>
-              {" "}
-              Street Address
-            </label>
-          </div>
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your Nearest Landmark Feature"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}>
-              {" "}
-              Nearby Landmark
-            </label>
-          </div>
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your District"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}> District</label>
-          </div>
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your House City/Town Name"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}> City/Town</label>
-          </div>
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your State"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}> State</label>
-          </div>
-          <div className={`${style.brutalist_container} mt-4`}>
-            <input
-              placeholder="Enter Your Pincode"
-              className={`${style.brutalist_input} ${style.smooth_type}`}
-              type="text"
-            />
-            <label className={`${style.brutalist_label}`}> Pincode</label>
-          </div>
-
-          {/* <button type="submit" className="px-4 py-2 mt-4 bg-blue-500 text-white rounded-lg w-full">
-                        Confirm Address
-                    </button> */}
+          <button
+            type="submit"
+            className="px-4 py-2 mt-4 bg-blue-500 text-white rounded-lg w-full"
+          >
+            Confirm Address
+          </button>
         </form>
       </div>
+      <DistrictMarquee />
 
       {/* Progress Bar */}
-      <div className="fixed bottom-0 w-full h-2 bg-gray-200">
+      {/* <div className="fixed bottom-0 w-full h-2 bg-gray-200">
         <div className="h-2 bg-blue-600" style={{ width: "40%" }}></div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 
 const SignupStep10: React.FC = () => {
   return (
-    <div className="relative  text-white flex flex-col items-center justify-center h-[100vh] bg-transparent">
+    <div className="relative  text-white flex flex-col items-center justify-center lg:h-[90vh] h-[100vh] bg-transparent">
       <h1 className="text-3xl font-bold mb-6 text-green-600 text-center">
         Congrats, You are now a Member of the <p className="text-blue-600">Mo Wash</p> Community!
       </h1>
@@ -31,16 +31,21 @@ const SignupStep10: React.FC = () => {
         </div>
       </div>
 
+      <div className=" absolute bottom-5 flex w-full max-w-4xl justify-between items-center">
       <button
-        className="absolute bottom-5 right-5 text-blue-500 bg-white ring-2 ring-blue-600 font-semibold p-3 rounded-lg shadow-lg hover:bg-blue-600 hover:ring-2 hover:ring-white hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="text-blue-500 bg-white ring-2 ring-blue-600 font-semibold p-3 rounded-lg shadow-lg hover:bg-blue-600 hover:ring-2 hover:ring-white hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <Link href="/">
           Back home
         </Link>
       </button>
-      {/* Progress Bar */}
-      <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-blue-600" style={{ width: '100%' }}></div>
+      <button
+        className="text-blue-500 bg-white ring-2 ring-blue-600 font-semibold p-3 rounded-lg shadow-lg hover:bg-blue-600 hover:ring-2 hover:ring-white hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <Link href="/dashboard">
+          Continue to DashBoard
+        </Link>
+      </button>
       </div>
     </div>
   );

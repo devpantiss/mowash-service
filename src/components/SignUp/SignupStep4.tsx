@@ -21,16 +21,16 @@ const SignupStep4: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row lg:h-[100vh] h-[100%] pt-20">
+    <div className="flex flex-col lg:flex-row lg:h-[90vh] h-[100vh]">
       {/* Left Side */}
-      <div className="w-1/2 flex items-center justify-center bg-transparent text-black p-8">
+      <div className="lg:w-1/2 w-full flex items-center justify-center bg-transparent text-black p-8">
         <div className="text-center space-y-6">
           <h1 className="text-5xl font-bold text-white">It&apos;s easy to get started as an <span className='text-white'>MWC Partner</span></h1>
         </div>
       </div>
 
       {/* Right Side */}
-      <div className="w-1/2 bg-[white] rounded-md text-black flex flex-col items-center justify-center p-8">
+      <div className="lg:w-1/2 w-full bg-[white] text-black flex flex-col items-center justify-center p-8">
         {/* Steps */}
         <div className="space-y-6">
           {options.map((option, index) => (

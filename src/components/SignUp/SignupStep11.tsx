@@ -8,7 +8,7 @@ import {
 import InsuranceSlider from "./slider/InsuranceSlider";
 import Step11Banner from "./banner/Step11Banner";
 import Card from "./card/Card";
-import {jsPDF} from "jspdf";
+import { jsPDF } from "jspdf";
 
 type Section = "healthCard" | "pension" | "insurance";
 
@@ -99,7 +99,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
 
   const cardsData = [
     {
-      title: "Health Insurance",
+      title: "Health & Wellness",
       tagline: "View details",
       text: "Get the best health insurance plan with extensive coverage.",
       bgImageSrc:
@@ -108,7 +108,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       onClick: () => handleSectionClick("healthCard"),
     },
     {
-      title: "Pension",
+      title: "Social Security",
       tagline: "Learn more",
       text: "Secure your retirement with our pension plans.",
       bgImageSrc:
@@ -117,7 +117,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       onClick: () => handleSectionClick("pension"),
     },
     {
-      title: "Life Insurance",
+      title: "Insurance",
       tagline: "Know more",
       text: "Protect your family with our life insurance plans.",
       bgImageSrc:
@@ -125,6 +125,15 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       icon: FaShieldAlt,
       onClick: () => handleSectionClick("insurance"),
     },
+    {
+      title: "Certified",
+      tagline: "Learn more",
+      text: "Secure your retirement with our pension plans.",
+      bgImageSrc:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728306796/Screenshot_2024-10-07_at_6.43.02_PM_fwkq9u.png",
+      icon: FaMoneyBillWave,
+      onClick: () => goToStep(10), // Navigate to step 10 when Certified card is clicked
+    },  
   ];
 
   const customerServicePoints = [
@@ -215,20 +224,20 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
   };
 
   const handleSkip = () => {
-    goToStep(11);
+    goToStep(8);
   };
 
   return (
     <div className="flex flex-col items-center justify-center bg-transparent">
       {wantsWelfare ? (
-        <div className="bg-transparent rounded-lg p-8 w-full px-[100px]">
+        <div className="bg-transparent rounded-lg p-8 w-full px-6 lg:px-[100px]">
           {!selectedSection ? (
-            <div className="h-full py-16">
+            <div className="h-full pb-8">
               <h1 className="px-3 py-4 text-4xl mb-6 text-center font-bold text-white">
-                Welfare Schemes
+                Welfare Services
               </h1>
 
-              <div className="grid grid-cols-3 gap-12">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                 {cardsData.map((card, index) => (
                   <Card
                     key={index}
@@ -256,7 +265,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
               </div>
             </div>
           ) : showCSPPage ? (
-            <div className="flex items-center h-[100vh] py-16 gap-x-8">
+            <div className="flex items-center pb-8 gap-x-8">
               <div className="w-1/2 p-4">
                 <div className="flex gap-4">
                   <div className="flex flex-col mt-10 gap-y-8">
@@ -409,31 +418,31 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col h-[100vh] justify-center items-center gap-x-8">
-              <div className="flex gap-x-16 w-full">
+            <div className="flex flex-col lg:h-[85vh] items-center gap-x-8">
+              <h2 className="text-4xl text-left font-semibold text-white mb-6">
+                Available Options for{" "}
+                {selectedSection === "healthCard"
+                  ? "Health Insurance"
+                  : selectedSection === "pension"
+                  ? "Pension"
+                  : selectedSection === "insurance"
+                  ? "Insurance"
+                  : ""}
+              </h2>
+              <div className="flex flex-col-reverse lg:flex-row gap-x-16 w-full">
                 {/* Left Section */}
-                <div className="w-3/5 pt-20">
-                  <h2 className="text-4xl text-left font-semibold text-white mb-6">
-                    Available Options for{" "}
-                    {selectedSection === "healthCard"
-                      ? "Health Insurance"
-                      : selectedSection === "pension"
-                      ? "Pension"
-                      : selectedSection === "insurance"
-                      ? "Insurance"
-                      : ""}
-                  </h2>
+                <div className="lg:w-3/5 w-full pt-4 lg:pt-20">
                   <div className="grid grid-cols-1 gap-y-12">
                     {organizations[selectedSection].map((organization) => (
                       <div
                         key={organization.name}
-                        className="px-8 py-6 relative bg-gray-100 rounded-lg flex items-center space-x-4"
+                        className="lg:px-8 px-4 py-6 relative bg-gray-100 rounded-lg flex flex-col lg:flex-row lg:items-center items-stretch  space-x-4"
                       >
-                        <div className="absolute -left-14 px-2 py-4 rounded-bl-md rounded-tl-md top-0 bg-gray-100">
+                        <div className="absolute lg:-left-14 left-[75%] px-2 py-4 rounded-bl-md rounded-tl-md top-0 bg-gray-100">
                           <img
                             src={organization.imageUrl}
                             alt={organization.name}
-                            className="h-16 w-16"
+                            className="h-20 w-20"
                           />
                         </div>
 
@@ -449,8 +458,8 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                             Unlimited Restoration of cover
                           </p>
                         </div>
-                        <div className="text-right">
-                          <div className="flex justify-between gap-x-4 items-center">
+                        <div className="text-right mt-4">
+                          <div className="flex justify-between gap-x-8 items-center">
                             <p className="flex flex-col">
                               <strong className="text-xl">
                                 {organization.cover}
@@ -474,32 +483,38 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6">
+                  <div className="mt-6 flex justify-between w-full">
                     <button
                       className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
                       onClick={() => setSelectedSection(null)}
                     >
                       Back
                     </button>
+                    {selectedSection === "healthCard" && 
+                      <button className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                      onClick={() => goToStep(7)}>
+                        Book a Health Checkup
+                      </button>
+                    }
                   </div>
                 </div>
 
                 {/* Right Section with YouTube Embed */}
-                <div className="w-2/5 pt-32 flex justify-center items-center">
+                <div className="lg:w-2/5 w-full flex justify-center items-center">
                   <iframe
                     width="100%"
-                    height="315"
+                    height="100%"
                     src="https://www.youtube.com/embed/RsQWsFXbMLA?si=z28WAn5NoAt2asUx"
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
-                    className="w-full h-64 rounded-lg border"
+                    className="w-full h-full rounded-lg border"
                   />
                 </div>
               </div>
 
-              <div className="w-full">
+              <div className="w-full mt-8">
                 <InsuranceSlider />
               </div>
 
