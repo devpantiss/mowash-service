@@ -11,7 +11,7 @@ interface LoginProps {
   goToStep: (stepIndex: number) => void; // Accept goToStep as a prop
 }
 
-const Login: React.FC<LoginProps> = ({ goToStep }) => {
+const Login: React.FC<LoginProps> = () => {
   const router = useRouter(); // Initialize router
 
   const [formData, setFormData] = useState({
