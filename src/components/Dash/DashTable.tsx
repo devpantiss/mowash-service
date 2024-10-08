@@ -211,7 +211,7 @@ const Table: React.FC = () => {
                   <td colSpan={8} className="py-6 text-center">
                     <div className="flex flex-col items-center">
                       <span className="text-lg font-semibold">
-                        Couriers' data not found for this filter.
+                        Couriers&apos; data not found for this filter.
                       </span>
                       <img
                         src="https://path-to-your-image.png"
