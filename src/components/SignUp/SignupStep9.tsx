@@ -133,9 +133,9 @@ const SignupStep9: React.FC<SignupStep9Props> = ({ goToStep }) => {
         </div>
         <div className="lg:w-3/5 w-full">
           <div className="p-6 ring-white ring-2 rounded-md">
-            <div className="flex gap-8 w-full">
+            <div className="flex flex-col-reverse lg:flex-row gap-8 w-full">
               {/* Photo Upload */}
-              <div>
+              <div className="w-full">
                 <label className="block text-sm text-white font-medium mb-2">
                   Profile Picture
                 </label>
