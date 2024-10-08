@@ -70,7 +70,7 @@ const ProfileCard: React.FC = () => {
 
 const Row1: React.FC = () => {
   return (
-    <div className="w-full space-y-6 container pt-10">
+    <div className="w-full space-y-6 container py-10">
       {/* First Row */}
       <div className="flex flex-col lg:flex-row w-full px-2 gap-4">
         <div className="space-y-4 lg:w-1/2 w-full">
