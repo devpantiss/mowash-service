@@ -33,13 +33,13 @@ const Card: React.FC<CardProps> = ({ title, description, icon, iconColor, isSele
       style={{ borderColor: isSelected ? iconColor : "white" }} // Apply dynamic border color
       onClick={onSelect}
     >
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center justify-center space-x-12 lg:space-x-32">
+      <div className="flex justify-center lg:justify-between items-center mb-4">
+        <div className="flex lg:flex-row flex-col items-center justify-center lg:space-x-32">
           {icon}
           <h3 className="text-lg text-white font-semibold">{title}</h3>
         </div>
       </div>
-      <p className="text-sm text-white mb-4">{description}</p>
+      <p className="text-sm text-center lg:text-left text-white mb-4">{description}</p>
     </div>
   );
 };
