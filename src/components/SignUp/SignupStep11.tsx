@@ -133,7 +133,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
         "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728306796/Screenshot_2024-10-07_at_6.43.02_PM_fwkq9u.png",
       icon: FaMoneyBillWave,
       onClick: () => goToStep(10), // Navigate to step 10 when Certified card is clicked
-    },  
+    },
   ];
 
   const customerServicePoints = [
@@ -233,9 +233,9 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
         <div className="bg-transparent rounded-lg p-8 w-full px-6 lg:px-[100px]">
           {!selectedSection ? (
             <div className="h-full pb-8">
-              <h1 className="px-3 py-4 text-4xl mb-6 text-center font-bold text-white">
+              <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
                 Welfare Services
-              </h1>
+              </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                 {cardsData.map((card, index) => (
@@ -490,12 +490,14 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                     >
                       Back
                     </button>
-                    {selectedSection === "healthCard" && 
-                      <button className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
-                      onClick={() => goToStep(7)}>
+                    {selectedSection === "healthCard" && (
+                      <button
+                        className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                        onClick={() => goToStep(7)}
+                      >
                         Book a Health Checkup
                       </button>
-                    }
+                    )}
                   </div>
                 </div>
 
@@ -509,7 +511,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
-                    className="w-full h-full rounded-lg border"
+                    className="w-full h-[400px] rounded-lg border"
                   />
                 </div>
               </div>

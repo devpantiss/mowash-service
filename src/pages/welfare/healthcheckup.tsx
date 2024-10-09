@@ -3,8 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { jsPDF } from "jspdf";
-import animationData from "../assets/health.json";
+import animationData from "../../components/assets/health.json";
 import dynamic from "next/dynamic";
+import Layout from "@/components/Dash/Layout";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -215,196 +216,201 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-transparent p-6">
-      <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
-        Health Checkup
-      </h2>
-      {!selectedCheckup ? (
-        <div className="w-full gap-x-8 lg:h-[90vh] max-w-8xl flex flex-col-reverse lg:flex-row lg:justify-start items-center">
-          <div className="lg:w-1/2 w-full">
-            <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-4 gap-x-4">
-              {checkups.map((checkup) => (
-                <button
-                  key={checkup.name}
-                  onClick={() => handleCheckupSelection(checkup.name)}
-                  className="bg-transparent rounded-lg flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 text-center"
-                >
-                  <img
-                    src={checkup.image}
-                    alt={checkup.name}
-                    className="lg:w-[300px] w-full object-cover rounded-md"
-                  />
-                </button>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <button
-                onClick={() => goToStep(6)}
-                className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
-              >
-                back
-              </button>
-            </div>
-          </div>
-          {/* flow chart image */}
-          <div className="lg:w-1/2 w-full flex justify-center items-center rounded-md mb-6 lg:mb-0">
-            <Lottie
-              animationData={animationData}
-              loop={true}
-              style={{
-                width: "100%",
-                height: "600px",
-              }}
-              className="block "
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="flex lg:h-[100vh] w-full flex-col lg:flex-row">
-          <div className="lg:w-1/3 w-full mb-6">
-            <img
-              src={
-                checkups.find((c) => c.name === selectedCheckup)?.image2 || ""
-              }
-              alt={selectedCheckup}
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-          </div>
-
-          <div className="lg:w-2/3 lg:pl-8 w-full">
-            <h2 className="text-3xl text-white font-bold mb-4 capitalize">
-              {selectedCheckup}
-            </h2>
-            <p className="text-lg text-white mb-4">
-              {checkups.find((c) => c.name === selectedCheckup)?.description}
-            </p>
-            <p className="text-2xl text-yellow-400 mb-4">
-              Discounted Cost:{" "}
-              {checkups.find((c) => c.name === selectedCheckup)?.discountedCost}
-            </p>
-
-            {/* Slider for Tests Included */}
-            <div className="mt-6">
-              <h3 className="text-white text-2xl font-bold mb-4">
-                Tests Included
-              </h3>
-              <Slider {...sliderSettings}>
-                {checkups
-                  .find((c) => c.name === selectedCheckup)
-                  ?.testsIncluded.map((test) => (
-                    <div key={test.name} className="p-4">
-                      <div className="bg-white h-[150px] rounded-lg p-4 flex flex-col items-center">
-                        <img
-                          src={test.icon}
-                          alt={test.name}
-                          className="w-16 h-16 mb-2"
-                        />
-                        <p className="text-center text-black text-sm">
-                          {test.name}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-              </Slider>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-white mb-2">
-                Select your district:
-              </label>
-              <select
-                value={selectedDistrict}
-                onChange={handleDistrictChange}
-                className="w-full p-3 rounded-lg bg-white"
-              >
-                <option value="">Select District</option>
-                {Object.keys(hospitals).map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
+    <Layout>
+      <div className="flex flex-col justify-center items-center bg-transparent p-6">
+        <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
+          Health Checkup
+        </h2>
+        {!selectedCheckup ? (
+          <div className="w-full gap-x-8 lg:h-[90vh] max-w-8xl flex flex-col-reverse lg:flex-row lg:justify-start items-center">
+            <div className="lg:w-1/2 w-full">
+              <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-4 gap-x-4">
+                {checkups.map((checkup) => (
+                  <button
+                    key={checkup.name}
+                    onClick={() => handleCheckupSelection(checkup.name)}
+                    className="bg-transparent rounded-lg flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 text-center"
+                  >
+                    <img
+                      src={checkup.image}
+                      alt={checkup.name}
+                      className="lg:w-[300px] w-full object-cover rounded-md"
+                    />
+                  </button>
                 ))}
-              </select>
+              </div>
+              <div className="text-center mt-8">
+                <button
+                  onClick={() => goToStep(6)}
+                  className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                >
+                  back
+                </button>
+              </div>
+            </div>
+            {/* flow chart image */}
+            <div className="lg:w-1/2 w-full flex justify-center items-center rounded-md mb-6 lg:mb-0">
+              <Lottie
+                animationData={animationData}
+                loop={true}
+                style={{
+                  width: "100%",
+                  height: "600px",
+                }}
+                className="block "
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="flex lg:h-[100vh] w-full flex-col lg:flex-row">
+            <div className="lg:w-1/3 w-full mb-6">
+              <img
+                src={
+                  checkups.find((c) => c.name === selectedCheckup)?.image2 || ""
+                }
+                alt={selectedCheckup}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
 
-            {selectedDistrict && (
+            <div className="lg:w-2/3 lg:pl-8 w-full">
+              <h2 className="text-3xl text-white font-bold mb-4 capitalize">
+                {selectedCheckup}
+              </h2>
+              <p className="text-lg text-white mb-4">
+                {checkups.find((c) => c.name === selectedCheckup)?.description}
+              </p>
+              <p className="text-2xl text-yellow-400 mb-4">
+                Discounted Cost:{" "}
+                {
+                  checkups.find((c) => c.name === selectedCheckup)
+                    ?.discountedCost
+                }
+              </p>
+
+              {/* Slider for Tests Included */}
+              <div className="mt-6">
+                <h3 className="text-white text-2xl font-bold mb-4">
+                  Tests Included
+                </h3>
+                <Slider {...sliderSettings}>
+                  {checkups
+                    .find((c) => c.name === selectedCheckup)
+                    ?.testsIncluded.map((test) => (
+                      <div key={test.name} className="p-4">
+                        <div className="bg-white h-[150px] rounded-lg p-4 flex flex-col items-center">
+                          <img
+                            src={test.icon}
+                            alt={test.name}
+                            className="w-16 h-16 mb-2"
+                          />
+                          <p className="text-center text-black text-sm">
+                            {test.name}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                </Slider>
+              </div>
+
               <div className="mb-4">
                 <label className="block text-white mb-2">
-                  Select a hospital in {selectedDistrict}:
+                  Select your district:
                 </label>
                 <select
-                  value={selectedHospital}
-                  onChange={handleHospitalChange}
+                  value={selectedDistrict}
+                  onChange={handleDistrictChange}
                   className="w-full p-3 rounded-lg bg-white"
                 >
-                  <option value="">Select Hospital</option>
-                  {hospitals[selectedDistrict].map((hospital) => (
-                    <option key={hospital} value={hospital}>
-                      {hospital}
+                  <option value="">Select District</option>
+                  {Object.keys(hospitals).map((district) => (
+                    <option key={district} value={district}>
+                      {district}
                     </option>
                   ))}
                 </select>
               </div>
-            )}
-            {isBookingCreated && (
-              <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
-                <h3 className="text-lg font-bold mb-2">Booking Details</h3>
-                <div className="flex justify-between">
-                  <p>
-                    <strong>Checkup:</strong> {selectedCheckup}
-                  </p>
-                  <p>
-                    <strong>Hospital:</strong> {selectedHospital}
-                  </p>
-                </div>
 
-                <div className="flex justify-between">
-                  <p>
-                    <strong>Date:</strong> {new Date().toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>Time:</strong> {new Date().toLocaleTimeString()}
-                  </p>
+              {selectedDistrict && (
+                <div className="mb-4">
+                  <label className="block text-white mb-2">
+                    Select a hospital in {selectedDistrict}:
+                  </label>
+                  <select
+                    value={selectedHospital}
+                    onChange={handleHospitalChange}
+                    className="w-full p-3 rounded-lg bg-white"
+                  >
+                    <option value="">Select Hospital</option>
+                    {hospitals[selectedDistrict].map((hospital) => (
+                      <option key={hospital} value={hospital}>
+                        {hospital}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <div className="flex justify-between">
-                  <p>
-                    <strong>MoWash Representative contact:</strong> <br />
-                    +91 9876543210
-                  </p>
-                  <p>
-                    <strong>Doctor:</strong> Dr. Mohanty
-                  </p>
-                </div>
-              </div>
-            )}
-            <div className="flex justify-end mt-8">
-              {!isBookingCreated ? (
-                <button
-                  onClick={handleCreateBooking}
-                  disabled={!selectedDistrict || !selectedHospital}
-                  className="bg-yellow-400 text-black py-2 px-6 rounded-lg hover:bg-yellow-500"
-                >
-                  Create Booking
-                </button>
-              ) : (
-                <button
-                  onClick={handleDownloadPdf}
-                  className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
-                >
-                  Download PDF
-                </button>
               )}
+              {isBookingCreated && (
+                <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
+                  <h3 className="text-lg font-bold mb-2">Booking Details</h3>
+                  <div className="flex justify-between">
+                    <p>
+                      <strong>Checkup:</strong> {selectedCheckup}
+                    </p>
+                    <p>
+                      <strong>Hospital:</strong> {selectedHospital}
+                    </p>
+                  </div>
 
-              <button
-                onClick={resetSelection}
-                className="ml-4 bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
-              >
-                Back
-              </button>
+                  <div className="flex justify-between">
+                    <p>
+                      <strong>Date:</strong> {new Date().toLocaleDateString()}
+                    </p>
+                    <p>
+                      <strong>Time:</strong> {new Date().toLocaleTimeString()}
+                    </p>
+                  </div>
+                  <div className="flex justify-between">
+                    <p>
+                      <strong>MoWash Representative contact:</strong> <br />
+                      +91 9876543210
+                    </p>
+                    <p>
+                      <strong>Doctor:</strong> Dr. Mohanty
+                    </p>
+                  </div>
+                </div>
+              )}
+              <div className="flex justify-end mt-8">
+                {!isBookingCreated ? (
+                  <button
+                    onClick={handleCreateBooking}
+                    disabled={!selectedDistrict || !selectedHospital}
+                    className="bg-yellow-400 text-black py-2 px-6 rounded-lg hover:bg-yellow-500"
+                  >
+                    Create Booking
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleDownloadPdf}
+                    className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
+                  >
+                    Download PDF
+                  </button>
+                )}
+
+                <button
+                  onClick={resetSelection}
+                  className="ml-4 bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                >
+                  Back
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Layout>
   );
 };
 

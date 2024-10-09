@@ -67,11 +67,11 @@ const SignupStep6: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center lg:h-[90vh] justify-center bg-transparent">
-      <h2 className="text-3xl text-white font-bold text-left mb-2">
-        Choose your location
+      <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
+        Choose Your Location{" "}
       </h2>
 
-      <div className="flex flex-col lg:flex-row justify-between lg: items-center w-full max-w-6xl">
+      <div className="flex flex-col lg:flex-row justify-between lg: items-center w-full max-w-7xl">
         {/* Map Container */}
         <div className="lg:w-1/2 w-full h-[600px] ring-2 ring-white rounded-tl-md rounded-bl-md">
           <MapContainer
@@ -165,7 +165,7 @@ const SignupStep6: React.FC = () => {
           </button>
         </form>
       </div>
-      <DistrictMarquee />
+      {/* <DistrictMarquee /> */}
 
       {/* Progress Bar */}
       {/* <div className="fixed bottom-0 w-full h-2 bg-gray-200">

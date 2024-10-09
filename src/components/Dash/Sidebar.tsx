@@ -8,6 +8,7 @@ import {
   AiFillProfile,
   AiFillQuestionCircle,
   AiOutlineLogout,
+  AiOutlineDown,
 } from "react-icons/ai";
 import {
   BsFillHeartPulseFill,
@@ -25,42 +26,64 @@ const Sidebar: FC = () => {
 
   return (
     <aside
-      className="group fixed top-0 left-0 h-screen bg-blue-900 text-white transition-all duration-300 z-50 
+      className="group fixed top-0 left-0 h-screen bg-blue-700 text-white transition-all duration-300 z-50 
         w-16 hover:w-64 flex flex-col justify-between overflow-hidden"
     >
       {/* Sidebar options */}
       <div className="space-y-6 py-6 px-2">
         {/* Home */}
-        <Link href="/">
-          <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
-            <AiFillHome size={24} />
-            <span className="hidden group-hover:block">Home</span>
-          </div>
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/"
+        >
+          <AiFillHome size={24} />
+          <span className="hidden group-hover:block">Home</span>
         </Link>
 
         {/* Dashboard */}
-        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/dashboard"
+        >
           <AiFillDashboard size={24} />
           <span className="hidden group-hover:block">Dashboard</span>
-        </div>
+        </Link>
 
         {/* Services */}
-        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/dashboard"
+        >
           <AiFillSetting size={24} />
           <span className="hidden group-hover:block">Services</span>
-        </div>
+        </Link>
 
         {/* Earnings */}
-        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/dashboard"
+        >
           <AiFillDollarCircle size={24} />
           <span className="hidden group-hover:block">Earnings</span>
-        </div>
+        </Link>
+        
+        {/* Earnings */}
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/welfare/bankdetails"
+        >
+          <AiFillDollarCircle size={24} />
+          <span className="hidden group-hover:block">Bank Details</span>
+        </Link>
 
         {/* Profile */}
-        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/dashboard"
+        >
           <AiFillProfile size={24} />
           <span className="hidden group-hover:block">Profile</span>
-        </div>
+        </Link>
 
         {/* Welfare Services - Accordion */}
         <div className="space-y-1">
@@ -70,40 +93,70 @@ const Sidebar: FC = () => {
           >
             <FaUserShield size={24} />
             <span className="hidden group-hover:block">Welfare Services</span>
+            <AiOutlineDown
+              size={20}
+              className={`hidden group-hover:block transition-transform duration-300 ${
+                isAccordionOpen ? "rotate-180" : "rotate-0"
+              }`}
+            />
           </div>
 
           {/* Accordion Content */}
           {isAccordionOpen && (
             <div className="ml-6 space-y-2 transition-all duration-300">
-              <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md">
+              <Link
+                href="/welfare/healthinsurance"
+                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
+              >
                 <BsFillHeartPulseFill size={20} />
                 <span className="hidden group-hover:block">
-                  Health & Wellness
+                  Health Insurance
                 </span>
-              </div>
-              <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md">
+              </Link>
+              <Link
+                href="/welfare/socialsecurity"
+                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
+              >
                 <BsFillShieldLockFill size={20} />
                 <span className="hidden group-hover:block">
                   Social Security
                 </span>
-              </div>
-              <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md">
+              </Link>
+
+              <Link
+                href="/welfare/insurance"
+                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
+              >
                 <AiFillSetting size={20} />
                 <span className="hidden group-hover:block">Insurance</span>
-              </div>
-              <div className="flex items-center space-x-2 hover:bg-blue-400 rounded-md">
+              </Link>
+
+              <Link
+                href="/welfare/certification"
+                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
+              >
                 <BsCardChecklist size={20} />
                 <span className="hidden group-hover:block">Certification</span>
-              </div>
+              </Link>
+              <Link
+                href="/welfare/healthcheckup"
+                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
+              >
+                <BsFillHeartPulseFill size={20} />
+                <span className="hidden group-hover:block">Health Checkup</span>
+              </Link>
             </div>
           )}
         </div>
 
         {/* Help & Support */}
-        <div className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300">
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/dashboard"
+        >
           <AiFillQuestionCircle size={24} />
           <span className="hidden group-hover:block">Help & Support</span>
-        </div>
+        </Link>
       </div>
 
       {/* Logout Button */}

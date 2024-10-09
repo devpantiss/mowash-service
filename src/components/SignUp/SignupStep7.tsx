@@ -106,7 +106,7 @@ const SignupStep7: React.FC = () => {
   return (
     <div className="flex flex-col items-center space-y-7 md:h-full mb-10 rounded-lg lg:h-[80vh] mt-12 justify-center">
       <StatusDetails />
-      <h2 className="text-3xl text-white font-bold text-left mb-4">
+      <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
         Basic Information Form
       </h2>
       <div className="flex w-full max-w-8xl">

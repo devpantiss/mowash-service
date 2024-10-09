@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import style from "@/components/common/input/input.module.css"; // Assuming you place your styles in this CSS module file
 import { AiOutlineClose } from "react-icons/ai";
+import animation from "@/components/assets/bank-animation.json";
+import dynamic from "next/dynamic";
 
-const SignupStep13: React.FC = () => {
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
+interface SignupStep13Props {
+  goToStep: (stepIndex: number) => void; // Pass a function to change the step
+}
+
+const SignupStep13: React.FC<SignupStep13Props> = ({ goToStep }) => {
   const [selectedBank, setSelectedBank] = useState<string>("");
   const [accountNumber, setAccountNumber] = useState<string>("");
   const [ifscCode, setIfscCode] = useState<string>("");
@@ -33,20 +41,33 @@ const SignupStep13: React.FC = () => {
     }
   };
 
+  const handleSkip = () => {
+    goToStep(9);
+  };
+
   return (
     <div className="flex flex-col justify-start items-center mt-12 lg:h-[85vh] bg-transparent">
       {/* Heading */}
-      <h2 className="text-3xl text-white font-bold text-left mb-6">
+      <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
         Bank Details
       </h2>
       <div className="bg-transparent p-8 rounded-lg w-full px-20 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Section - Static Image */}
         <div className="flex justify-center items-center p-4 rounded-lg">
-          <img
+        <Lottie
+              animationData={animation}
+              loop={true}
+              style={{
+                width: "100%",
+                height: "600px",
+              }}
+              className="lg:block hidden"
+            />
+          {/* <img
             src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727262465/7990322-removebg-preview_xs70dx.png"
             alt="Static Placeholder"
             className="max-w-full h-auto rounded-lg bounce"
-          />
+          /> */}
         </div>
 
         {/* Right Section - Form */}
@@ -197,6 +218,12 @@ const SignupStep13: React.FC = () => {
           </div>
         </div>
       </div>
+      <button
+        onClick={handleSkip}
+        className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+      >
+        Skip
+      </button>
     </div>
   );
 };

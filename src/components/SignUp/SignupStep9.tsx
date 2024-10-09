@@ -30,7 +30,7 @@ const safetyGearComponents = [
   {
     name: "Gloves",
     icon: FaHandPaper,
-    color: "#f4f72d", 
+    color: "#f4f72d",
   },
   {
     name: "Reflective Vest",
@@ -115,7 +115,7 @@ const SignupStep9: React.FC<SignupStep9Props> = ({ goToStep }) => {
 
   return (
     <div className="flex flex-col lg:h-[85vh] pb-4 items-center justify-start mt-20 bg-transparent">
-      <h2 className="text-3xl text-white font-bold text-left mb-6">
+      <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
         Upload Your Photo in Safety Kit
       </h2>
 
