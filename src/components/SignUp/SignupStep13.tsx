@@ -61,7 +61,7 @@ const SignupStep13: React.FC<SignupStep13Props> = ({ goToStep }) => {
                 width: "100%",
                 height: "600px",
               }}
-              className="lg:block hidden"
+              className="block"
             />
           {/* <img
             src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727262465/7990322-removebg-preview_xs70dx.png"
