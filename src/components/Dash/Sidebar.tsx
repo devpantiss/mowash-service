@@ -27,7 +27,7 @@ const Sidebar: FC = () => {
   return (
     <aside
       className="group fixed top-0 left-0 h-screen bg-blue-700 text-white transition-all duration-300 z-50 
-        w-16 hover:w-64 flex flex-col justify-between overflow-hidden"
+        w-16 hover:w-64 flex flex-col justify-between overflow-hidden z-60"
     >
       {/* Sidebar options */}
       <div className="space-y-6 py-6 px-2">
@@ -61,7 +61,7 @@ const Sidebar: FC = () => {
         {/* Earnings */}
         <Link
           className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
-          href="/dashboard"
+          href="/dashboard/earnings"
         >
           <AiFillDollarCircle size={24} />
           <span className="hidden group-hover:block">Earnings</span>
