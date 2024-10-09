@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-const bankdetails: React.FC = () => {
+const BankDetails: React.FC = () => {
   const [selectedBank, setSelectedBank] = useState<string>("");
   const [accountNumber, setAccountNumber] = useState<string>("");
   const [ifscCode, setIfscCode] = useState<string>("");
@@ -218,4 +218,4 @@ const bankdetails: React.FC = () => {
   );
 };
 
-export default bankdetails;
+export default BankDetails;

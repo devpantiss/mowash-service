@@ -54,7 +54,7 @@ const organizations: Organization[] = [
   },
 ];
 
-const certification: React.FC = () => {
+const Certification: React.FC = () => {
   const [isCertified, setIsCertified] = useState<boolean | null>(null);
   const [selectedOrg, setSelectedOrg] = useState<string | null>(null);
   const [certificatePreview, setCertificatePreview] = useState<string | null>(
@@ -277,4 +277,4 @@ const certification: React.FC = () => {
   );
 };
 
-export default certification;
+export default Certification;

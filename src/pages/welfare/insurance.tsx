@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
 import Layout from "@/components/Dash/Layout";
-import Link from "next/link";
 import InsuranceSlider from "../../components/SignUp/slider/InsuranceSlider";
 
-const insurance: React.FC = () => {
+const Insurance: React.FC = () => {
   const [wantsWelfare, setWantsWelfare] = useState(true);
   const [showCSPPage, setShowCSPPage] = useState(false);
   const [selectedCSP, setSelectedCSP] = useState<string>("");
@@ -366,4 +365,4 @@ const insurance: React.FC = () => {
   );
 };
 
-export default insurance;
+export default Insurance;

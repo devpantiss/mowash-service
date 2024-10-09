@@ -4,7 +4,7 @@ import Layout from "@/components/Dash/Layout";
 import Link from "next/link";
 import InsuranceSlider from "../../components/SignUp/slider/InsuranceSlider";
 
-const healthinsurance: React.FC = () => {
+const HealthInsurance: React.FC = () => {
   const [wantsWelfare, setWantsWelfare] = useState(true);
   const [showCSPPage, setShowCSPPage] = useState(false);
   const [selectedCSP, setSelectedCSP] = useState<string>("");
@@ -374,4 +374,4 @@ const healthinsurance: React.FC = () => {
   );
 };
 
-export default healthinsurance;
+export default HealthInsurance;
