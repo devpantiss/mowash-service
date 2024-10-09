@@ -213,6 +213,33 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024, // for screen sizes 1024px and below
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768, // for screen sizes 768px and below
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 480, // for screen sizes 480px and below
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -257,7 +284,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                   width: "100%",
                   height: "600px",
                 }}
-                className="block "
+                className="block z-0"
               />
             </div>
           </div>
