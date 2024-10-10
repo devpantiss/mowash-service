@@ -54,15 +54,15 @@ const SignupStep13: React.FC<SignupStep13Props> = ({ goToStep }) => {
       <div className="bg-transparent p-8 rounded-lg w-full px-20 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Section - Static Image */}
         <div className="flex justify-center items-center p-4 rounded-lg">
-        <Lottie
-              animationData={animation}
-              loop={true}
-              style={{
-                width: "100%",
-                height: "600px",
-              }}
-              className="block"
-            />
+          <Lottie
+            animationData={animation}
+            loop={true}
+            style={{
+              width: "100%",
+              height: "600px",
+            }}
+            className="block"
+          />
           {/* <img
             src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727262465/7990322-removebg-preview_xs70dx.png"
             alt="Static Placeholder"
@@ -212,7 +212,7 @@ const SignupStep13: React.FC<SignupStep13Props> = ({ goToStep }) => {
 
           {/* Submit Button */}
           <div className="mt-6">
-            <button className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors">
+            <button className="px-6 py-2 w-full bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition">
               Submit
             </button>
           </div>
@@ -220,7 +220,7 @@ const SignupStep13: React.FC<SignupStep13Props> = ({ goToStep }) => {
       </div>
       <button
         onClick={handleSkip}
-        className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+        className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
       >
         Skip
       </button>

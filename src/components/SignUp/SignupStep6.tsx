@@ -159,8 +159,8 @@ const SignupStep6: React.FC = () => {
 
           <button
             type="submit"
-            className="px-4 py-2 mt-4 bg-blue-500 text-white rounded-lg w-full"
-          >
+            className="px-6 py-2 w-full bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
+            >
             Confirm Address
           </button>
         </form>

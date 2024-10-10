@@ -267,7 +267,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
             <div className="text-center mt-8">
               <button
                 onClick={() => goToStep(6)}
-                className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
               >
                 back
               </button>
@@ -423,7 +423,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
 
               <button
                 onClick={resetSelection}
-                className="ml-4 bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
               >
                 Back
               </button>

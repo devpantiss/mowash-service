@@ -47,17 +47,17 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
   return (
     <>
       <div className="mx-auto h-full container">
-        <div className="lg:ml-20 ml-0 flex justify-center cursor lg:justify-start">
+        {/* <div className="lg:ml-20 ml-0 flex justify-center cursor lg:justify-start">
           <Link href="/">
             <img src="/images/mowash-logo.webp" className="h-12" />
           </Link>
-        </div>
+        </div> */}
         <div className="flex flex-col-reverse lg:flex-row">
           {/* Left Side: Information Section */}
           <div className="w-full lg:h-[100vh] h-full relative lg:w-1/2 flex flex-col items-center p-10">
             <div className="z-10">
               <h1 className="text-3xl font-bold mb-2 text-white">
-                We Are More than Just your Wash Partner
+                We Are More than Just your Wash Partner!
               </h1>
               <ul className="list-none text-lg my-6 text-white">
                 <li className="flex items-center gap-x-3 mb-2">
@@ -98,43 +98,46 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                 width: "100%",
                 height: "auto",
                 maxWidth: "350px",
-                // position: "absolute",
-                // right: "-25%",
-                // bottom: "0",
               }}
               className="lg:block hidden"
             />
+            <h1 className="text-3xl font-bold mb-2 text-white">Wash Hero</h1>
           </div>
 
           {/* Right Side: Form Section */}
           <div className="w-full lg:w-1/2 lg:max-w-2xl z-10 bg-transparent p-10">
             <div className="ring-2 ring-white rounded-md px-6 py-8 flex flex-col justify-center">
-              <div className="space-x-4 mb-4 justify-center flex">
-                <button
-                  onClick={() => handleOptionClick("MoWash Engineer")}
-                  className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
+              <div>
+                <h1 className="text-2xl font-bold text-white text-center mb-3">
+                  Select Your Category
+                </h1>
+                <div className="space-x-4 mb-4 justify-center flex">
+                  <button
+                    onClick={() => handleOptionClick("MoWash Engineer")}
+                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
                 ${
                   selectedOption === "MoWash Engineer"
                     ? "border-blue-500 text-blue-500 bg-blue-100"
                     : "text-white border-gray-300"
                 }`}
-                >
-                  <MdEngineering className="text-2xl" />
-                  <span className="font-semibold">Mo WashEngineer</span>
-                </button>
+                  >
+                    <MdEngineering className="text-2xl" />
+                    <span className="font-semibold">Mo WashEngineer</span>
+                  </button>
 
-                <button
-                  onClick={() => handleOptionClick("MoWash Preneur")}
-                  className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
+                  <button
+                    onClick={() => handleOptionClick("MoWash Preneur")}
+                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
                 ${
                   selectedOption === "MoWash Preneur"
                     ? "border-blue-500 text-blue-500 bg-blue-100"
                     : "text-white border-gray-300"
                 }`}
-                >
-                  <GrUserManager className="text-2xl" />
-                  <span className="font-semibold">Mo WashPreneur</span>
-                </button>
+                  >
+                    <GrUserManager className="text-2xl" />
+                    <span className="font-semibold">Mo WashPreneur</span>
+                  </button>
+                </div>
               </div>
 
               <h1 className="text-2xl font-bold text-white text-center">
@@ -215,7 +218,7 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                 <div className="py-2">
                   <button
                     type="submit"
-                    className="p-4 rounded-lg bg-blue-500 text-center text-white w-full"
+                    className="px-6 py-2 w-full bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
                   >
                     Sign up for Free
                   </button>

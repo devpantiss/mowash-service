@@ -225,26 +225,6 @@ const ServiceCards: React.FC = () => {
         </div>
       </div>
 
-      {/* Sub-Service Selection Section */}
-      <div className="mt-12">
-        <h3 className="text-xl font-semibold text-white mb-4">
-          Choose a Sub-Service
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {options2.map((option, index) => (
-            <Card
-              key={index}
-              title={option.label}
-              description={option.description}
-              icon={option.icon}
-              iconColor={option.iconColor}
-              isSelected={selectedCards.includes(option.label)}
-              onSelect={() => handleSelect(option.label)}
-            />
-          ))}
-        </div>
-      </div>
-
       {/* Display selected services for reference */}
       <div className="mt-8 text-white">
         <h4 className="text-xl font-semibold mb-2">Selected Services:</h4>

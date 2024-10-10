@@ -137,12 +137,12 @@ const SignupStep9: React.FC<SignupStep9Props> = ({ goToStep }) => {
               {/* Photo Upload */}
               <div className="">
                 <label className="block text-sm text-white font-medium mb-2">
-                  Profile Picture
+                  Picture with Safety Kit{" "}
                 </label>
                 {!profilePreview ? (
                   <label
                     htmlFor="profilePicture"
-                    className="labelFile flex flex-col justify-center w-[250px] h-[190px] items-center p-5 border-dotted border-2 text-white border-white"
+                    className="labelFile rounded-md flex flex-col justify-center w-full lg:w-[250px]  h-[190px] items-center p-5 border-dotted border-2 text-white border-white"
                   >
                     <span>
                       <svg

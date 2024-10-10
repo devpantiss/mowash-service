@@ -254,7 +254,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
               <div className="text-center mt-8">
                 <button
                   onClick={handleSkip}
-                  className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                  className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
                 >
                   Skip
                 </button>
@@ -265,8 +265,18 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
               </div>
             </div>
           ) : showCSPPage ? (
-            <div className="flex items-center pb-8 gap-x-8">
-              <div className="w-1/2 p-4">
+            <div className="flex flex-col lg:flex-row items-center pb-8 lg:gap-x-8">
+              <div className="lg:w-1/2 w-full p-4">
+                <h2 className="text-4xl text-left font-semibold text-white mb-6">
+                  Available Options for{" "}
+                  {selectedSection === "healthCard"
+                    ? "Health Insurance"
+                    : selectedSection === "pension"
+                    ? "Social Security"
+                    : selectedSection === "insurance"
+                    ? "Life Insurance"
+                    : ""}
+                </h2>
                 <div className="flex gap-4">
                   <div className="flex flex-col mt-10 gap-y-8">
                     {/* Card 1: Show organization from one of the remaining sections */}
@@ -351,7 +361,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-1/2 pt-8">
+              <div className="lg:w-1/2 w-full pt-8">
                 <h2 className="text-2xl font-semibold text-white mb-4">
                   Choose Your Nearest Customer Service Point
                 </h2>
@@ -411,7 +421,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                     setShowCSPPage(false);
                     setSelectedSection(null);
                   }}
-                  className="bg-gray-500 text-white py-2 px-4 rounded-lg mt-4 hover:bg-gray-600"
+                  className="px-6 py-2 mt-6 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
                 >
                   Back
                 </button>
@@ -424,9 +434,9 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                 {selectedSection === "healthCard"
                   ? "Health Insurance"
                   : selectedSection === "pension"
-                  ? "Pension"
+                  ? "Social Security"
                   : selectedSection === "insurance"
-                  ? "Insurance"
+                  ? "Life Insurance"
                   : ""}
               </h2>
               <div className="flex flex-col-reverse lg:flex-row gap-x-16 w-full">
@@ -485,14 +495,14 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
                   </div>
                   <div className="mt-6 flex justify-between w-full">
                     <button
-                      className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                      className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
                       onClick={() => setSelectedSection(null)}
                     >
                       Back
                     </button>
                     {selectedSection === "healthCard" && (
                       <button
-                        className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600"
+                        className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
                         onClick={() => goToStep(7)}
                       >
                         Book a Health Checkup
@@ -533,7 +543,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
           </h2>
           <button
             onClick={() => setWantsWelfare(false)}
-            className="bg-gray-500 text-white py-2 px-6 rounded-lg hover:bg-gray-600 mt-4"
+            className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
           >
             Back
           </button>
