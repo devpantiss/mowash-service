@@ -254,7 +254,7 @@ const Row1: React.FC = () => {
           <TimeSlotSelector />
         </div>
         <div className="bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
-          <h3 className="text-lg text-white font-bold">This Week's Earnings</h3>
+          <h3 className="text-lg text-white font-bold">This Week&apos;s Earnings</h3>
           <div className="mt-4">
             <Line
               data={weeklyEarningsData}
@@ -313,7 +313,7 @@ const Row1: React.FC = () => {
         ) : (
           <div className="h-full lg:p-6 p-2">
             <div className="flex justify-between mb-4">
-              <h3 className="text-lg text-white font-bold">Today's Orders</h3>
+              <h3 className="text-lg text-white font-bold">Today&apos;s Orders</h3>
               <span className="text-gray-200">
                 Date: {new Date().toLocaleDateString()}
               </span>
