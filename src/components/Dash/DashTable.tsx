@@ -73,7 +73,38 @@ const Table: React.FC = () => {
       earnings: 75.0,
       status: "Completed",
     },
-    // Additional orders...
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+      status: "Pending",
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+      status: "Completed",
+    },
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+      status: "Pending",
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+      status: "Completed",
+    },
   ]);
 
   const handleStatusChange = (index: number, newStatus: string) => {

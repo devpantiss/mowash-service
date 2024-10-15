@@ -102,7 +102,7 @@ const ProfileCard: React.FC<{
   );
 };
 
-const TimeSlotSelector: React.FC = () => {
+const TimeSlotSelector: React.FC<{ isActive: boolean }> = ({ isActive }) => {
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
 
   const timeSlots = Array.from({ length: 13 }, (_, i) => {
@@ -134,12 +134,15 @@ const TimeSlotSelector: React.FC = () => {
               selectedSlots.includes(slot)
                 ? "bg-blue-500 text-white"
                 : "bg-transparent ring-2 ring-white text-white"
-            } hover:bg-blue-300`}
+            } hover:bg-blue-300 ${
+              isActive ? "" : "opacity-50 cursor-not-allowed"
+            }`} // Add opacity and disabled styling
           >
             <input
               type="checkbox"
               checked={selectedSlots.includes(slot)}
-              onChange={() => handleSlotChange(slot)}
+              onChange={() => isActive && handleSlotChange(slot)} // Only handle change if active
+              disabled={!isActive} // Disable if not active
               className="hidden"
             />
             <span className="h-5 w-5 border-2 border-blue-500 rounded-md flex items-center justify-center mr-2">
@@ -251,7 +254,7 @@ const Row1: React.FC = () => {
             <span className="text-white">{currentDate}</span>{" "}
             {/* Display current date */}
           </div>
-          <TimeSlotSelector />
+          <TimeSlotSelector isActive={isActive} />
         </div>
         <div className="bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
           <h3 className="text-lg text-white font-bold">
