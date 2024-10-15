@@ -133,7 +133,7 @@ const Reviews: React.FC = () => {
           </div>
 
           {/* Feedback List */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 ring-2 p-3 rounded-md ring-white">
             <h2 className="text-xl text-left font-semibold mb-2">
               What They Said About You!
             </h2>

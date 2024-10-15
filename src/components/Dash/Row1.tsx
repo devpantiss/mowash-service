@@ -189,7 +189,7 @@ const Row1: React.FC = () => {
   return (
     <div className="p-8 bg-transparent min-h-screen">
       {/* First Row */}
-      <div className="flex flex-col lg:flex-row w-full px-2 gap-4">
+      <div className="flex flex-col-reverse lg:flex-row w-full px-2 gap-4">
         <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 lg:w-1/2 ring-2 ring-white p-4 rounded-md w-full">
           <StatCard
             title="Today's Orders"
@@ -212,7 +212,7 @@ const Row1: React.FC = () => {
             flexCol="lg:flex-col"
           />
         </div>
-        <div className="lg:w-1/2 w-full flex flex-col lg:flex-row justify-between lg:space-x-16 items-center">
+        <div className="lg:w-1/2 w-full flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
           <div className="w-full bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
             <h3 className="text-lg text-white font-bold">
               Earnings Status (Last 30 days)
@@ -237,14 +237,14 @@ const Row1: React.FC = () => {
             </div>
           </div>
           {/* Profile Card on the right */}
-          <div className="lg:w-1/2 w-full mt-3">
+          <div className="lg:w-1/2 w-full mb-6">
             <ProfileCard onToggleStatus={toggleStatus} isActive={isActive} />
           </div>
         </div>
       </div>
 
       {/* Second Row */}
-      <div className="grid p-6 rounded-md grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid py-6 rounded-md grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
           <div className="flex justify-between">
             <h3 className="text-lg text-white font-bold">Work Timing Slots</h3>

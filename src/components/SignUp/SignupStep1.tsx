@@ -91,13 +91,13 @@ const SignupStep1: React.FC = () => {
             {/* Previous Employment */}
             <div className={style.inputContainer}>
               <input
-                placeholder="Previous Employment"
+                placeholder="Previous Employer"
                 className={style.inputField}
                 type="text"
                 value={previousWork}
                 onChange={(e) => setPreviousWork(e.target.value)}
               />
-              <label className={style.inputLabel}>Previous Employment</label>
+              <label className={style.inputLabel}>Previous Employer</label>
               <span className={style.inputHighlight}></span>
               {errors.previousWork && (
                 <p className="text-red-500 text-sm mt-1">

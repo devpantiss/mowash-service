@@ -191,7 +191,7 @@ const WelfareServices: React.FC = () => {
                         </p>
                       </div>
 
-                      <div className="text-right mt-4 lg:mt-0">
+                      <div className="lg:text-right text-center mt-4 lg:mt-0">
                         <div className="flex justify-between gap-x-8 items-center mb-4">
                           <div className="flex flex-col">
                             <strong className="text-xl text-gray-800">
