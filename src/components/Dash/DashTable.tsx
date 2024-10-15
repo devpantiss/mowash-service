@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface OrderDetailsProps {
   customerName: string;
@@ -6,6 +6,8 @@ interface OrderDetailsProps {
   contactNumber: string;
   jobDescription: string;
   earnings: number;
+  status: string;
+  onStatusChange: (newStatus: string) => void;
 }
 
 const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
@@ -14,7 +16,23 @@ const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
   contactNumber,
   jobDescription,
   earnings,
+  status,
+  onStatusChange,
 }) => {
+  // Function to determine the background color based on the status
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Pending":
+        return "bg-yellow-400 text-black";
+      case "Completed":
+        return "bg-green-400 text-black";
+      case "Missed":
+        return "bg-red-400 text-white";
+      default:
+        return "bg-gray-400 text-black";
+    }
+  };
+
   return (
     <tr className="text-center border-b border-gray-200">
       <td className="py-4 px-4">{customerName}</td>
@@ -22,18 +40,30 @@ const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
       <td className="py-4 px-4">{contactNumber}</td>
       <td className="py-4 px-4">{jobDescription}</td>
       <td className="py-4 px-4">₹{earnings.toFixed(2)}</td>
+      <td className={`py-4 px-4 ${getStatusColor(status)}`}>
+        <select
+          value={status}
+          onChange={(e) => onStatusChange(e.target.value)}
+          className={`rounded p-1 ${getStatusColor(status)}`}
+        >
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+          <option value="Missed">Missed</option>
+        </select>
+      </td>
     </tr>
   );
 };
 
 const Table: React.FC = () => {
-  const data = [
+  const [data, setData] = useState([
     {
       customerName: "John Doe",
       address: "123 Main St, Cityville, ST 12345",
       contactNumber: "(123) 456-7890",
       jobDescription: "Residential Cleaning",
       earnings: 50.0,
+      status: "Pending",
     },
     {
       customerName: "Jane Smith",
@@ -41,162 +71,17 @@ const Table: React.FC = () => {
       contactNumber: "(987) 654-3210",
       jobDescription: "Office Cleaning",
       earnings: 75.0,
+      status: "Completed",
     },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-    },
-  ];
+    // Additional orders...
+  ]);
+
+  const handleStatusChange = (index: number, newStatus: string) => {
+    const updatedData = data.map((order, i) =>
+      i === index ? { ...order, status: newStatus } : order
+    );
+    setData(updatedData);
+  };
 
   return (
     <div className="bg-transparent lg:p-6 p-2 rounded-lg shadow-lg">
@@ -214,6 +99,7 @@ const Table: React.FC = () => {
                 <th className="py-2 px-4">Contact Number</th>
                 <th className="py-2 px-4">Job Description</th>
                 <th className="py-2 px-4">Earnings</th>
+                <th className="py-2 px-4">Status</th>
               </tr>
             </thead>
             <tbody className="text-center text-white">
@@ -226,11 +112,13 @@ const Table: React.FC = () => {
                     contactNumber={order.contactNumber}
                     jobDescription={order.jobDescription}
                     earnings={order.earnings}
+                    status={order.status}
+                    onStatusChange={(newStatus) => handleStatusChange(index, newStatus)}
                   />
                 ))
               ) : (
                 <tr>
-                  <td colSpan={5} className="py-6 text-center">
+                  <td colSpan={6} className="py-6 text-center">
                     <div className="flex flex-col items-center">
                       <span className="text-lg font-semibold">
                         No orders found for today.

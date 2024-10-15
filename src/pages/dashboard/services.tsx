@@ -39,6 +39,7 @@ const Services: React.FC = () => {
     jobDescription: string;
     earnings: number;
     review: number; // Assuming review is a number, e.g., 4.5
+    status: string; // New field for job status
   }
 
   // Helper function to render stars based on the rating
@@ -64,7 +65,7 @@ const Services: React.FC = () => {
     );
   };
 
-  // Table component for displaying order details
+  // Table component for displaying order details with job status
   const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
     customerName,
     address,
@@ -72,7 +73,22 @@ const Services: React.FC = () => {
     jobDescription,
     earnings,
     review,
+    status, // Added status prop
   }) => {
+    // Function to get color based on job status
+    const getStatusColor = (status: string) => {
+      switch (status) {
+        case "Upcoming":
+          return "text-orange-500";
+        case "Completed":
+          return "text-green-500";
+        case "Missed":
+          return "text-red-500";
+        default:
+          return "text-white"; // Default color for unknown statuses
+      }
+    };
+  
     return (
       <tr className="text-center border-b border-gray-200">
         <td className="py-4 px-4">{customerName}</td>
@@ -80,11 +96,15 @@ const Services: React.FC = () => {
         <td className="py-4 px-4">{contactNumber}</td>
         <td className="py-4 px-4">{jobDescription}</td>
         <td className="py-4 px-4">${earnings.toFixed(2)}</td>
-        <td className="py-4 px-4">{renderStars(review)}</td> {/* Star rating */}
+        <td className="py-4 px-4">{renderStars(review)}</td>
+        <td className={`py-4 px-4 font-semibold ${getStatusColor(status)}`}>
+          {status}
+        </td> {/* Dynamically set status color */}
       </tr>
     );
   };
 
+  // Updated dummy data to include job status
   const data2 = [
     {
       customerName: "John Doe",
@@ -92,7 +112,8 @@ const Services: React.FC = () => {
       contactNumber: "(123) 456-7890",
       jobDescription: "Residential Cleaning",
       earnings: 50.0,
-      review: 4.5, // Example review with half star
+      review: 4.5,
+      status: "Completed", // New field
     },
     {
       customerName: "Jane Smith",
@@ -100,7 +121,17 @@ const Services: React.FC = () => {
       contactNumber: "(987) 654-3210",
       jobDescription: "Office Cleaning",
       earnings: 75.0,
-      review: 3, // Example review with full stars
+      review: 3,
+      status: "Upcoming", // New field
+    },
+    {
+      customerName: "Bob Lee",
+      address: "789 Oak St, Suburbia, ST 24680",
+      contactNumber: "(654) 987-1234",
+      jobDescription: "Industrial Cleaning",
+      earnings: 100.0,
+      review: 4,
+      status: "Missed", // New field
     },
     {
       customerName: "John Doe",
@@ -108,7 +139,8 @@ const Services: React.FC = () => {
       contactNumber: "(123) 456-7890",
       jobDescription: "Residential Cleaning",
       earnings: 50.0,
-      review: 4.5, // Example review with half star
+      review: 4.5,
+      status: "Completed", // New field
     },
     {
       customerName: "Jane Smith",
@@ -116,7 +148,17 @@ const Services: React.FC = () => {
       contactNumber: "(987) 654-3210",
       jobDescription: "Office Cleaning",
       earnings: 75.0,
-      review: 3, // Example review with full stars
+      review: 3,
+      status: "Upcoming", // New field
+    },
+    {
+      customerName: "Bob Lee",
+      address: "789 Oak St, Suburbia, ST 24680",
+      contactNumber: "(654) 987-1234",
+      jobDescription: "Industrial Cleaning",
+      earnings: 100.0,
+      review: 4,
+      status: "Missed", // New field
     },
     {
       customerName: "John Doe",
@@ -124,7 +166,8 @@ const Services: React.FC = () => {
       contactNumber: "(123) 456-7890",
       jobDescription: "Residential Cleaning",
       earnings: 50.0,
-      review: 4.5, // Example review with half star
+      review: 4.5,
+      status: "Completed", // New field
     },
     {
       customerName: "Jane Smith",
@@ -132,7 +175,17 @@ const Services: React.FC = () => {
       contactNumber: "(987) 654-3210",
       jobDescription: "Office Cleaning",
       earnings: 75.0,
-      review: 3, // Example review with full stars
+      review: 3,
+      status: "Upcoming", // New field
+    },
+    {
+      customerName: "Bob Lee",
+      address: "789 Oak St, Suburbia, ST 24680",
+      contactNumber: "(654) 987-1234",
+      jobDescription: "Industrial Cleaning",
+      earnings: 100.0,
+      review: 4,
+      status: "Missed", // New field
     },
     {
       customerName: "John Doe",
@@ -140,7 +193,8 @@ const Services: React.FC = () => {
       contactNumber: "(123) 456-7890",
       jobDescription: "Residential Cleaning",
       earnings: 50.0,
-      review: 4.5, // Example review with half star
+      review: 4.5,
+      status: "Completed", // New field
     },
     {
       customerName: "Jane Smith",
@@ -148,7 +202,17 @@ const Services: React.FC = () => {
       contactNumber: "(987) 654-3210",
       jobDescription: "Office Cleaning",
       earnings: 75.0,
-      review: 3, // Example review with full stars
+      review: 3,
+      status: "Upcoming", // New field
+    },
+    {
+      customerName: "Bob Lee",
+      address: "789 Oak St, Suburbia, ST 24680",
+      contactNumber: "(654) 987-1234",
+      jobDescription: "Industrial Cleaning",
+      earnings: 100.0,
+      review: 4,
+      status: "Missed", // New field
     },
     {
       customerName: "John Doe",
@@ -156,7 +220,8 @@ const Services: React.FC = () => {
       contactNumber: "(123) 456-7890",
       jobDescription: "Residential Cleaning",
       earnings: 50.0,
-      review: 4.5, // Example review with half star
+      review: 4.5,
+      status: "Completed", // New field
     },
     {
       customerName: "Jane Smith",
@@ -164,103 +229,17 @@ const Services: React.FC = () => {
       contactNumber: "(987) 654-3210",
       jobDescription: "Office Cleaning",
       earnings: 75.0,
-      review: 3, // Example review with full stars
+      review: 3,
+      status: "Upcoming", // New field
     },
     {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5, // Example review with half star
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3, // Example review with full stars
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5, // Example review with half star
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3, // Example review with full stars
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5, // Example review with half star
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3, // Example review with full stars
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5, // Example review with half star
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3, // Example review with full stars
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5, // Example review with half star
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3, // Example review with full stars
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5, // Example review with half star
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3, // Example review with full stars
+      customerName: "Bob Lee",
+      address: "789 Oak St, Suburbia, ST 24680",
+      contactNumber: "(654) 987-1234",
+      jobDescription: "Industrial Cleaning",
+      earnings: 100.0,
+      review: 4,
+      status: "Missed", // New field
     },
   ];
 
@@ -358,59 +337,45 @@ const Services: React.FC = () => {
                     },
                   },
                   plugins: {
-                    legend: { labels: { color: "white" } },
+                    legend: { display: false }, // Hides the legend
                   },
                 }}
-                height={0}
-                width={0}
               />
             </div>
           </div>
         </div>
 
-        {/* Document Submission Table */}
+        {/* Order Details Section */}
         <div className="p-4 border rounded-lg shadow-md">
-          <h3 className="mb-4 text-lg font-semibold">Jobs Done History</h3>
+          <h3 className="text-lg font-semibold mb-4">Order Details</h3>
           <div className="overflow-x-auto">
-            <div className="max-h-96 overflow-y-auto">
-              <table className="min-w-full table-auto text-sm">
-                <thead className="bg-gray-100 text-sm text-gray-600 sticky top-0">
-                  <tr>
-                    <th className="py-2 px-4">Customer Name</th>
-                    <th className="py-2 px-4">Address</th>
-                    <th className="py-2 px-4">Contact Number</th>
-                    <th className="py-2 px-4">Job Description</th>
-                    <th className="py-2 px-4">Earnings</th>
-                    <th className="py-2 px-4">Review</th>
-                  </tr>
-                </thead>
-                <tbody className="text-center text-white">
-                  {data2.length > 0 ? (
-                    data2.map((order, index) => (
-                      <OrderDetailsTable
-                        key={index}
-                        customerName={order.customerName}
-                        address={order.address}
-                        contactNumber={order.contactNumber}
-                        jobDescription={order.jobDescription}
-                        earnings={order.earnings}
-                        review={order.review} // Pass review score for star rendering
-                      />
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={6} className="py-6 text-center">
-                        <div className="flex flex-col items-center">
-                          <span className="text-lg font-semibold">
-                            No orders found for today.
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+            <table className="table-auto w-full text-sm text-left text-white">
+              <thead className="text-xs uppercase bg-gray-700">
+                <tr>
+                  <th className="py-2 px-4">Customer Name</th>
+                  <th className="py-2 px-4">Address</th>
+                  <th className="py-2 px-4">Contact Number</th>
+                  <th className="py-2 px-4">Job Description</th>
+                  <th className="py-2 px-4">Earnings</th>
+                  <th className="py-2 px-4">Review</th>
+                  <th className="py-2 px-4">Status</th> {/* New status header */}
+                </tr>
+              </thead>
+              <tbody className="bg-gray-800">
+                {data2.map((order, index) => (
+                  <OrderDetailsTable
+                    key={index}
+                    customerName={order.customerName}
+                    address={order.address}
+                    contactNumber={order.contactNumber}
+                    jobDescription={order.jobDescription}
+                    earnings={order.earnings}
+                    review={order.review}
+                    status={order.status} // Pass status to the component
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
