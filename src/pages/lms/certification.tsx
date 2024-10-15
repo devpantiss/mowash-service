@@ -616,10 +616,10 @@ const Certification: React.FC = () => {
                 {referenceVideos.map((video, index) => (
                   <div
                     key={index}
-                    className="flex bg-gray-800 rounded-lg shadow-lg p-4 transition-all duration-300"
+                    className="flex flex-col lg:flex-row bg-gray-800 rounded-lg shadow-lg p-4 transition-all duration-300"
                   >
                     {/* Video thumbnail or iframe */}
-                    <div className="flex-shrink-0 w-64 h-48sm:w-64 sm:h-48 overflow-hidden rounded-lg">
+                    <div className="flex-shrink-0 w-68 h-48 sm:w-64 sm:h-48 overflow-hidden rounded-lg">
                       <iframe
                         className="w-full h-full"
                         src={video.url}
@@ -630,13 +630,13 @@ const Certification: React.FC = () => {
                       ></iframe>
                     </div>
                     {/* Video details */}
-                    <div className="ml-4 flex flex-col justify-between">
+                    <div className="lg:ml-4 mt-4 flex flex-col justify-between">
                       <div>
                         <h3 className="text-xl font-bold text-white">
                           {video.title}
                         </h3>
                       </div>
-                      <div className="flex flex-col lg:flex-rowitems-center text-gray-300 text-sm mt-4">
+                      <div className="flex flex-row lg:flex-row items-center text-gray-300 text-sm mt-4">
                         <div className="flex items-center">
                           <span className="font-medium">{video.author}</span>
                         </div>
@@ -672,10 +672,10 @@ const Certification: React.FC = () => {
                 {referenceVideos.map((video, index) => (
                   <div
                     key={index}
-                    className="flex bg-gray-800 rounded-lg shadow-lg p-4 transition-all duration-300"
+                    className="flex flex-col lg:flex-row bg-gray-800 rounded-lg shadow-lg p-4 transition-all duration-300"
                   >
                     {/* Video thumbnail or iframe */}
-                    <div className="flex-shrink-0 w-64 h-48sm:w-64 sm:h-48 overflow-hidden rounded-lg">
+                    <div className="flex-shrink-0 w-68 h-48 sm:w-64 sm:h-48 overflow-hidden rounded-lg">
                       <iframe
                         className="w-full h-full"
                         src={video.url}
@@ -686,13 +686,13 @@ const Certification: React.FC = () => {
                       ></iframe>
                     </div>
                     {/* Video details */}
-                    <div className="ml-4 flex flex-col justify-between">
+                    <div className="lg:ml-4 mt-4 flex flex-col justify-between">
                       <div>
                         <h3 className="text-xl font-bold text-white">
                           {video.title}
                         </h3>
                       </div>
-                      <div className="flex flex-col lg:flex-rowitems-center text-gray-300 text-sm mt-4">
+                      <div className="flex flex-row lg:flex-row items-center text-gray-300 text-sm mt-4">
                         <div className="flex items-center">
                           <span className="font-medium">{video.author}</span>
                         </div>
