@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import AnimatedNumbers from "react-animated-numbers";
+import dynamic from "next/dynamic";
+
+const AnimatedNumbers = dynamic(() => import("react-animated-numbers"), {
+  ssr: false,
+});
 
 // SignupStep5 Component
 const SignupStep5: React.FC = () => {
@@ -42,11 +46,11 @@ const SignupStep5: React.FC = () => {
         {/* Animated Earnings */}
         <div className="text-4xl lg:text-5xl flex justify-center gap-x-3 text-black font-bold mb-6">
           ₹
-          {/* <AnimatedNumbers
+          <AnimatedNumbers
             includeComma
             animateToNumber={animatedEarnings}
             fontStyle={{ fontSize: 50 }}
-          /> */}
+          />
         </div>
 
         {/* Daily Earnings Estimate */}
