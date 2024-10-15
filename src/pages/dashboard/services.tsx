@@ -286,7 +286,7 @@ const Services: React.FC = () => {
     <Layout>
       <div className="p-6 bg-transparent text-white rounded-lg shadow-lg">
         {/* Top stats section */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
           {[
             { label: "Total Jobs Done", count: 201, change: "+8%", color: "text-green-500" },
             { label: "Mason Jobs", count: 70, change: "+5%", color: "text-green-500" },
