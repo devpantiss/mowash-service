@@ -84,64 +84,16 @@ const Sidebar: FC = () => {
                 <FaUserShield size={20} />
                 <span className="hidden group-hover:block">Welfare Services</span>
         </Link>
-
-        {/* Welfare Services - Accordion */}
-        {/* <div className="space-y-1">
-          <div
-            onClick={toggleAccordion}
-            className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md cursor-pointer transition-all duration-300"
-          >
-            <FaUserShield size={24} />
-            <span className="hidden group-hover:block">Welfare Services</span>
-            <AiOutlineDown
-              size={20}
-              className={`hidden group-hover:block transition-transform duration-300 ${
-                isAccordionOpen ? "rotate-180" : "rotate-0"
-              }`}
-            />
-          </div>
-
-          Accordion Content
-          {isAccordionOpen && (
-            <div className="ml-6 space-y-2 transition-all duration-300">
-              <Link
-                href="/welfare/healthinsurance"
-                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
-              >
-                <BsFillHeartPulseFill size={20} />
-                <span className="hidden group-hover:block">
-                  Health Insurance
-                </span>
-              </Link>
-              <Link
-                href="/welfare/socialsecurity"
-                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
-              >
-                <BsFillShieldLockFill size={20} />
-                <span className="hidden group-hover:block">
-                  Social Security
-                </span>
-              </Link>
-
-              <Link
-                href="/welfare/insurance"
-                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
-              >
-                <AiFillSetting size={20} />
-                <span className="hidden group-hover:block">Insurance</span>
-              </Link>
-
-              <Link
-                href="/welfare/certification"
-                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
-              >
-                <BsCardChecklist size={20} />
-                <span className="hidden group-hover:block">Certification</span>
-              </Link>
-              
-            </div>
-          )}
-        </div> */}
+        
+        
+        {/* welfare */}
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/lms/certification"
+        >
+                <FaUserShield size={20} />
+                <span className="hidden group-hover:block">LMS</span>
+        </Link>
 
         {/* Help & Support */}
         <Link

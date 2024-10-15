@@ -222,7 +222,7 @@ const WelfareServices: React.FC = () => {
                 </div>
 
                 {/* 2/5 width for premium information */}
-                <div className="lg:col-span-2 bg-gray-700 p-6 rounded-lg text-center text-white shadow-md">
+                <div className="lg:col-span-2 bg-transparent ring-white ring-2 p-6 rounded-lg text-center text-white shadow-md">
                   <h3 className="text-xl font-semibold mb-4">
                     Premium Information
                   </h3>
