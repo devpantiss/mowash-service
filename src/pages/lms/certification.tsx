@@ -16,6 +16,7 @@ import {
   FaClipboardCheck,
   FaHandshake,
 } from "react-icons/fa";
+import style from "@/components/common/input/input.module.css"; // Import your CSS module
 
 // Define the structure for each organization
 interface Organization {
@@ -538,15 +539,59 @@ const Certification: React.FC = () => {
                       </select>
 
                       <h2 className="text-2xl text-white font-semibold">
-                        Enter Your Address for Kit Delivery
+                        Enter Your Residential Address for Kit Delivery
                       </h2>
-                      <input
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder="Enter your address"
-                        className="w-full p-2 rounded-lg border border-gray-300"
-                      />
+
+                      {/* Residential Address Form using custom styles */}
+                      <div className={style.inputContainer}>
+                        <input
+                          placeholder="Street Address"
+                          className={style.inputField}
+                          type="text"
+                          // value={streetAddress}
+                          // onChange={(e) => setStreetAddress(e.target.value)}
+                        />
+                        <label className={style.inputLabel}>
+                          Street Address
+                        </label>
+                        <span className={style.inputHighlight}></span>
+                      </div>
+
+                      <div className={style.inputContainer}>
+                        <input
+                          placeholder="City"
+                          className={style.inputField}
+                          type="text"
+                          // value={city}
+                          // onChange={(e) => setCity(e.target.value)}
+                        />
+                        <label className={style.inputLabel}>City</label>
+                        <span className={style.inputHighlight}></span>
+                      </div>
+
+                      <div className={style.inputContainer}>
+                        <input
+                          placeholder="State"
+                          className={style.inputField}
+                          type="text"
+                          // value={state}
+                          // onChange={(e) => setState(e.target.value)}
+                        />
+                        <label className={style.inputLabel}>State</label>
+                        <span className={style.inputHighlight}></span>
+                      </div>
+
+                      <div className={style.inputContainer}>
+                        <input
+                          placeholder="Zip Code"
+                          className={style.inputField}
+                          type="text"
+                          // value={zipCode}
+                          // onChange={(e) => setZipCode(e.target.value)}
+                        />
+                        <label className={style.inputLabel}>Zip Code</label>
+                        <span className={style.inputHighlight}></span>
+                      </div>
 
                       <button
                         onClick={handleAcademySubmit}
