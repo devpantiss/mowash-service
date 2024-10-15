@@ -266,7 +266,7 @@ const Insurance: React.FC = () => {
             ) : (
               <div className="flex flex-col lg:h-[85vh] items-center gap-x-8">
                 <h2 className="text-4xl text-left font-semibold text-white mb-6">
-                  Available Options for Health Insurance{" "}
+                  Available Options for Life Insurance{" "}
                 </h2>
                 <div className="flex flex-col-reverse lg:flex-row gap-x-16 w-full">
                   {/* Left Section */}

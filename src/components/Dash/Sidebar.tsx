@@ -76,8 +76,17 @@ const Sidebar: FC = () => {
                 <span className="hidden group-hover:block">Health Checkup</span>
         </Link>
 
+        {/* welfare */}
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/dashboard/welfareservices"
+        >
+                <FaUserShield size={20} />
+                <span className="hidden group-hover:block">Welfare Services</span>
+        </Link>
+
         {/* Welfare Services - Accordion */}
-        <div className="space-y-1">
+        {/* <div className="space-y-1">
           <div
             onClick={toggleAccordion}
             className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md cursor-pointer transition-all duration-300"
@@ -92,7 +101,7 @@ const Sidebar: FC = () => {
             />
           </div>
 
-          {/* Accordion Content */}
+          Accordion Content
           {isAccordionOpen && (
             <div className="ml-6 space-y-2 transition-all duration-300">
               <Link
@@ -132,7 +141,7 @@ const Sidebar: FC = () => {
               
             </div>
           )}
-        </div>
+        </div> */}
 
         {/* Help & Support */}
         <Link
