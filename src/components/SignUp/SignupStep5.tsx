@@ -1,211 +1,99 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  FaBuilding,
-  FaDumpster,
-  FaIndustry,
-  FaTools,
-  FaTruck,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import AnimatedNumbers from "react-animated-numbers";
 
-// Options array based on the image content
-const options = [
-  {
-    label: "Residential Facilities",
-    icon: <FaBuilding className="text-8xl" />,
-    target: 1500,
-    description: "Service for residential buildings",
-  },
-  {
-    label: "Industrial Facilities",
-    icon: <FaIndustry className="text-8xl" />,
-    target: 1200,
-    description: "Service for industrial plants",
-  },
-  {
-    label: "Container and Dumpster",
-    icon: <FaDumpster className="text-8xl" />,
-    target: 800,
-    description: "Handling containers and dumpsters",
-  },
-  {
-    label: "Healthcare Facilities",
-    icon: <FaBuilding className="text-8xl" />,
-    target: 1000,
-    description: "Service for healthcare centers",
-  },
-  {
-    label: "Shopping Mall",
-    icon: <FaBuilding className="text-8xl" />,
-    target: 900,
-    description: "Service for shopping malls",
-  },
-  {
-    label: "Urban Local Body",
-    icon: <FaTools className="text-8xl" />,
-    target: 1100,
-    description: "Services for municipal bodies",
-  },
-  {
-    label: "Waste Segregation Center",
-    icon: <FaTruck className="text-8xl" />,
-    target: 950,
-    description: "Waste segregation services",
-  },
-];
-
-const useInView = (ref: React.RefObject<HTMLDivElement>) => {
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setInView(entry.isIntersecting);
-    });
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [ref]);
-
-  return inView;
-};
-
+// SignupStep5 Component
 const SignupStep5: React.FC = () => {
-  // State to manage multiple selected options
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const detailRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(detailRef);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // State for hours worked
+  const [hoursWorked, setHoursWorked] = useState(8); // Default to 8 hours
+  const ratePerHour = 300; // Rate per hour
 
-  // Toggle option selection
-  const handleOptionClick = (option: string) => {
-    if (selectedOptions.includes(option)) {
-      // If option is already selected, remove it
-      setSelectedOptions(
-        selectedOptions.filter((selected) => selected !== option)
-      );
-    } else {
-      // Otherwise, add it
-      setSelectedOptions([...selectedOptions, option]);
-    }
+  // State for animated earnings
+  const [animatedEarnings, setAnimatedEarnings] = useState<number>(
+    hoursWorked * ratePerHour
+  );
+
+  // Preset hours options
+  const presetHours = [2, 4, 6, 8];
+
+  // Update earnings when hoursWorked changes
+  useEffect(() => {
+    const targetEarnings = hoursWorked * ratePerHour;
+    setAnimatedEarnings(targetEarnings);
+  }, [hoursWorked]);
+
+  // Handle preset button clicks
+  const handlePresetClick = (hours: number) => {
+    setHoursWorked(hours);
   };
 
-  // Parallax Effect: Update background position based on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      setScrollPosition(scrollTop * 0.5); // Adjust the speed of the parallax
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <div className="flex flex-row h-[100vh] pt-20 bg-transparent">
-      {/* Details Section */}
-      <div
-        className="relative w-2/5 bg-fixed overflow-y-auto p-8 text-white"
-        ref={detailRef}
-        style={{
-          backgroundImage:
-            "url(https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726747073/anil-reddy-i8ODYfxh1j0-unsplash_q7xozl.jpg)",
-          backgroundPositionY: `${scrollPosition}px`, // Parallax effect
-        }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-        <div className="absolute h-full inset-0 z-0 bg-cover bg-center"></div>
+    <div className="flex items-center justify-center min-h-screen p-4">
+      <div className="bg-white/90 p-8 rounded-lg shadow-lg max-w-md w-full">
+        {/* Title */}
+        <h1 className="text-blue-600 text-3xl font-bold mb-4 text-center">
+          Earnings Estimator
+        </h1>
 
-        <div className="relative z-20 p-8">
-          <h3 className="text-2xl font-bold mb-4">Service Details</h3>
+        {/* Earnings Text */}
+        <p className="text-xl text-black font-semibold text-center mb-6">
+          You could earn
+        </p>
 
-          {/* Top Section: One-liner descriptions */}
-          <div className="space-y-2">
-            {options.map((option, index) => (
-              <div key={index} className="flex justify-between">
-                <span>{option.label}</span>
-                <span>{option.description}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* White Line Divider */}
-          <div className="my-6 border-t border-white"></div>
-
-          {/* Bottom Section: Counter Numbers */}
-          <div className="grid grid-cols-4 gap-4">
-            {options.map((option, index) => (
-              <div key={index} className="text-center">
-                <span className="text-xl font-bold">
-                  {isInView ? <Counter target={option.target} /> : 0}
-                </span>
-                <div className="mt-2 text-sm">{option.label}</div>
-              </div>
-            ))}
-          </div>
+        {/* Animated Earnings */}
+        <div className="text-4xl lg:text-5xl flex justify-center gap-x-3 text-black font-bold mb-6">
+          ₹
+          {/* <AnimatedNumbers
+            includeComma
+            animateToNumber={animatedEarnings}
+            fontStyle={{ fontSize: 50 }}
+          /> */}
         </div>
-      </div>
 
-      {/* Options Section */}
-      <div className="flex flex-col w-3/5 p-8">
-        <h2 className="text-3xl text-white font-bold mb-6">
-          Select Your Services
-        </h2>
-        <div className="grid grid-cols-3 gap-4">
-          {options.map((option, index) => (
+        {/* Daily Earnings Estimate */}
+        <p className="text-md text-black text-center mb-6">
+          1 day working at an estimated ₹{animatedEarnings.toLocaleString()} a
+          day
+        </p>
+
+        {/* Preset Hours Buttons */}
+        <div className="flex justify-center space-x-4 mb-6">
+          {presetHours.map((hours) => (
             <button
-              key={index}
-              onClick={() => handleOptionClick(option.label)}
-              className={`p-4 border-2 rounded-lg flex items-center justify-center 
-                ${
-                  selectedOptions.includes(option.label)
-                    ? "border-blue-500 text-blue-500 bg-blue-50"
-                    : "text-white border-white"
-                }`}
+              key={hours}
+              onClick={() => handlePresetClick(hours)}
+              className={`px-4 py-2 rounded-lg border transition ${
+                hoursWorked === hours
+                  ? "bg-blue-500 text-white border-blue-500"
+                  : "bg-white text-black border-gray-300 hover:bg-blue-500 hover:text-white"
+              }`}
             >
-              <span className="flex flex-col justify-center items-center">
-                {option.icon}
-                <span className="font-semibold">{option.label}</span>
-              </span>
+              {hours} Hours
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Progress Bar */}
-      <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-blue-600" style={{ width: "32%" }}></div>
+        {/* Hours Worked Slider */}
+        <div className="space-y-2">
+          <input
+            type="range"
+            min="1"
+            max="8"
+            value={hoursWorked}
+            onChange={(e) => setHoursWorked(Number(e.target.value))}
+            className="w-full h-2 bg-blue-500 rounded-lg appearance-none cursor-pointer"
+          />
+          <p className="text-sm text-black text-center">
+            Adjust hours worked per day: {hoursWorked} hours
+          </p>
+        </div>
+
+        {/* Learn More Link */}
+        <p className="text-sm text-blue-600 underline cursor-pointer text-center mt-4">
+          Learn how we estimate your earnings
+        </p>
       </div>
     </div>
   );
-};
-
-const Counter: React.FC<{ target: number }> = ({ target }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((prevCount) => {
-        if (prevCount >= target) {
-          clearInterval(interval);
-          return prevCount;
-        }
-        return prevCount + 1;
-      });
-    }, 10);
-
-    return () => clearInterval(interval);
-  }, [target]);
-
-  return <>{count}</>;
 };
 
 export default SignupStep5;

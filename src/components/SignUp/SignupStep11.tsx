@@ -21,6 +21,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
   const [showCSPPage, setShowCSPPage] = useState<boolean>(false);
   const [selectedCSP, setSelectedCSP] = useState<string>("");
+  const [isInsurance, setIsInsurance] = useState<Boolean>(false);
 
   const organizations = {
     healthCard: [
@@ -97,6 +98,27 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
     ],
   };
 
+  const insuranceData = [
+    {
+      title: "Health Insurance",
+      tagline: "View details",
+      text: "Get the best health insurance plan with extensive coverage.",
+      bgImageSrc:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727161748/Screenshot_2024-09-24_at_12.38.38_PM_kybqfh.png",
+      icon: FaHeartbeat,
+      onClick: () => handleSectionClick("healthCard"),
+    },
+    {
+      title: "Life Insurance",
+      tagline: "Know more",
+      text: "Protect your family with our life insurance plans.",
+      bgImageSrc:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727258506/Screenshot_2024-09-25_at_3.27.27_PM_aozx74.png",
+      icon: FaShieldAlt,
+      onClick: () => handleSectionClick("insurance"),
+    },
+  ];
+
   const cardsData = [
     {
       title: "Health & Wellness",
@@ -105,7 +127,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       bgImageSrc:
         "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727161748/Screenshot_2024-09-24_at_12.38.38_PM_kybqfh.png",
       icon: FaHeartbeat,
-      onClick: () => handleSectionClick("healthCard"),
+      onClick: () => goToStep(9),
     },
     {
       title: "Social Security",
@@ -117,7 +139,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       onClick: () => handleSectionClick("pension"),
     },
     {
-      title: "Insurance",
+      title: "Life Insurance",
       tagline: "Know more",
       text: "Protect your family with our life insurance plans.",
       bgImageSrc:
@@ -132,7 +154,16 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       bgImageSrc:
         "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728306796/Screenshot_2024-10-07_at_6.43.02_PM_fwkq9u.png",
       icon: FaMoneyBillWave,
-      onClick: () => goToStep(10), // Navigate to step 10 when Certified card is clicked
+      onClick: () => goToStep(12), // Navigate to step 10 when Certified card is clicked
+    },
+    {
+      title: "Health Insurance",
+      tagline: "Learn more",
+      text: "Secure your Health with our Health Insurance Plans.",
+      bgImageSrc:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728912505/Screenshot_2024-10-14_at_6.56.59_PM_yrohsd.png",
+      icon: FaMoneyBillWave,
+      onClick: () => handleSectionClick("healthCard"),
     },
   ];
 
@@ -213,6 +244,9 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
   const handleSectionClick = (section: Section) => {
     setSelectedSection(section);
     setShowConfirmation(false);
+    if (section === "insurance") {
+      setIsInsurance(true);
+    }
   };
 
   const handleCallRequest = () => {
@@ -429,110 +463,106 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
             </div>
           ) : (
             <div className="flex flex-col lg:h-[85vh] items-center gap-x-8">
-              <h2 className="text-4xl text-left font-semibold text-white mb-6">
-                Available Options for{" "}
-                {selectedSection === "healthCard"
-                  ? "Health Insurance"
-                  : selectedSection === "pension"
-                  ? "Social Security"
-                  : selectedSection === "insurance"
-                  ? "Life Insurance"
-                  : ""}
-              </h2>
-              <div className="flex flex-col-reverse lg:flex-row gap-x-16 w-full">
-                {/* Left Section */}
-                <div className="lg:w-3/5 w-full pt-4 lg:pt-20">
-                  <div className="grid grid-cols-1 gap-y-12">
-                    {organizations[selectedSection].map((organization) => (
-                      <div
-                        key={organization.name}
-                        className="lg:px-8 px-4 py-6 relative bg-gray-100 rounded-lg flex flex-col lg:flex-row lg:items-center items-stretch  space-x-4"
-                      >
-                        <div className="absolute lg:-left-14 left-[75%] px-2 py-4 rounded-bl-md rounded-tl-md top-0 bg-gray-100">
-                          <img
-                            src={organization.imageUrl}
-                            alt={organization.name}
-                            className="h-20 w-20"
-                          />
-                        </div>
+              <>
+                <h2 className="text-4xl text-left font-semibold text-white mb-6">
+                  Available Options for{" "}
+                  {selectedSection === "healthCard"
+                    ? "Health Insurance"
+                    : selectedSection === "pension"
+                    ? "Social Security"
+                    : selectedSection === "insurance"
+                    ? "Life Insurance"
+                    : ""}
+                </h2>
+                <div className="flex flex-col-reverse lg:flex-row gap-x-16 w-full">
+                  {/* Left Section */}
+                  <div className="lg:w-3/5 w-full pt-4 lg:pt-20">
+                    <div className="grid grid-cols-1 gap-y-12">
+                      {organizations[selectedSection].map((organization) => (
+                        <div
+                          key={organization.name}
+                          className="lg:px-8 px-4 py-6 relative bg-gray-100 rounded-lg flex flex-col lg:flex-row lg:items-center items-stretch  space-x-4"
+                        >
+                          <div className="absolute lg:-left-14 left-[75%] px-2 py-4 rounded-bl-md rounded-tl-md top-0 bg-gray-100">
+                            <img
+                              src={organization.imageUrl}
+                              alt={organization.name}
+                              className="h-20 w-20"
+                            />
+                          </div>
 
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold mb-2">
-                            {organization.name}
-                          </h3>
-                          <p className="text-gray-600">No Room Rent Limit</p>
-                          <p className="text-gray-600">
-                            {organization.renewalBonus}
-                          </p>
-                          <p className="text-gray-600">
-                            Unlimited Restoration of cover
-                          </p>
-                        </div>
-                        <div className="text-right mt-4">
-                          <div className="flex justify-between gap-x-8 items-center">
-                            <p className="flex flex-col">
-                              <strong className="text-xl">
-                                {organization.cover}
-                              </strong>{" "}
-                              <p className="text-[12px]">Cover Amount</p>
+                          <div className="flex-1">
+                            <h3 className="text-xl font-semibold mb-2">
+                              {organization.name}
+                            </h3>
+                            <p className="text-gray-600">No Room Rent Limit</p>
+                            <p className="text-gray-600">
+                              {organization.renewalBonus}
                             </p>
-                            <p className="flex flex-col">
-                              <strong className="text-xl">
-                                {organization.hospitals}
-                              </strong>
-                              <p className="text-[12px]">Cashless hospitals</p>
+                            <p className="text-gray-600">
+                              Unlimited Restoration of cover
                             </p>
                           </div>
-                          <button
-                            onClick={handleCallRequest}
-                            className="text-blue-500 shadow-lg shadow-blue-500 ring-2 ring-blue-500 py-2 px-4 rounded-lg w-full hover:bg-blue-100 mt-4"
-                          >
-                            {organization.premium}
-                          </button>
+                          <div className="text-right mt-4">
+                            <div className="flex justify-between gap-x-8 items-center">
+                              <p className="flex flex-col">
+                                <strong className="text-xl">
+                                  {organization.cover}
+                                </strong>{" "}
+                                <p className="text-[12px]">Cover Amount</p>
+                              </p>
+                              <p className="flex flex-col">
+                                <strong className="text-xl">
+                                  {organization.hospitals}
+                                </strong>
+                                <p className="text-[12px]">
+                                  Cashless hospitals
+                                </p>
+                              </p>
+                            </div>
+                            <button
+                              onClick={handleCallRequest}
+                              className="text-blue-500 shadow-lg shadow-blue-500 ring-2 ring-blue-500 py-2 px-4 rounded-lg w-full hover:bg-blue-100 mt-4"
+                            >
+                              {organization.premium}
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 flex justify-between w-full">
-                    <button
-                      className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
-                      onClick={() => setSelectedSection(null)}
-                    >
-                      Back
-                    </button>
-                    {selectedSection === "healthCard" && (
+                      ))}
+                    </div>
+                    <div className="mt-6 flex justify-between w-full">
                       <button
                         className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
-                        onClick={() => goToStep(7)}
+                        onClick={() => setSelectedSection(null)}
                       >
-                        Book a Health Checkup
+                        Back
                       </button>
-                    )}
+                    </div>
+                  </div>
+
+                  {/* Right Section with YouTube Embed */}
+                  <div className="lg:w-2/5 w-full flex justify-center items-center">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/RsQWsFXbMLA?si=z28WAn5NoAt2asUx"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="w-full h-[400px] rounded-lg border"
+                    />
                   </div>
                 </div>
 
-                {/* Right Section with YouTube Embed */}
-                <div className="lg:w-2/5 w-full flex justify-center items-center">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/RsQWsFXbMLA?si=z28WAn5NoAt2asUx"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    className="w-full h-[400px] rounded-lg border"
-                  />
+                <div className="w-full mt-8">
+                  <InsuranceSlider />
                 </div>
-              </div>
 
-              <div className="w-full mt-8">
-                <InsuranceSlider />
-              </div>
-
-              <div>
-                <Step11Banner />
-              </div>
+                <div>
+                  <Step11Banner />
+                </div>
+              </>
             </div>
           )}
         </div>

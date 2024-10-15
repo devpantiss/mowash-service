@@ -52,7 +52,7 @@ const Sidebar: FC = () => {
         {/* Services */}
         <Link
           className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
-          href="/dashboard"
+          href="/dashboard/services"
         >
           <AiFillSetting size={24} />
           <span className="hidden group-hover:block">Services</span>
@@ -67,22 +67,13 @@ const Sidebar: FC = () => {
           <span className="hidden group-hover:block">Earnings</span>
         </Link>
         
-        {/* Earnings */}
+        {/* Checkup */}
         <Link
           className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
-          href="/welfare/bankdetails"
+          href="/welfare/healthcheckup"
         >
-          <AiFillDollarCircle size={24} />
-          <span className="hidden group-hover:block">Bank Details</span>
-        </Link>
-
-        {/* Profile */}
-        <Link
-          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
-          href="/dashboard"
-        >
-          <AiFillProfile size={24} />
-          <span className="hidden group-hover:block">Profile</span>
+                <BsFillHeartPulseFill size={20} />
+                <span className="hidden group-hover:block">Health Checkup</span>
         </Link>
 
         {/* Welfare Services - Accordion */}
@@ -138,13 +129,7 @@ const Sidebar: FC = () => {
                 <BsCardChecklist size={20} />
                 <span className="hidden group-hover:block">Certification</span>
               </Link>
-              <Link
-                href="/welfare/healthcheckup"
-                className="flex items-center space-x-2 hover:bg-blue-400 rounded-md"
-              >
-                <BsFillHeartPulseFill size={20} />
-                <span className="hidden group-hover:block">Health Checkup</span>
-              </Link>
+              
             </div>
           )}
         </div>

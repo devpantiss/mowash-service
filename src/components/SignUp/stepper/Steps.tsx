@@ -1,11 +1,11 @@
 import SignupStep0 from "@/components/SignUp/SignupStep0";
-// import SignupStep1 from '@/components/SignUp/SignupStep1';
+import SignupStep1 from '@/components/SignUp/SignupStep1';
 import SignupStep10 from "@/components/SignUp/SignupStep10";
 import SignupStep11 from "@/components/SignUp/SignupStep11";
 import SignupStep2 from "@/components/SignUp/SignupStep2";
 // import SignupStep3 from "@/components/SignUp/SignupStep3";
 import SignupStep4 from "@/components/SignUp/SignupStep4";
-// import SignupStep5 from "@/components/SignUp/SignupStep5";
+import SignupStep5 from "@/components/SignUp/SignupStep5";
 import SignupStep6 from "@/components/SignUp/SignupStep6";
 import SignupStep7 from "@/components/SignUp/SignupStep7";
 import SignupStep8 from "@/components/SignUp/SignupStep8";
@@ -17,8 +17,10 @@ const Steps = [
   SignupStep0,
   SignupStep4,
   SignupStep2,
+  SignupStep5,
   SignupStep6,
   SignupStep7,
+  SignupStep1,
   SignupStep9,
   SignupStep11,
   SignupStep12,

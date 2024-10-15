@@ -5,6 +5,9 @@ import { MdEngineering } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
 import dynamic from "next/dynamic";
 import animation from "@/components/assets/animation.json";
+import { GiGraduateCap } from "react-icons/gi";
+import { FaHandshake } from "react-icons/fa6";
+
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -111,23 +114,23 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                 <h1 className="text-2xl font-bold text-white text-center mb-3">
                   Select Your Category
                 </h1>
-                <div className="space-x-4 mb-4 justify-center flex">
+                <div className="grid grid-cols-4 space-x-4 mb-4">
                   <button
                     onClick={() => handleOptionClick("MoWash Engineer")}
-                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
+                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex flex-col items-center justify-center 
                 ${
                   selectedOption === "MoWash Engineer"
                     ? "border-blue-500 text-blue-500 bg-blue-100"
                     : "text-white border-gray-300"
                 }`}
                   >
-                    <MdEngineering className="text-2xl" />
-                    <span className="font-semibold">Mo WashEngineer</span>
+                    <MdEngineering className="text-3xl" />
+                    <span className="font-semibold">Mo Wash Engineer</span>
                   </button>
 
                   <button
                     onClick={() => handleOptionClick("MoWash Preneur")}
-                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex lg:flex-row flex-col items-center justify-center 
+                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex  flex-col items-center justify-center 
                 ${
                   selectedOption === "MoWash Preneur"
                     ? "border-blue-500 text-blue-500 bg-blue-100"
@@ -135,7 +138,33 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                 }`}
                   >
                     <GrUserManager className="text-2xl" />
-                    <span className="font-semibold">Mo WashPreneur</span>
+                    <span className="font-semibold">Mo Wash Preneur</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleOptionClick("MoWash Preneur")}
+                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex flex-col items-center justify-center 
+                ${
+                  selectedOption === "MoWash Preneur"
+                    ? "border-blue-500 text-blue-500 bg-blue-100"
+                    : "text-white border-gray-300"
+                }`}
+                  >
+                    <GiGraduateCap className="text-3xl" />
+                    <span className="font-semibold">Wash Fellow</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleOptionClick("MoWash Preneur")}
+                    className={`lg:p-4 border-2 p-2 rounded-lg gap-y-2 lg:gap-x-6 flex flex-col items-center justify-center 
+                ${
+                  selectedOption === "MoWash Preneur"
+                    ? "border-blue-500 text-blue-500 bg-blue-100"
+                    : "text-white border-gray-300"
+                }`}
+                  >
+                    <FaHandshake className="text-2xl" />
+                    <span className="font-semibold">SSSP</span>
                   </button>
                 </div>
               </div>
@@ -235,12 +264,6 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
           </div>
         </div>
       </div>
-
-      {/* <img
-        src="https://app.shiprocket.in/sr_login/assets/images/regbackground2.png"
-        alt="Login"
-        className="absolute w-100 -bottom-10 lg:block hidden z-0"
-      /> */}
     </>
   );
 };

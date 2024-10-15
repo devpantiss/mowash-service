@@ -5,14 +5,97 @@ import "slick-carousel/slick/slick-theme.css";
 import { jsPDF } from "jspdf";
 import animationData from "../assets/health.json";
 import dynamic from "next/dynamic";
+import style from "@/components/common/input/input.module.css";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 interface SignupStep12Props {
-  goToStep: (stepIndex: number) => void; // Pass a function to change the step
+  goToStep: (stepIndex: number) => void; // Function to change the step
+}
+
+interface HealthInfo {
+  fullName: string;
+  employeeId: string;
+  department: string;
+  jobTitle: string;
+  phoneNumber: string;
+  email: string;
+  emergencyContactName: string;
+  emergencyContactPhone: string;
+  emergencyContactRelationship: string;
+  dateOfBirth: string;
+  gender: string;
+  bloodType: string;
+  knownAllergies: string;
+  preExistingConditions: string;
+  currentMedications: string;
+  recentSurgeries: string;
+  vaccinationStatus: string;
+  physicalLimitations: string;
+  visionHearingIssues: string;
+  lastMedicalCheckup: string;
+  lastOccupationalHealthScreening: string;
+  smokingStatus: string;
+  alcoholConsumption: string;
+  exerciseFrequency: string;
+  consent: boolean;
 }
 
 const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
+  // Step management
+  const [isBooking, setIsBooking] = useState(false);
+
+  // Health Information Form State
+  const [healthInfo, setHealthInfo] = useState<HealthInfo>({
+    fullName: "",
+    employeeId: "",
+    department: "",
+    jobTitle: "",
+    phoneNumber: "",
+    email: "",
+    emergencyContactName: "",
+    emergencyContactPhone: "",
+    emergencyContactRelationship: "",
+    dateOfBirth: "",
+    gender: "",
+    bloodType: "",
+    knownAllergies: "",
+    preExistingConditions: "",
+    currentMedications: "",
+    recentSurgeries: "",
+    vaccinationStatus: "",
+    physicalLimitations: "",
+    visionHearingIssues: "",
+    lastMedicalCheckup: "",
+    lastOccupationalHealthScreening: "",
+    smokingStatus: "",
+    alcoholConsumption: "",
+    exerciseFrequency: "",
+    consent: false,
+  });
+
+  // Handle form input changes
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const target = e.target;
+    const name = target.name;
+
+    let value: string | boolean = target.value;
+
+    if (target instanceof HTMLInputElement && target.type === "checkbox") {
+      value = target.checked;
+    }
+
+    setHealthInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Booking State and Handlers (Existing functionality)
   const hospitals: { [key: string]: string[] } = {
     Bhubaneswar: ["AIIMS Bhubaneswar", "Capital Hospital", "KIMS Hospital"],
     Cuttack: ["SCB Medical College", "Acharya Harihar Hospital"],
@@ -59,34 +142,6 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
         },
       ],
     },
-    // {
-    //   name: "Alcohol Risk",
-    //   image:
-    //     "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727183284/Screenshot_2024-09-24_at_6.28.15_PM_ld5mcs.png",
-    //   image2:
-    //     "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727183284/Screenshot_2024-09-24_at_6.35.44_PM_lyruif.png",
-    //   description:
-    //     "This test evaluates liver function and other parameters to assess the risk of alcohol-related diseases.",
-    //   discountedCost: "₹999",
-    //   testsIncluded: [
-    //     {
-    //       name: "Liver Function Test (LFT)",
-    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249189/liver_function_onaw3h.jpg",
-    //     },
-    //     {
-    //       name: "Gamma-Glutamyl Transferase (GGT)",
-    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
-    //     },
-    //     {
-    //       name: "Blood Urea Nitrogen (BUN)",
-    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
-    //     },
-    //     {
-    //       name: "Complete Blood Count (CBC)",
-    //       icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/haemogram_ifibzh.jpg",
-    //     },
-    //   ],
-    // },
     {
       name: "Anemia Profile",
       image:
@@ -202,6 +257,44 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
     pdf.text("MoWash Representative contact: +91 9876543210", 20, 80);
     pdf.text("Doctor: Dr. Mohanty", 20, 90);
 
+    // Optionally include Health Information
+    if (isFormSubmitted) {
+      pdf.addPage();
+      pdf.setFontSize(16);
+      pdf.text("Employee Health Information", 20, 20);
+      pdf.setFontSize(12);
+      const info = [
+        `Full Name: ${healthInfo.fullName}`,
+        `Employee ID: ${healthInfo.employeeId}`,
+        `Department: ${healthInfo.department}`,
+        `Job Title: ${healthInfo.jobTitle}`,
+        `Phone Number: ${healthInfo.phoneNumber}`,
+        `Email: ${healthInfo.email}`,
+        `Emergency Contact Name: ${healthInfo.emergencyContactName}`,
+        `Emergency Contact Phone: ${healthInfo.emergencyContactPhone}`,
+        `Relationship: ${healthInfo.emergencyContactRelationship}`,
+        `Date of Birth: ${healthInfo.dateOfBirth}`,
+        `Gender: ${healthInfo.gender}`,
+        `Blood Type: ${healthInfo.bloodType}`,
+        `Known Allergies: ${healthInfo.knownAllergies}`,
+        `Pre-existing Conditions: ${healthInfo.preExistingConditions}`,
+        `Current Medications: ${healthInfo.currentMedications}`,
+        `Recent Surgeries: ${healthInfo.recentSurgeries}`,
+        `Vaccination Status: ${healthInfo.vaccinationStatus}`,
+        `Physical Limitations: ${healthInfo.physicalLimitations}`,
+        `Vision/Hearing Issues: ${healthInfo.visionHearingIssues}`,
+        `Last Medical Checkup: ${healthInfo.lastMedicalCheckup}`,
+        `Last Occupational Health Screening: ${healthInfo.lastOccupationalHealthScreening}`,
+        `Smoking Status: ${healthInfo.smokingStatus}`,
+        `Alcohol Consumption: ${healthInfo.alcoholConsumption}`,
+        `Exercise Frequency: ${healthInfo.exerciseFrequency}`,
+      ];
+
+      info.forEach((line, index) => {
+        pdf.text(line, 20, 30 + index * 10);
+      });
+    }
+
     // Save the generated PDF
     pdf.save("BookingDetails.pdf");
   };
@@ -241,194 +334,514 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
     ],
   };
 
+  // Form Submission Handler
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // You can add form validation here
+    setIsBooking(true);
+    setIsFormSubmitted(true); // Set the flag to true upon form submission
+  };
+
+  // Flag to indicate if form has been submitted
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   return (
     <div className="flex flex-col justify-center items-center bg-transparent p-6">
       <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
-        Health Checkup
+        Health & Wellness
       </h2>
-      {!selectedCheckup ? (
-        <div className="w-full gap-x-8 lg:h-[90vh] max-w-8xl flex flex-col-reverse lg:flex-row lg:justify-start items-center">
-          <div className="lg:w-1/2 w-full">
-            <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-4 gap-x-4">
-              {checkups.map((checkup) => (
-                <button
-                  key={checkup.name}
-                  onClick={() => handleCheckupSelection(checkup.name)}
-                  className="bg-transparent rounded-lg flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 text-center"
-                >
-                  <img
-                    src={checkup.image}
-                    alt={checkup.name}
-                    className="lg:w-[300px] w-full object-cover rounded-md"
+
+      {!isBooking ? (
+        // Health Information Form
+        <div className="w-full max-w-6xl bg-transparent ring-2 ring-white p-8 rounded-lg shadow-lg">
+          <h3 className="text-3xl text-white mb-6">
+            Employee Health Information
+          </h3>
+          <form onSubmit={handleFormSubmit} className="space-y-6">
+            {/* Health Information */}
+            <div>
+              <h4 className="text-xl text-white mb-2">Health Information</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Gender Input */}
+                <div className={style.inputContainer}>
+                  <select
+                    name="gender"
+                    value={healthInfo.gender}
+                    onChange={handleInputChange}
+                    required
+                    className={style.inputField}
+                  >
+                    <option value="">Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <label className={style.inputLabel}>Gender</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Blood Type Input */}
+                <div className={style.inputContainer}>
+                  <select
+                    name="bloodType"
+                    value={healthInfo.bloodType}
+                    onChange={handleInputChange}
+                    required
+                    className={style.inputField}
+                  >
+                    <option value="">Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                  <label className={style.inputLabel}>Blood Type</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Known Allergies Input */}
+                <div className={style.inputContainer}>
+                  <input
+                    type="text"
+                    name="knownAllergies"
+                    value={healthInfo.knownAllergies}
+                    onChange={handleInputChange}
+                    placeholder="Known Allergies"
+                    className={style.inputField}
                   />
-                </button>
-              ))}
+                  <label className={style.inputLabel}>Known Allergies</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Pre-existing Conditions Input */}
+                <div className={style.inputContainer}>
+                  <textarea
+                    name="preExistingConditions"
+                    value={healthInfo.preExistingConditions}
+                    onChange={handleInputChange}
+                    placeholder="Pre-existing Medical Conditions"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>
+                    Pre-existing Medical Conditions
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Current Medications Input */}
+                <div className={style.inputContainer}>
+                  <textarea
+                    name="currentMedications"
+                    value={healthInfo.currentMedications}
+                    onChange={handleInputChange}
+                    placeholder="Current Medications"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>
+                    Current Medications
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Recent Surgeries Input */}
+                <div className={style.inputContainer}>
+                  <textarea
+                    name="recentSurgeries"
+                    value={healthInfo.recentSurgeries}
+                    onChange={handleInputChange}
+                    placeholder="Recent Surgeries or Hospitalizations"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>
+                    Recent Surgeries or Hospitalizations
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Vaccination Status Input */}
+                <div className={style.inputContainer}>
+                  <input
+                    type="text"
+                    name="vaccinationStatus"
+                    value={healthInfo.vaccinationStatus}
+                    onChange={handleInputChange}
+                    placeholder="Vaccination Status (e.g., COVID-19, Flu)"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>Vaccination Status</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+              </div>
             </div>
-            <div className="text-center mt-8">
+
+            {/* Occupational Health & Safety */}
+            <div>
+              <h4 className="text-xl text-white mb-2">
+                Occupational Health & Safety
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Physical Limitations Input */}
+                <div className={style.inputContainer}>
+                  <textarea
+                    name="physicalLimitations"
+                    value={healthInfo.physicalLimitations}
+                    onChange={handleInputChange}
+                    placeholder="Physical Limitations (e.g., restricted mobility)"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>
+                    Physical Limitations
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Vision/Hearing Issues Input */}
+                <div className={style.inputContainer}>
+                  <textarea
+                    name="visionHearingIssues"
+                    value={healthInfo.visionHearingIssues}
+                    onChange={handleInputChange}
+                    placeholder="Vision/Hearing Issues"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>
+                    Vision/Hearing Issues
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Last Medical Checkup Date Input */}
+                <div className={style.inputContainer}>
+                  <input
+                    type="date"
+                    name="lastMedicalCheckup"
+                    value={healthInfo.lastMedicalCheckup}
+                    onChange={handleInputChange}
+                    placeholder="Last Medical Checkup Date"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>
+                    Last Medical Checkup Date
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Last Occupational Health Screening Date Input */}
+                <div className={style.inputContainer}>
+                  <input
+                    type="date"
+                    name="lastOccupationalHealthScreening"
+                    value={healthInfo.lastOccupationalHealthScreening}
+                    onChange={handleInputChange}
+                    placeholder="Last Occupational Health Screening Date"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>
+                    Last Occupational Health Screening Date
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+              </div>
+            </div>
+
+            {/* Lifestyle Habits */}
+            <div>
+              <h4 className="text-xl text-white mb-2">
+                Lifestyle Habits (Optional)
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Smoking Status Select */}
+                <div className={style.inputContainer}>
+                  <select
+                    name="smokingStatus"
+                    value={healthInfo.smokingStatus}
+                    onChange={handleInputChange}
+                    className={style.inputField}
+                  >
+                    <option value="">Smoking Status</option>
+                    <option value="Smoker">Smoker</option>
+                    <option value="Non-Smoker">Non-Smoker</option>
+                    <option value="Former Smoker">Former Smoker</option>
+                  </select>
+                  <label className={style.inputLabel}>Smoking Status</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Alcohol Consumption Select */}
+                <div className={style.inputContainer}>
+                  <select
+                    name="alcoholConsumption"
+                    value={healthInfo.alcoholConsumption}
+                    onChange={handleInputChange}
+                    className={style.inputField}
+                  >
+                    <option value="">Alcohol Consumption</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="Occasionally">Occasionally</option>
+                  </select>
+                  <label className={style.inputLabel}>
+                    Alcohol Consumption
+                  </label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+
+                {/* Exercise Frequency Select */}
+                <div className={style.inputContainer}>
+                  <select
+                    name="exerciseFrequency"
+                    value={healthInfo.exerciseFrequency}
+                    onChange={handleInputChange}
+                    className={style.inputField}
+                  >
+                    <option value="">Exercise Frequency</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Rarely">Rarely</option>
+                    <option value="Never">Never</option>
+                  </select>
+                  <label className={style.inputLabel}>Exercise Frequency</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+              </div>
+            </div>
+
+            {/* Consent and Declaration */}
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="consent"
+                checked={healthInfo.consent}
+                onChange={handleInputChange}
+                required
+                className="mr-2"
+              />
+              <label className="text-white">
+                I consent to the sharing of my medical information.
+              </label>
+            </div>
+
+            {/* Form Actions */}
+            <div className="flex justify-between">
               <button
-                onClick={() => goToStep(6)}
-                className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
+                type="submit"
+                className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
               >
-                back
+                Submit
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsBooking(true)}
+                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              >
+                Book Health Checkup
               </button>
             </div>
-          </div>
-          {/* flow chart image */}
-          <div className="lg:w-1/2 w-full flex justify-center items-center rounded-md mb-6 lg:mb-0">
-            <Lottie
-              animationData={animationData}
-              loop={true}
-              style={{
-                width: "100%",
-                height: "600px",
-              }}
-              className="block "
-            />
-          </div>
+          </form>
         </div>
       ) : (
-        <div className="flex lg:h-[100vh] w-full flex-col lg:flex-row">
-          <div className="lg:w-1/3 w-full mb-6">
-            <img
-              src={
-                checkups.find((c) => c.name === selectedCheckup)?.image2 || ""
-              }
-              alt={selectedCheckup}
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-          </div>
+        // Booking Interface
+        <div className="flex flex-col justify-center items-center w-full">
+          {!selectedCheckup ? (
+            <div className="w-full gap-x-8 lg:h-[90vh] max-w-8xl flex flex-col-reverse lg:flex-row lg:justify-start items-center">
+              <div className="lg:w-1/2 w-full">
+                <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-4 gap-x-4">
+                  {checkups.map((checkup) => (
+                    <button
+                      key={checkup.name}
+                      onClick={() => handleCheckupSelection(checkup.name)}
+                      className="bg-transparent rounded-lg flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 text-center"
+                    >
+                      <img
+                        src={checkup.image}
+                        alt={checkup.name}
+                        className="lg:w-[300px] w-full object-cover rounded-md"
+                      />
+                    </button>
+                  ))}
+                </div>
+                <div className="text-center mt-8">
+                  <button
+                    onClick={() => goToStep(8)}
+                    className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
+                  >
+                    Back
+                  </button>
+                </div>
+              </div>
+              {/* Flow chart image */}
+              <div className="lg:w-1/2 w-full flex justify-center items-center rounded-md mb-6 lg:mb-0">
+                <Lottie
+                  animationData={animationData}
+                  loop={true}
+                  style={{
+                    width: "100%",
+                    height: "600px",
+                  }}
+                  className="block"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="flex lg:h-[100vh] w-full flex-col lg:flex-row">
+              <div className="lg:w-1/3 w-full mb-6">
+                <img
+                  src={
+                    checkups.find((c) => c.name === selectedCheckup)?.image2 ||
+                    ""
+                  }
+                  alt={selectedCheckup}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
 
-          <div className="lg:w-2/3 lg:pl-8 w-full">
-            <h2 className="text-3xl text-white font-bold mb-4 capitalize">
-              {selectedCheckup}
-            </h2>
-            <p className="text-lg text-white mb-4">
-              {checkups.find((c) => c.name === selectedCheckup)?.description}
-            </p>
-            <p className="text-2xl text-yellow-400 mb-4">
-              Discounted Cost:{" "}
-              {checkups.find((c) => c.name === selectedCheckup)?.discountedCost}
-            </p>
+              <div className="lg:w-2/3 lg:pl-8 w-full">
+                <h2 className="text-3xl text-white font-bold mb-4 capitalize">
+                  {selectedCheckup}
+                </h2>
+                <p className="text-lg text-white mb-4">
+                  {
+                    checkups.find((c) => c.name === selectedCheckup)
+                      ?.description
+                  }
+                </p>
+                <p className="text-2xl text-yellow-400 mb-4">
+                  Discounted Cost:{" "}
+                  {
+                    checkups.find((c) => c.name === selectedCheckup)
+                      ?.discountedCost
+                  }
+                </p>
 
-            {/* Slider for Tests Included */}
-            <div className="mt-6">
-              <h3 className="text-white text-2xl font-bold mb-4">
-                Tests Included
-              </h3>
-              <Slider {...sliderSettings}>
-                {checkups
-                  .find((c) => c.name === selectedCheckup)
-                  ?.testsIncluded.map((test) => (
-                    <div key={test.name} className="p-4">
-                      <div className="bg-white h-[150px] rounded-lg p-4 flex flex-col items-center">
-                        <img
-                          src={test.icon}
-                          alt={test.name}
-                          className="w-16 h-16 mb-2"
-                        />
-                        <p className="text-center text-black text-sm">
-                          {test.name}
-                        </p>
-                      </div>
+                {/* Slider for Tests Included */}
+                <div className="mt-6">
+                  <h3 className="text-white text-2xl font-bold mb-4">
+                    Tests Included
+                  </h3>
+                  <Slider {...sliderSettings}>
+                    {checkups
+                      .find((c) => c.name === selectedCheckup)
+                      ?.testsIncluded.map((test) => (
+                        <div key={test.name} className="p-4">
+                          <div className="bg-white h-[150px] rounded-lg p-4 flex flex-col items-center">
+                            <img
+                              src={test.icon}
+                              alt={test.name}
+                              className="w-16 h-16 mb-2"
+                            />
+                            <p className="text-center text-black text-sm">
+                              {test.name}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                  </Slider>
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-white mb-2">
+                    Select your district:
+                  </label>
+                  <select
+                    value={selectedDistrict}
+                    onChange={handleDistrictChange}
+                    className="w-full p-3 rounded-lg bg-white"
+                  >
+                    <option value="">Select District</option>
+                    {Object.keys(hospitals).map((district) => (
+                      <option key={district} value={district}>
+                        {district}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {selectedDistrict && (
+                  <div className="mb-4">
+                    <label className="block text-white mb-2">
+                      Select a hospital in {selectedDistrict}:
+                    </label>
+                    <select
+                      value={selectedHospital}
+                      onChange={handleHospitalChange}
+                      className="w-full p-3 rounded-lg bg-white"
+                    >
+                      <option value="">Select Hospital</option>
+                      {hospitals[selectedDistrict].map((hospital) => (
+                        <option key={hospital} value={hospital}>
+                          {hospital}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                {isBookingCreated && (
+                  <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
+                    <h3 className="text-lg font-bold mb-2">Booking Details</h3>
+                    <div className="flex justify-between">
+                      <p>
+                        <strong>Checkup:</strong> {selectedCheckup}
+                      </p>
+                      <p>
+                        <strong>Hospital:</strong> {selectedHospital}
+                      </p>
                     </div>
-                  ))}
-              </Slider>
-            </div>
 
-            <div className="mb-4">
-              <label className="block text-white mb-2">
-                Select your district:
-              </label>
-              <select
-                value={selectedDistrict}
-                onChange={handleDistrictChange}
-                className="w-full p-3 rounded-lg bg-white"
-              >
-                <option value="">Select District</option>
-                {Object.keys(hospitals).map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </select>
-            </div>
+                    <div className="flex justify-between">
+                      <p>
+                        <strong>Date:</strong> {new Date().toLocaleDateString()}
+                      </p>
+                      <p>
+                        <strong>Time:</strong> {new Date().toLocaleTimeString()}
+                      </p>
+                    </div>
+                    <div className="flex justify-between">
+                      <p>
+                        <strong>MoWash Representative contact:</strong> <br />
+                        +91 9876543210
+                      </p>
+                      <p>
+                        <strong>Doctor:</strong> Dr. Mohanty
+                      </p>
+                    </div>
+                  </div>
+                )}
+                <div className="flex justify-end mt-8 space-x-4">
+                  {!isBookingCreated ? (
+                    <button
+                      onClick={handleCreateBooking}
+                      disabled={!selectedDistrict || !selectedHospital}
+                      className={`${
+                        !selectedDistrict || !selectedHospital
+                          ? "bg-yellow-300 cursor-not-allowed"
+                          : "bg-yellow-400 hover:bg-yellow-500"
+                      } text-black py-2 px-6 rounded-lg transition`}
+                    >
+                      Create Booking
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleDownloadPdf}
+                      className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
+                    >
+                      Download PDF
+                    </button>
+                  )}
 
-            {selectedDistrict && (
-              <div className="mb-4">
-                <label className="block text-white mb-2">
-                  Select a hospital in {selectedDistrict}:
-                </label>
-                <select
-                  value={selectedHospital}
-                  onChange={handleHospitalChange}
-                  className="w-full p-3 rounded-lg bg-white"
-                >
-                  <option value="">Select Hospital</option>
-                  {hospitals[selectedDistrict].map((hospital) => (
-                    <option key={hospital} value={hospital}>
-                      {hospital}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-            {isBookingCreated && (
-              <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
-                <h3 className="text-lg font-bold mb-2">Booking Details</h3>
-                <div className="flex justify-between">
-                  <p>
-                    <strong>Checkup:</strong> {selectedCheckup}
-                  </p>
-                  <p>
-                    <strong>Hospital:</strong> {selectedHospital}
-                  </p>
-                </div>
-
-                <div className="flex justify-between">
-                  <p>
-                    <strong>Date:</strong> {new Date().toLocaleDateString()}
-                  </p>
-                  <p>
-                    <strong>Time:</strong> {new Date().toLocaleTimeString()}
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <p>
-                    <strong>MoWash Representative contact:</strong> <br />
-                    +91 9876543210
-                  </p>
-                  <p>
-                    <strong>Doctor:</strong> Dr. Mohanty
-                  </p>
+                  <button
+                    onClick={resetSelection}
+                    className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
+                  >
+                    Back
+                  </button>
                 </div>
               </div>
-            )}
-            <div className="flex justify-end mt-8">
-              {!isBookingCreated ? (
-                <button
-                  onClick={handleCreateBooking}
-                  disabled={!selectedDistrict || !selectedHospital}
-                  className="bg-yellow-400 text-black py-2 px-6 rounded-lg hover:bg-yellow-500"
-                >
-                  Create Booking
-                </button>
-              ) : (
-                <button
-                  onClick={handleDownloadPdf}
-                  className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
-                >
-                  Download PDF
-                </button>
-              )}
-
-              <button
-                onClick={resetSelection}
-                className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
-              >
-                Back
-              </button>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>

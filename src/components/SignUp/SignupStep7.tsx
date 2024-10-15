@@ -489,8 +489,8 @@ const SignupStep7: React.FC = () => {
 
             <button
               type="submit"
-              className="px-6 py-2 w-full lg:w-1/2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
-            >
+              className="px-6 py-2 w-full bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
+              >
               Submit
             </button>
           </form>

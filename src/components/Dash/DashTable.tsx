@@ -1,36 +1,27 @@
 import React from "react";
 
-interface DashTableProps {
-  courierName: string;
-  pickupUnscheduled: number;
-  pickupScheduled: number;
-  inTransit: number;
-  delivered: number;
-  rto: number;
-  lostDamaged: number;
-  totalShipment: number;
+interface OrderDetailsProps {
+  customerName: string;
+  address: string;
+  contactNumber: string;
+  jobDescription: string;
+  earnings: number;
 }
 
-const DashTable: React.FC<DashTableProps> = ({
-  courierName,
-  pickupUnscheduled,
-  pickupScheduled,
-  inTransit,
-  delivered,
-  rto,
-  lostDamaged,
-  totalShipment,
+const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
+  customerName,
+  address,
+  contactNumber,
+  jobDescription,
+  earnings,
 }) => {
   return (
     <tr className="text-center border-b border-gray-200">
-      <td className="py-4 px-4">{courierName}</td>
-      <td className="px-4">{pickupUnscheduled}</td>
-      <td className="px-4">{pickupScheduled}</td>
-      <td className="px-4">{inTransit}</td>
-      <td className="px-4">{delivered}</td>
-      <td className="px-4">{rto}</td>
-      <td className="px-4">{lostDamaged}</td>
-      <td className="px-4">{totalShipment}</td>
+      <td className="py-4 px-4">{customerName}</td>
+      <td className="py-4 px-4">{address}</td>
+      <td className="py-4 px-4">{contactNumber}</td>
+      <td className="py-4 px-4">{jobDescription}</td>
+      <td className="py-4 px-4">₹{earnings.toFixed(2)}</td>
     </tr>
   );
 };
@@ -38,180 +29,212 @@ const DashTable: React.FC<DashTableProps> = ({
 const Table: React.FC = () => {
   const data = [
     {
-      courierName: "Courier 1",
-      pickupUnscheduled: 5,
-      pickupScheduled: 3,
-      inTransit: 12,
-      delivered: 20,
-      rto: 1,
-      lostDamaged: 0,
-      totalShipment: 41,
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
     },
     {
-      courierName: "Courier 2",
-      pickupUnscheduled: 4,
-      pickupScheduled: 2,
-      inTransit: 15,
-      delivered: 18,
-      rto: 2,
-      lostDamaged: 1,
-      totalShipment: 42,
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
     },
-    // ... more data
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+    },
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+    },
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+    },
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+    },
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+    },
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+    },
+    // Add more order data as needed...
   ];
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
+    <div className="bg-transparent lg:p-6 p-2 rounded-lg shadow-lg">
       <div className="flex justify-between mb-4">
-        <h3 className="text-lg font-bold">Shipment Overview by Courier</h3>
-        <span className="text-gray-500">Last 30 Days</span>
+        <h3 className="text-lg text-white font-bold">Today's Orders</h3>
+        <span className="text-gray-200">Date: {new Date().toLocaleDateString()}</span>
       </div>
       <div className="overflow-x-auto">
         <div className="max-h-96 overflow-y-auto">
           <table className="min-w-full table-auto text-sm">
-            <thead className="sticky top-0 bg-gray-100 text-sm text-gray-600 shadow">
+            <thead className="bg-gray-100 text-sm text-gray-600 sticky top-0">
               <tr>
-                <th className="py-2 px-4">Courier Name</th>
-                <th className="py-2 px-4">Pickup Unscheduled</th>
-                <th className="py-2 px-4">Pickup Scheduled</th>
-                <th className="py-2 px-4">In-Transit</th>
-                <th className="py-2 px-4">Delivered</th>
-                <th className="py-2 px-4">RTO</th>
-                <th className="py-2 px-4">Lost/Damaged</th>
-                <th className="py-2 px-4">Total Shipment</th>
+                <th className="py-2 px-4">Customer Name</th>
+                <th className="py-2 px-4">Address</th>
+                <th className="py-2 px-4">Contact Number</th>
+                <th className="py-2 px-4">Job Description</th>
+                <th className="py-2 px-4">Earnings</th>
               </tr>
             </thead>
-            <tbody className="text-center">
+            <tbody className="text-center text-white">
               {data.length > 0 ? (
-                data.map((row, index) => (
-                  <DashTable
+                data.map((order, index) => (
+                  <OrderDetailsTable
                     key={index}
-                    courierName={row.courierName}
-                    pickupUnscheduled={row.pickupUnscheduled}
-                    pickupScheduled={row.pickupScheduled}
-                    inTransit={row.inTransit}
-                    delivered={row.delivered}
-                    rto={row.rto}
-                    lostDamaged={row.lostDamaged}
-                    totalShipment={row.totalShipment}
+                    customerName={order.customerName}
+                    address={order.address}
+                    contactNumber={order.contactNumber}
+                    jobDescription={order.jobDescription}
+                    earnings={order.earnings}
                   />
                 ))
               ) : (
                 <tr>
-                  <td colSpan={8} className="py-6 text-center">
+                  <td colSpan={5} className="py-6 text-center">
                     <div className="flex flex-col items-center">
                       <span className="text-lg font-semibold">
-                        Couriers&apos; data not found for this filter.
+                        No orders found for today.
                       </span>
                       <img
                         src="https://path-to-your-image.png"

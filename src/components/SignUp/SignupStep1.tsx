@@ -1,141 +1,212 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from "react";
 import { MdEngineering } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
+import style from "@/components/common/input/input.module.css"; // Import your custom styles
 
 const SignupStep1: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [engineerCount, setEngineerCount] = useState(0);
-  const [preneurCount, setPreneurCount] = useState(0);
+  // Form state variables
+  const [yearsOfExperience, setYearsOfExperience] = useState<string>("");
+  const [previousWork, setPreviousWork] = useState<string>("");
+  const [currentIncome, setCurrentIncome] = useState<string>("");
+  const [familyMembers, setFamilyMembers] = useState<string>("");
 
-  const engineerTarget = 120; // Actual number for MoWash Engineers
-  const preneurTarget = 85;   // Actual number for MoWash Preneurs
+  // Error state variables for validation
+  const [errors, setErrors] = useState<{
+    yearsOfExperience?: string;
+    previousWork?: string;
+    currentIncome?: string;
+    familyMembers?: string;
+  }>({});
 
-  const counterRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  // Function to animate the counters
-  const animateCounter = (start: number, end: number, setter: React.Dispatch<React.SetStateAction<number>>) => {
-    let current = start;
-    const duration = 1000; // Animation duration in ms
-    const stepTime = Math.abs(Math.floor(duration / end));
+  // Function to handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-    const step = () => {
-      current += 1;
-      setter(current);
-      if (current < end) {
-        requestAnimationFrame(step);
-      } else {
-        setter(end);
-      }
-    };
-    requestAnimationFrame(step);
-  };
+    // Validate form inputs
+    const newErrors: typeof errors = {};
 
-  useEffect(() => {
-    // Set up Intersection Observer to detect when the counter section comes into view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.5 } // Counter section must be 50% visible
-    );
-
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
+    if (!yearsOfExperience) {
+      newErrors.yearsOfExperience = "Please select your years of experience.";
     }
 
-    return () => {
-      if (counterRef.current) {
-        observer.unobserve(counterRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    // Start the counters when the section becomes visible
-    if (isVisible) {
-      animateCounter(0, engineerTarget, setEngineerCount);
-      animateCounter(0, preneurTarget, setPreneurCount);
+    if (!previousWork.trim()) {
+      newErrors.previousWork = "Please provide your previous employment.";
     }
-  }, [isVisible]);
 
-  const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
+    if (!currentIncome) {
+      newErrors.currentIncome =
+        "Please select your current monthly income range.";
+    }
+
+    if (!familyMembers) {
+      newErrors.familyMembers = "Please select the number of family members.";
+    }
+
+    setErrors(newErrors);
+
+    // If no errors, proceed with form submission (e.g., API call)
+    if (Object.keys(newErrors).length === 0) {
+      alert("Form submitted successfully!");
+      // Reset form
+      setYearsOfExperience("");
+      setPreviousWork("");
+      setCurrentIncome("");
+      setFamilyMembers("");
+    }
   };
 
   return (
-    <div className="flex items-center justify-center h-[100vh] bg-trnsparent">
-      {/* Form Content */}
-      <div className="w-full px-8 py-2 bg-transparent rounded-lg flex gap-8">
-        {/* Left Section: Description and Counters */}
-        <div 
-          className="flex w-3/5 relative flex-col justify-center text-white p-8 rounded-lg"
+    <div className="flex flex-col items-center justify-center min-h-screen bg-transparent p-4">
+      {/* Title */}
+      <h1 className="text-white text-5xl font-bold mb-4 text-center">
+        Experience Information
+      </h1>
+      <div className="w-full max-w-7xl bg-transparent ring-2 ring-white rounded-lg shadow-lg overflow-hidden flex flex-col lg:flex-row">
+        {/* Left Section: Description */}
+        <div
+          className="w-full lg:w-1/2 bg-cover bg-center relative"
           style={{
-            backgroundImage: "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726742454/jay-bhadreshwara-lux0psvZGLU-unsplash_whv55p.jpg')", // Replace with your image URL
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundImage:
+              "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726742454/jay-bhadreshwara-lux0psvZGLU-unsplash_whv55p.jpg')",
           }}
         >
-          <div className='absolute inset-0 z-10 bg-black/50'></div>
-          <div className='z-30'>
-            {/* Descriptions */}
-          <h2 className="text-3xl font-bold mb-4">Who are we?</h2>
-          <div className="mb-6">
-            <p className="font-semibold text-lg">Mo WashEngineer:</p>
-            <p className="text-sm">Our expert technicians who manage the washing and operational aspects of our business on the field.</p>
-          </div>
-          <div className="mb-6">
-            <p className="font-semibold text-lg">Mo WashPreneur:</p>
-            <p className="text-sm">Business-minded individuals focused on expanding and growing the MoWash brand by being the partner of our Store Products lineup.</p>
-          </div>
-
-          {/* Counters */}
-          <div ref={counterRef} className="flex space-x-6">
-            <div className="text-center">
-              <p className="text-4xl font-bold">{engineerCount}</p>
-              <p className="text-sm">Mo WashEngineers</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl font-bold">{preneurCount}</p>
-              <p className="text-sm">Mo WashPreneurs</p>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="relative z-10 p-8 flex flex-col justify-center h-full">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Join Our Team
+            </h2>
+            <p className="text-white mb-6">
+              At MoWash, we value your experience and dedication. Fill out this
+              form to help us understand your background and how you can
+              contribute to our mission.
+            </p>
           </div>
         </div>
 
-        {/* Right Section: Options */}
-        <div className="w-2/5 flex flex-col justify-center space-y-4">
-          {/* Heading */}
-          <h2 className="text-3xl text-white font-bold mb-6 text-left">Hey, I&apos;m a...</h2>
+        {/* Right Section: Experience Form */}
+        <div className="w-full lg:w-1/2 p-8">
+          <form ref={formRef} onSubmit={handleSubmit} noValidate>
+            {/* Previous Employment */}
+            <div className={style.inputContainer}>
+              <input
+                placeholder="Previous Employment"
+                className={style.inputField}
+                type="text"
+                value={previousWork}
+                onChange={(e) => setPreviousWork(e.target.value)}
+              />
+              <label className={style.inputLabel}>Previous Employment</label>
+              <span className={style.inputHighlight}></span>
+              {errors.previousWork && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.previousWork}
+                </p>
+              )}
+            </div>
 
-          {/* Option Buttons */}
-          <div className="space-y-4">
-            <button
-              onClick={() => handleOptionClick('MoWash Engineer')}
-              className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'MoWash Engineer' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
-            >
-              <span className="font-semibold">Mo WashEngineer</span>
-              <MdEngineering className="text-8xl"/>
-            </button>
+            {/* Years of Experience */}
+            <div className="mb-6">
+              <label className="block text-white font-semibold mb-2">
+                Years of Experience<span className="text-red-500">*</span>
+              </label>
+              <div className="flex flex-col space-y-2">
+                {["0-1", "1-3", "More than 3", "No experience"].map(
+                  (option) => (
+                    <label key={option} className="inline-flex items-center">
+                      <input
+                        type="radio"
+                        name="yearsOfExperience"
+                        value={option}
+                        checked={yearsOfExperience === option}
+                        onChange={(e) => setYearsOfExperience(e.target.value)}
+                        className="form-radio h-5 w-5 text-blue-600"
+                      />
+                      <span className="ml-2 text-white">{option}</span>
+                    </label>
+                  )
+                )}
+              </div>
+              {errors.yearsOfExperience && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.yearsOfExperience}
+                </p>
+              )}
+            </div>
 
+            {/* Current Monthly Income */}
+            <div className="mb-6">
+              <label className="block text-white font-semibold mb-2">
+                Current Monthly Income<span className="text-red-500">*</span>
+              </label>
+              <div className="flex flex-col space-y-2">
+                {[
+                  "Less than ₹20,000",
+                  "₹20,000 - ₹40,000",
+                  "₹40,000 - ₹60,000",
+                  "More than ₹60,000",
+                ].map((range) => (
+                  <label key={range} className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      name="currentIncome"
+                      value={range}
+                      checked={currentIncome === range}
+                      onChange={(e) => setCurrentIncome(e.target.value)}
+                      className="form-radio h-5 w-5 text-blue-600"
+                    />
+                    <span className="ml-2 text-white">{range}</span>
+                  </label>
+                ))}
+              </div>
+              {errors.currentIncome && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.currentIncome}
+                </p>
+              )}
+            </div>
+
+            {/* Number of Family Members */}
+            <div className="mb-6">
+              <label className="block text-white font-semibold mb-2">
+                Number of Family Members<span className="text-red-500">*</span>
+              </label>
+              <div className="flex flex-col space-y-2">
+                {[
+                  "Less than 3 members",
+                  "3-8 members",
+                  "More than 8 members",
+                ].map((range) => (
+                  <label key={range} className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      name="familyMembers"
+                      value={range}
+                      checked={familyMembers === range}
+                      onChange={(e) => setFamilyMembers(e.target.value)}
+                      className="form-radio h-5 w-5 text-blue-600"
+                    />
+                    <span className="ml-2 text-white">{range}</span>
+                  </label>
+                ))}
+              </div>
+              {errors.familyMembers && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.familyMembers}
+                </p>
+              )}
+            </div>
+
+            {/* Submit Button */}
             <button
-              onClick={() => handleOptionClick('MoWash Preneur')}
-              className={`w-full p-4 border-2 rounded-lg flex-col-reverse flex items-center justify-center 
-                ${selectedOption === 'MoWash Preneur' ? 'border-blue-500 text-blue-500 bg-blue-100' : 'text-white border-gray-300'}`}
+              type="submit"
+              className="px-6 py-2 w-full bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
             >
-              <span className="font-semibold">Mo WashPreneur</span>
-              <GrUserManager className="text-8xl"/>
+              Submit
             </button>
-          </div>
+          </form>
         </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="fixed bottom-0 w-full h-2 bg-gray-200">
-        <div className="h-2 bg-blue-600" style={{ width: '8%' }}></div>
       </div>
     </div>
   );

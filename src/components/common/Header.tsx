@@ -47,6 +47,9 @@ const Header = () => {
           <Link href="/rewards" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/rewards" ? 'text-blue-600 underline' : ''}  duration-300`}>
             Rewards
           </Link>
+          <Link href="/dashboard" className={`hover:underline hover:text-blue-600 transition ${router.pathname === "/rewards" ? 'text-blue-600 underline' : ''}  duration-300`}>
+            Dashboard
+          </Link>
         </div>
 
         {/* Right-side buttons */}

@@ -9,20 +9,20 @@ const Signup: React.FC = () => {
   const totalSteps = steps.length;
 
   const handleNext = () => {
-    if (step === 6) {
-      setStep(8);
-    } else if (step === 9) {
-      setStep(9);
+    if (step === 8) {
+      setStep(10);
+    } else if (step === 11) {
+      setStep(11);
     } else if (step < totalSteps - 1) {
       setStep((prevStep) => prevStep + 1);
     }
   };
 
   const handlePrev = () => {
-    if (step === 8) {
-      setStep(6);
-    } else if (step === 10) {
-      setStep(6);
+    if (step === 10) {
+      setStep(8);
+    } else if (step === 12) {
+      setStep(8);
     } else if (step > 0) {
       setStep((prevStep) => prevStep - 1);
     }
@@ -51,7 +51,7 @@ const Signup: React.FC = () => {
               <Link href="/">
                 <Image
                   src="https://www.mowash.in/Images/mo-wash-logo.svg"
-                  className="h-full"
+                  className="h-full py-4"
                   width={150}
                   height={150}
                   alt="logo"
