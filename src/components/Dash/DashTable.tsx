@@ -196,13 +196,12 @@ const Table: React.FC = () => {
       jobDescription: "Office Cleaning",
       earnings: 75.0,
     },
-    // Add more order data as needed...
   ];
 
   return (
     <div className="bg-transparent lg:p-6 p-2 rounded-lg shadow-lg">
       <div className="flex justify-between mb-4">
-        <h3 className="text-lg text-white font-bold">Today's Orders</h3>
+        <h3 className="text-lg text-white font-bold">Today&apos;s Orders</h3>
         <span className="text-gray-200">Date: {new Date().toLocaleDateString()}</span>
       </div>
       <div className="overflow-x-auto">

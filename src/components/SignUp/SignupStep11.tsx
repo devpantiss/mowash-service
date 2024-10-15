@@ -13,7 +13,7 @@ import { jsPDF } from "jspdf";
 type Section = "healthCard" | "pension" | "insurance";
 
 interface SignupStep11Props {
-  goToStep: (stepIndex: number) => void; // Pass a function to change the step
+  goToStep: (stepIndex: number) => void; 
 }
 const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
   const [wantsWelfare, setWantsWelfare] = useState(true);
@@ -21,7 +21,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
   const [showCSPPage, setShowCSPPage] = useState<boolean>(false);
   const [selectedCSP, setSelectedCSP] = useState<string>("");
-  const [isInsurance, setIsInsurance] = useState<Boolean>(false);
+  const [isInsurance, setIsInsurance] = useState<boolean>(false);
 
   const organizations = {
     healthCard: [
