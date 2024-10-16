@@ -87,7 +87,7 @@ const Navbar: FC = () => {
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-md shadow-lg">
+            <div className="absolute -right-24 mt-2 w-64 bg-white border border-gray-200 rounded-md shadow-lg">
               {/* User Information */}
               <div className="p-4 flex items-center space-x-3">
                 {/* User Avatar */}
