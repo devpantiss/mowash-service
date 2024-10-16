@@ -1,5 +1,6 @@
 // Navbar.tsx
 
+import Link from "next/link";
 import { FC, useState, useEffect, useRef } from "react";
 
 const Navbar: FC = () => {
@@ -118,7 +119,9 @@ const Navbar: FC = () => {
                   Bank Details
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Link href="/profile/documents">
                   Documents Uploaded
+                  </Link>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   Language
