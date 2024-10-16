@@ -286,7 +286,7 @@ const Services: React.FC = () => {
             <h3 className="mb-4 text-lg font-semibold">Job Calendar</h3>
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Calendar */}
-              <div className="w-full lg:w-1/2">
+              <div className="w-full ring-2 ring-white p-2 rounded-md lg:w-1/2">
                 <Calendar
                   onChange={handleDateChange}
                   value={selectedDate}
@@ -405,7 +405,7 @@ const Services: React.FC = () => {
         /* Highlighted dates with jobs */
         .react-calendar__tile.highlight {
           background: #4ade80; /* Tailwind's green-400 */
-          color: white;
+          color: black;
           border-radius: 50%;
         }
 
