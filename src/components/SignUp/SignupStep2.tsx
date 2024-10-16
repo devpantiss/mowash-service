@@ -226,14 +226,14 @@ const ServiceCards: React.FC = () => {
       </div>
 
       {/* Display selected services for reference */}
-      <div className="mt-8 text-white">
+      {/* <div className="mt-8 text-white">
         <h4 className="text-xl font-semibold mb-2">Selected Services:</h4>
         <ul>
           {selectedCards.map((selected, index) => (
             <li key={index}>{selected}</li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

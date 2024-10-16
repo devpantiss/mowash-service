@@ -1,5 +1,7 @@
+// Services.tsx
+
+import React, { useState } from "react";
 import Layout from "@/components/Dash/Layout";
-import React from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -11,15 +13,28 @@ import {
   LinearScale,
 } from "chart.js";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import star icons
+import Calendar, { CalendarProps } from "react-calendar"; // Import react-calendar with CalendarProps
+import "react-calendar/dist/Calendar.css"; // Import react-calendar styles
 
 // Register ChartJS components
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 const Services: React.FC = () => {
-  // Data for the chart
+  // State for selected date
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
+  // Handler for calendar date change
+  const handleDateChange: CalendarProps["onChange"] = (value, event) => {
+    if (value instanceof Date) {
+      setSelectedDate(value);
+    }
+  };
+
+  // Data for the bar chart
   const data = {
     labels: [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
     ],
     datasets: [
       {
@@ -32,6 +47,7 @@ const Services: React.FC = () => {
     ],
   };
 
+  // Interface for order details
   interface OrderDetailsProps {
     customerName: string;
     address: string;
@@ -40,6 +56,7 @@ const Services: React.FC = () => {
     earnings: number;
     review: number; // Assuming review is a number, e.g., 4.5
     status: string; // New field for job status
+    date: string; // Made required
   }
 
   // Helper function to render stars based on the rating
@@ -65,6 +82,20 @@ const Services: React.FC = () => {
     );
   };
 
+  // Function to get color based on job status
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Upcoming":
+        return "text-orange-500";
+      case "Completed":
+        return "text-green-500";
+      case "Missed":
+        return "text-red-500";
+      default:
+        return "text-white"; // Default color for unknown statuses
+    }
+  };
+
   // Table component for displaying order details with job status
   const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
     customerName,
@@ -72,29 +103,17 @@ const Services: React.FC = () => {
     contactNumber,
     jobDescription,
     earnings,
+    date,
     review,
-    status, // Added status prop
+    status,
   }) => {
-    // Function to get color based on job status
-    const getStatusColor = (status: string) => {
-      switch (status) {
-        case "Upcoming":
-          return "text-orange-500";
-        case "Completed":
-          return "text-green-500";
-        case "Missed":
-          return "text-red-500";
-        default:
-          return "text-white"; // Default color for unknown statuses
-      }
-    };
-  
     return (
       <tr className="text-center border-b border-gray-200">
         <td className="py-4 px-4">{customerName}</td>
         <td className="py-4 px-4">{address}</td>
         <td className="py-4 px-4">{contactNumber}</td>
         <td className="py-4 px-4">{jobDescription}</td>
+        <td className="py-4 px-4">{date}</td>
         <td className="py-4 px-4">${earnings.toFixed(2)}</td>
         <td className="py-4 px-4">{renderStars(review)}</td>
         <td className={`py-4 px-4 font-semibold ${getStatusColor(status)}`}>
@@ -104,8 +123,8 @@ const Services: React.FC = () => {
     );
   };
 
-  // Updated dummy data to include job status
-  const data2 = [
+  // Updated dummy data to include job status and date
+  const data2: OrderDetailsProps[] = [
     {
       customerName: "John Doe",
       address: "123 Main St, Cityville, ST 12345",
@@ -113,7 +132,8 @@ const Services: React.FC = () => {
       jobDescription: "Residential Cleaning",
       earnings: 50.0,
       review: 4.5,
-      status: "Completed", // New field
+      status: "Completed",
+      date: "2024-10-10",
     },
     {
       customerName: "Jane Smith",
@@ -122,7 +142,8 @@ const Services: React.FC = () => {
       jobDescription: "Office Cleaning",
       earnings: 75.0,
       review: 3,
-      status: "Upcoming", // New field
+      status: "Upcoming",
+      date: "2024-10-15",
     },
     {
       customerName: "Bob Lee",
@@ -131,118 +152,85 @@ const Services: React.FC = () => {
       jobDescription: "Industrial Cleaning",
       earnings: 100.0,
       review: 4,
-      status: "Missed", // New field
+      status: "Missed",
+      date: "2024-10-12",
+    },
+    // Add more orders with different dates as needed
+    {
+      customerName: "Alice Johnson",
+      address: "321 Pine St, Metropolis, ST 13579",
+      contactNumber: "(321) 654-0987",
+      jobDescription: "Window Cleaning",
+      earnings: 60.0,
+      review: 5,
+      status: "Completed",
+      date: "2024-10-10",
     },
     {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
+      customerName: "Mark Brown",
+      address: "654 Maple St, Villagetown, ST 11223",
+      contactNumber: "(654) 321-7890",
+      jobDescription: "Carpet Cleaning",
+      earnings: 85.0,
       review: 4.5,
-      status: "Completed", // New field
+      status: "Completed",
+      date: "2024-10-11",
     },
     {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
+      customerName: "Lucy Green",
+      address: "987 Cedar St, Hamlet, ST 44556",
       contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3,
-      status: "Upcoming", // New field
+      jobDescription: "Garage Cleaning",
+      earnings: 40.0,
+      review: 3.5,
+      status: "Upcoming",
+      date: "2024-10-15",
     },
+    // Repeat or add more entries as needed
     {
-      customerName: "Bob Lee",
-      address: "789 Oak St, Suburbia, ST 24680",
-      contactNumber: "(654) 987-1234",
-      jobDescription: "Industrial Cleaning",
-      earnings: 100.0,
+      customerName: "Sam Wilson",
+      address: "159 Walnut St, Smalltown, ST 77889",
+      contactNumber: "(159) 753-4862",
+      jobDescription: "Garden Cleaning",
+      earnings: 65.0,
       review: 4,
-      status: "Missed", // New field
+      status: "Completed",
+      date: "2024-10-13",
     },
     {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
+      customerName: "Emma Davis",
+      address: "753 Birch St, Middletown, ST 33445",
+      contactNumber: "(753) 159-4862",
+      jobDescription: "Basement Cleaning",
+      earnings: 90.0,
       review: 4.5,
-      status: "Completed", // New field
+      status: "Upcoming",
+      date: "2024-10-14",
     },
     {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
+      customerName: "Liam Martinez",
+      address: "852 Cherry St, Uptown, ST 66778",
+      contactNumber: "(852) 963-7410",
+      jobDescription: "Attic Cleaning",
+      earnings: 55.0,
       review: 3,
-      status: "Upcoming", // New field
+      status: "Missed",
+      date: "2024-10-16",
     },
     {
-      customerName: "Bob Lee",
-      address: "789 Oak St, Suburbia, ST 24680",
-      contactNumber: "(654) 987-1234",
-      jobDescription: "Industrial Cleaning",
-      earnings: 100.0,
-      review: 4,
-      status: "Missed", // New field
+      customerName: "Olivia Garcia",
+      address: "147 Spruce St, Downtown, ST 99000",
+      contactNumber: "(147) 258-3690",
+      jobDescription: "Kitchen Cleaning",
+      earnings: 70.0,
+      review: 4.2,
+      status: "Completed",
+      date: "2024-10-17",
     },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5,
-      status: "Completed", // New field
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3,
-      status: "Upcoming", // New field
-    },
-    {
-      customerName: "Bob Lee",
-      address: "789 Oak St, Suburbia, ST 24680",
-      contactNumber: "(654) 987-1234",
-      jobDescription: "Industrial Cleaning",
-      earnings: 100.0,
-      review: 4,
-      status: "Missed", // New field
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5,
-      status: "Completed", // New field
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3,
-      status: "Upcoming", // New field
-    },
-    {
-      customerName: "Bob Lee",
-      address: "789 Oak St, Suburbia, ST 24680",
-      contactNumber: "(654) 987-1234",
-      jobDescription: "Industrial Cleaning",
-      earnings: 100.0,
-      review: 4,
-      status: "Missed", // New field
-    },
+    // ... you can add more entries as needed
   ];
 
+  // Chart options
   const options = {
     responsive: true,
     plugins: {
@@ -260,6 +248,14 @@ const Services: React.FC = () => {
       },
     },
   };
+
+  // Filter jobs based on selected date
+  const filteredJobs = selectedDate
+    ? data2.filter(
+        (job) =>
+          new Date(job.date).toDateString() === selectedDate.toDateString()
+      )
+    : [];
 
   return (
     <Layout>
@@ -283,31 +279,48 @@ const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Middle Section: Licensed Personnel & Bar Chart */}
+        {/* Middle Section: Calendar & Jobs List and Bar Chart */}
         <div className="flex flex-col lg:flex-row gap-4 mb-6">
-          {/* Bar Chart: Total Jobs Completed */}
-          <div className="p-4 lg:w-1/2 w-full border rounded-lg shadow-md">
-            <h3 className="mb-4 text-lg font-semibold">Total Jobs Completed</h3>
-            <h2 className="text-3xl font-bold mb-2">657</h2>
-            <p className="text-green-500 mb-4">+10%</p>
-            <div className="space-y-2">
-              {[
-                { label: "Region A", count: 219, color: "bg-red-600" },
-                { label: "Region B", count: 160, color: "bg-orange-500" },
-                { label: "Region C", count: 200, color: "bg-orange-700" },
-                { label: "Region D", count: 78, color: "bg-red-400" },
-              ].map((region, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <span>{region.label}</span>
-                  <div className="w-3/4 h-4 rounded-lg overflow-hidden bg-gray-200">
-                    <div
-                      className={`${region.color} h-full`}
-                      style={{ width: `${(region.count / 219) * 100}%` }}
-                    ></div>
-                  </div>
-                  <span>{region.count}</span>
-                </div>
-              ))}
+          {/* Calendar and Jobs List */}
+          <div className="p-4 lg:w-1/2 w-full border rounded-lg shadow-md flex flex-col">
+            <h3 className="mb-4 text-lg font-semibold">Job Calendar</h3>
+            <div className="flex flex-col lg:flex-row gap-4">
+              {/* Calendar */}
+              <div className="w-full lg:w-1/2">
+                <Calendar
+                  onChange={handleDateChange}
+                  value={selectedDate}
+                  tileClassName={({ date, view }) =>
+                    view === "month" &&
+                    data2.some(
+                      (job) =>
+                        new Date(job.date).toDateString() === date.toDateString()
+                    )
+                      ? "highlight"
+                      : null
+                  }
+                />
+              </div>
+              {/* Jobs List */}
+              <div className="w-full lg:w-1/2">
+                <h4 className="mb-2 text-md font-semibold">
+                  Jobs on {selectedDate ? selectedDate.toDateString() : "N/A"}:
+                </h4>
+                {filteredJobs.length > 0 ? (
+                  <ul className="space-y-2">
+                    {filteredJobs.map((job, index) => (
+                      <li key={index} className="p-2 bg-gray-700 rounded">
+                        <p><strong>{job.customerName}</strong></p>
+                        <p>{job.jobDescription}</p>
+                        <p className="text-green-500">Earnings: ${job.earnings.toFixed(2)}</p>
+                        <p>Status: <span className={getStatusColor(job.status)}>{job.status}</span></p>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No jobs on this date.</p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -324,20 +337,25 @@ const Services: React.FC = () => {
                     x: {
                       title: {
                         display: true,
-                        text: "Days of the Week",
+                        text: "Months",
                         color: "white",
                       },
                       ticks: { color: "white" },
                       grid: { color: "rgba(128, 128, 128, 0.5)" },
                     },
                     y: {
-                      title: { display: true, text: "Value", color: "white" },
+                      title: { display: true, text: "Hours", color: "white" },
                       ticks: { color: "white" },
                       grid: { color: "rgba(128, 128, 128, 0.5)" },
                     },
                   },
                   plugins: {
                     legend: { display: false }, // Hides the legend
+                    title: {
+                      display: true,
+                      text: "Monthly Average Working Hours",
+                      color: "white",
+                    },
                   },
                 }}
               />
@@ -350,12 +368,13 @@ const Services: React.FC = () => {
           <h3 className="text-lg font-semibold mb-4">Order Details</h3>
           <div className="overflow-x-auto">
             <table className="table-auto w-full text-sm text-left text-white">
-              <thead className="text-xs uppercase bg-gray-700">
+              <thead className="text-xs text-center uppercase bg-gray-700">
                 <tr>
                   <th className="py-2 px-4">Customer Name</th>
                   <th className="py-2 px-4">Address</th>
                   <th className="py-2 px-4">Contact Number</th>
                   <th className="py-2 px-4">Job Description</th>
+                  <th className="py-2 px-4">Date</th>
                   <th className="py-2 px-4">Earnings</th>
                   <th className="py-2 px-4">Review</th>
                   <th className="py-2 px-4">Status</th> {/* New status header */}
@@ -372,6 +391,7 @@ const Services: React.FC = () => {
                     earnings={order.earnings}
                     review={order.review}
                     status={order.status} // Pass status to the component
+                    date={order.date} // Pass date to the component
                   />
                 ))}
               </tbody>
@@ -379,6 +399,101 @@ const Services: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Custom styles for highlighted dates and calendar theming */}
+      <style jsx global>{`
+        /* Highlighted dates with jobs */
+        .react-calendar__tile.highlight {
+          background: #4ade80; /* Tailwind's green-400 */
+          color: white;
+          border-radius: 50%;
+        }
+
+        /* Calendar container with transparent background */
+        .react-calendar {
+          width: 100%;
+          border: none;
+          background: transparent; /* Transparent background */
+          font-family: Arial, Helvetica, sans-serif;
+          color: white; /* White text */
+        }
+
+        /* Navigation buttons */
+        .react-calendar__navigation button {
+          color: white;
+          min-width: 44px;
+          background: none;
+          font-size: 16px;
+          margin: 0 2px;
+        }
+
+        /* Weekday names */
+        .react-calendar__month-view__weekdays {
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 0.75em;
+          color: #d1d5db; /* Gray-300 */
+        }
+
+        /* Day tiles */
+        .react-calendar__tile {
+          height: 40px;
+          max-width: 100%;
+          padding: 0.5em 0.6em;
+          background: transparent; /* Transparent background */
+          text-align: center;
+          line-height: 16px;
+          border: none;
+          color: white; /* White text */
+          transition: background 0.3s, color 0.3s;
+        }
+
+        /* Hover effect on tiles */
+        .react-calendar__tile:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+
+        /* Disabled tiles */
+        .react-calendar__tile:disabled {
+          background: transparent;
+          color: #6b7280; /* Gray-500 */
+        }
+
+        /* Today's date */
+        .react-calendar__tile--now {
+          background: #2563eb; /* Blue-600 */
+          color: white;
+          border-radius: 50%;
+        }
+
+        /* Active (selected) date */
+        .react-calendar__tile--active {
+          background: #3b82f6; /* Blue-500 */
+          color: white;
+          border-radius: 50%;
+        }
+
+        /* Focused tile (keyboard navigation) */
+        .react-calendar__tile:focus {
+          outline: none;
+          background: rgba(59, 130, 246, 0.5); /* Semi-transparent blue */
+          color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .react-calendar__tile {
+            height: 35px;
+            padding: 0.3em 0.4em;
+            font-size: 0.8em;
+          }
+
+          .react-calendar__navigation button {
+            font-size: 14px;
+          }
+        }
+      `}</style>
     </Layout>
   );
 };

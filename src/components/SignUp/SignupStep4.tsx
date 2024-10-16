@@ -6,11 +6,11 @@ import { RiTeamFill } from "react-icons/ri";
 
 
 const options = [
-  { label: 'Choose the Service', description: 'Select the service you would like to provide', icon: <FaToolbox className='text-4xl text-blue-600'/> },
-  { label: 'Choose Your Location', description: 'Tell us About the Location You currently reside in', icon: <GrLocationPin className='text-4xl text-blue-600'/> },
-  { label: 'Provide Us Your Details', description: 'Fill out the form with some Basic Information about yourself', icon: <FaFileAlt className='text-4xl text-blue-600'/> },
-  { label: "Let's verify your credentials", description: 'Let us know about your certifications or any training you have undergone', icon: <FaUserGraduate className='text-4xl text-blue-600'/> },
-  { label: "Congrats, You're a now a member of the MoWash Community", description: 'Lets get you a fair price for your skills', icon: <RiTeamFill className='text-4xl text-blue-600'/> },
+  { label: 'Choose the Service', description: 'Select the service you would like to provide', icon: <FaToolbox className='lg:text-6xl text-5xl text-blue-400'/> },
+  { label: 'Choose Your Location', description: 'Tell us About the Location You currently reside in', icon: <GrLocationPin className='lg:text-6xl text-5xl text-blue-400'/> },
+  { label: 'Provide Us Your Details', description: 'Fill out the form with some Basic Information about yourself', icon: <FaFileAlt className='lg:text-6xl text-5xl text-blue-400'/> },
+  { label: "Let's verify your credentials", description: 'Let us know about your certifications or any training you have undergone', icon: <FaUserGraduate className='lg:text-6xl text-5xl text-blue-400'/> },
+  { label: "Congrats, You're a now a member of the MoWash Community", description: 'Lets get you a fair price for your skills', icon: <RiTeamFill className='lg:text-6xl text-5xl text-blue-400'/> },
 ];
 
 const SignupStep4: React.FC = () => {
@@ -30,7 +30,7 @@ const SignupStep4: React.FC = () => {
       </div>
 
       {/* Right Side */}
-      <div className="lg:w-1/2 w-full bg-[white] text-black flex flex-col items-center justify-center p-8">
+      <div className="lg:w-1/2 w-full bg-transparent ring-2 my-4 ring-white rounded-md text-black flex flex-col items-center justify-center p-8">
         {/* Steps */}
         <div className="space-y-6">
           {options.map((option, index) => (
@@ -41,8 +41,8 @@ const SignupStep4: React.FC = () => {
             >
               <div className="flex-shrink-0">{option.icon}</div>
               <div>
-                <h3 className="text-xl text-blue-600 font-bold">{option.label}</h3>
-                <p className="text-gray-800">{option.description}</p>
+                <h3 className="text-xl text-blue-400 font-bold">{option.label}</h3>
+                <p className="text-white">{option.description}</p>
               </div>
             </div>
           ))}
