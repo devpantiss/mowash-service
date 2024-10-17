@@ -197,7 +197,7 @@ const ServiceCards: React.FC = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto  lg:h-[90vh] px-4 py-8">
       <h2 className="text-5xl font-bold text-left text-white mb-8">
         Welcome to MoWash Partners Platform!
       </h2>

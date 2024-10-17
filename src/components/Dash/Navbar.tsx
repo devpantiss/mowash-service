@@ -105,10 +105,10 @@ const Navbar: FC = () => {
               </div>
 
               {/* Divider */}
-              <hr className="border-gray-200" />
+              {/* <hr className="border-gray-200" /> */}
 
               {/* Menu Options */}
-              <ul className="py-2">
+              {/* <ul className="py-2">
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   Profile
                 </li>
@@ -126,13 +126,13 @@ const Navbar: FC = () => {
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   Language
                 </li>
-              </ul>
+              </ul> */}
             </div>
           )}
         </div>
 
         {/* Help Link */}
-        <span className="text-gray-600 cursor-pointer">Help</span>
+        {/* <span className="text-gray-600 cursor-pointer">Help</span> */}
       </div>
     </nav>
   );

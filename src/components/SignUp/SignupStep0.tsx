@@ -8,7 +8,6 @@ import animation from "@/components/assets/animation.json";
 import { GiGraduateCap } from "react-icons/gi";
 import { FaHandshake } from "react-icons/fa6";
 
-
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 interface SignupStep0Props {
@@ -68,7 +67,7 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                     src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
                     className="h-6"
                   />{" "}
-                  AI-Powered Courier Selection
+                  AI-Powered Service Matching
                 </li>
                 <li className="flex items-center gap-x-3 mb-2">
                   <img
@@ -82,14 +81,28 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                     src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
                     className="h-6"
                   />{" "}
-                  Automated NDR Management
+                  Custom Dashboard for Service Tracking
                 </li>
                 <li className="flex items-center gap-x-3 mb-2">
                   <img
                     src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
                     className="h-6"
                   />{" "}
-                  Up to 45% Lesser RTOs
+                  Automated Job Scheduling & Management
+                </li>
+                <li className="flex items-center gap-x-3 mb-2">
+                  <img
+                    src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
+                    className="h-6"
+                  />{" "}
+                  Up to 45% Increase in Job Opportunities
+                </li>
+                <li className="flex items-center gap-x-3 mb-2">
+                  <img
+                    src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728033086/Black_Illustrated_Lion_Hotel_Logo-removebg-preview_iuhnp9.png"
+                    className="h-6"
+                  />{" "}
+                  Comprehensive Training & Certification Programs
                 </li>
               </ul>
             </div>
@@ -104,7 +117,7 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
               }}
               className="lg:block hidden"
             />
-            <h1 className="text-3xl font-bold mb-2 text-white">Wash Hero</h1>
+            <h1 className="lg:block hidden text-3xl font-bold mb-2 text-white">Mo Wash Hero</h1>
           </div>
 
           {/* Right Side: Form Section */}
@@ -138,7 +151,7 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                 }`}
                   >
                     <GrUserManager className="text-2xl" />
-                    <span className="font-semibold">Mo Wash Preneur</span>
+                    <span className="font-semibold">Wash Preneur</span>
                   </button>
 
                   <button
@@ -151,7 +164,7 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                 }`}
                   >
                     <GiGraduateCap className="text-3xl" />
-                    <span className="font-semibold">Wash Fellow</span>
+                    <span className="font-semibold">Mo Wash Fellow</span>
                   </button>
 
                   <button
@@ -164,7 +177,7 @@ const SignupStep0: React.FC<SignupStep0Props> = ({ goToStep }) => {
                 }`}
                   >
                     <FaHandshake className="text-2xl" />
-                    <span className="font-semibold">SSSP</span>
+                    <span className="font-semibold">Finance Organization</span>
                   </button>
                 </div>
               </div>

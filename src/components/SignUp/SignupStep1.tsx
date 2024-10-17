@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
-import { MdEngineering } from "react-icons/md";
+import { MdEngineering, MdCalendarToday } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
+import { FaRupeeSign, FaUsers } from "react-icons/fa";
 import style from "@/components/common/input/input.module.css"; // Import your custom styles
 
 const SignupStep1: React.FC = () => {
@@ -63,13 +64,13 @@ const SignupStep1: React.FC = () => {
       <h1 className="text-white text-5xl font-bold mb-4 text-center">
         Experience Information
       </h1>
-      <div className="w-full max-w-7xl bg-transparent ring-2 ring-white rounded-lg shadow-lg overflow-hidden flex flex-col lg:flex-row">
+      <div className="w-full bg-transparent ring-2 ring-white rounded-lg shadow-lg overflow-hidden flex flex-col lg:flex-row">
         {/* Left Section: Description */}
         <div
           className="w-full lg:w-1/2 bg-cover bg-center relative"
           style={{
             backgroundImage:
-              "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726742454/jay-bhadreshwara-lux0psvZGLU-unsplash_whv55p.jpg')",
+              "url('https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729141075/contru77_ynl2ll.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/50"></div>
@@ -111,22 +112,34 @@ const SignupStep1: React.FC = () => {
               <label className="block text-white font-semibold mb-2">
                 Years of Experience<span className="text-red-500">*</span>
               </label>
-              <div className="flex flex-col space-y-2">
-                {["0-1", "1-3", "More than 3", "No experience"].map(
-                  (option) => (
-                    <label key={option} className="inline-flex items-center">
-                      <input
-                        type="radio"
-                        name="yearsOfExperience"
-                        value={option}
-                        checked={yearsOfExperience === option}
-                        onChange={(e) => setYearsOfExperience(e.target.value)}
-                        className="form-radio h-5 w-5 text-blue-600"
-                      />
-                      <span className="ml-2 text-white">{option}</span>
-                    </label>
-                  )
-                )}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "0-1", value: "0-1", icon: <MdCalendarToday /> },
+                  { label: "1-3", value: "1-3", icon: <MdCalendarToday /> },
+                  {
+                    label: "More than 3",
+                    value: "More than 3",
+                    icon: <MdCalendarToday />,
+                  },
+                  {
+                    label: "No experience",
+                    value: "No experience",
+                    icon: <MdCalendarToday />,
+                  },
+                ].map((option) => (
+                  <div
+                    key={option.value}
+                    className={`p-4 rounded-lg border ${
+                      yearsOfExperience === option.value
+                        ? "bg-blue-500 text-white"
+                        : "bg-transparent ring-2 ring-white text-white"
+                    } cursor-pointer flex items-center space-x-2`}
+                    onClick={() => setYearsOfExperience(option.value)}
+                  >
+                    {option.icon}
+                    <span>{option.label}</span>
+                  </div>
+                ))}
               </div>
               {errors.yearsOfExperience && (
                 <p className="text-red-500 text-sm mt-1">
@@ -140,24 +153,41 @@ const SignupStep1: React.FC = () => {
               <label className="block text-white font-semibold mb-2">
                 Current Monthly Income<span className="text-red-500">*</span>
               </label>
-              <div className="flex flex-col space-y-2">
+              <div className="grid grid-cols-2 gap-4">
                 {[
-                  "Less than ₹20,000",
-                  "₹20,000 - ₹40,000",
-                  "₹40,000 - ₹60,000",
-                  "More than ₹60,000",
+                  {
+                    label: "Less than ₹20,000",
+                    value: "Less than ₹20,000",
+                    icon: <FaRupeeSign />,
+                  },
+                  {
+                    label: "₹20,000 - ₹40,000",
+                    value: "₹20,000 - ₹40,000",
+                    icon: <FaRupeeSign />,
+                  },
+                  {
+                    label: "₹40,000 - ₹60,000",
+                    value: "₹40,000 - ₹60,000",
+                    icon: <FaRupeeSign />,
+                  },
+                  {
+                    label: "More than ₹60,000",
+                    value: "More than ₹60,000",
+                    icon: <FaRupeeSign />,
+                  },
                 ].map((range) => (
-                  <label key={range} className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      name="currentIncome"
-                      value={range}
-                      checked={currentIncome === range}
-                      onChange={(e) => setCurrentIncome(e.target.value)}
-                      className="form-radio h-5 w-5 text-blue-600"
-                    />
-                    <span className="ml-2 text-white">{range}</span>
-                  </label>
+                  <div
+                    key={range.value}
+                    className={`p-4 rounded-lg border ${
+                      currentIncome === range.value
+                        ? "bg-blue-500 text-white"
+                        : "bg-transparent ring-2 ring-white text-white"
+                    } cursor-pointer flex items-center space-x-2`}
+                    onClick={() => setCurrentIncome(range.value)}
+                  >
+                    {range.icon}
+                    <span>{range.label}</span>
+                  </div>
                 ))}
               </div>
               {errors.currentIncome && (
@@ -172,23 +202,36 @@ const SignupStep1: React.FC = () => {
               <label className="block text-white font-semibold mb-2">
                 Number of Family Members<span className="text-red-500">*</span>
               </label>
-              <div className="flex flex-col space-y-2">
+              <div className="grid grid-cols-2 gap-4">
                 {[
-                  "Less than 3 members",
-                  "3-8 members",
-                  "More than 8 members",
+                  {
+                    label: "Less than 3 members",
+                    value: "Less than 3 members",
+                    icon: <FaUsers />,
+                  },
+                  {
+                    label: "3-8 members",
+                    value: "3-8 members",
+                    icon: <FaUsers />,
+                  },
+                  {
+                    label: "More than 8 members",
+                    value: "More than 8 members",
+                    icon: <FaUsers />,
+                  },
                 ].map((range) => (
-                  <label key={range} className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      name="familyMembers"
-                      value={range}
-                      checked={familyMembers === range}
-                      onChange={(e) => setFamilyMembers(e.target.value)}
-                      className="form-radio h-5 w-5 text-blue-600"
-                    />
-                    <span className="ml-2 text-white">{range}</span>
-                  </label>
+                  <div
+                    key={range.value}
+                    className={`p-4 rounded-lg border ${
+                      familyMembers === range.value
+                        ? "bg-blue-500 text-white"
+                        : "bg-transparent ring-2 ring-white text-white"
+                    } cursor-pointer flex items-center space-x-2`}
+                    onClick={() => setFamilyMembers(range.value)}
+                  >
+                    {range.icon}
+                    <span>{range.label}</span>
+                  </div>
                 ))}
               </div>
               {errors.familyMembers && (

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use"; // To make confetti responsive
 
 const AnimatedNumbers = dynamic(() => import("react-animated-numbers"), {
   ssr: false,
@@ -19,6 +21,9 @@ const SignupStep5: React.FC = () => {
   // Preset hours options
   const presetHours = [2, 4, 6, 8];
 
+  // Get window size for confetti
+  const { width, height } = useWindowSize();
+
   // Update earnings when hoursWorked changes
   useEffect(() => {
     const targetEarnings = hoursWorked * ratePerHour;
@@ -31,8 +36,13 @@ const SignupStep5: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="bg-white/90 p-8 rounded-lg shadow-lg max-w-md w-full">
+    <div
+      className="relative flex items-center justify-center min-h-screen p-4 bg-cover bg-center"
+    >
+      {/* Confetti with continuous effect */}
+      <Confetti width={width} height={height} recycle={true} numberOfPieces={400} />
+
+      <div className="bg-white/90 p-8 rounded-lg shadow-lg max-w-md w-full z-10">
         {/* Title */}
         <h1 className="text-blue-600 text-3xl font-bold mb-4 text-center">
           Earnings Estimator

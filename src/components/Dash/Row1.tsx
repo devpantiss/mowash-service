@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import { Line } from "react-chartjs-2"; // Import the Line chart from react-chartjs-2
-import DashTable from "@/components/Dash/DashTable";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
 import Reviews from "./Reviews";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import star icons
+import Calendar, { CalendarProps } from "react-calendar"; // Import react-calendar with CalendarProps
 
 // Register the necessary components for Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
@@ -102,91 +103,237 @@ const ProfileCard: React.FC<{
   );
 };
 
-const TimeSlotSelector: React.FC<{ isActive: boolean }> = ({ isActive }) => {
-  const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
+const Row1: React.FC = () => {
+  const [isActive, setIsActive] = useState<boolean>(false); // State for active status
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const currentDate = new Date().toLocaleDateString("en-GB"); // Force the client to use 'en-GB' format (DD/MM/YYYY)
 
-  const timeSlots = Array.from({ length: 13 }, (_, i) => {
-    const hour = 6 + i;
-    const nextHour = hour + 1;
-    const suffix = hour < 12 ? "AM" : "PM"; // Determine AM/PM
-    const formattedHour = hour % 12 || 12; // Format hour to 12-hour format
-    const formattedNextHour = nextHour % 12 || 12;
-    return `${formattedHour}:00 ${suffix} - ${formattedNextHour}:00 ${suffix}`;
-  });
+  interface OrderDetailsProps {
+    customerName: string;
+    address: string;
+    contactNumber: string;
+    jobDescription: string;
+    earnings: number;
+    review: number; // Assuming review is a number, e.g., 4.5
+    status: string; // New field for job status
+    date: string; // Made required
+  }
+  // Helper function to render stars based on the rating
+  const renderStars = (rating: number) => {
+    const fullStars = Math.floor(rating); // Full stars (e.g., 4 for 4.5)
+    const halfStar = rating % 1 >= 0.5; // Half star if the remainder >= 0.5
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // Remaining empty stars
 
-  const handleSlotChange = (slot: string) => {
-    setSelectedSlots(
-      (prev) =>
-        prev.includes(slot)
-          ? prev.filter((s) => s !== slot) // Deselect if already selected
-          : [...prev, slot] // Select if not selected
+    return (
+      <div className="flex justify-center">
+        {Array(fullStars)
+          .fill(0)
+          .map((_, index) => (
+            <FaStar key={index} className="text-yellow-500" />
+          ))}
+        {halfStar && <FaStarHalfAlt className="text-yellow-500" />}
+        {Array(emptyStars)
+          .fill(0)
+          .map((_, index) => (
+            <FaRegStar key={index} className="text-yellow-500" />
+          ))}
+      </div>
     );
   };
 
-  return (
-    <div className="mt-4 bg-transparent">
-      <h3 className="text-lg text-white font-bold">Available Time Slots</h3>
-      <div className="grid grid-cols-2 gap-2 mt-2">
-        {timeSlots.map((slot) => (
-          <label
-            key={slot}
-            className={`flex items-center cursor-pointer p-2 rounded-md transition-colors ${
-              selectedSlots.includes(slot)
-                ? "bg-blue-500 text-white"
-                : "bg-transparent ring-2 ring-white text-white"
-            } hover:bg-blue-300 ${
-              isActive ? "" : "opacity-50 cursor-not-allowed"
-            }`} // Add opacity and disabled styling
-          >
-            <input
-              type="checkbox"
-              checked={selectedSlots.includes(slot)}
-              onChange={() => isActive && handleSlotChange(slot)} // Only handle change if active
-              disabled={!isActive} // Disable if not active
-              className="hidden"
-            />
-            <span className="h-5 w-5 border-2 border-blue-500 rounded-md flex items-center justify-center mr-2">
-              {selectedSlots.includes(slot) && (
-                <div className="bg-blue-500 h-3 w-3 rounded-full" />
-              )}
-            </span>
-            <span>{slot}</span>
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-};
+  // Function to get color based on job status
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Upcoming":
+        return "text-orange-500";
+      case "Completed":
+        return "text-green-500";
+      case "Missed":
+        return "text-red-500";
+      default:
+        return "text-white"; // Default color for unknown statuses
+    }
+  };
 
-const Row1: React.FC = () => {
-  const currentDate = new Date().toLocaleDateString("en-GB"); // Force the client to use 'en-GB' format (DD/MM/YYYY)
-  const [isActive, setIsActive] = useState<boolean>(false); // State for active status
+  // Table component for displaying order details with job status
+  const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
+    customerName,
+    address,
+    contactNumber,
+    jobDescription,
+    earnings,
+    date,
+    review,
+    status,
+  }) => {
+    return (
+      <tr className="text-center border-b border-gray-200">
+        <td className="py-4 px-4">{customerName}</td>
+        <td className="py-4 px-4">{address}</td>
+        <td className="py-4 px-4">{contactNumber}</td>
+        <td className="py-4 px-4">{jobDescription}</td>
+        <td className="py-4 px-4">{date}</td>
+        <td className="py-4 px-4">${earnings.toFixed(2)}</td>
+        <td className="py-4 px-4">{renderStars(review)}</td>
+        <td className={`py-4 px-4 font-semibold ${getStatusColor(status)}`}>
+          {status}
+        </td>{" "}
+        {/* Dynamically set status color */}
+      </tr>
+    );
+  };
 
-  // Mock data for weekly earnings and jobs completed
-  const weeklyEarningsData = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  // Data for the bar chart
+  const data = {
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
     datasets: [
       {
-        label: "This Week's Earnings",
-        data: [120, 150, 170, 200, 250, 300, 400], // Earnings data
+        label: "Average Working Hours/Month",
+        data: [160, 170, 150, 180, 175, 160, 165, 170, 180, 190, 200, 210], // Example data
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
         borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderWidth: 2,
-        fill: true,
-      },
-      {
-        label: "Jobs Completed",
-        data: [10, 12, 15, 8, 20, 18, 25], // Jobs completed data
-        borderColor: "rgba(255, 99, 132, 1)", // Different color for jobs completed
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderWidth: 2,
-        fill: true,
+        borderWidth: 1,
       },
     ],
   };
 
+  // Updated dummy data to include job status and date
+  const data2: OrderDetailsProps[] = [
+    {
+      customerName: "John Doe",
+      address: "123 Main St, Cityville, ST 12345",
+      contactNumber: "(123) 456-7890",
+      jobDescription: "Residential Cleaning",
+      earnings: 50.0,
+      review: 4.5,
+      status: "Completed",
+      date: "2024-10-10",
+    },
+    {
+      customerName: "Jane Smith",
+      address: "456 Elm St, Townsville, ST 67890",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Office Cleaning",
+      earnings: 75.0,
+      review: 3,
+      status: "Upcoming",
+      date: "2024-10-15",
+    },
+    {
+      customerName: "Bob Lee",
+      address: "789 Oak St, Suburbia, ST 24680",
+      contactNumber: "(654) 987-1234",
+      jobDescription: "Industrial Cleaning",
+      earnings: 100.0,
+      review: 4,
+      status: "Missed",
+      date: "2024-10-12",
+    },
+    // Add more orders with different dates as needed
+    {
+      customerName: "Alice Johnson",
+      address: "321 Pine St, Metropolis, ST 13579",
+      contactNumber: "(321) 654-0987",
+      jobDescription: "Window Cleaning",
+      earnings: 60.0,
+      review: 5,
+      status: "Completed",
+      date: "2024-10-10",
+    },
+    {
+      customerName: "Mark Brown",
+      address: "654 Maple St, Villagetown, ST 11223",
+      contactNumber: "(654) 321-7890",
+      jobDescription: "Carpet Cleaning",
+      earnings: 85.0,
+      review: 4.5,
+      status: "Completed",
+      date: "2024-10-11",
+    },
+    {
+      customerName: "Lucy Green",
+      address: "987 Cedar St, Hamlet, ST 44556",
+      contactNumber: "(987) 654-3210",
+      jobDescription: "Garage Cleaning",
+      earnings: 40.0,
+      review: 3.5,
+      status: "Upcoming",
+      date: "2024-10-15",
+    },
+    // Repeat or add more entries as needed
+    {
+      customerName: "Sam Wilson",
+      address: "159 Walnut St, Smalltown, ST 77889",
+      contactNumber: "(159) 753-4862",
+      jobDescription: "Garden Cleaning",
+      earnings: 65.0,
+      review: 4,
+      status: "Completed",
+      date: "2024-10-13",
+    },
+    {
+      customerName: "Emma Davis",
+      address: "753 Birch St, Middletown, ST 33445",
+      contactNumber: "(753) 159-4862",
+      jobDescription: "Basement Cleaning",
+      earnings: 90.0,
+      review: 4.5,
+      status: "Upcoming",
+      date: "2024-10-14",
+    },
+    {
+      customerName: "Liam Martinez",
+      address: "852 Cherry St, Uptown, ST 66778",
+      contactNumber: "(852) 963-7410",
+      jobDescription: "Attic Cleaning",
+      earnings: 55.0,
+      review: 3,
+      status: "Missed",
+      date: "2024-10-16",
+    },
+    {
+      customerName: "Olivia Garcia",
+      address: "147 Spruce St, Downtown, ST 99000",
+      contactNumber: "(147) 258-3690",
+      jobDescription: "Kitchen Cleaning",
+      earnings: 70.0,
+      review: 4.2,
+      status: "Completed",
+      date: "2024-10-17",
+    },
+    // ... you can add more entries as needed
+  ];
+
+  // Filter jobs based on selected date
+  const filteredJobs = selectedDate
+    ? data2.filter(
+        (job) =>
+          new Date(job.date).toDateString() === selectedDate.toDateString()
+      )
+    : [];
+
   const toggleStatus = () => {
     setIsActive((prev) => !prev);
+  };
+
+  // Handler for calendar date change
+  const handleDateChange: CalendarProps["onChange"] = (value, event) => {
+    if (value instanceof Date) {
+      setSelectedDate(value);
+    }
   };
 
   return (
@@ -195,21 +342,21 @@ const Row1: React.FC = () => {
       <div className="flex flex-col-reverse lg:flex-row w-full px-2 gap-4">
         <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 lg:w-1/2 ring-2 ring-white p-4 rounded-md w-full">
           <StatCard
-            title="Today's Orders"
+            title="New Jobs"
             value="0"
             subtitle="Yesterday 0"
             icon={<span>📋</span>}
             flexCol="lg:flex-col"
           />
           <StatCard
-            title="Today's Revenue"
+            title="Ongoing Jobs"
             value="₹ 0"
             subtitle="Yesterday ₹ 0"
             icon={<span>💰</span>}
             flexCol="lg:flex-col"
           />
           <StatCard
-            title="Today's Working Hours"
+            title="Target"
             value="0 Hours"
             icon={<span>🕒</span>}
             flexCol="lg:flex-col"
@@ -246,64 +393,96 @@ const Row1: React.FC = () => {
         </div>
       </div>
 
-      {/* Second Row */}
-      <div className="grid py-6 rounded-md grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
-          <div className="flex justify-between">
-            <h3 className="text-lg text-white font-bold">Work Timing Slots</h3>
-            <span className="text-white">{currentDate}</span>{" "}
-            {/* Display current date */}
+      {/* Middle Section: Calendar & Jobs List and Bar Chart */}
+      <div className="flex flex-col lg:flex-row gap-4 mb-6">
+        {/* Calendar and Jobs List */}
+        <div className="p-4 lg:w-1/2 w-full border rounded-lg text-white shadow-md flex flex-col">
+          <h3 className="mb-4 text-lg font-semibold">Job Calendar</h3>
+          <div className="flex flex-col lg:flex-row gap-4">
+            {/* Calendar */}
+            <div className="w-full ring-2 ring-white p-2 rounded-md lg:w-1/2">
+              <Calendar
+                onChange={handleDateChange}
+                value={selectedDate}
+                tileClassName={({ date, view }) =>
+                  view === "month" &&
+                  data2.some(
+                    (job) =>
+                      new Date(job.date).toDateString() === date.toDateString()
+                  )
+                    ? "highlight"
+                    : null
+                }
+              />
+            </div>
+            {/* Jobs List */}
+            <div className="w-full lg:w-1/2">
+              <h4 className="mb-2 text-md font-semibold text-white">
+                Jobs on {selectedDate ? selectedDate.toDateString() : "N/A"}:
+              </h4>
+              {filteredJobs.length > 0 ? (
+                <ul className="space-y-2">
+                  {filteredJobs.map((job, index) => (
+                    <li key={index} className="p-2 bg-gray-700 rounded">
+                      <p>
+                        <strong>{job.customerName}</strong>
+                      </p>
+                      <p>{job.jobDescription}</p>
+                      <p className="text-green-500">
+                        Earnings: ${job.earnings.toFixed(2)}
+                      </p>
+                      <p>
+                        Status:{" "}
+                        <span className={getStatusColor(job.status)}>
+                          {job.status}
+                        </span>
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No jobs on this date.</p>
+              )}
+            </div>
           </div>
-          <TimeSlotSelector isActive={isActive} />
         </div>
-        <div className="bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
-          <h3 className="text-lg text-white font-bold">
-            This Week&apos;s Earnings
+
+        {/* Bar Chart: Monthly Average Working Hours */}
+        <div className="p-4 lg:w-1/2 w-full border rounded-lg shadow-md">
+          <h3 className="mb-4 text-lg font-semibold text-white">
+            Monthly Average Working Hours
           </h3>
-          <div className="mt-4">
-            <Line
-              data={weeklyEarningsData}
+          <div className="h-[300px]">
+            <Bar
+              data={data}
               options={{
                 responsive: true,
-                maintainAspectRatio: false, // Allow the chart to stretch to fit its container
+                maintainAspectRatio: false, // Allows chart to take full height
                 scales: {
                   x: {
                     title: {
                       display: true,
-                      text: "Days of the Week",
+                      text: "Months",
                       color: "white",
                     },
-                    ticks: {
-                      color: "white",
-                    },
-                    grid: {
-                      color: "rgba(128, 128, 128, 0.5)", // Set grid line color to gray
-                    },
+                    ticks: { color: "white" },
+                    grid: { color: "rgba(128, 128, 128, 0.5)" },
                   },
                   y: {
-                    title: {
-                      display: true,
-                      text: "Value",
-                      color: "white",
-                    },
-                    ticks: {
-                      color: "white",
-                    },
-                    grid: {
-                      color: "rgba(128, 128, 128, 0.5)", // Set grid line color to gray
-                    },
+                    title: { display: true, text: "Hours", color: "white" },
+                    ticks: { color: "white" },
+                    grid: { color: "rgba(128, 128, 128, 0.5)" },
                   },
                 },
                 plugins: {
-                  legend: {
-                    labels: {
-                      color: "white",
-                    },
+                  legend: { display: false }, // Hides the legend
+                  title: {
+                    display: true,
+                    text: "Monthly Average Working Hours",
+                    color: "white",
                   },
                 },
               }}
-              height={0}
-              width={0}
             />
           </div>
         </div>
@@ -312,26 +491,135 @@ const Row1: React.FC = () => {
       <Reviews />
 
       {/* Third Row */}
-      <div className="p-6 ring-2 ring-white rounded-md flex flex-col gap-4">
-        {isActive ? (
-          <DashTable />
-        ) : (
-          <div className="h-full lg:p-6 p-2">
-            <div className="flex justify-between mb-4">
-              <h3 className="text-lg text-white font-bold">
-                Today&apos;s Orders
-              </h3>
-              <span className="text-gray-200">
-                Date: {new Date().toLocaleDateString("en-GB")}{" "}
-                {/* Use the same locale */}
-              </span>
-            </div>
-            <p className="text-center text-white">
-              No active orders right now as you are offline.
-            </p>
-          </div>
-        )}
+      {/* Order Details Section */}
+      <div className="p-4 border rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold mb-4">Order Details</h3>
+        <div className="overflow-x-auto">
+          <table className="table-auto w-full text-sm text-left text-white">
+            <thead className="text-xs text-center uppercase bg-gray-700">
+              <tr>
+                <th className="py-2 px-4">Customer Name</th>
+                <th className="py-2 px-4">Address</th>
+                <th className="py-2 px-4">Contact Number</th>
+                <th className="py-2 px-4">Job Description</th>
+                <th className="py-2 px-4">Date</th>
+                <th className="py-2 px-4">Earnings</th>
+                <th className="py-2 px-4">Review</th>
+                <th className="py-2 px-4">Status</th> {/* New status header */}
+              </tr>
+            </thead>
+            <tbody className="bg-gray-800">
+              {data2.map((order, index) => (
+                <OrderDetailsTable
+                  key={index}
+                  customerName={order.customerName}
+                  address={order.address}
+                  contactNumber={order.contactNumber}
+                  jobDescription={order.jobDescription}
+                  earnings={order.earnings}
+                  review={order.review}
+                  status={order.status} // Pass status to the component
+                  date={order.date} // Pass date to the component
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+      {/* Custom styles for highlighted dates and calendar theming */}
+      <style jsx global>{`
+        /* Highlighted dates with jobs */
+        .react-calendar__tile.highlight {
+          background: #4ade80; /* Tailwind's green-400 */
+          color: black;
+          border-radius: 50%;
+        }
+
+        /* Calendar container with transparent background */
+        .react-calendar {
+          width: 100%;
+          border: none;
+          background: transparent; /* Transparent background */
+          font-family: Arial, Helvetica, sans-serif;
+          color: white; /* White text */
+        }
+
+        /* Navigation buttons */
+        .react-calendar__navigation button {
+          color: white;
+          min-width: 44px;
+          background: none;
+          font-size: 16px;
+          margin: 0 2px;
+        }
+
+        /* Weekday names */
+        .react-calendar__month-view__weekdays {
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 0.75em;
+          color: #d1d5db; /* Gray-300 */
+        }
+
+        /* Day tiles */
+        .react-calendar__tile {
+          height: 40px;
+          max-width: 100%;
+          padding: 0.5em 0.6em;
+          background: transparent; /* Transparent background */
+          text-align: center;
+          line-height: 16px;
+          border: none;
+          color: white; /* White text */
+          transition: background 0.3s, color 0.3s;
+        }
+
+        /* Hover effect on tiles */
+        .react-calendar__tile:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+
+        /* Disabled tiles */
+        .react-calendar__tile:disabled {
+          background: transparent;
+          color: #6b7280; /* Gray-500 */
+        }
+
+        /* Today's date */
+        .react-calendar__tile--now {
+          background: #2563eb; /* Blue-600 */
+          color: white;
+          border-radius: 50%;
+        }
+
+        /* Active (selected) date */
+        .react-calendar__tile--active {
+          background: #3b82f6; /* Blue-500 */
+          color: white;
+          border-radius: 50%;
+        }
+
+        /* Focused tile (keyboard navigation) */
+        .react-calendar__tile:focus {
+          outline: none;
+          background: rgba(59, 130, 246, 0.5); /* Semi-transparent blue */
+          color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .react-calendar__tile {
+            height: 35px;
+            padding: 0.3em 0.4em;
+            font-size: 0.8em;
+          }
+
+          .react-calendar__navigation button {
+            font-size: 14px;
+          }
+        }
+      `}</style>
     </div>
   );
 };
