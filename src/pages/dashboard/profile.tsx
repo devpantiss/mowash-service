@@ -37,8 +37,7 @@ const user = {
   phoneNumber: "+91 9876543210",
   category: "Plumber",
   serviceSelected: "Water Maintenance",
-  image:
-    "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg", // Profile Image URL
+  image: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg", // Profile Image URL
   gender: "Male",
   dobOrAge: "01/01/1985 (39 years)",
   socialStatus: "General",
@@ -67,7 +66,7 @@ const user = {
 const Profile: React.FC<ProfileProps> = () => {
   return (
     <Layout>
-      <div className="p-8 bg-transparent mx-5 lg:mx-auto my-3 text-white ring-2 ring-white rounded-xl shadow-xl max-w-7xl">
+      <div className="p-8 bg-transparent ring-2 ring-white text-white rounded-xl shadow-xl max-w-7xl mx-5 my-5 lg:mx-auto">
         {/* Profile Image and Name */}
         <div className="flex flex-col items-center mb-8">
           <img
@@ -81,20 +80,18 @@ const Profile: React.FC<ProfileProps> = () => {
 
         {/* Account Details */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">
-            Account Details
-          </h2>
+          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">Account Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col">
-              <strong className="text-lg">Email ID:</strong>
+              <strong className="text-2xl font-bold">Email ID:</strong>
               <p className="text-xl font-medium">{user.email}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Category:</strong>
+              <strong className="text-2xl font-bold">Category:</strong>
               <p className="text-xl font-medium">{user.category}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Service Selected:</strong>
+              <strong className="text-2xl font-bold">Service Selected:</strong>
               <p className="text-xl font-medium">{user.serviceSelected}</p>
             </div>
           </div>
@@ -102,36 +99,34 @@ const Profile: React.FC<ProfileProps> = () => {
 
         {/* Personal Details */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">
-            Personal Details
-          </h2>
+          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">Personal Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col">
-              <strong className="text-lg">DOB/Age:</strong>
+              <strong className="text-2xl font-bold">DOB/Age:</strong>
               <p className="text-xl font-medium">{user.dobOrAge}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Gender:</strong>
+              <strong className="text-2xl font-bold">Gender:</strong>
               <p className="text-xl font-medium">{user.gender}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Social Status:</strong>
+              <strong className="text-2xl font-bold">Social Status:</strong>
               <p className="text-xl font-medium">{user.socialStatus}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Economic Status:</strong>
+              <strong className="text-2xl font-bold">Economic Status:</strong>
               <p className="text-xl font-medium">{user.economicStatus}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">AADhaar Number:</strong>
+              <strong className="text-2xl font-bold">AADhaar Number:</strong>
               <p className="text-xl font-medium">{user.aadhaarNumber}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">PAN Number:</strong>
+              <strong className="text-2xl font-bold">PAN Number:</strong>
               <p className="text-xl font-medium">{user.panNumber}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Number of Family Members:</strong>
+              <strong className="text-2xl font-bold">Number of Family Members:</strong>
               <p className="text-xl font-medium">{user.familyMembers}</p>
             </div>
           </div>
@@ -139,36 +134,34 @@ const Profile: React.FC<ProfileProps> = () => {
 
         {/* Address Details */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">
-            Address Details
-          </h2>
+          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">Address Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col">
-              <strong className="text-lg">Flat/House Number:</strong>
+              <strong className="text-2xl font-bold">Flat/House Number:</strong>
               <p className="text-xl font-medium">{user.address.flatNumber}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Street Address:</strong>
+              <strong className="text-2xl font-bold">Street Address:</strong>
               <p className="text-xl font-medium">{user.address.street}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Nearest Landmark:</strong>
+              <strong className="text-2xl font-bold">Nearest Landmark:</strong>
               <p className="text-xl font-medium">{user.address.landmark}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">City/Town:</strong>
+              <strong className="text-2xl font-bold">City/Town:</strong>
               <p className="text-xl font-medium">{user.address.city}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">District:</strong>
+              <strong className="text-2xl font-bold">District:</strong>
               <p className="text-xl font-medium">{user.address.district}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">State:</strong>
+              <strong className="text-2xl font-bold">State:</strong>
               <p className="text-xl font-medium">{user.address.state}</p>
             </div>
             <div className="flex flex-col">
-              <strong className="text-lg">Pincode:</strong>
+              <strong className="text-2xl font-bold">Pincode:</strong>
               <p className="text-xl font-medium">{user.address.pincode}</p>
             </div>
           </div>
@@ -176,9 +169,7 @@ const Profile: React.FC<ProfileProps> = () => {
 
         {/* Kit Details */}
         <section>
-          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">
-            Kit Details
-          </h2>
+          <h2 className="text-2xl font-bold mb-4 border-b-2 border-blue-400 pb-2">Kit Details</h2>
           <ul className="list-disc list-inside text-xl font-semibold">
             {user.kitDetails.map((gear, index) => (
               <li key={index} className="mb-2">

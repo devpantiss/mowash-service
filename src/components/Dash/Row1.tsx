@@ -644,8 +644,8 @@ const Row1: React.FC = () => {
       {/* Third Row */}
       {/* Order Details Section */}
       <div className="p-4 border rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-4">Order Details</h3>
-        <div className="overflow-x-auto">
+        <h3 className="text-lg font-semibold text-white mb-4">Order History</h3>
+        <div className="overflow-auto">
           <table className="table-auto w-full text-sm text-left text-white">
             <thead className="text-xs text-center uppercase bg-gray-700">
               <tr>

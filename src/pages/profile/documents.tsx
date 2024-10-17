@@ -1,5 +1,3 @@
-// Documents.tsx
-
 import Layout from "@/components/Dash/Layout";
 import { useState, useEffect } from "react";
 
@@ -17,6 +15,8 @@ const Documents = () => {
     { name: "Training Certificate", uploaded: false },
     { name: "Fitness Report", uploaded: false },
   ]);
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(null); // Modal state
 
   // Handle file upload and generate preview URL
   const handleFileChange = (
@@ -47,11 +47,18 @@ const Documents = () => {
         file: undefined,
         previewUrl: undefined,
       };
-    } else {
-      // If currently not uploaded, do nothing or prompt upload
-      // Optionally, you can automatically open the file dialog
     }
     setDocuments(updatedDocuments);
+  };
+
+  // Open image in modal
+  const openModal = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedImage(null);
   };
 
   // Cleanup object URLs to prevent memory leaks
@@ -71,7 +78,10 @@ const Documents = () => {
         <h1 className="text-2xl font-bold mb-6">Documents</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {documents.map((doc, index) => (
-            <div key={index} className="bg-transparent ring-2 ring-white p-6 rounded-lg shadow-md">
+            <div
+              key={index}
+              className="bg-transparent ring-2 ring-white p-6 rounded-lg shadow-md"
+            >
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl text-white font-semibold">{doc.name}</h2>
                 <label className="flex items-center cursor-pointer">
@@ -86,7 +96,9 @@ const Documents = () => {
                     <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
                     <div
                       className={`dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition ${
-                        doc.uploaded ? "transform translate-x-full bg-blue-500" : ""
+                        doc.uploaded
+                          ? "transform translate-x-full bg-blue-500"
+                          : ""
                       }`}
                     ></div>
                   </div>
@@ -103,7 +115,8 @@ const Documents = () => {
                     <img
                       src={doc.previewUrl}
                       alt={`${doc.name} Preview`}
-                      className="w-full h-64 object-cover rounded-md mb-4"
+                      className="w-full h-64 object-cover rounded-md mb-4 cursor-pointer"
+                      onClick={() => openModal(doc.previewUrl)} // Open modal on click
                     />
                   ) : (
                     <p className="text-yellow-500">No preview available.</p>
@@ -172,6 +185,25 @@ const Documents = () => {
             </div>
           ))}
         </div>
+
+        {/* Modal for Image Preview */}
+        {selectedImage && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+            <div className="relative">
+              <button
+                className="absolute -top-20 right-0 text-white p-2"
+                onClick={closeModal}
+              >
+                Close
+              </button>
+              <img
+                src={selectedImage}
+                alt="Document Preview"
+                className="max-w-full max-h-full"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </Layout>
   );
