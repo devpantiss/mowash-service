@@ -116,11 +116,16 @@ const Documents = () => {
                       src={doc.previewUrl}
                       alt={`${doc.name} Preview`}
                       className="w-full h-64 object-cover rounded-md mb-4 cursor-pointer"
-                      onClick={() => openModal(doc.previewUrl)} // Open modal on click
+                      onClick={() => {
+                        if (doc.previewUrl) {
+                          openModal(doc.previewUrl); // Ensure previewUrl is defined
+                        }
+                      }}
                     />
                   ) : (
                     <p className="text-yellow-500">No preview available.</p>
                   )}
+
                   <button className="text-blue-600 underline">
                     Edit Document
                   </button>
