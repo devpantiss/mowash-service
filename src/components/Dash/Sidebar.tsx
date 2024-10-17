@@ -103,7 +103,7 @@ const Sidebar: FC = () => {
         {/* Profile */}
         <Link
           className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
-          href="/lms/certification"
+          href="/dashboard/profile"
         >
                 <FaUser size={20} />
                 <span className="hidden group-hover:block">Profile</span>
