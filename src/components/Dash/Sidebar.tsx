@@ -5,7 +5,6 @@ import {
   AiFillDashboard,
   AiFillDollarCircle,
   AiFillSetting,
-  AiFillProfile,
   AiFillQuestionCircle,
   AiOutlineLogout,
   AiOutlineDown,
@@ -15,7 +14,12 @@ import {
   BsFillShieldLockFill,
   BsCardChecklist,
 } from "react-icons/bs";
-import { FaUserShield } from "react-icons/fa";
+import { FaUser, FaUserShield } from "react-icons/fa";
+import { GiGraduateCap } from "react-icons/gi";
+import { GrDocument } from "react-icons/gr";
+
+
+
 
 const Sidebar: FC = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
@@ -86,13 +90,33 @@ const Sidebar: FC = () => {
         </Link>
         
         
-        {/* welfare */}
+        {/* LMS */}
         <Link
           className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
           href="/lms/certification"
         >
-                <FaUserShield size={20} />
+                <GiGraduateCap size={20} />
                 <span className="hidden group-hover:block">LMS</span>
+        </Link>
+
+
+        {/* Profile */}
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/lms/certification"
+        >
+                <FaUser size={20} />
+                <span className="hidden group-hover:block">Profile</span>
+        </Link>
+
+
+        {/* Documents */}
+        <Link
+          className="flex items-center space-x-2 hover:bg-blue-400 p-2 rounded-md transition-all duration-300"
+          href="/profile/documents"
+        >
+                <GrDocument size={20} />
+                <span className="hidden group-hover:block">Documents</span>
         </Link>
 
         {/* Help & Support */}

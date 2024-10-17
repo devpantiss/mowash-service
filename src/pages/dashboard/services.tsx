@@ -1,8 +1,6 @@
-// Services.tsx
-
 import React, { useEffect, useState } from "react";
 import Layout from "@/components/Dash/Layout";
-import { Line } from "react-chartjs-2"; // Import the Line chart from react-chartjs-2
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   Title,
@@ -13,10 +11,12 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
-import "react-calendar/dist/Calendar.css"; // Import react-calendar styles
+import "react-calendar/dist/Calendar.css";
 import DashTable from "@/components/Dash/DashTable";
+import Notification from "@/components/Dash/Notification";
 
-// Register ChartJS components
+
+
 ChartJS.register(
   Title,
   Tooltip,
@@ -26,6 +26,15 @@ ChartJS.register(
   CategoryScale,
   LinearScale
 );
+
+interface JobNotification {
+  id: number;
+  name: string; // Who booked the job
+  distance: number; // Distance from user's location in kilometers
+  payment: number; // Payment amount
+  timing: string; // Job timing
+  category: string; // Job category
+}
 
 interface StatCardProps {
   title: string;
@@ -46,7 +55,7 @@ const StatCard: React.FC<StatCardProps> = ({
     <div
       className={`flex ring-2 ring-white items-center ${
         flexCol || "flex-row"
-      } p-4 rounded-lg text-center justify-center bg-transparent}`}
+      } p-4 rounded-lg text-center justify-center bg-transparent`}
     >
       <div className="mr-4 text-4xl">{icon}</div>
       <div>
@@ -60,27 +69,75 @@ const StatCard: React.FC<StatCardProps> = ({
 
 const Services: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const [isActive, setIsActive] = useState<boolean>(true); // State for active status
+  const [isActive, setIsActive] = useState<boolean>(true);
   const [currentDate, setCurrentDate] = useState("");
+  const [targetJobs, setTargetJobs] = useState<number>(0);
+  const [targetRevenue, setTargetRevenue] = useState<number>(0);
+  const [jobsInput, setJobsInput] = useState<number | string>("");
+  const [revenueInput, setRevenueInput] = useState<number | string>("");
+  const [selectedSlots, setSelectedSlots] = useState<string[]>([]); // Moved state here
+  const [notifications, setNotifications] = useState<JobNotification[]>([
+    // Example notifications, replace this with actual data from your backend or state
+    { id: 1, name: "John Doe", distance: 5, payment: 500, timing: "10:00 AM", category: "Cleaning" },
+    { id: 2, name: "Jane Smith", distance: 3, payment: 300, timing: "1:00 PM", category: "Repair" },
+  ]);
+
+  // Calculate total working hours based on selected slots
+  const totalWorkingHours = selectedSlots.length;
+
+  useEffect(() => {
+    setIsMounted(true);
+    const formattedDate = new Date().toLocaleDateString("en-GB");
+    setCurrentDate(formattedDate);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
+  const toggleActiveStatus = () => {
+    setIsActive((prev) => !prev);
+  };
+
+  const handleJobsInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setJobsInput(e.target.value);
+  };
+
+  const handleRevenueInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRevenueInput(e.target.value);
+  };
+
+  const handleJobsSubmit = () => {
+    const parsedJobs = Number(jobsInput);
+    if (!isNaN(parsedJobs)) {
+      setTargetJobs(parsedJobs);
+      setJobsInput(""); // Clear input field after submission
+    }
+  };
+
+  const handleRevenueSubmit = () => {
+    const parsedRevenue = Number(revenueInput);
+    if (!isNaN(parsedRevenue)) {
+      setTargetRevenue(parsedRevenue);
+      setRevenueInput(""); // Clear input field after submission
+    }
+  };
 
   const TimeSlotSelector: React.FC<{ isActive: boolean }> = ({ isActive }) => {
-    const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
-
     const timeSlots = Array.from({ length: 13 }, (_, i) => {
       const hour = 6 + i;
       const nextHour = hour + 1;
-      const suffix = hour < 12 ? "AM" : "PM"; // Determine AM/PM
-      const formattedHour = hour % 12 || 12; // Format hour to 12-hour format
+      const suffix = hour < 12 ? "AM" : "PM";
+      const formattedHour = hour % 12 || 12;
       const formattedNextHour = nextHour % 12 || 12;
       return `${formattedHour}:00 ${suffix} - ${formattedNextHour}:00 ${suffix}`;
     });
 
     const handleSlotChange = (slot: string) => {
-      setSelectedSlots(
-        (prev) =>
-          prev.includes(slot)
-            ? prev.filter((s) => s !== slot) // Deselect if already selected
-            : [...prev, slot] // Select if not selected
+      setSelectedSlots((prev) =>
+        prev.includes(slot)
+          ? prev.filter((s) => s !== slot)
+          : [...prev, slot]
       );
     };
 
@@ -97,13 +154,13 @@ const Services: React.FC = () => {
                   : "bg-transparent ring-2 ring-white text-white"
               } hover:bg-blue-300 ${
                 isActive ? "" : "opacity-50 cursor-not-allowed"
-              }`} // Add opacity and disabled styling
+              }`}
             >
               <input
                 type="checkbox"
                 checked={selectedSlots.includes(slot)}
-                onChange={() => isActive && handleSlotChange(slot)} // Only handle change if active
-                disabled={!isActive} // Disable if not active
+                onChange={() => isActive && handleSlotChange(slot)}
+                disabled={!isActive}
                 className="hidden"
               />
               <span className="h-5 w-5 border-2 border-blue-500 rounded-md flex items-center justify-center mr-2">
@@ -119,21 +176,12 @@ const Services: React.FC = () => {
     );
   };
 
-  useEffect(() => {
-    setIsMounted(true); // Set the mounted flag to true after the component is mounted
-
-    // Set current date using client-side date formatting (localized to "en-GB")
-    const date = new Date().toLocaleDateString("en-GB");
-    setCurrentDate(date);
-  }, []);
-
-
   const weeklyEarningsData = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     datasets: [
       {
         label: "This Week's Earnings",
-        data: [120, 150, 170, 200, 250, 300, 400], // Earnings data
+        data: [120, 150, 170, 200, 250, 300, 400],
         borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         borderWidth: 2,
@@ -141,8 +189,8 @@ const Services: React.FC = () => {
       },
       {
         label: "Jobs Completed",
-        data: [10, 12, 15, 8, 20, 18, 25], // Jobs completed data
-        borderColor: "rgba(255, 99, 132, 1)", // Different color for jobs completed
+        data: [10, 12, 15, 8, 20, 18, 25],
+        borderColor: "rgba(255, 99, 132, 1)",
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderWidth: 2,
         fill: true,
@@ -150,140 +198,135 @@ const Services: React.FC = () => {
     ],
   };
 
+  const handleAcceptJob = (id: number) => {
+    setNotifications((prev) => prev.filter((job) => job.id !== id));
+    // Handle job acceptance logic here
+    console.log(`Accepted job ${id}`);
+  };
+
+  const handleCancelJob = (id: number) => {
+    setNotifications((prev) => prev.filter((job) => job.id !== id));
+    // Handle job cancellation logic here
+    console.log(`Cancelled job ${id}`);
+  };
+
+
   return (
     <Layout>
       <div className="p-6 bg-transparent text-white rounded-lg shadow-lg">
-        {/* Top stats section */}
-        <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 lg:w-1/2 ring-2 ring-white p-4 rounded-md w-full">
-          <StatCard
-            title="Today's Orders"
-            value="0"
-            subtitle="Yesterday 0"
-            icon={<span>📋</span>}
-            flexCol="lg:flex-col"
-          />
-          <StatCard
-            title="Today's Revenue"
-            value="₹ 0"
-            subtitle="Yesterday ₹ 0"
-            icon={<span>💰</span>}
-            flexCol="lg:flex-col"
-          />
-          <StatCard
-            title="Today's Working Hours"
-            value="0 Hours"
-            icon={<span>🕒</span>}
-            flexCol="lg:flex-col"
-          />
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-          {[
-            {
-              label: "Total Jobs Done",
-              count: 201,
-              change: "+8%",
-              color: "text-green-500",
-            },
-            {
-              label: "Mason Jobs",
-              count: 70,
-              change: "+5%",
-              color: "text-green-500",
-            },
-            {
-              label: "Plumbing Jobs",
-              count: 20,
-              change: "-10%",
-              color: "text-red-500",
-            },
-            {
-              label: "Sanitation Jobs",
-              count: 21,
-              change: "+4%",
-              color: "text-green-500",
-            },
-            {
-              label: "Water Jobs",
-              count: 90,
-              change: "-8%",
-              color: "text-red-500",
-            },
-          ].map((stat, index) => (
-            <div key={index} className="p-4 border rounded-lg shadow-md">
-              <p className="text-lg font-semibold">{stat.label}</p>
-              <div className="flex items-center space-x-2">
-                <h3 className="text-2xl font-bold">{stat.count}</h3>
-                <span className={`text-sm ${stat.color}`}>{stat.change}</span>
+        <div className="flex flex-col lg:flex-row gap-y-8 lg:gap-x-8">
+          <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 lg:w-1/2 ring-2 ring-white p-4 rounded-md w-full">
+            <StatCard
+              title="Today's Orders"
+              value="0"
+              subtitle="Yesterday 0"
+              icon={<span>📋</span>}
+              flexCol="lg:flex-col"
+            />
+            <StatCard
+              title="Today's Revenue"
+              value="₹ 0"
+              subtitle="Yesterday ₹ 0"
+              icon={<span>💰</span>}
+              flexCol="lg:flex-col"
+            />
+            <StatCard
+              title="Today's Working Hours"
+              value={`${totalWorkingHours} Hours`} // Dynamically update working hours
+              icon={<span>🕒</span>}
+              flexCol="lg:flex-col"
+            />
+          </div>
+          <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 lg:w-1/2 ring-2 ring-white p-4 rounded-md w-full">
+            <StatCard
+              title="Target Revenue"
+              value={`₹ ${targetRevenue}`}
+              subtitle="Yesterday ₹ 0"
+              icon={<span>💰</span>}
+              flexCol="lg:flex-col"
+            />
+            <StatCard
+              title="Target Jobs"
+              value={targetJobs}
+              subtitle="Yesterday 0"
+              icon={<span>📋</span>}
+              flexCol="lg:flex-col"
+            />
+            <div className="flex flex-col">
+              <button
+                onClick={toggleActiveStatus}
+                className={`p-2 rounded-md ${
+                  isActive ? "bg-green-500" : "bg-red-500"
+                } text-white`}
+              >
+                {isActive ? "ACTIVE" : "INACTIVE"}
+              </button>
+              <div className="flex flex-col w-full mt-2">
+                <div className="flex w-full">
+                  <input
+                    type="number"
+                    placeholder="Target Jobs"
+                    value={jobsInput} // Set input value to jobsInput state
+                    onChange={handleJobsInputChange}
+                    className="p-2 rounded-bl-md w-full rounded-tl-md text-black"
+                  />
+                  <button
+                    onClick={handleJobsSubmit}
+                    className="p-2 bg-blue-500 rounded-br-md rounded-tr-md text-white"
+                  >
+                    Submit
+                  </button>
+                </div>
+                <div className="flex mt-2 w-full">
+                  <input
+                    type="number"
+                    placeholder="Target Revenue"
+                    value={revenueInput} // Set input value to revenueInput state
+                    onChange={handleRevenueInputChange}
+                    className="p-2 rounded-bl-md w-full rounded-tl-md text-black"
+                  />
+                  <button
+                    onClick={handleRevenueSubmit}
+                    className="p-2 bg-blue-500 rounded-br-md rounded-tr-md text-white"
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-        {/* Second Row */}
-        <div className="grid py-6 rounded-md grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
+        <div className="flex flex-col lg:flex-row lg:gap-x-6 w-full gap-y-6">
+          <div className="mt-6 lg:w-1/2 w-full ring-2 ring-white rounded-lg p-4">
             <div className="flex justify-between">
               <h3 className="text-lg text-white font-bold">
                 Work Timing Slots
               </h3>
-              DATE{/* {isMounted && <span className="text-white">{currentDate}</span>} Render only when mounted */}
-              {/* Render only when mounted */}
-              {/* Display current date */}
+              <span className="text-white">{currentDate}</span>
             </div>
             <TimeSlotSelector isActive={isActive} />
           </div>
-          <div className="bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
-            <h3 className="text-lg text-white font-bold">
-              This Week&apos;s Earnings
-            </h3>
-            <div className="mt-4">
-              <Line
-                data={weeklyEarningsData}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: false, // Allow the chart to stretch to fit its container
-                  scales: {
-                    x: {
-                      title: {
-                        display: true,
-                        text: "Days of the Week",
-                        color: "white",
-                      },
-                      ticks: {
-                        color: "white",
-                      },
-                      grid: {
-                        color: "rgba(128, 128, 128, 0.5)", // Set grid line color to gray
-                      },
-                    },
-                    y: {
-                      title: {
-                        display: true,
-                        text: "Value",
-                        color: "white",
-                      },
-                      ticks: {
-                        color: "white",
-                      },
-                      grid: {
-                        color: "rgba(128, 128, 128, 0.5)", // Set grid line color to gray
-                      },
-                    },
-                  },
-                  plugins: {
-                    legend: {
-                      labels: {
-                        color: "white",
-                      },
-                    },
-                  },
-                }}
-                height={0}
-                width={0}
-              />
-            </div>
+          <div className="mt-6 w-full lg:w-1/2 ring-2 ring-white rounded-lg p-4">
+          <h3 className="text-lg text-white font-bold">Job Notifications</h3>
+          <div className="mt-4 flex flex-col gap-4">
+            {notifications.length > 0 ? (
+              notifications.map((job) => (
+                <Notification
+                  key={job.id}
+                  job={job}
+                  onAccept={handleAcceptJob}
+                  onCancel={handleCancelJob}
+                />
+              ))
+            ) : (
+              <p className="text-center text-white">No new job notifications.</p>
+            )}
           </div>
         </div>
-        <div className="p-6 mt-6 ring-2 ring-white rounded-md flex flex-col gap-4">
+
+        </div>
+
+        <div className="p-3 mt-6 ring-2 ring-white rounded-md flex flex-col gap-4">
           {isActive ? (
             <DashTable />
           ) : (
@@ -292,12 +335,7 @@ const Services: React.FC = () => {
                 <h3 className="text-lg text-white font-bold">
                   Today&apos;s Orders
                 </h3>
-                <span className="text-gray-200">
-                {/* {isMounted && <span className="text-white">{currentDate}</span>} Render only when mounted */}
-                DATE{" "}
-                  {/* Render only when mounted */}
-                  {/* Use the same locale */}
-                </span>
+                <span className="text-white">{currentDate}</span>
               </div>
               <p className="text-center text-white">
                 No active orders right now as you are offline.

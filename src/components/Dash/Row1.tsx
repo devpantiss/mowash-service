@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   PointElement,
   BarElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -13,6 +14,8 @@ import {
 import Reviews from "./Reviews";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // Import star icons
 import Calendar, { CalendarProps } from "react-calendar"; // Import react-calendar with CalendarProps
+import ServiceCards from "../Dash/ServiceCards";
+import DistrictMarquee from "../SignUp/DistrictMarquee";
 
 // Register the necessary components for Chart.js
 ChartJS.register(
@@ -20,6 +23,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   BarElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
@@ -31,6 +35,7 @@ interface StatCardProps {
   subtitle?: string;
   icon: React.ReactNode;
   flexCol?: string;
+  colSpan?: string;
 }
 
 const StatCard: React.FC<StatCardProps> = ({
@@ -39,12 +44,15 @@ const StatCard: React.FC<StatCardProps> = ({
   subtitle,
   icon,
   flexCol,
+  colSpan,
 }) => {
   return (
     <div
       className={`flex ring-2 ring-white items-center ${
         flexCol || "flex-row"
-      } p-4 rounded-lg text-center justify-center bg-transparent}`}
+      } p-4 rounded-lg text-center ${
+        colSpan || ""
+      } justify-center bg-transparent}`}
     >
       <div className="mr-4 text-4xl">{icon}</div>
       <div>
@@ -56,12 +64,9 @@ const StatCard: React.FC<StatCardProps> = ({
   );
 };
 
-const ProfileCard: React.FC<{
-  onToggleStatus: () => void;
-  isActive: boolean;
-}> = ({ onToggleStatus, isActive }) => {
+const ProfileCard: React.FC = () => {
   return (
-    <div className="bg-black/40 shadow-lg rounded-lg w-80 h-[400px] p-6 ring-2 ring-blue-600 mx-auto">
+    <div className="bg-black/40 shadow-lg rounded-lg w-80 lg:h-[425px] p-6 ring-2 ring-blue-600 mx-auto">
       <img
         src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
         alt="Profile"
@@ -89,23 +94,13 @@ const ProfileCard: React.FC<{
           <span>9853939599</span>
         </div>
       </div>
-      <div className="mt-4 flex justify-center">
-        <button
-          onClick={onToggleStatus}
-          className={`px-4 py-2 rounded-md ${
-            isActive ? "bg-green-500" : "bg-red-500"
-          } text-white`}
-        >
-          {isActive ? "Active" : "Inactive"}
-        </button>
-      </div>
     </div>
   );
 };
 
 const Row1: React.FC = () => {
-  const [isActive, setIsActive] = useState<boolean>(false); // State for active status
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [isWeekly, setIsWeekly] = useState(true);
   const currentDate = new Date().toLocaleDateString("en-GB"); // Force the client to use 'en-GB' format (DD/MM/YYYY)
 
   interface OrderDetailsProps {
@@ -178,7 +173,6 @@ const Row1: React.FC = () => {
         <td className={`py-4 px-4 font-semibold ${getStatusColor(status)}`}>
           {status}
         </td>{" "}
-        {/* Dynamically set status color */}
       </tr>
     );
   };
@@ -325,10 +319,6 @@ const Row1: React.FC = () => {
       )
     : [];
 
-  const toggleStatus = () => {
-    setIsActive((prev) => !prev);
-  };
-
   // Handler for calendar date change
   const handleDateChange: CalendarProps["onChange"] = (value, event) => {
     if (value instanceof Date) {
@@ -336,59 +326,220 @@ const Row1: React.FC = () => {
     }
   };
 
+  // Weekly earnings data
+  const weeklyEarningsData = {
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    datasets: [
+      {
+        label: "This Week's Earnings",
+        data: [120, 150, 170, 200, 250, 300, 400],
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderWidth: 2,
+        fill: true,
+      },
+      {
+        label: "Jobs Completed",
+        data: [10, 12, 15, 8, 20, 18, 25],
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderWidth: 2,
+        fill: true,
+      },
+    ],
+  };
+
+  // Monthly earnings data
+  const monthlyEarningsData = {
+    labels: [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+    ],
+    datasets: [
+      {
+        label: "This Month's Earnings",
+        data: [
+          400, 450, 300, 200, 500, 600, 700, 800, 550, 400, 300, 650, 700, 750,
+          800, 900, 850, 700, 600, 500, 450, 400, 550, 600, 650, 700, 800, 900,
+          950, 1000,
+        ],
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderWidth: 2,
+        fill: true,
+      },
+      {
+        label: "Jobs Completed",
+        data: [
+          15, 10, 12, 8, 20, 18, 15, 22, 20, 18, 12, 15, 20, 25, 18, 15, 12, 20,
+          18, 20, 22, 24, 18, 20, 25, 22, 20, 18, 20, 22,
+        ],
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderWidth: 2,
+        fill: true,
+      },
+    ],
+  };
+
+  const chartData = isWeekly ? weeklyEarningsData : monthlyEarningsData;
+
   return (
     <div className="p-8 bg-transparent min-h-screen">
       {/* First Row */}
-      <div className="flex flex-col-reverse lg:flex-row w-full px-2 gap-4">
-        <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 lg:w-1/2 ring-2 ring-white p-4 rounded-md w-full">
-          <StatCard
-            title="New Jobs"
-            value="0"
-            subtitle="Yesterday 0"
-            icon={<span>📋</span>}
-            flexCol="lg:flex-col"
-          />
-          <StatCard
-            title="Ongoing Jobs"
-            value="₹ 0"
-            subtitle="Yesterday ₹ 0"
-            icon={<span>💰</span>}
-            flexCol="lg:flex-col"
-          />
-          <StatCard
-            title="Target"
-            value="0 Hours"
-            icon={<span>🕒</span>}
-            flexCol="lg:flex-col"
-          />
-        </div>
-        <div className="lg:w-1/2 w-full flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
-          <div className="w-full bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
-            <h3 className="text-lg text-white font-bold">
-              Earnings Status (Last 30 days)
-            </h3>
-            <div className="grid grid-cols-1 gap-4 mt-4">
-              <StatCard
-                title="Total Revenue"
-                value="₹ 0"
-                icon={<span>💸</span>}
-              />
-              <StatCard
-                title="Amount Credited to Bank"
-                value="₹ 0"
-                icon={<span>💳</span>}
-              />
-              <StatCard
-                title="Amount Pending"
-                value="₹ 0"
-                subtitle="Greater than 8 days"
-                icon={<span>⏳</span>}
+      <div className="flex flex-col-reverse lg:flex-row w-full px-2 mb-4 gap-4">
+        <div className="flex lg:w-2/5 w-full mb-8">
+          <div className="bg-transparent w-full ring-2 ring-white p-4 rounded-lg shadow-lg">
+            <h3 className="text-lg text-white font-bold">Earnings Overview</h3>
+
+            {/* Toggle Buttons */}
+            <div className="flex justify-center mt-4">
+              <button
+                className={`px-4 py-2 mr-2 rounded ${
+                  isWeekly ? "bg-blue-600" : "bg-gray-700"
+                }`}
+                onClick={() => setIsWeekly(true)}
+              >
+                Weekly
+              </button>
+              <button
+                className={`px-4 py-2 rounded ${
+                  !isWeekly ? "bg-blue-600" : "bg-gray-700"
+                }`}
+                onClick={() => setIsWeekly(false)}
+              >
+                Monthly
+              </button>
+            </div>
+
+            <div className="mt-4">
+              <Line
+                data={chartData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    x: {
+                      title: {
+                        display: true,
+                        text: isWeekly
+                          ? "Days of the Week"
+                          : "Days of the Month",
+                        color: "white",
+                      },
+                      ticks: {
+                        color: "white",
+                      },
+                      grid: {
+                        color: "rgba(128, 128, 128, 0.5)",
+                      },
+                    },
+                    y: {
+                      title: {
+                        display: true,
+                        text: "Value",
+                        color: "white",
+                      },
+                      ticks: {
+                        color: "white",
+                      },
+                      grid: {
+                        color: "rgba(128, 128, 128, 0.5)",
+                      },
+                    },
+                  },
+                  plugins: {
+                    legend: {
+                      labels: {
+                        color: "white",
+                      },
+                    },
+                  },
+                }}
+                height={425}
+                width={0}
+                className="h-[425px]"
               />
             </div>
           </div>
-          {/* Profile Card on the right */}
-          <div className="lg:w-1/2 w-full mb-6">
-            <ProfileCard onToggleStatus={toggleStatus} isActive={isActive} />
+        </div>
+        <div className="flex lg:w-3/5 w-full flex-col-reverse lg:flex-row gap-y-6 lg:gap-x-4 ">
+          <div className="w-full lg:w-2/3 flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
+            <div className="w-full bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
+              <h3 className="text-lg text-white font-bold">
+                Earnings Status (Last 30 days)
+              </h3>
+              <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 p-4 rounded-md w-full">
+                <StatCard
+                  title="New Jobs"
+                  value="0"
+                  subtitle="Yesterday 0"
+                  icon={<span>📋</span>}
+                  flexCol="lg:flex-col"
+                />
+                <StatCard
+                  title="Ongoing Jobs"
+                  value="0"
+                  subtitle="Yesterday ₹ 0"
+                  icon={<span>📋</span>}
+                  flexCol="lg:flex-col"
+                  colSpan="lg:col-span-2 col-span-1"
+                />
+                <StatCard
+                  title="Total Revenue"
+                  value="₹ 0"
+                  icon={<span>💸</span>}
+                  flexCol="lg:flex-col"
+                />
+                <StatCard
+                  title="Amount Withdrawn"
+                  value="₹ 0"
+                  icon={<span>💳</span>}
+                  flexCol="lg:flex-col"
+                />
+                <StatCard
+                  title="Amount Pending"
+                  value="₹ 0"
+                  icon={<span>⏳</span>}
+                  flexCol="lg:flex-col"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="w-full lg:w-1/3 flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
+            {/* Profile Card on the right */}
+            <div className="w-full mb-6">
+              <ProfileCard />
+            </div>
           </div>
         </div>
       </div>
@@ -526,6 +677,15 @@ const Row1: React.FC = () => {
           </table>
         </div>
       </div>
+
+      {/* Fourth Row */}
+      <div className="p-4 ring-2 ring-white rounded-md mt-6">
+        <h3 className="mb-4 text-lg text-white font-semibold">
+          Welfare Schemes Availed
+        </h3>
+        <ServiceCards />
+      </div>
+
       {/* Custom styles for highlighted dates and calendar theming */}
       <style jsx global>{`
         /* Highlighted dates with jobs */

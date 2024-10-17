@@ -103,7 +103,7 @@ const Documents = () => {
                     <img
                       src={doc.previewUrl}
                       alt={`${doc.name} Preview`}
-                      className="w-full h-full object-cover rounded-md mb-4"
+                      className="w-full h-64 object-cover rounded-md mb-4"
                     />
                   ) : (
                     <p className="text-yellow-500">No preview available.</p>
