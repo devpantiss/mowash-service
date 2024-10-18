@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Signup: React.FC = () => {
   const [step, setStep] = useState<number>(0);
-  const totalSteps = steps.length;
+  const totalSteps = steps?.length;
 
   const handleNext = () => {
     if (step === 8) {

@@ -11,6 +11,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    // "types": ["@types/node", "@types/react", "@types/leaflet", "@types/react-leaflet"],
     "incremental": true,
     "plugins": [
       {
