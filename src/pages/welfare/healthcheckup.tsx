@@ -352,6 +352,13 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                 Welcome to the health dashboard. Here you can view your health
                 summary and book a health checkup.
               </p>
+              <Link
+                href="/welfare/book-healthcheckup"
+                className="text-white pointer px-3 py-2 ring-2 ring-white hover:bg-blue-600 rounded-md"
+              >
+                Book Health Checkup
+              </Link>
+
               <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6">
                 <div className="w-full col-span-3 flex flex-col items-center text-left">
                   {/* Patient Information Card */}
@@ -459,9 +466,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
               </div>
             </div>
           </div>
-
-          <Link href="/welfare/book-healthcheckup" className="text-white pointer">Book Health Checkup</Link>
-        </div>{" "}
+        </div>
       </div>
     </Layout>
   );

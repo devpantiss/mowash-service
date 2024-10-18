@@ -11,7 +11,11 @@ const Signup: React.FC = () => {
   const handleNext = () => {
     if (step === 8) {
       setStep(10);
-    } else if (step === 11) {
+    } else if (step === 9) {
+      setStep(9);
+    }else if (step === 11) {
+      setStep(11);
+    }else if (step === 10) {
       setStep(11);
     } else if (step < totalSteps - 1) {
       setStep((prevStep) => prevStep + 1);

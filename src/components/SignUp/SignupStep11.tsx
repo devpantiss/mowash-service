@@ -258,7 +258,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
   };
 
   const handleSkip = () => {
-    goToStep(8);
+    goToStep(10);
   };
 
   return (

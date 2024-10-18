@@ -1,10 +1,32 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Lottie from "lottie-react";
 import Slider from "react-slick";
 import animationData from "../../components/assets/health.json";
 import Layout from "@/components/Dash/Layout";
 
+
+const NextArrow = ({ onClick }: { onClick: () => void }) => (
+    <button
+      className="absolute z-10 -right-5 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white rounded-full px-4 py-3"
+      onClick={onClick}
+    >
+      &gt;
+    </button>
+  );
+
+  const PrevArrow = ({ onClick }: { onClick: () => void }) => (
+    <button
+      className="absolute z-10 -left-5 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white rounded-full px-4 py-3"
+      onClick={onClick}
+    >
+      &lt;
+    </button>
+  );
+
 const HealthCheckupBooking = () => {
+  const [hoveredTest, setHoveredTest] = useState<number | null>(null);
+  const sliderRef = useRef<Slider>(null);
+
   const checkups = [
     {
       name: "Full Body Checkup",
@@ -19,22 +41,32 @@ const HealthCheckupBooking = () => {
         {
           name: "Complete Haemogram",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/haemogram_ifibzh.jpg",
+          description:
+            "Evaluates the levels of different blood components like RBC, WBC, platelets to diagnose infections, anemia, etc.",
         },
         {
           name: "Glucose - Fasting Blood (FBS)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glucose_fasting_rqksfn.jpg",
+          description:
+            "Measures blood glucose levels after fasting to detect diabetes and monitor glucose control.",
         },
         {
           name: "Glycosylated Haemoglobin",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
+          description:
+            "Determines average blood sugar levels over the past 2-3 months to assess diabetes control.",
         },
         {
           name: "Kidney Function Test (KFT)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249185/kidney._function_agimxa.jpg",
+          description:
+            "Evaluates kidney health by checking levels of urea, creatinine, and other indicators.",
         },
         {
           name: "Lipid Profile",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249186/lipid_profile_zeeehj.jpg",
+          description:
+            "Measures cholesterol levels, including LDL, HDL, and triglycerides, to assess cardiovascular risk.",
         },
       ],
     },
@@ -51,18 +83,26 @@ const HealthCheckupBooking = () => {
         {
           name: "Complete Blood Count (CBC)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
+          description:
+            "Measures various components of blood, including red blood cells, white blood cells, and platelets, to help diagnose anemia, infection, and other diseases.",
         },
         {
           name: "Serum Iron",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249186/lipid_profile_zeeehj.jpg",
+          description:
+            "Assesses the amount of iron in the blood to evaluate iron deficiency anemia or excess iron levels.",
         },
         {
           name: "Total Iron Binding Capacity (TIBC)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249592/vit_fyxpto.jpg",
+          description:
+            "Measures the blood's capacity to bind iron with transferrin and helps in diagnosing iron deficiency anemia.",
         },
         {
           name: "Ferritin",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249491/ferritin_zd3fhk.jpg",
+          description:
+            "Indicates the level of stored iron in the body, helping to diagnose iron deficiency or overload.",
         },
       ],
     },
@@ -79,22 +119,32 @@ const HealthCheckupBooking = () => {
         {
           name: "Complete Blood Count (CBC)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/haemogram_ifibzh.jpg",
+          description:
+            "Measures the overall health of blood components to check for anemia, infection, and other disorders.",
         },
         {
           name: "Thyroid Stimulating Hormone (TSH)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249189/thyroid_j0pxgp.jpg",
+          description:
+            "Assesses the function of the thyroid gland by measuring the level of TSH in the blood, helping to diagnose thyroid disorders.",
         },
         {
           name: "Follicle Stimulating Hormone (FSH)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249189/thyroid_j0pxgp.jpg",
+          description:
+            "Measures the level of FSH to evaluate reproductive health and menstrual irregularities in women.",
         },
         {
           name: "Estradiol (E2)",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249186/lipid_profile_zeeehj.jpg",
+          description:
+            "Evaluates the levels of estradiol, a form of estrogen, important for assessing ovarian function and menstrual cycle.",
         },
         {
           name: "Prolactin",
           icon: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727249184/glycosylATED_HAEMO_klhpdk.jpg",
+          description:
+            "Measures prolactin levels in the blood, which can help in diagnosing conditions related to menstrual disorders or fertility issues.",
         },
       ],
     },
@@ -117,7 +167,7 @@ const HealthCheckupBooking = () => {
 
   const handleDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedDistrict(e.target.value);
-    setSelectedHospital(""); // Reset hospital when district changes
+    setSelectedHospital("");
   };
 
   const handleHospitalChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -136,11 +186,13 @@ const HealthCheckupBooking = () => {
   };
 
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    nextArrow: <NextArrow onClick={() => {}} />,
+    prevArrow: <PrevArrow onClick={() => {}} />,
   };
 
   return (
@@ -212,13 +264,15 @@ const HealthCheckupBooking = () => {
                 <h3 className="font-bold text-white text-lg">
                   Tests Included:
                 </h3>
-                <Slider {...sliderSettings}>
+                <Slider {...sliderSettings} className="w-full">
                   {checkups
                     .find((c) => c.name === selectedCheckup)
                     ?.testsIncluded.map((test, index) => (
                       <div
                         key={index}
-                        className="text-center bg-white h-44 rounded-md px-2 py-4"
+                        className="relative text-center bg-white h-44 rounded-md px-2 py-4 transition-transform duration-300 hover:scale-10 hover:bg-blue-100"
+                        onMouseEnter={() => setHoveredTest(index)}
+                        onMouseLeave={() => setHoveredTest(null)}
                       >
                         <img
                           src={test.icon}
@@ -226,6 +280,14 @@ const HealthCheckupBooking = () => {
                           className="w-20 h-20 mx-auto mb-2"
                         />
                         <p className="text-black">{test.name}</p>
+
+                        {hoveredTest === index && (
+                          <div className="absolute inset-0 bg-blue-600 bg-opacity-90 rounded-md p-4 flex items-center justify-center">
+                            <p className="text-white text-sm">
+                              {test.description}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     ))}
                 </Slider>

@@ -36,9 +36,7 @@ const SignupStep5: React.FC = () => {
   };
 
   return (
-    <div
-      className="relative flex items-center justify-center min-h-screen p-4 bg-cover bg-center"
-    >
+    <div className="relative flex items-center justify-center min-h-screen p-4 bg-cover bg-center">
       {/* Confetti with continuous effect */}
       <Confetti width={width} height={height} recycle={true} numberOfPieces={400} />
 
@@ -65,8 +63,7 @@ const SignupStep5: React.FC = () => {
 
         {/* Daily Earnings Estimate */}
         <p className="text-md text-black text-center mb-6">
-          1 day working at an estimated ₹{animatedEarnings.toLocaleString()} a
-          day
+          1 day working at an estimated ₹{animatedEarnings.toLocaleString()} a day
         </p>
 
         {/* Preset Hours Buttons */}
