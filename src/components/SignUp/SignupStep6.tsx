@@ -210,8 +210,8 @@ const SignupStep6: React.FC = () => {
                 {searchResults.map((result, index) => (
                   <li
                     key={index}
-                    className="p-2 cursor-pointer hover:bg-gray-100"
                     onClick={() => handleResultSelect(result)}
+                    className="cursor-pointer hover:bg-gray-200 p-2"
                   >
                     {result.display_name}
                   </li>
@@ -222,109 +222,107 @@ const SignupStep6: React.FC = () => {
         </div>
 
         {/* Address Form */}
-        <form
-          onSubmit={handleFormSubmit}
-          className="lg:w-1/2 w-full py-6 ring-2 lg:rounded-tr-md lg:rounded-br-md ring-white px-8 space-y-6"
-        >
-          {/* Replace with styled inputs */}
-          <div className={style.inputContainer}>
-            <input
-              name="houseNumber"
-              placeholder="House Number"
-              className={style.inputField}
-              type="text"
-              value={formData.houseNumber}
-              onChange={handleInputChange}
-            />
-            <label className={style.inputLabel}>House Number</label>
-            <span className={style.inputHighlight}></span>
-          </div>
+        <div className="lg:w-1/2 w-full py-6 ring-2 lg:rounded-tr-md lg:rounded-br-md ring-white px-8 space-y-6">
+          <form onSubmit={handleFormSubmit}>
+            <div className={style.inputContainer}>
+              <input
+                name="houseNumber"
+                placeholder="House Number"
+                className={style.inputField}
+                type="text"
+                value={formData.houseNumber}
+                onChange={handleInputChange}
+              />
+              <label className={style.inputLabel}>House Number</label>
+              <span className={style.inputHighlight}></span>
+            </div>
 
-          <div className={style.inputContainer}>
-            <input
-              name="streetAddress"
-              placeholder="Street Address"
-              className={style.inputField}
-              type="text"
-              value={formData.streetAddress}
-              onChange={handleInputChange}
-            />
-            <label className={style.inputLabel}>Street Address</label>
-            <span className={style.inputHighlight}></span>
-          </div>
+            <div className={style.inputContainer}>
+              <input
+                name="streetAddress"
+                placeholder="Street Address"
+                className={style.inputField}
+                type="text"
+                value={formData.streetAddress}
+                onChange={handleInputChange}
+              />
+              <label className={style.inputLabel}>Street Address</label>
+              <span className={style.inputHighlight}></span>
+            </div>
 
-          <div className={style.inputContainer}>
-            <input
-              name="landmark"
-              placeholder="Landmark"
-              className={style.inputField}
-              type="text"
-              value={formData.landmark}
-              onChange={handleInputChange}
-            />
-            <label className={style.inputLabel}>Landmark</label>
-            <span className={style.inputHighlight}></span>
-          </div>
+            <div className={style.inputContainer}>
+              <input
+                name="landmark"
+                placeholder="Landmark"
+                className={style.inputField}
+                type="text"
+                value={formData.landmark}
+                onChange={handleInputChange}
+              />
+              <label className={style.inputLabel}>Landmark</label>
+              <span className={style.inputHighlight}></span>
+            </div>
 
-          <div className={style.inputContainer}>
-            <input
-              name="city"
-              placeholder="City"
-              className={style.inputField}
-              type="text"
-              value={formData.city}
-              onChange={handleInputChange}
-            />
-            <label className={style.inputLabel}>City</label>
-            <span className={style.inputHighlight}></span>
-          </div>
+            <div className={style.inputContainer}>
+              <input
+                name="city"
+                placeholder="City"
+                className={style.inputField}
+                type="text"
+                value={formData.city}
+                onChange={handleInputChange}
+              />
+              <label className={style.inputLabel}>City</label>
+              <span className={style.inputHighlight}></span>
+            </div>
 
-          <div className={style.inputContainer}>
-            <input
-              name="district"
-              placeholder="District"
-              className={style.inputField}
-              type="text"
-              value={formData.district}
-              onChange={handleInputChange}
-            />
-            <label className={style.inputLabel}>District</label>
-            <span className={style.inputHighlight}></span>
-          </div>
+            <div className={style.inputContainer}>
+              <input
+                name="district"
+                placeholder="District"
+                className={style.inputField}
+                type="text"
+                value={formData.district}
+                onChange={handleInputChange}
+              />
+              <label className={style.inputLabel}>District</label>
+              <span className={style.inputHighlight}></span>
+            </div>
 
-          <div className={style.inputContainer}>
-            <input
-              name="state"
-              placeholder="State"
-              className={style.inputField}
-              type="text"
-              value={formData.state}
-              onChange={handleInputChange}
-            />
-            <label className={style.inputLabel}>State</label>
-            <span className={style.inputHighlight}></span>
-          </div>
+            <div className={style.inputContainer}>
+              <input
+                name="state"
+                placeholder="State"
+                className={style.inputField}
+                type="text"
+                value={formData.state}
+                onChange={handleInputChange}
+              />
+              <label className={style.inputLabel}>State</label>
+              <span className={style.inputHighlight}></span>
+            </div>
 
-          <div className={style.inputContainer}>
-            <input
-              name="pincode"
-              placeholder="Pincode"
-              className={style.inputField}
-              type="number"
-              value={formData.pincode}
-              onChange={handleInputChange}
-            />
-            <label className={style.inputLabel}>Pincode</label>
-            <span className={style.inputHighlight}></span>
-          </div>
+            <div className={style.inputContainer}>
+              <input
+                name="pincode"
+                placeholder="Pincode"
+                className={style.inputField}
+                type="number"
+                value={formData.pincode}
+                onChange={handleInputChange}
+              />
+              <label className={style.inputLabel}>Pincode</label>
+              <span className={style.inputHighlight}></span>
+            </div>
 
-          <button
-            type="submit"
-            className="px-6 py-2 w-full bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
-          >
-            Confirm Address
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="px-6 py-2 w-full bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
+            >
+              Confirm Address
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
