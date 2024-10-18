@@ -1,10 +1,8 @@
 // components/Earnings.tsx
 import React, { useState, ChangeEvent } from "react";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { jsPDF } from "jspdf";
-import animationData from "../../components/assets/health.json";
 import dynamic from "next/dynamic";
 import Layout from "@/components/Dash/Layout";
 import {
@@ -17,6 +15,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa"; // Importing icons
 import HeartRateChart from "@/components/Dash/HeartRateChart";
+import Link from "next/link";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -343,651 +342,126 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
   return (
     <Layout>
       <div className="flex flex-col justify-center items-center bg-transparent p-6">
-        {!selectedCheckup ? (
-          <div className="w-full gap-x-8 lg:h-[90vh] flex flex-col lg:justify-start items-center">
-            <div className="w-full bg-transparent p-6">
-              <div className="w-full flex flex-col items-center text-center">
-                <h2 className="text-5xl font-bold text-white my-4">
-                  Health Dashboard
-                </h2>
-                <p className="text-lg text-gray-300 mb-6">
-                  Welcome to the health dashboard. Here you can view your health
-                  summary and book a health checkup.
-                </p>
-                <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6">
-                  <div className="w-full col-span-3 flex flex-col items-center text-left">
-                    {/* Patient Information Card */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8 bg-transparent ring-2 ring-white rounded-lg shadow-lg p-8">
-                      {/* Left Section - Patient Details */}
-                      <div className="col-span-2 text-white flex flex-col items-start space-y-4">
-                        <div className="flex justify-between w-full">
-                          <h3 className="text-2xl font-semibold">
-                            Cameron Williamson
-                          </h3>
-                          <span className="text-gray-400">
-                            Registered on: 12.05.2019
-                          </span>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-white">
-                            <span className="font-bold">Birth date:</span>{" "}
-                            01.02.1985
-                          </p>
-                          <p className="text-white">
-                            <span className="font-bold">Gender:</span> Female
-                          </p>
-                          <p className="text-white">
-                            <span className="font-bold">Age:</span> 37
-                          </p>
-                          <p className="text-white">
-                            <span className="font-bold">Contact:</span> +44 1632
-                            960097
-                          </p>
-                          <p className="text-white">
-                            <span className="font-bold">Email:</span>{" "}
-                            cameron_williamson85@gmail.com
-                          </p>
-                          <p className="text-white">
-                            <span className="font-bold">Address:</span> 4517
-                            Washington Ave., Manchester, Kentucky 39495
-                          </p>
-                        </div>
+        <div className="w-full gap-x-8 lg:h-[90vh] flex flex-col lg:justify-start items-center">
+          <div className="w-full bg-transparent p-6">
+            <div className="w-full flex flex-col items-center text-center">
+              <h2 className="text-5xl font-bold text-white my-4">
+                Health Dashboard
+              </h2>
+              <p className="text-lg text-gray-300 mb-6">
+                Welcome to the health dashboard. Here you can view your health
+                summary and book a health checkup.
+              </p>
+              <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6">
+                <div className="w-full col-span-3 flex flex-col items-center text-left">
+                  {/* Patient Information Card */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8 bg-transparent ring-2 ring-white rounded-lg shadow-lg p-8">
+                    {/* Left Section - Patient Details */}
+                    <div className="col-span-2 text-white flex flex-col items-start space-y-4">
+                      <div className="flex justify-between w-full">
+                        <h3 className="text-2xl font-semibold">
+                          Cameron Williamson
+                        </h3>
+                        <span className="text-gray-400">
+                          Registered on: 12.05.2019
+                        </span>
                       </div>
+                      <div className="space-y-1">
+                        <p className="text-white">
+                          <span className="font-bold">Birth date:</span>{" "}
+                          01.02.1985
+                        </p>
+                        <p className="text-white">
+                          <span className="font-bold">Gender:</span> Female
+                        </p>
+                        <p className="text-white">
+                          <span className="font-bold">Age:</span> 37
+                        </p>
+                        <p className="text-white">
+                          <span className="font-bold">Contact:</span> +44 1632
+                          960097
+                        </p>
+                        <p className="text-white">
+                          <span className="font-bold">Email:</span>{" "}
+                          cameron_williamson85@gmail.com
+                        </p>
+                        <p className="text-white">
+                          <span className="font-bold">Address:</span> 4517
+                          Washington Ave., Manchester, Kentucky 39495
+                        </p>
+                      </div>
+                    </div>
 
-                      {/* Right Section - Last Measurements */}
-                      <div className="col-span-1 bg-transparent ring-2 ring-white rounded-lg p-6">
-                        <h4 className="text-xl font-bold mb-4 text-white">
-                          Last Measurements
-                        </h4>
-                        <div className="flex flex-col space-y-2">
-                          <div className="flex justify-between">
-                            <span className="font-semibold text-gray-200">
-                              Heart Rate:
-                            </span>
-                            <span className="text-gray-300">87 b.p.m</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="font-semibold text-gray-200">
-                              Blood Pressure:
-                            </span>
-                            <span className="text-gray-300">120/80 mmHg</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="font-semibold text-gray-200">
-                              Weight:
-                            </span>
-                            <span className="text-gray-300">64 kg</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="font-semibold text-gray-200">
-                              Height:
-                            </span>
-                            <span className="text-gray-300">165 cm</span>
-                          </div>
+                    {/* Right Section - Last Measurements */}
+                    <div className="col-span-1 bg-transparent ring-2 ring-white rounded-lg p-6">
+                      <h4 className="text-xl font-bold mb-4 text-white">
+                        Last Measurements
+                      </h4>
+                      <div className="flex flex-col space-y-2">
+                        <div className="flex justify-between">
+                          <span className="font-semibold text-gray-200">
+                            Heart Rate:
+                          </span>
+                          <span className="text-gray-300">87 b.p.m</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-semibold text-gray-200">
+                            Blood Pressure:
+                          </span>
+                          <span className="text-gray-300">120/80 mmHg</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-semibold text-gray-200">
+                            Weight:
+                          </span>
+                          <span className="text-gray-300">64 kg</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="font-semibold text-gray-200">
+                            Height:
+                          </span>
+                          <span className="text-gray-300">165 cm</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <HeartRateChart />
                 </div>
-                <div className="w-full flex flex-col items-center mt-8">
-                  {/* User Info Display */}
-                  <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                    {/* Additional Patient Info Cards */}
-                    {Object.entries(userInfo).map(([key, value]) => (
-                      <div
-                        key={key}
-                        className="bg-transparent ring-2 ring-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 flex flex-col items-center text-center"
-                      >
-                        <div className="text-3xl text-white mb-2">
-                        {iconMap[key as keyof typeof iconMap]}
-                        </div>
-                        <h3 className="text-xl font-semibold text-white capitalize">
-                          {key.replace(/([A-Z])/g, " ")}
-                        </h3>
-                        {/* Display values */}
-                        {Array.isArray(value) ? (
-                          <ul className="text-lg text-white list-none pl-5 mt-2">
-                            {value.map((item: string, index: number) => (
-                              <li key={index}>{item}</li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-lg text-white mt-2">{value}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <HeartRateChart />
               </div>
-            </div>
-
-            <h2 className="text-5xl font-bold text-white my-4">
-              Book Health Checkup
-            </h2>
-            {/* health checkup booking */}
-            <div className="w-full gap-x-8 lg:h-[90vh] max-w-8xl flex flex-col-reverse lg:flex-row lg:justify-start items-center">
-              <div className="lg:w-1/2 w-full">
-                <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-4 gap-x-4">
-                  {checkups.map((checkup) => (
-                    <button
-                      key={checkup.name}
-                      onClick={() => handleCheckupSelection(checkup.name)}
-                      className="bg-transparent rounded-lg flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 text-center"
+              <div className="w-full flex flex-col items-center mt-8">
+                {/* User Info Display */}
+                <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                  {/* Additional Patient Info Cards */}
+                  {Object.entries(userInfo).map(([key, value]) => (
+                    <div
+                      key={key}
+                      className="bg-transparent ring-2 ring-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 flex flex-col items-center text-center"
                     >
-                      <img
-                        src={checkup.image}
-                        alt={checkup.name}
-                        className="lg:w-[300px] w-full object-cover rounded-md"
-                      />
-                      <span className="mt-2 text-white font-semibold">
-                        {checkup.name}
-                      </span>
-                    </button>
+                      <div className="text-3xl text-white mb-2">
+                        {iconMap[key as keyof typeof iconMap]}
+                      </div>
+                      <h3 className="text-xl font-semibold text-white capitalize">
+                        {key.replace(/([A-Z])/g, " ")}
+                      </h3>
+                      {/* Display values */}
+                      {Array.isArray(value) ? (
+                        <ul className="text-lg text-white list-none pl-5 mt-2">
+                          {value.map((item: string, index: number) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-lg text-white mt-2">{value}</p>
+                      )}
+                    </div>
                   ))}
                 </div>
-                <div className="text-center mt-8"></div>
-              </div>
-              {/* Flow chart animation */}
-              <div className="lg:w-1/2 w-full flex justify-center items-center rounded-md mb-6 lg:mb-0">
-                <Lottie
-                  animationData={animationData}
-                  loop={true}
-                  style={{
-                    width: "100%",
-                    height: "600px",
-                  }}
-                  className="block z-0"
-                />
               </div>
             </div>
           </div>
-        ) : (
-          <div className="flex lg:h-[100vh] w-full flex-col lg:flex-row">
-            <div className="lg:w-1/3 w-full mb-6">
-              <img
-                src={
-                  checkups.find((c) => c.name === selectedCheckup)?.image2 || ""
-                }
-                alt={selectedCheckup}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
-            <div className="lg:w-2/3 w-full">
-              <h2 className="text-3xl text-white font-bold mb-6 capitalize">
-                {selectedCheckup}
-              </h2>
-              <p className="text-lg text-white mb-4">
-                {checkups.find((c) => c.name === selectedCheckup)?.description}
-              </p>
-              <p className="text-2xl text-yellow-400 mb-4">
-                Discounted Cost:{" "}
-                {
-                  checkups.find((c) => c.name === selectedCheckup)
-                    ?.discountedCost
-                }
-              </p>
 
-              {/* Slider for Tests Included */}
-              <div className="mt-6">
-                <h3 className="text-white text-2xl font-bold mb-4">
-                  Tests Included
-                </h3>
-                <Slider {...sliderSettings}>
-                  {checkups
-                    .find((c) => c.name === selectedCheckup)
-                    ?.testsIncluded.map((test) => (
-                      <div key={test.name} className="p-4">
-                        <div className="bg-white h-[150px] rounded-lg p-4 flex flex-col items-center">
-                          <img
-                            src={test.icon}
-                            alt={test.name}
-                            className="w-16 h-16 mb-2"
-                          />
-                          <p className="text-center text-black text-sm">
-                            {test.name}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                </Slider>
-                <div className="mb-4">
-                  <label className="block text-white mb-2">
-                    Select your district:
-                  </label>
-                  <select
-                    value={selectedDistrict}
-                    onChange={handleDistrictChange}
-                    className="w-full p-3 rounded-lg bg-white"
-                  >
-                    <option value="">Select District</option>
-                    {Object.keys(hospitals).map((district) => (
-                      <option key={district} value={district}>
-                        {district}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {selectedDistrict && (
-                  <div className="mb-4">
-                    <label className="block text-white mb-2">
-                      Select a hospital in {selectedDistrict}:
-                    </label>
-                    <select
-                      value={selectedHospital}
-                      onChange={handleHospitalChange}
-                      className="w-full p-3 rounded-lg bg-white"
-                    >
-                      <option value="">Select Hospital</option>
-                      {hospitals[selectedDistrict].map((hospital) => (
-                        <option key={hospital} value={hospital}>
-                          {hospital}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-                {isBookingCreated && (
-                  <div className="mt-6 bg-white p-4 rounded-lg shadow-lg">
-                    <h3 className="text-lg font-bold mb-2">Booking Details</h3>
-                    <div className="flex justify-between">
-                      <p>
-                        <strong>Checkup:</strong> {selectedCheckup}
-                      </p>
-                      <p>
-                        <strong>Hospital:</strong> {selectedHospital}
-                      </p>
-                    </div>
-
-                    <div className="flex justify-between">
-                      <p>
-                        <strong>Date:</strong> {new Date().toLocaleDateString()}
-                      </p>
-                      <p>
-                        <strong>Time:</strong> {new Date().toLocaleTimeString()}
-                      </p>
-                    </div>
-                    <div className="flex justify-between">
-                      <p>
-                        <strong>MoWash Representative contact:</strong> <br />
-                        +91 9876543210
-                      </p>
-                      <p>
-                        <strong>Doctor:</strong> Dr. Mohanty
-                      </p>
-                    </div>
-                  </div>
-                )}
-                <div className="flex justify-end mt-8 space-x-4">
-                  {!isBookingCreated ? (
-                    <button
-                      onClick={handleCreateBooking}
-                      disabled={!selectedDistrict || !selectedHospital}
-                      className={`${
-                        !selectedDistrict || !selectedHospital
-                          ? "bg-yellow-300 cursor-not-allowed"
-                          : "bg-yellow-400 hover:bg-yellow-500"
-                      } text-black py-2 px-6 rounded-lg transition`}
-                    >
-                      Create Booking
-                    </button>
-                  ) : (
-                    <button
-                      onClick={handleDownloadPdf}
-                      className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
-                    >
-                      Download PDF
-                    </button>
-                  )}
-
-                  <button
-                    onClick={resetSelection}
-                    className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
-                  >
-                    Back
-                  </button>
-                </div>
-              </div>
-
-              {/* Booking Form */}
-              {/* <div className="mt-8">
-                <h3 className="text-white text-2xl font-bold mb-4">
-                  Book Your Health Checkup
-                </h3>
-
-                Medical Information
-                <div className="mb-6">
-                  <h4 className="text-xl text-white font-semibold mb-2">
-                    Medical Information
-                  </h4>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Known Allergies
-                      </label>
-                      <input
-                        type="text"
-                        value={knownAllergies}
-                        onChange={(e) => setKnownAllergies(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                        placeholder="Enter any known allergies"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Pre-existing Medical Conditions
-                      </label>
-                      <textarea
-                        value={preExistingConditions}
-                        onChange={(e) =>
-                          setPreExistingConditions(e.target.value)
-                        }
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                        placeholder="Describe any pre-existing conditions"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Current Medications
-                      </label>
-                      <textarea
-                        value={currentMedications}
-                        onChange={(e) => setCurrentMedications(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                        placeholder="List your current medications"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Recent Surgery/Hospitalization
-                      </label>
-                      <textarea
-                        value={recentSurgery}
-                        onChange={(e) => setRecentSurgery(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                        placeholder="Details about recent surgeries or hospitalizations"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Vaccination Status
-                      </label>
-                      <input
-                        type="text"
-                        value={vaccinationStatus}
-                        onChange={(e) => setVaccinationStatus(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                        placeholder="Enter your vaccination status"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                Occupational Health & Safety
-                <div className="mb-6">
-                  <h4 className="text-xl text-white font-semibold mb-2">
-                    Occupational Health & Safety
-                  </h4>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Vision/Hearing Issues
-                      </label>
-                      <textarea
-                        value={visionHearingIssues}
-                        onChange={(e) => setVisionHearingIssues(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                        placeholder="Describe any vision or hearing issues"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Physical Limitations
-                      </label>
-                      <textarea
-                        value={physicalLimitations}
-                        onChange={(e) => setPhysicalLimitations(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                        placeholder="Describe any physical limitations"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                Lifestyle Habits
-                <div className="mb-6">
-                  <h4 className="text-xl text-white font-semibold mb-2">
-                    Lifestyle Habits
-                  </h4>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Smoking Status
-                      </label>
-                      <select
-                        value={smokingStatus}
-                        onChange={(e) => setSmokingStatus(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                      >
-                        <option value="">Select Status</option>
-                        <option value="Non-Smoker">Non-Smoker</option>
-                        <option value="Former Smoker">Former Smoker</option>
-                        <option value="Current Smoker">Current Smoker</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Alcohol Consumption
-                      </label>
-                      <select
-                        value={alcoholConsumption}
-                        onChange={(e) => setAlcoholConsumption(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                      >
-                        <option value="">Select Consumption Level</option>
-                        <option value="None">None</option>
-                        <option value="Occasional">Occasional</option>
-                        <option value="Regular">Regular</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-semibold mb-1">
-                        Exercise Frequency
-                      </label>
-                      <select
-                        value={exerciseFrequency}
-                        onChange={(e) => setExerciseFrequency(e.target.value)}
-                        className="w-full p-2 rounded-lg bg-white text-white"
-                      >
-                        <option value="">Select Frequency</option>
-                        <option value="Never">Never</option>
-                        <option value="Rarely">Rarely</option>
-                        <option value="Sometimes">Sometimes</option>
-                        <option value="Often">Often</option>
-                        <option value="Very Often">Very Often</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                Hospital Selection
-                <div className="flex flex-col mb-4">
-                  <label htmlFor="district" className="block text-white mb-2">
-                    Select District:
-                  </label>
-                  <select
-                    id="district"
-                    value={selectedDistrict}
-                    onChange={handleDistrictChange}
-                    className="bg-gray-800 text-white p-2 rounded-lg"
-                  >
-                    <option value="">Select a District</option>
-                    {Object.keys(hospitals).map((district) => (
-                      <option key={district} value={district}>
-                        {district}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {selectedDistrict && (
-                  <div className="flex flex-col mb-4">
-                    <label htmlFor="hospital" className="block text-white mb-2">
-                      Select a Hospital in {selectedDistrict}:
-                    </label>
-                    <select
-                      id="hospital"
-                      value={selectedHospital}
-                      onChange={handleHospitalChange}
-                      className="bg-gray-800 text-white p-2 rounded-lg"
-                    >
-                      <option value="">Select Hospital</option>
-                      {hospitals[selectedDistrict].map((hospital) => (
-                        <option key={hospital} value={hospital}>
-                          {hospital}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-
-                {isBookingCreated ? (
-                  <div className="mt-6 bg-white p-4 rounded-lg shadow-lg text-black">
-                    <h3 className="text-lg font-bold mb-2">Booking Details</h3>
-                    <div className="flex justify-between">
-                      <p>
-                        <strong>Checkup:</strong> {selectedCheckup}
-                      </p>
-                      <p>
-                        <strong>Hospital:</strong> {selectedHospital}
-                      </p>
-                    </div>
-                    <div className="flex justify-between mt-2">
-                      <p>
-                        <strong>Date:</strong> {new Date().toLocaleDateString()}
-                      </p>
-                      <p>
-                        <strong>Time:</strong> {new Date().toLocaleTimeString()}
-                      </p>
-                    </div>
-                    <div className="flex justify-between mt-2">
-                      <p>
-                        <strong>MoWash Representative Contact:</strong>
-                        <br />
-                        +91 9876543210
-                      </p>
-                      <p>
-                        <strong>Doctor:</strong> Dr. Mohanty
-                      </p>
-                    </div>
-
-                    Display Medical Information
-                    <div className="mt-4">
-                      <h4 className="text-lg font-semibold">
-                        Medical Information
-                      </h4>
-                      <p>
-                        <strong>Known Allergies:</strong>{" "}
-                        {knownAllergies || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Pre-existing Medical Conditions:</strong>{" "}
-                        {preExistingConditions || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Current Medications:</strong>{" "}
-                        {currentMedications || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Recent Surgery/Hospitalization:</strong>{" "}
-                        {recentSurgery || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Vaccination Status:</strong>{" "}
-                        {vaccinationStatus || "N/A"}
-                      </p>
-                    </div>
-
-                    Occupational Health & Safety
-                    <div className="mt-4">
-                      <h4 className="text-lg font-semibold">
-                        Occupational Health & Safety
-                      </h4>
-                      <p>
-                        <strong>Vision/Hearing Issues:</strong>{" "}
-                        {visionHearingIssues || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Physical Limitations:</strong>{" "}
-                        {physicalLimitations || "N/A"}
-                      </p>
-                    </div>
-
-                    Lifestyle Habits
-                    <div className="mt-4">
-                      <h4 className="text-lg font-semibold">
-                        Lifestyle Habits
-                      </h4>
-                      <p>
-                        <strong>Smoking Status:</strong>{" "}
-                        {smokingStatus || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Alcohol Consumption:</strong>{" "}
-                        {alcoholConsumption || "N/A"}
-                      </p>
-                      <p>
-                        <strong>Exercise Frequency:</strong>{" "}
-                        {exerciseFrequency || "N/A"}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <button
-                    onClick={handleCreateBooking}
-                    className="bg-yellow-500 text-black py-2 px-6 rounded-lg hover:bg-yellow-600 mt-4"
-                    disabled={
-                      !selectedDistrict ||
-                      !selectedHospital ||
-                      !knownAllergies ||
-                      !preExistingConditions ||
-                      !currentMedications ||
-                      !recentSurgery ||
-                      !vaccinationStatus ||
-                      !visionHearingIssues ||
-                      !physicalLimitations ||
-                      !smokingStatus ||
-                      !alcoholConsumption ||
-                      !exerciseFrequency
-                    }
-                  >
-                    Create Booking
-                  </button>
-                )}
-
-                Buttons
-                <div className="flex justify-end mt-4">
-                  {isBookingCreated ? (
-                    <button
-                      onClick={handleDownloadPdf}
-                      className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 mr-4"
-                    >
-                      Download PDF
-                    </button>
-                  ) : null}
-
-                  <button
-                    onClick={resetSelection}
-                    className="bg-white text-white py-2 px-6 rounded-lg hover:bg-gray-600"
-                  >
-                    Back
-                  </button>
-                </div>
-              </div> */}
-            </div>
-          </div>
-        )}
+          <Link href="/welfare/book-healthcheckup" className="text-white pointer">Book Health Checkup</Link>
+        </div>{" "}
       </div>
     </Layout>
   );

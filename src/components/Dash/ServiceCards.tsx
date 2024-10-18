@@ -141,26 +141,27 @@ const ServicesCards: React.FC = () => {
           </div>
 
           <div className="flex text-white flex-col lg:justify-between lg:w-full">
-            <div className="flex gap-x-6">
+            <div className="flex flex-row-reverse items-center justify-between">
               <img
                 src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
                 alt="user"
                 className="h-32 w-32 rounded-full"
               />
               <div className="flex flex-col justify-center items-center">
-                <p className=" mb-1">
+                <p className="text-left w-full mb-1">
                   <strong>Policy Holder:</strong> {org.policyHolderName}
                 </p>
 
-                <p className=" mb-1">
+                <p className="text-left w-full mb-1">
                   <strong>Policy Number:</strong> {org.policyNumber}
                 </p>
 
-                <p className=" mb-1">
+                <p className="text-left w-full mb-1">
                   <strong>Policy Type:</strong> {org.policyType}
                 </p>
               </div>
             </div>
+            <div className="border-t border-gray-400 my-6"></div>
             <div className="flex-1 mt-3">
               <p className=" mb-1">{org.text}</p>
               <p className=" mb-1">
