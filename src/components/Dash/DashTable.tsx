@@ -122,7 +122,7 @@ const PaymentModal: React.FC<{
           <div className="mt-4 flex flex-col items-center">
             <p className="mb-2">Scan the QR code for online payment:</p>
             {qrCodeDataUrl && (
-              <img src={qrCodeDataUrl} alt="QR Code" className="mb-2" />
+              <img src={qrCodeDataUrl} alt="QR Code" className="mb-2 h-[300px]" />
             )}
             <p className="text-sm mt-2">Amount: ₹{earnings}</p>
           </div>
