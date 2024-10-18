@@ -6,6 +6,23 @@ import { LatLngExpression, divIcon } from "leaflet";
 import { FiMapPin } from "react-icons/fi"; // Import the icon
 import style from "@/components/common/input/input.module.css"; // Import custom styles
 
+// Define a type for the Nominatim search result
+interface NominatimResult {
+  display_name: string;
+  lat: string;
+  lon: string;
+  address: {
+    house_number?: string;
+    road?: string;
+    city?: string;
+    town?: string;
+    village?: string;
+    county?: string;
+    state?: string;
+    postcode?: string;
+  };
+}
+
 // Ensure dynamic import of Leaflet and its components
 const MapContainer = dynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
@@ -82,7 +99,7 @@ const SignupStep6: React.FC = () => {
 
   const [isClient, setIsClient] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<NominatimResult[]>([]); // Use the defined type here
 
   const mapRef = useRef(null); // Reference to the map instance
 
@@ -122,7 +139,7 @@ const SignupStep6: React.FC = () => {
     fetchAddressSuggestions(e.target.value);
   };
 
-  const handleResultSelect = (result: any) => {
+  const handleResultSelect = (result: NominatimResult) => { // Use the defined type here
     setSearchQuery(result.display_name);
     const newLatLng: [number, number] = [
       parseFloat(result.lat),
