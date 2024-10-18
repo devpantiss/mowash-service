@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import QRCodeGenerator from "qrcode-generator";
 
 interface OrderDetailsProps {
   customerName: string;
@@ -19,7 +20,6 @@ const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
   status,
   onStatusChange,
 }) => {
-  // Function to determine the background color based on the status
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Pending":
@@ -55,6 +55,86 @@ const OrderDetailsTable: React.FC<OrderDetailsProps> = ({
   );
 };
 
+const PaymentModal: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
+  earnings: number;
+  customerName: string;
+}> = ({ isOpen, onClose, earnings, customerName }) => {
+  const [paymentMode, setPaymentMode] = useState<string | null>(null);
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
+
+  const handlePaymentModeChange = (mode: string) => {
+    setPaymentMode(mode);
+    if (mode === "online") {
+      // Generate the QR code for online payment
+      const qr = QRCodeGenerator(0, "L");
+      qr.addData(`upi://pay?pa=example@upi&pn=${customerName}&am=${earnings}&cu=INR`);
+      qr.make();
+      setQrCodeDataUrl(qr.createDataURL());
+    } else {
+      setQrCodeDataUrl(null); // Clear QR code for cash payment
+    }
+  };
+
+  const handleCashPayment = () => {
+    alert("Please take ₹" + earnings + " from the client.");
+    onClose(); // Close modal
+  };
+
+  return isOpen ? (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-black ring-2 ring-white p-6 rounded-lg shadow-lg w-96">
+        <h2 className="text-lg font-bold mb-4">
+          Complete Payment for {customerName}
+        </h2>
+        <p className="mb-4">Amount to collect: ₹{earnings.toFixed(2)}</p>
+
+        {!paymentMode ? (
+          <div>
+            <h3 className="font-semibold">Select Payment Mode</h3>
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={() => handlePaymentModeChange("cash")}
+                className="p-2 bg-blue-500 text-white rounded-md"
+              >
+                Cash
+              </button>
+              <button
+                onClick={() => handlePaymentModeChange("online")}
+                className="p-2 bg-green-500 text-white rounded-md"
+              >
+                Online
+              </button>
+            </div>
+          </div>
+        ) : paymentMode === "cash" ? (
+          <div>
+            <p className="mt-4">Please take ₹{earnings} in cash from the client.</p>
+            <button
+              onClick={handleCashPayment}
+              className="mt-4 p-2 bg-red-500 text-white rounded-md"
+            >
+              Done
+            </button>
+          </div>
+        ) : (
+          <div className="mt-4 flex flex-col items-center">
+            <p className="mb-2">Scan the QR code for online payment:</p>
+            {qrCodeDataUrl && (
+              <img src={qrCodeDataUrl} alt="QR Code" className="mb-2" />
+            )}
+            <p className="text-sm mt-2">Amount: ₹{earnings}</p>
+          </div>
+        )}
+        <button onClick={onClose} className="mt-6 p-2 bg-gray-500 text-white rounded-md">
+          Close
+        </button>
+      </div>
+    </div>
+  ) : null;
+};
+
 const Table: React.FC = () => {
   const [data, setData] = useState([
     {
@@ -71,47 +151,31 @@ const Table: React.FC = () => {
       contactNumber: "(987) 654-3210",
       jobDescription: "Office Cleaning",
       earnings: 75.0,
-      status: "Completed",
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
       status: "Pending",
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      status: "Completed",
-    },
-    {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      status: "Pending",
-    },
-    {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      status: "Completed",
     },
   ]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentEarnings, setCurrentEarnings] = useState(0);
+  const [currentCustomer, setCurrentCustomer] = useState("");
 
   const handleStatusChange = (index: number, newStatus: string) => {
     const updatedData = data.map((order, i) =>
       i === index ? { ...order, status: newStatus } : order
     );
+
     setData(updatedData);
+
+    // If the status is changed to "Completed", trigger the modal
+    if (newStatus === "Completed") {
+      setCurrentEarnings(data[index].earnings);
+      setCurrentCustomer(data[index].customerName);
+      setIsModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -144,7 +208,9 @@ const Table: React.FC = () => {
                     jobDescription={order.jobDescription}
                     earnings={order.earnings}
                     status={order.status}
-                    onStatusChange={(newStatus) => handleStatusChange(index, newStatus)}
+                    onStatusChange={(newStatus) =>
+                      handleStatusChange(index, newStatus)
+                    }
                   />
                 ))
               ) : (
@@ -167,6 +233,14 @@ const Table: React.FC = () => {
           </table>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        earnings={currentEarnings}
+        customerName={currentCustomer}
+      />
     </div>
   );
 };
