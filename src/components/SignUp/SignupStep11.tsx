@@ -47,6 +47,17 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749583/ayushman_bharat_ngycj4.png",
         link: "https://example.com/view-plan",
       },
+      {
+        name: "Niramaya Scheme",
+        premium: "₹874/month",
+        cover: "₹7 Lac",
+        hospitals: 187,
+        renewalBonus: "₹10.5 Lac Renewal Bonus",
+        text: "Free medicine distribution scheme.",
+        imageUrl:
+          "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729352238/NIRAMAYA-removebg-preview_vazwi7.png",
+        link: "https://example.com/view-plan",
+      },
     ],
     pension: [
       {
@@ -69,6 +80,28 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
         text: "Get the best health insurance plan with extensive coverage.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749878/epf_bwvokn.jpg",
+        link: "https://example.com/epf-plan",
+      },
+      {
+        name: "PM-SYM",
+        premium: "₹1500/month",
+        cover: "₹8 Lac",
+        hospitals: 0,
+        renewalBonus: "N/A",
+        text: "Get the best health insurance plan with extensive coverage.",
+        imageUrl:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729351466/emblem-black_btobue.svg",
+        link: "https://example.com/epf-plan",
+      },
+      {
+        name: "Atal-Pension Yojana",
+        premium: "₹1500/month",
+        cover: "₹8 Lac",
+        hospitals: 0,
+        renewalBonus: "N/A",
+        text: "Get the best health insurance plan with extensive coverage.",
+        imageUrl:
+          "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729352516/Atal_Pension_Yojana_pqhpop.png",
         link: "https://example.com/epf-plan",
       },
     ],
@@ -95,29 +128,20 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750296/a_bsuthv.jpg",
         link: "https://example.com/pmjjby-plan",
       },
+      {
+        name: "Aam Admi Beema Yojana",
+        premium: "₹200/year",
+        cover: "₹1 Lac",
+        hospitals: 0,
+        renewalBonus: "N/A",
+        text: "Peace of Mind: Life Insurance for a Brighter Future.",
+        imageUrl:
+          "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729351466/emblem-black_btobue.svg",
+        link: "https://example.com/pmjjby-plan",
+      },
     ],
   };
 
-  const insuranceData = [
-    {
-      title: "Health Insurance",
-      tagline: "View details",
-      text: "Get the best health insurance plan with extensive coverage.",
-      bgImageSrc:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727161748/Screenshot_2024-09-24_at_12.38.38_PM_kybqfh.png",
-      icon: FaHeartbeat,
-      onClick: () => handleSectionClick("healthCard"),
-    },
-    {
-      title: "Life Insurance",
-      tagline: "Know more",
-      text: "Protect your family with our life insurance plans.",
-      bgImageSrc:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727258506/Screenshot_2024-09-25_at_3.27.27_PM_aozx74.png",
-      icon: FaShieldAlt,
-      onClick: () => handleSectionClick("insurance"),
-    },
-  ];
 
   const cardsData = [
     {

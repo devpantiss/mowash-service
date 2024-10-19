@@ -33,6 +33,17 @@ const HealthInsurance: React.FC = () => {
         "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749583/ayushman_bharat_ngycj4.png",
       link: "https://example.com/view-plan",
     },
+    {
+      name: "Niramaya Scheme",
+      premium: "₹874/month",
+      cover: "₹7 Lac",
+      hospitals: 187,
+      renewalBonus: "₹10.5 Lac Renewal Bonus",
+      text: "Free medicine distribution scheme.",
+      imageUrl:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729352238/NIRAMAYA-removebg-preview_vazwi7.png",
+      link: "https://example.com/view-plan",
+    },
   ];
 
   // Handle CSP PDF download (same as before)
@@ -272,58 +283,62 @@ const HealthInsurance: React.FC = () => {
                 <div className="flex flex-col-reverse lg:flex-row gap-x-16 w-full">
                   {/* Left Section */}
                   <div className="lg:w-3/5 w-full pt-4 lg:pt-20">
-                    <div className="grid grid-cols-1 gap-y-12">
-                      {organizations.map((organization) => (
-                        <div
-                          key={organization.name}
-                          className="lg:px-8 px-4 py-6 relative bg-gray-100 rounded-lg flex flex-col lg:flex-row lg:items-center items-stretch  space-x-4"
-                        >
-                          <div className="absolute lg:-left-14 left-[75%] px-2 py-4 rounded-bl-md rounded-tl-md top-0 bg-gray-100">
-                            <img
-                              src={organization.imageUrl}
-                              alt={organization.name}
-                              className="h-20 w-20"
-                            />
-                          </div>
-
-                          <div className="flex-1">
-                            <h3 className="text-xl font-semibold mb-2">
-                              {organization.name}
-                            </h3>
-                            <p className="text-gray-600">No Room Rent Limit</p>
-                            <p className="text-gray-600">
-                              {organization.renewalBonus}
-                            </p>
-                            <p className="text-gray-600">
-                              Unlimited Restoration of cover
-                            </p>
-                          </div>
-                          <div className="text-right mt-4">
-                            <div className="flex justify-between gap-x-8 items-center">
-                              <span className="flex flex-col">
-                                <strong className="text-xl">
-                                  {organization.cover}
-                                </strong>{" "}
-                                <p className="text-[12px]">Cover Amount</p>
-                              </span>
-                              <span className="flex flex-col">
-                                <strong className="text-xl">
-                                  {organization.hospitals}
-                                </strong>
-                                <p className="text-[12px]">
-                                  Cashless hospitals
-                                </p>
-                              </span>
+                    <div className="">
+                      <div className="max-h-[500px] overflow-y-auto overflow-x-visible gap-y-12">
+                        {organizations.map((organization) => (
+                          <div
+                            key={organization.name}
+                            className="lg:px-8 px-4 py-6 my-4 relative bg-gray-100 rounded-lg flex flex-col lg:flex-row lg:items-center items-stretch space-x-4"
+                          >
+                            <div className="px-2 py-4 lg:static sm:absolute sm:right-2 rounded-bl-md rounded-tl-md z-50 top-0 bg-gray-100">
+                              <img
+                                src={organization.imageUrl}
+                                alt={organization.name}
+                                className="h-20 w-20"
+                              />
                             </div>
-                            <button
-                              onClick={handleCallRequest}
-                              className="text-blue-500 shadow-lg shadow-blue-500 ring-2 ring-blue-500 py-2 px-4 rounded-lg w-full hover:bg-blue-100 mt-4"
-                            >
-                              {organization.premium}
-                            </button>
+
+                            <div className="flex-1">
+                              <h3 className="text-xl font-semibold mb-2">
+                                {organization.name}
+                              </h3>
+                              <p className="text-gray-600">
+                                No Room Rent Limit
+                              </p>
+                              <p className="text-gray-600">
+                                {organization.renewalBonus}
+                              </p>
+                              <p className="text-gray-600">
+                                Unlimited Restoration of cover
+                              </p>
+                            </div>
+                            <div className="text-right mt-4">
+                              <div className="flex justify-between gap-x-8 items-center">
+                                <span className="flex flex-col">
+                                  <strong className="text-xl">
+                                    {organization.cover}
+                                  </strong>{" "}
+                                  <p className="text-[12px]">Cover Amount</p>
+                                </span>
+                                <span className="flex flex-col">
+                                  <strong className="text-xl">
+                                    {organization.hospitals}
+                                  </strong>
+                                  <p className="text-[12px]">
+                                    Cashless hospitals
+                                  </p>
+                                </span>
+                              </div>
+                              <button
+                                onClick={handleCallRequest}
+                                className="text-blue-500 shadow-lg shadow-blue-500 ring-2 ring-blue-500 py-2 px-4 rounded-lg w-full hover:bg-blue-100 mt-4"
+                              >
+                                {organization.premium}
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                     <div className="mt-6 flex justify-between w-full">
                       <Link
