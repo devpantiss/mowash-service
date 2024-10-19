@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Layout from "@/components/Dash/Layout";
 
 interface Course {
-  id: string;
+  id: number; // Change id to be a number
   title: string;
   description: string;
   videoUrl: string;
@@ -17,7 +17,7 @@ interface Course {
 
 const courses: Course[] = [
   {
-    id: "mason",
+    id: 1,
     title: "Mason",
     description: "Learn masonry skills for sustainable infrastructure.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
@@ -27,7 +27,7 @@ const courses: Course[] = [
     transcript: "This is the transcript for the Mason course video.",
   },
   {
-    id: "electrician",
+    id: 2,
     title: "Electrician",
     description: "Become a certified electrician for green jobs.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
@@ -37,7 +37,7 @@ const courses: Course[] = [
     transcript: "This is the transcript for the Electrician course video.",
   },
   {
-    id: "plumber",
+    id: 3,
     title: "Plumber",
     description: "Learn plumbing skills and get certified.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
@@ -47,18 +47,17 @@ const courses: Course[] = [
     transcript: "This is the transcript for the Plumber course video.",
   },
   {
-    id: "cesspool",
+    id: 4,
     title: "Cesspool Technician",
     description: "Become a certified cesspool technician.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "8:20",
     trainer: "Lisa Turner",
     publishedBy: "Green Jobs Academy",
-    transcript:
-      "This is the transcript for the Cesspool Technician course video.",
+    transcript: "This is the transcript for the Cesspool Technician course video.",
   },
   {
-    id: "sanitation",
+    id: 5,
     title: "Sanitation Crew",
     description: "Learn sanitation processes for a greener future.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
@@ -68,7 +67,7 @@ const courses: Course[] = [
     transcript: "This is the transcript for the Sanitation Crew course video.",
   },
   {
-    id: "naljalmitra",
+    id: 6,
     title: "Nal Jal Mitra",
     description: "Get certified as a water management professional.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
@@ -78,7 +77,7 @@ const courses: Course[] = [
     transcript: "This is the transcript for the Nal Jal Mitra course video.",
   },
   {
-    id: "stpoperator",
+    id: 7,
     title: "STP Operator",
     description: "Operate sewage treatment plants for a cleaner environment.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
@@ -88,18 +87,17 @@ const courses: Course[] = [
     transcript: "This is the transcript for the STP Operator course video.",
   },
   {
-    id: "solarpump",
+    id: 8,
     title: "Solar Pump Operator",
     description: "Learn to operate and maintain solar pumps.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "13:10",
     trainer: "Priya Patel",
     publishedBy: "Green Jobs Academy",
-    transcript:
-      "This is the transcript for the Solar Pump Operator course video.",
+    transcript: "This is the transcript for the Solar Pump Operator course video.",
   },
   {
-    id: "pondexcavator",
+    id: 9,
     title: "Pond Excavator",
     description: "Excavate and manage water bodies for sustainable use.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
@@ -109,20 +107,18 @@ const courses: Course[] = [
     transcript: "This is the transcript for the Pond Excavator course video.",
   },
   {
-    id: "waterbillcollector",
+    id: 10,
     title: "Water Bill Collector",
     description: "Get certified in water bill management and collection.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "9:30",
     trainer: "Sophia Lee",
     publishedBy: "Green Jobs Academy",
-    transcript:
-      "This is the transcript for the Water Bill Collector course video.",
+    transcript: "This is the transcript for the Water Bill Collector course video.",
   },
 ];
 
 const Apprentice = () => {
-  // Explicitly define the type for selectedCourse to be Course or null
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [isComplete, setIsComplete] = useState(false);
   const [attemptsLeft, setAttemptsLeft] = useState(3);
@@ -170,11 +166,7 @@ const Apprentice = () => {
               <div
                 key={course.id}
                 onClick={() => handleCourseSelect(course)}
-                className={`cursor-pointer p-6 bg-transparent text-white ring-2 ring-white rounded-lg shadow-lg hover:bg-blue-200 hover:text-black transition duration-300 ${
-                    selectedCourse && selectedCourse.id === course.id
-                    ? "border-2 border-blue-600"
-                    : ""
-                }`}
+                className={`cursor-pointer p-6 bg-transparent text-white ring-2 ring-white rounded-lg shadow-lg hover:bg-blue-200 hover:text-black transition duration-300`}
               >
                 <h2 className="text-2xl font-semibold text-blue-600 text-center mb-4">
                   {course.title}
