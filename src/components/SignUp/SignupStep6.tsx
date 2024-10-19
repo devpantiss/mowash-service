@@ -13,10 +13,25 @@ const TileLayer = dynamic(
   { ssr: false }
 );
 
+// Define interfaces for address results
+interface AddressResult {
+  display_name: string;
+  lat: string;
+  lon: string;
+  address: {
+    house_number?: string;
+    road?: string;
+    city?: string;
+    town?: string;
+    village?: string;
+    county?: string;
+    state?: string;
+    postcode?: string;
+  };
+}
+
 const SignupStep6: React.FC = () => {
-  const [latLng, setLatLng] = useState<{ lat: number; lng: number } | null>(
-    null
-  );
+  const [latLng, setLatLng] = useState<{ lat: number; lng: number } | null>(null);
   const [formData, setFormData] = useState({
     houseNumber: "",
     streetAddress: "",
@@ -29,7 +44,7 @@ const SignupStep6: React.FC = () => {
 
   const [isClient, setIsClient] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<AddressResult[]>([]); // Specify the type here
 
   // Set `isClient` to true when the component is rendered in the browser
   useEffect(() => {
@@ -46,7 +61,7 @@ const SignupStep6: React.FC = () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1`
     );
-    const data = await response.json();
+    const data: AddressResult[] = await response.json(); // Specify the type for the response
     setSearchResults(data);
   };
 
@@ -68,18 +83,14 @@ const SignupStep6: React.FC = () => {
     fetchAddressSuggestions(e.target.value);
   };
 
-  const handleResultSelect = (result: any) => {
+  const handleResultSelect = (result: AddressResult) => { // Specify the type here
     setSearchQuery(result.display_name);
-    setLatLng({ lat: result.lat, lng: result.lon });
+    setLatLng({ lat: parseFloat(result.lat), lng: parseFloat(result.lon) }); // Convert lat/lon to numbers
     setFormData({
       houseNumber: result.address.house_number || "",
       streetAddress: result.address.road || "",
       landmark: "", // No landmark in Nominatim data
-      city:
-        result.address.city ||
-        result.address.town ||
-        result.address.village ||
-        "",
+      city: result.address.city || result.address.town || result.address.village || "",
       district: result.address.county || "",
       state: result.address.state || "",
       pincode: result.address.postcode || "",
@@ -98,7 +109,7 @@ const SignupStep6: React.FC = () => {
         Choose Your Location{" "}
       </h2>
 
-      <div className="flex flex-col lg:flex-row justify-between lg: items-center w-full max-w-7xl">
+      <div className="flex flex-col lg:flex-row justify-between lg:items-center w-full max-w-7xl">
         {/* Map Container */}
         <div className="lg:w-1/2 w-full h-[600px] ring-2 ring-white rounded-tl-md relative rounded-bl-md">
           <MapContainer
