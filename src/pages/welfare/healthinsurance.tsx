@@ -290,7 +290,7 @@ const HealthInsurance: React.FC = () => {
                             key={organization.name}
                             className="lg:px-8 px-4 py-6 my-4 relative bg-gray-100 rounded-lg flex flex-col lg:flex-row lg:items-center items-stretch space-x-4"
                           >
-                            <div className="px-2 py-4 lg:static sm:absolute sm:right-2 rounded-bl-md rounded-tl-md z-50 top-0 bg-gray-100">
+                            <div className="px-2 py-4 lg:static absolute right-2 rounded-bl-md rounded-tl-md z-50 top-0 bg-gray-100">
                               <img
                                 src={organization.imageUrl}
                                 alt={organization.name}
