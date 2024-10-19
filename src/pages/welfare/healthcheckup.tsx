@@ -74,7 +74,7 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                 </div>
                 <div className="bg-transparent ring-2 ring-white p-6 rounded-lg text-center shadow-sm">
                   <p className="text-blue-600">Height</p>
-                  <p className="text-2xl font-semibold text-white">5'9"</p>
+                  <p className="text-2xl font-semibold text-white">5&apos;9&quot;</p>
                 </div>
               </div>
 

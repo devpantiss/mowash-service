@@ -111,7 +111,7 @@ const SignupStep6: React.FC = () => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
             />
-            {latLng && <Marker position={latLng} />}
+            {/* {latLng && <Marker position={latLng} />} */}
           </MapContainer>
 
           {/* Search Box */}

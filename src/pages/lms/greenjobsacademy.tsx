@@ -22,7 +22,7 @@ const GreenJobsAcademy = () => {
         <p className="text-lg text-center text-white max-w-xl mb-10">
           Green Jobs Academy is dedicated to helping individuals develop the
           skills they need to succeed in sustainable careers. Explore our
-          programs and choose the path that's right for you.
+          programs and choose the path that&apos;s right for you.
         </p>
 
         <div className="grid grid-cols-1 max-w-5xl md:grid-cols-2 gap-8">
