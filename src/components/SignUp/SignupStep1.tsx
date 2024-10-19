@@ -1,48 +1,47 @@
 import React, { useState, useRef } from "react";
-import { MdEngineering, MdCalendarToday } from "react-icons/md";
-import { GrUserManager } from "react-icons/gr";
+import { MdCalendarToday } from "react-icons/md";
 import { FaRupeeSign, FaUsers } from "react-icons/fa";
 import style from "@/components/common/input/input.module.css"; // Import your custom styles
 
 const SignupStep1: React.FC = () => {
   // Form state variables
-  const [yearsOfExperience, setYearsOfExperience] = useState<string>("");
-  const [previousWork, setPreviousWork] = useState<string>("");
-  const [currentIncome, setCurrentIncome] = useState<string>("");
-  const [familyMembers, setFamilyMembers] = useState<string>("");
+  const [yearsOfExperience2, setYearsOfExperience2] = useState<string>("");
+  const [previousWork2, setPreviousWork2] = useState<string>("");
+  const [currentIncome2, setCurrentIncome2] = useState<string>("");
+  const [familyMembers2, setFamilyMembers2] = useState<string>("");
 
   // Error state variables for validation
   const [errors, setErrors] = useState<{
-    yearsOfExperience?: string;
-    previousWork?: string;
-    currentIncome?: string;
-    familyMembers?: string;
+    yearsOfExperience2?: string;
+    previousWork2?: string;
+    currentIncome2?: string;
+    familyMembers2?: string;
   }>({});
 
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef2 = useRef<HTMLFormElement>(null);
 
   // Function to handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit2 = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate form inputs
     const newErrors: typeof errors = {};
 
-    if (!yearsOfExperience) {
-      newErrors.yearsOfExperience = "Please select your years of experience.";
+    if (!yearsOfExperience2) {
+      newErrors.yearsOfExperience2 = "Please select your years of experience.";
     }
 
-    if (!previousWork.trim()) {
-      newErrors.previousWork = "Please provide your previous employment.";
+    if (!previousWork2.trim()) {
+      newErrors.previousWork2 = "Please provide your previous employment.";
     }
 
-    if (!currentIncome) {
-      newErrors.currentIncome =
+    if (!currentIncome2) {
+      newErrors.currentIncome2 =
         "Please select your current monthly income range.";
     }
 
-    if (!familyMembers) {
-      newErrors.familyMembers = "Please select the number of family members.";
+    if (!familyMembers2) {
+      newErrors.familyMembers2 = "Please select the number of family members.";
     }
 
     setErrors(newErrors);
@@ -51,10 +50,10 @@ const SignupStep1: React.FC = () => {
     if (Object.keys(newErrors).length === 0) {
       alert("Form submitted successfully!");
       // Reset form
-      setYearsOfExperience("");
-      setPreviousWork("");
-      setCurrentIncome("");
-      setFamilyMembers("");
+      setYearsOfExperience2("");
+      setPreviousWork2("");
+      setCurrentIncome2("");
+      setFamilyMembers2("");
     }
   };
 
@@ -88,21 +87,21 @@ const SignupStep1: React.FC = () => {
 
         {/* Right Section: Experience Form */}
         <div className="w-full lg:w-1/2 p-8">
-          <form ref={formRef} onSubmit={handleSubmit} noValidate>
+          <form ref={formRef2} onSubmit={handleSubmit2} noValidate>
             {/* Previous Employment */}
             <div className={style.inputContainer}>
               <input
                 placeholder="Previous Employer"
                 className={style.inputField}
                 type="text"
-                value={previousWork}
-                onChange={(e) => setPreviousWork(e.target.value)}
+                value={previousWork2}
+                onChange={(e) => setPreviousWork2(e.target.value)}
               />
               <label className={style.inputLabel}>Previous Employer</label>
               <span className={style.inputHighlight}></span>
-              {errors.previousWork && (
+              {errors.previousWork2 && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.previousWork}
+                  {errors.previousWork2}
                 </p>
               )}
             </div>
@@ -130,20 +129,20 @@ const SignupStep1: React.FC = () => {
                   <div
                     key={option.value}
                     className={`p-4 rounded-lg border ${
-                      yearsOfExperience === option.value
+                      yearsOfExperience2 === option.value
                         ? "bg-blue-500 text-white"
                         : "bg-transparent ring-2 ring-white text-white"
                     } cursor-pointer flex items-center space-x-2`}
-                    onClick={() => setYearsOfExperience(option.value)}
+                    onClick={() => setYearsOfExperience2(option.value)}
                   >
                     {option.icon}
                     <span>{option.label}</span>
                   </div>
                 ))}
               </div>
-              {errors.yearsOfExperience && (
+              {errors.yearsOfExperience2 && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.yearsOfExperience}
+                  {errors.yearsOfExperience2}
                 </p>
               )}
             </div>
@@ -179,20 +178,20 @@ const SignupStep1: React.FC = () => {
                   <div
                     key={range.value}
                     className={`p-4 rounded-lg border ${
-                      currentIncome === range.value
+                      currentIncome2 === range.value
                         ? "bg-blue-500 text-white"
                         : "bg-transparent ring-2 ring-white text-white"
                     } cursor-pointer flex items-center space-x-2`}
-                    onClick={() => setCurrentIncome(range.value)}
+                    onClick={() => setCurrentIncome2(range.value)}
                   >
                     {range.icon}
                     <span>{range.label}</span>
                   </div>
                 ))}
               </div>
-              {errors.currentIncome && (
+              {errors.currentIncome2 && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.currentIncome}
+                  {errors.currentIncome2}
                 </p>
               )}
             </div>
@@ -223,20 +222,20 @@ const SignupStep1: React.FC = () => {
                   <div
                     key={range.value}
                     className={`p-4 rounded-lg border ${
-                      familyMembers === range.value
+                      familyMembers2 === range.value
                         ? "bg-blue-500 text-white"
                         : "bg-transparent ring-2 ring-white text-white"
                     } cursor-pointer flex items-center space-x-2`}
-                    onClick={() => setFamilyMembers(range.value)}
+                    onClick={() => setFamilyMembers2(range.value)}
                   >
                     {range.icon}
                     <span>{range.label}</span>
                   </div>
                 ))}
               </div>
-              {errors.familyMembers && (
+              {errors.familyMembers2 && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.familyMembers}
+                  {errors.familyMembers2}
                 </p>
               )}
             </div>

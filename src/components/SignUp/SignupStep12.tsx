@@ -26,7 +26,8 @@ interface HealthInfo {
   dateOfBirth: string;
   gender: string;
   bloodType: string;
-  knownAllergies: string;
+  weight: string;
+  height: string;
   preExistingConditions: string;
   currentMedications: string;
   recentSurgeries: string;
@@ -59,7 +60,8 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
     dateOfBirth: "",
     gender: "",
     bloodType: "",
-    knownAllergies: "",
+    weight: "",
+    height: "",
     preExistingConditions: "",
     currentMedications: "",
     recentSurgeries: "",
@@ -323,7 +325,8 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
         `Date of Birth: ${healthInfo.dateOfBirth}`,
         `Gender: ${healthInfo.gender}`,
         `Blood Type: ${healthInfo.bloodType}`,
-        `Known Allergies: ${healthInfo.knownAllergies}`,
+        `Weight: ${healthInfo.weight}`,
+        `Height: ${healthInfo.height}`,
         `Pre-existing Conditions: ${healthInfo.preExistingConditions}`,
         `Current Medications: ${healthInfo.currentMedications}`,
         `Recent Surgeries: ${healthInfo.recentSurgeries}`,
@@ -425,17 +428,31 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                   <span className={style.inputHighlight}></span>
                 </div>
 
-                {/* Known Allergies Input */}
+                {/* Weight Input */}
                 <div className={style.inputContainer}>
                   <input
                     type="text"
-                    name="knownAllergies"
-                    value={healthInfo.knownAllergies}
+                    name="weight"
+                    value={healthInfo.weight}
                     onChange={handleInputChange}
-                    placeholder="Known Allergies"
+                    placeholder="Weight"
                     className={style.inputField}
                   />
-                  <label className={style.inputLabel}>Known Allergies</label>
+                  <label className={style.inputLabel}>Weight</label>
+                  <span className={style.inputHighlight}></span>
+                </div>
+               
+                {/* Weight Input */}
+                <div className={style.inputContainer}>
+                  <input
+                    type="text"
+                    name="height"
+                    value={healthInfo.height}
+                    onChange={handleInputChange}
+                    placeholder="Height"
+                    className={style.inputField}
+                  />
+                  <label className={style.inputLabel}>Height</label>
                   <span className={style.inputHighlight}></span>
                 </div>
 
@@ -609,24 +626,6 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
                   <label className={style.inputLabel}>
                     Alcohol Consumption
                   </label>
-                  <span className={style.inputHighlight}></span>
-                </div>
-
-                {/* Exercise Frequency Select */}
-                <div className={style.inputContainer}>
-                  <select
-                    name="exerciseFrequency"
-                    value={healthInfo.exerciseFrequency}
-                    onChange={handleInputChange}
-                    className={style.inputField}
-                  >
-                    <option value="">Exercise Frequency</option>
-                    <option value="Daily">Daily</option>
-                    <option value="Weekly">Weekly</option>
-                    <option value="Rarely">Rarely</option>
-                    <option value="Never">Never</option>
-                  </select>
-                  <label className={style.inputLabel}>Exercise Frequency</label>
                   <span className={style.inputHighlight}></span>
                 </div>
               </div>

@@ -63,11 +63,6 @@ const SignupStep13: React.FC<SignupStep13Props> = ({ goToStep }) => {
             }}
             className="block"
           />
-          {/* <img
-            src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727262465/7990322-removebg-preview_xs70dx.png"
-            alt="Static Placeholder"
-            className="max-w-full h-auto rounded-lg bounce"
-          /> */}
         </div>
 
         {/* Right Section - Form */}

@@ -127,7 +127,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       bgImageSrc:
         "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727161748/Screenshot_2024-09-24_at_12.38.38_PM_kybqfh.png",
       icon: FaHeartbeat,
-      onClick: () => goToStep(9),
+      onClick: () => goToStep(8),
     },
     {
       title: "Social Security",
@@ -154,7 +154,7 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       bgImageSrc:
         "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728306796/Screenshot_2024-10-07_at_6.43.02_PM_fwkq9u.png",
       icon: FaMoneyBillWave,
-      onClick: () => goToStep(12), // Navigate to step 10 when Certified card is clicked
+      onClick: () => goToStep(11), // Navigate to step 10 when Certified card is clicked
     },
     {
       title: "Health Insurance",

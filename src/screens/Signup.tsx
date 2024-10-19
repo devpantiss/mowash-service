@@ -9,24 +9,24 @@ const Signup: React.FC = () => {
   const totalSteps = steps?.length;
 
   const handleNext = () => {
-    if (step === 8) {
-      setStep(10);
-    } else if (step === 9) {
+    if (step === 7) {
       setStep(9);
-    }else if (step === 11) {
-      setStep(11);
+    } else if (step === 8) {
+      setStep(8);
     }else if (step === 10) {
-      setStep(11);
+      setStep(10);
+    }else if (step === 9) {
+      setStep(10);
     } else if (step < totalSteps - 1) {
       setStep((prevStep) => prevStep + 1);
     }
   };
 
   const handlePrev = () => {
-    if (step === 10) {
-      setStep(8);
-    } else if (step === 12) {
-      setStep(8);
+    if (step === 9) {
+      setStep(7);
+    } else if (step === 11) {
+      setStep(7);
     } else if (step > 0) {
       setStep((prevStep) => prevStep - 1);
     }

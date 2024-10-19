@@ -1,5 +1,5 @@
 import SignupStep0 from "@/components/SignUp/SignupStep0";
-import SignupStep1 from '@/components/SignUp/SignupStep1';
+// import SignupStep1 from '@/components/SignUp/SignupStep1';
 import SignupStep10 from "@/components/SignUp/SignupStep10";
 import SignupStep11 from "@/components/SignUp/SignupStep11";
 import SignupStep2 from "@/components/SignUp/SignupStep2";
@@ -20,7 +20,7 @@ const Steps = [
   SignupStep5,
   SignupStep6,
   SignupStep7,
-  SignupStep1,
+  // SignupStep1,
   SignupStep9,
   SignupStep11,
   SignupStep12,

@@ -4,7 +4,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import animation from "@/components/assets/animation.json";
 import { useRouter } from "next/router"; // Import useRouter
-import Image from "next/image";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 

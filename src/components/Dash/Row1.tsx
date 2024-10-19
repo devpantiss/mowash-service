@@ -495,18 +495,18 @@ const Row1: React.FC = () => {
           <div className="w-full lg:w-2/3 flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
             <div className="w-full bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
               <h3 className="text-lg text-white font-bold">
-                Earnings Status (Last 30 days)
+                Status (Last 30 days)
               </h3>
               <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 p-4 rounded-md w-full">
                 <StatCard
-                  title="New Jobs"
+                  title="Total Jobs"
                   value="0"
                   subtitle="Yesterday 0"
                   icon={<span>📋</span>}
                   flexCol="lg:flex-col"
                 />
                 <StatCard
-                  title="Ongoing Jobs"
+                  title="Completed Jobs"
                   value="0"
                   subtitle="Yesterday ₹ 0"
                   icon={<span>📋</span>}

@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
-import { Marker, useMap } from "react-leaflet";
-import { LatLngExpression, divIcon } from "leaflet";
-import { FiMapPin } from "react-icons/fi"; // Import the icon
-import style from "@/components/common/input/input.module.css"; // Import custom styles
+import style from "@/components/common/input/input.module.css";
 
 // Ensure dynamic import of Leaflet and its components
 const MapContainer = dynamic(
@@ -16,60 +13,10 @@ const TileLayer = dynamic(
   { ssr: false }
 );
 
-// Create a custom icon using the raw SVG code of FiMapPin
-const customIcon = divIcon({
-  className: "", // No default leaflet styles
-  html: `<div style="font-size: 24px; color: red;">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 2c4.418 0 8 3.582 8 8 0 2.57-1.188 5.08-3.382 7.748A31.503 31.503 0 0112 22.729a31.503 31.503 0 01-4.618-4.98C5.188 15.08 4 12.57 4 10c0-4.418 3.582-8 8-8z" />
-              <circle cx="12" cy="10" r="3" stroke="black" strokeWidth="2" fill="red" />
-            </svg>
-         </div>`, // Icon's SVG code
-  iconSize: [50, 50], // Size of the custom marker
-  iconAnchor: [15, 30], // Anchor point so the icon points correctly
-});
-
-// DraggableMarker component with a custom icon
-const DraggableMarker = ({
-  latLng,
-  setLatLng,
-}: {
-  latLng: LatLngExpression;
-  setLatLng: (pos: LatLngExpression) => void;
-}) => {
-  const [position, setPosition] = useState(latLng);
-  const [draggable, setDraggable] = useState(true);
-
-  const map = useMap(); // Get access to map instance
-
-  useEffect(() => {
-    if (latLng) {
-      setPosition(latLng);
-      map.setView(latLng, 13); // Recenter the map on the selected location
-    }
-  }, [latLng]);
-
-  return (
-    <Marker
-      position={position}
-      draggable={draggable}
-      icon={customIcon}
-      eventHandlers={{
-        dragend: (e) => {
-          const marker = e.target;
-          const latLng = marker.getLatLng();
-          setPosition([latLng.lat, latLng.lng]);
-          setLatLng([latLng.lat, latLng.lng]);
-        },
-      }}
-    />
-  );
-};
-
 const SignupStep6: React.FC = () => {
-  const [latLng, setLatLng] = useState<LatLngExpression | null>([
-    20.2961, 85.8245,
-  ]); // Initial map center (Bhubaneswar)
+  const [latLng, setLatLng] = useState<{ lat: number; lng: number } | null>(
+    null
+  );
   const [formData, setFormData] = useState({
     houseNumber: "",
     streetAddress: "",
@@ -84,10 +31,9 @@ const SignupStep6: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
 
-  const mapRef = useRef(null); // Reference to the map instance
-
+  // Set `isClient` to true when the component is rendered in the browser
   useEffect(() => {
-    setIsClient(true); // Mark the component as client-side
+    setIsClient(true);
   }, []);
 
   // Fetch address suggestions from Nominatim API
@@ -124,11 +70,7 @@ const SignupStep6: React.FC = () => {
 
   const handleResultSelect = (result: any) => {
     setSearchQuery(result.display_name);
-    const newLatLng: [number, number] = [
-      parseFloat(result.lat),
-      parseFloat(result.lon),
-    ];
-    setLatLng(newLatLng); // Update map center with selected location
+    setLatLng({ lat: result.lat, lng: result.lon });
     setFormData({
       houseNumber: result.address.house_number || "",
       streetAddress: result.address.road || "",
@@ -151,30 +93,27 @@ const SignupStep6: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col items-center lg:h-[90vh] justify-center bg-transparent">
-      <h2 className="text-5xl font-bold lg:text-center text-left text-white mb-12 mt-8">
-        Choose Your Location
+    <div className="flex flex-col items-center lg:h-[90vh] justify-center bg-transparent p-4">
+      <h2 className="text-5xl font-bold lg:text-center text-left text-white my-10">
+        Choose Your Location{" "}
       </h2>
 
-      <div className="flex flex-col lg:flex-row justify-between w-full max-w-7xl">
+      <div className="flex flex-col lg:flex-row justify-between lg: items-center w-full max-w-7xl">
         {/* Map Container */}
-        <div className="lg:w-1/2 w-full h-[600px] ring-2 ring-white relative rounded-tl-md lg:rounded-bl-md rounded-tr-md lg:rounded-tr-none z-[500]">
+        <div className="lg:w-1/2 w-full h-[600px] ring-2 ring-white rounded-tl-md relative rounded-bl-md">
           <MapContainer
-            center={latLng as LatLngExpression}
-            zoom={13}
+            center={[20.2961, 85.8245]} // Default center of the map
+            zoom={9}
             scrollWheelZoom={true}
             className="w-full h-full rounded-md"
-            ref={mapRef}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
             />
-            {latLng && (
-              <DraggableMarker latLng={latLng} setLatLng={setLatLng} />
-            )}
+            {latLng && <Marker position={latLng} />}
           </MapContainer>
-          
+
           {/* Search Box */}
           <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 z-[1000] w-3/4 lg:w-1/2">
             <div className="relative flex items-center bg-white shadow-lg rounded-full ring-blue-600 ring-2 h-12 w-full px-4">
@@ -207,22 +146,20 @@ const SignupStep6: React.FC = () => {
         {/* Address Form */}
         <form
           onSubmit={handleFormSubmit}
-          className="lg:w-1/2 w-full py-6 ring-2 lg:rounded-tr-md lg:rounded-br-md ring-white px-8 space-y-6"
+          className="lg:w-1/2 w-full ring-2 h-[600px] ring-white space-y-6 px-4 pb-2 bg-transparent rounded-tr-md rounded-br-md"
         >
-          {/* Replace with styled inputs */}
           <div className={style.inputContainer}>
             <input
               name="houseNumber"
-              placeholder="House Number"
+              placeholder="Flat/House Number"
               className={style.inputField}
               type="text"
               value={formData.houseNumber}
               onChange={handleInputChange}
             />
-            <label className={style.inputLabel}>House Number</label>
+            <label className={style.inputLabel}>Flat/House Number</label>
             <span className={style.inputHighlight}></span>
           </div>
-
           <div className={style.inputContainer}>
             <input
               name="streetAddress"
@@ -235,33 +172,30 @@ const SignupStep6: React.FC = () => {
             <label className={style.inputLabel}>Street Address</label>
             <span className={style.inputHighlight}></span>
           </div>
-
           <div className={style.inputContainer}>
             <input
               name="landmark"
-              placeholder="Landmark"
+              placeholder="Nearest Landmark"
               className={style.inputField}
               type="text"
               value={formData.landmark}
               onChange={handleInputChange}
             />
-            <label className={style.inputLabel}>Landmark</label>
+            <label className={style.inputLabel}>Nearest Landmark</label>
             <span className={style.inputHighlight}></span>
           </div>
-
           <div className={style.inputContainer}>
             <input
               name="city"
-              placeholder="City"
+              placeholder="City/Town"
               className={style.inputField}
               type="text"
               value={formData.city}
               onChange={handleInputChange}
             />
-            <label className={style.inputLabel}>City</label>
+            <label className={style.inputLabel}>City/Town</label>
             <span className={style.inputHighlight}></span>
           </div>
-
           <div className={style.inputContainer}>
             <input
               name="district"
@@ -274,7 +208,6 @@ const SignupStep6: React.FC = () => {
             <label className={style.inputLabel}>District</label>
             <span className={style.inputHighlight}></span>
           </div>
-
           <div className={style.inputContainer}>
             <input
               name="state"
@@ -287,7 +220,6 @@ const SignupStep6: React.FC = () => {
             <label className={style.inputLabel}>State</label>
             <span className={style.inputHighlight}></span>
           </div>
-
           <div className={style.inputContainer}>
             <input
               name="pincode"

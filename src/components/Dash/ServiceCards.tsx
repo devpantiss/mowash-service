@@ -3,6 +3,7 @@ import React from "react";
 interface Organization {
   name: string;
   premium: string;
+  annualPremium: string; // New field for annual premium
   cover: string;
   hospitals: number;
   renewalBonus: string;
@@ -10,10 +11,10 @@ interface Organization {
   imageUrl: string;
   link: string;
   policyType: string;
-  policyHolderName: string; // New field for policyholder name
-  policyNumber: string; // New field for policy number
-  coverage: string; // New field for coverage amount
-  monthlyEMI: string; // New field for monthly EMI
+  policyHolderName: string;
+  policyNumber: string;
+  coverage: string;
+  nextDueDate: string;
 }
 
 interface ServiceType {
@@ -32,6 +33,7 @@ const serviceTypes: ServiceType[] = [
       {
         name: "Biju Swasthya Kalyan Yojana",
         premium: "₹874/month",
+        annualPremium: "₹10,488/year", // Added annual premium
         cover: "₹7 Lac",
         hospitals: 187,
         renewalBonus: "₹10.5 Lac Renewal Bonus",
@@ -40,16 +42,16 @@ const serviceTypes: ServiceType[] = [
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/BSKY_Logo_umdrqn.png",
         link: "https://example.com/view-plan",
         policyType: "Health Insurance",
-        policyHolderName: "John Doe", // Example policyholder name
-        policyNumber: "HS123456", // Example policy number
-        coverage: "₹7 Lac", // Example coverage
-        monthlyEMI: "₹874", // Example monthly EMI
+        policyHolderName: "John Doe",
+        policyNumber: "HS123456",
+        coverage: "₹7 Lac",
+        nextDueDate: "2024-11-15",
       },
     ],
     totalPremiumPaid: "₹20,868",
     installmentsPaid: 24,
     installmentsRemaining: 6,
-    redirectRoute: "/welfare/healthinsurance", // Specific route
+    redirectRoute: "/welfare/healthinsurance",
   },
   {
     title: "Social Security",
@@ -57,6 +59,7 @@ const serviceTypes: ServiceType[] = [
       {
         name: "National Pension System",
         premium: "₹1000/month",
+        annualPremium: "₹12,000/year", // Added annual premium
         cover: "₹10 Lac",
         hospitals: 0,
         renewalBonus: "N/A",
@@ -65,16 +68,16 @@ const serviceTypes: ServiceType[] = [
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749889/logo_uupd0f.png",
         link: "https://example.com/nps-plan",
         policyType: "Social Security",
-        policyHolderName: "Jane Smith", // Example policyholder name
-        policyNumber: "SS987654", // Example policy number
-        coverage: "₹10 Lac", // Example coverage
-        monthlyEMI: "₹1000", // Example monthly EMI
+        policyHolderName: "Jane Smith",
+        policyNumber: "SS987654",
+        coverage: "₹10 Lac",
+        nextDueDate: "2024-12-01",
       },
     ],
     totalPremiumPaid: "₹36,000",
     installmentsPaid: 36,
     installmentsRemaining: 0,
-    redirectRoute: "/welfare/socialsecurity", // Specific route
+    redirectRoute: "/welfare/socialsecurity",
   },
   {
     title: "Life Insurance",
@@ -82,6 +85,7 @@ const serviceTypes: ServiceType[] = [
       {
         name: "Mantri Suraksha Bima Yojana",
         premium: "₹12/year",
+        annualPremium: "₹12/year", // Added annual premium
         cover: "₹2 Lac",
         hospitals: 0,
         renewalBonus: "N/A",
@@ -90,16 +94,16 @@ const serviceTypes: ServiceType[] = [
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750007/site-logo_k7ejwo.jpg",
         link: "https://example.com/pmsby-plan",
         policyType: "Term Life",
-        policyHolderName: "Alice Johnson", // Example policyholder name
-        policyNumber: "LI123456", // Example policy number
-        coverage: "₹2 Lac", // Example coverage
-        monthlyEMI: "₹1", // Example monthly EMI
+        policyHolderName: "Alice Johnson",
+        policyNumber: "LI123456",
+        coverage: "₹2 Lac",
+        nextDueDate: "2024-12-10",
       },
     ],
     totalPremiumPaid: "₹342",
     installmentsPaid: 2,
     installmentsRemaining: 1,
-    redirectRoute: "/welfare/insurance", // Specific route
+    redirectRoute: "/welfare/insurance",
   },
 ];
 
@@ -117,7 +121,8 @@ const simplifiedServices = serviceTypes.flatMap((service) =>
     policyHolderName: org.policyHolderName,
     policyNumber: org.policyNumber,
     coverage: org.coverage,
-    monthlyEMI: org.monthlyEMI,
+    nextDueDate: org.nextDueDate,
+    annualPremium: org.annualPremium,
   }))
 );
 
@@ -172,17 +177,11 @@ const ServicesCards: React.FC = () => {
                 <strong>Coverage:</strong> {org.coverage}
               </p>
               <p className=" mb-1">
-                <strong>Monthly EMI:</strong> {org.monthlyEMI}
+                <strong>Next Due Date:</strong> {org.nextDueDate}
               </p>
-              <p className="">Unlimited Restoration of Cover</p>
-            </div>
-
-            <div className="lg:text-right text-center mt-4">
-              <a href={org.link}>
-                <button className="text-blue-500 shadow-lg ring-2 ring-blue-500 py-2 px-4 rounded-lg w-full hover:bg-blue-100 transition-colors duration-300">
-                  {org.premium}
-                </button>
-              </a>
+              <p className=" mb-1">
+                <strong>Annual Premium:</strong> {org.annualPremium}
+              </p>
             </div>
           </div>
         </div>

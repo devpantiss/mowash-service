@@ -92,7 +92,7 @@ const Sidebar: FC = () => {
           }`}
         >
           <BsFillHeartPulseFill size={20} />
-          <span className="hidden group-hover:block">Health Checkup</span>
+          <span className="hidden group-hover:block">Health Stats</span>
         </Link>
 
         {/* Welfare Services */}
@@ -132,19 +132,6 @@ const Sidebar: FC = () => {
         >
           <FaUser size={20} />
           <span className="hidden group-hover:block">Profile</span>
-        </Link>
-
-        {/* Documents */}
-        <Link
-          href="/profile/documents"
-          className={`flex items-center space-x-2 p-2 rounded-md transition-all duration-300 ${
-            isActive("/profile/documents")
-              ? "bg-white text-blue-700"
-              : "hover:bg-blue-400"
-          }`}
-        >
-          <GrDocument size={20} />
-          <span className="hidden group-hover:block">Documents</span>
         </Link>
 
         {/* Help & Support */}
