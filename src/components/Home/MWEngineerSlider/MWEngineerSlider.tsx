@@ -10,6 +10,12 @@ type ArrowProps = {
   onClick?: () => void;
 };
 
+type CustomDotProps = {
+  onClick?: () => void;
+  active: boolean;
+};
+
+
 type SlideItem = {
   id: number;
   title: string;
@@ -175,12 +181,10 @@ const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => (
 );
 
 // Custom Dot Indicator
-const CustomDot = (props: any) => {
-  const { onClick, active } = props;
+const CustomDot: React.FC<CustomDotProps> = ({ onClick, active }) => {
   return (
     <div
-      className={`w-3 h-3 rounded-full cursor-pointer ${active ? "bg-red-600" : "bg-gray-300"
-        }`}
+      className={`w-3 h-3 rounded-full cursor-pointer ${active ? "bg-red-600" : "bg-gray-300"}`}
       onClick={onClick}
       style={{ margin: "0 5px" }}
     ></div>
