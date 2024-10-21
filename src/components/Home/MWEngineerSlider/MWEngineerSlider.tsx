@@ -1,4 +1,3 @@
-// components/Slider.tsx
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -24,7 +23,18 @@ type SlideItem = {
 const slides: SlideItem[] = [
   {
     id: 1,
-    title: "Toilet Mason, Electrician & Plumber",
+    title: "Mason",
+    price: "₹ 546",
+    discountedPrice: "₹ 464",
+    imageUrl:
+      "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842795%2Fuploads%2F1721842795394-1.png.jpg&w=256&q=75",
+    videoUrl:
+      "https://res.cloudinary.com/dgtc2fvgu/video/upload/v1729499644/Mason_xrj7ik.mp4",
+    description: "DR. PARIKSHA RAO CLINICAL NUTRITIONIST",
+  },
+  {
+    id: 2,
+    title: "Electrician",
     price: "₹ 546",
     discountedPrice: "₹ 464",
     imageUrl:
@@ -34,30 +44,41 @@ const slides: SlideItem[] = [
     description: "DR. PARIKSHA RAO CLINICAL NUTRITIONIST",
   },
   {
-    id: 2,
-    title: "Cess Pool Vehicle Services Providers",
+    id: 3,
+    title: "Plumber",
+    price: "₹ 546",
+    discountedPrice: "₹ 464",
+    imageUrl:
+      "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842795%2Fuploads%2F1721842795394-1.png.jpg&w=256&q=75",
+    videoUrl:
+      "https://aceblend.com/cdn/shop/files/quinn_vqxksymjj7u43ugmx7t1643h.mp4", // Add video URL for each product
+    description: "DR. PARIKSHA RAO CLINICAL NUTRITIONIST",
+  },
+  {
+    id: 4,
+    title: "CessPool Vehicle Operator",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
       "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842833%2Fuploads%2F1721842833295-2.png.jpg&w=256&q=75",
     videoUrl:
-      "https://aceblend.com/cdn/shop/files/quinn_cw14y2bl1dsdj4rl2ss5wa20.mp4", // Add video URL for each product
+      "https://res.cloudinary.com/dgtc2fvgu/video/upload/v1729499628/cesspool_op_nzkhwd.mp4",
     description: "Shivoham - Celebrity Fitness Coach",
   },
   {
-    id: 3,
-    title: "Waste Collection, Segregation",
+    id: 5,
+    title: "Sanitation Crew",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
       "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842864%2Fuploads%2F1721842864505-3.png.jpg&w=256&q=75",
     videoUrl:
-      "https://aceblend.com/cdn/shop/files/quinn_v2d4jc7nj9vmatmoa5wy9p3f.mp4", // Add video URL for each product
+      "https://res.cloudinary.com/dgtc2fvgu/video/upload/v1729499636/Sanitation_Crew_vrkhy7.mp4",
     description: "Shivoham - Celebrity Fitness Coach",
   },
   {
-    id: 4,
-    title: "Nal Jal Mitra for Dringking Water",
+    id: 6,
+    title: "Nal Jal Mitra",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
@@ -67,19 +88,19 @@ const slides: SlideItem[] = [
     description: "Shivoham - Celebrity Fitness Coach",
   },
   {
-    id: 5,
-    title: "Solid & Liquid Waste Treatment",
+    id: 7,
+    title: "STP Operator",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
-      "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842927%2Fuploads%2F1721842927589-5.png.jpg&w=256&q=75",
+    "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842833%2Fuploads%2F1721842833295-2.png.jpg&w=256&q=75",
     videoUrl:
-      "https://aceblend.com/cdn/shop/files/quinn_wet7g4t7pmsa714plcrxhe0s.mp4", // Add video URL for each product
+      "https://res.cloudinary.com/dgtc2fvgu/video/upload/v1729499634/STP_OP_omn8pm.mp4",
     description: "Shivoham - Celebrity Fitness Coach",
   },
   {
-    id: 6,
-    title: "Solar Plant & Water Pump EPC, O&M'",
+    id: 8,
+    title: "Solar Pump Operator",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
@@ -89,30 +110,19 @@ const slides: SlideItem[] = [
     description: "Shivoham - Celebrity Fitness Coach",
   },
   {
-    id: 7,
-    title: "Wash & Climate Change Complaint Institution",
-    price: "₹ 499",
-    discountedPrice: "₹ 499",
-    imageUrl:
-      "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842985%2Fuploads%2F1721842985878-7.png.jpg&w=256&q=75",
-    videoUrl:
-      "https://aceblend.com/cdn/shop/files/quinn_vqxksymjj7u43ugmx7t1643h.mp4", // Add video URL for each product
-    description: "Shivoham - Celebrity Fitness Coach",
-  },
-  {
-    id: 8,
-    title: "Pond Restoration & Rejuvination",
+    id: 9,
+    title: "Pond Excavator",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
       "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721843023%2Fuploads%2F1721843023351-8.png.jpg&w=256&q=75",
     videoUrl:
-      "https://aceblend.com/cdn/shop/files/quinn_cw14y2bl1dsdj4rl2ss5wa20.mp4", // Add video URL for each product
+      "https://res.cloudinary.com/dgtc2fvgu/video/upload/v1729499637/pond_excavator_jx6czh.mp4",
     description: "Shivoham - Celebrity Fitness Coach",
   },
   {
-    id: 9,
-    title: "Essential Wash Services Bill Payment",
+    id: 10,
+    title: "Water Bill Collector",
     price: "₹ 499",
     discountedPrice: "₹ 499",
     imageUrl:
@@ -121,62 +131,59 @@ const slides: SlideItem[] = [
       "https://aceblend.com/cdn/shop/files/quinn_v2d4jc7nj9vmatmoa5wy9p3f.mp4", // Add video URL for each product
     description: "Shivoham - Celebrity Fitness Coach",
   },
-  {
-    id: 10,
-    title: "Institutional Facility Management",
-    price: "₹ 499",
-    discountedPrice: "₹ 499",
-    imageUrl:
-      "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1723195716%2Fuploads%2F1723195716444-10841340%2520%25281%2529.png.jpg&w=256&q=75",
-    videoUrl:
-      "https://aceblend.com/cdn/shop/files/quinn_w0v4m1kbsd0vgtxjz3wr5xvg.mp4", // Add video URL for each product
-    description: "Shivoham - Celebrity Fitness Coach",
-  },
+  ];
 
-  // Add more items as required...
-];
-
-const PrevArrow: React.FC<ArrowProps> = ({ className, style, onClick }) => {
-  return (
-    <div
-      className={`${className} custom-arrow prev-arrow`}
-      onClick={onClick}
-      style={{
-        display: "block",
-        position: "absolute",
-        left: "-30px",
-        top: "50%",
-        transform: "translateY(-50%)",
-        cursor: "pointer",
-        zIndex: 1,
-        color: "white",
-      }}
-    >
-      <FaChevronLeft size={30} />
-    </div>
-  );
-};
+// Custom Previous Arrow
+const PrevArrow: React.FC<ArrowProps> = ({ className, onClick }) => (
+  <div
+    className={`${className} custom-arrow prev-arrow`}
+    onClick={onClick}
+    style={{
+      display: "block",
+      position: "absolute",
+      left: "-30px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      cursor: "pointer",
+      zIndex: 1,
+      color: "white",
+    }}
+  >
+    <FaChevronLeft size={30} />
+  </div>
+);
 
 // Custom Next Arrow
-const NextArrow: React.FC<ArrowProps> = ({ className, style, onClick }) => {
+const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => (
+  <div
+    className={`${className} custom-arrow next-arrow`}
+    onClick={onClick}
+    style={{
+      display: "block",
+      position: "absolute",
+      right: "-30px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      cursor: "pointer",
+      zIndex: 1,
+      color: "white",
+      backgroundColor: "blue",
+    }}
+  >
+    <FaChevronRight size={30} />
+  </div>
+);
+
+// Custom Dot Indicator
+const CustomDot = (props: any) => {
+  const { onClick, active } = props;
   return (
     <div
-      className={`${className} custom-arrow next-arrow`}
+      className={`w-3 h-3 rounded-full cursor-pointer ${active ? "bg-red-600" : "bg-gray-300"
+        }`}
       onClick={onClick}
-      style={{
-        display: "block",
-        position: "absolute",
-        right: "-30px",
-        top: "50%",
-        transform: "translateY(-50%)",
-        cursor: "pointer",
-        zIndex: 1,
-        color: "white",
-        backgroundColor: "blue",
-      }}
-    >
-      <FaChevronRight size={30} />
-    </div>
+      style={{ margin: "0 5px" }}
+    ></div>
   );
 };
 
@@ -184,7 +191,7 @@ const MWEngineerSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -195,6 +202,8 @@ const MWEngineerSlider: React.FC = () => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     afterChange: (index: number) => setCurrentSlide(index),
+    customPaging: (i: number) => <CustomDot active={i === currentSlide} />, // Custom dot
+    dotsClass: "slick-dots custom-dots", // Add custom dot class
     responsive: [
       {
         breakpoint: 1024,
@@ -210,6 +219,8 @@ const MWEngineerSlider: React.FC = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          centerMode: true, // Center the slide in mobile view
+          centerPadding: "40px", // Adjust padding to keep the slide centered
         },
       },
     ],
@@ -226,7 +237,7 @@ const MWEngineerSlider: React.FC = () => {
             {/* Card Container */}
             <div
               className="bg-white rounded-lg shadow-lg overflow-hidden"
-              style={{ width: "250px" }}
+              style={{ width: "250px", margin: "0 auto" }} // Center the card on mobile view
             >
               {/* Video Section */}
               <div className="relative">
@@ -240,7 +251,7 @@ const MWEngineerSlider: React.FC = () => {
               </div>
 
               {/* Product Details Section */}
-              <div className="p-4 relative text-center">
+              <div className="p-4 h-[100px] relative text-center">
                 {/* Product Image */}
                 <img
                   src={slide.imageUrl}
@@ -251,15 +262,6 @@ const MWEngineerSlider: React.FC = () => {
                 <h3 className="mt-4 text-lg font-semibold text-gray-700">
                   {slide.title}
                 </h3>
-                {/* Product Price */}
-                {/* <div className="mt-2">
-                  <span className="line-through text-gray-400">
-                    {slide.price}
-                  </span>
-                  <span className="ml-2 text-red-500 font-bold">
-                    {slide.discountedPrice}
-                  </span>
-                </div> */}
               </div>
             </div>
           </div>

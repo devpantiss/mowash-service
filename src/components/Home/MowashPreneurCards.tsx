@@ -26,7 +26,7 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ title, imageSrc, tagline }) =
 
 const MowashPreneurCards = () => {
     return (
-        <section className="bg-blue-600 py-12">
+        <section className="bg-blue-600 py-12 px-10">
             <div className="relative max-w-7xl mx-auto text-center">
                 <h2 className="text-4xl font-bold text-white mb-6">Sell Your Wash Products with us</h2>
                 <p className="text-lg text-white mb-12">

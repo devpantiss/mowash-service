@@ -668,7 +668,7 @@ const SignupStep7: React.FC = () => {
 
               <div className="w-full p-8">
                 <h1 className="text-white text-2xl font-bold mb-4 text-left">
-                  Experience Information
+                  Professional History
                 </h1>
                 <form ref={formRef2} onSubmit={handleSubmit2} noValidate>
                   {/* Previous Employment */}

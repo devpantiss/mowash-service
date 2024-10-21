@@ -138,4 +138,13 @@ input[type="range"]::-webkit-slider-thumb {
       border-radius: 4px;
     }
     
-  
+    @media (max-width: 768px) {
+      .mobile {
+        display: flex;
+        flex-direction: row;
+      }
+      .mobile-row-reverse {
+        flex-direction: row-reverse;
+      }
+    }
+    

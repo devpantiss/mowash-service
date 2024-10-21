@@ -19,7 +19,7 @@ const services = [
 const ServiceSection = () => {
   return (
     <div className='bg-blue-600'>
-      <section className="py-8 max-w-7xl mx-auto">
+      <section className="py-8 px-4 max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center flex flex-col justify-center items-center mx-auto">
           <h1 className="text-4xl text-white font-bold mb-2">MoWash Engineers Services Available In Odisha</h1>
@@ -31,29 +31,9 @@ const ServiceSection = () => {
         </div>
 
 
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center'>
           <MWEngineerSlider />
         </div>
-        {/* Services Grid */}
-        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <Link key={index} href="#">
-              <div
-                className="hover:bg-blue-500 h-[250px] hover:text-white hover:ring-white bg-white ring-2 ring-blue-500 text-blue-500 rounded-lg shadow p-6 flex flex-col justify-center items-center space-y-4 relative"
-              >
-                {service.isNew && (
-                  <span className="absolute top-2 right-2 text-xs text-red-600 font-semibold">New</span>
-                )}
-
-                <div className="h-28 w-28 bg-gray-200 flex justify-center items-center rounded-full">
-                  <img src={service.icon} alt={service.title} className="h-28 w-28" />
-                </div>
-
-                <h3 className="text-md text-center font-semibold">{service.title}</h3>
-              </div>
-            </Link>
-          ))}
-        </div> */}
       </section>
     </div>
   );

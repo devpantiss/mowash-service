@@ -6,16 +6,16 @@ const WhyToBeBanner = () => {
 
   return (
     <section
-      className="relative h-[400px] md:h-[600px] flex items-center justify-center text-black"
+      className="relative h-[800px] md:h-[600px] flex items-center justify-center text-black"
       style={{
         backgroundImage: 'url("/images/water.webp")',
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
       }}
     >
-      <div className="relative max-w-7xl h-full flex justify-center items-center text-black px-8 md:px-16 z-10">
+      <div className="relative max-w-7xl h-full flex flex-col lg:flex-row justify-center items-center text-black px-8 py-6 md:px-16 z-10">
         {/* Left Section: MoWash Engineer */}
-        <div className="w-1/2 flex flex-col justify-center items-center mx-auto">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center mx-auto">
           <h2 className="text-[44px] md:text-4xl font-bold mb-8">Why to be <span className='text-blue-600'>MoWash</span> Engineer</h2>
           <div className="flex justify-center mt-6 items-center gap-x-6">
             <div className='flex flex-col justify-center items-center'>
@@ -41,7 +41,7 @@ const WhyToBeBanner = () => {
         <div className="hidden md:block h-[350px] w-[2px] bg-black mx-8"></div>
 
         {/* Right Section: MoWash Preneur */}
-        <div className="w-1/2 flex flex-col justify-center items-center mx-auto">
+        <div className="w-full lg:w-1/2 mt-8 flex flex-col justify-center items-center mx-auto">
           <h2 className="text-[44px] md:text-4xl font-bold mb-8">Why to be <span className='text-blue-600'>MoWash</span> Preneur</h2>
           <div className="flex justify-center mt-6 items-center gap-x-6">
             <div className='flex flex-col justify-center items-center'>

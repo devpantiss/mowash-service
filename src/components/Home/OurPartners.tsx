@@ -47,7 +47,7 @@ const OurPartners = () => {
         <h1 className="text-4xl pl-2 font-bold">Our Partners</h1>
       </div>
 
-      <div className="container w-[400px] lg:w-[1000px]">
+      <div className="container w-[500px] lg:w-[1000px]">
         {/* Slider with Marquee Effect */}
         <Slider {...settings} className="gap-x-2"> {/* Added gap using Tailwind */}
           <div className="px-4">
