@@ -4,6 +4,10 @@ import Card from "./card/Card";
 import InsuranceSlider from "./slider/InsuranceSlider";
 import Step11Banner from "./banner/Step11Banner";
 import { jsPDF } from "jspdf";
+import dynamic from "next/dynamic";
+import animation from "@/components/assets/insurance.json";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 // Define the valid keys for selectedSection
 type Section = "healthCard" | "insurance";
@@ -222,37 +226,48 @@ const SignupStep1: React.FC<SignupStep1Props> = ({ goToStep }) => {
 
   return (
     <div className="bg-transparent rounded-lg p-8 w-full px-6 lg:px-[100px]">
+      <h2 className="text-5xl text-center font-bold lg:text-center text-white my-8">
+        Insurance Plans
+      </h2>
       {!selectedSection ? (
-        <div className="h-full pb-8">
-          <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
-            Welfare Services
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {cardsData.map((card, index) => (
-              <Card
-                key={index}
-                title={card.title}
-                tagline={card.tagline}
-                text={card.text}
-                bgImageSrc={card.bgImageSrc}
-                icon={card.icon}
-                onClick={card.onClick} // Pass the onClick prop
-              />
-            ))}
+        <div className="w-full flex flex-col gap-x-10 lg:flex-row">
+          <div className="lg:w-1/2 w-full">
+            <Lottie
+              animationData={animation}
+              loop={true}
+              style={{
+                width: "100%",
+                height: "600px",
+              }}
+            />
           </div>
+          <div className="h-full lg:w-1/2 w-full pb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {cardsData.map((card, index) => (
+                <Card
+                  key={index}
+                  title={card.title}
+                  tagline={card.tagline}
+                  text={card.text}
+                  bgImageSrc={card.bgImageSrc}
+                  icon={card.icon}
+                  onClick={card.onClick}
+                />
+              ))}
+            </div>
 
-          <div className="text-center mt-8">
-            <button
-              onClick={handleSkip}
-              className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
-            >
-              Skip
-            </button>
-          </div>
+            <div className="text-center mt-8">
+              <button
+                onClick={handleSkip}
+                className="px-6 py-2 bg-white text-blue-600 ring ring-blue-600 rounded-lg hover:bg-gray-100 transition"
+              >
+                Skip
+              </button>
+            </div>
 
-          <div>
-            <Step11Banner />
+            <div>
+              <Step11Banner />
+            </div>
           </div>
         </div>
       ) : showCSPPage ? (
