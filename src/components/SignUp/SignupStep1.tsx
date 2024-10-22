@@ -228,7 +228,7 @@ const SignupStep1: React.FC<SignupStep1Props> = ({ goToStep }) => {
             Welfare Services
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {cardsData.map((card, index) => (
               <Card
                 key={index}
