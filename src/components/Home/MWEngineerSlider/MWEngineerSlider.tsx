@@ -112,7 +112,7 @@ const slides: SlideItem[] = [
     imageUrl:
       "https://www.mowash.in/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdd1dbnkhw%2Fimage%2Fupload%2Fv1721842959%2Fuploads%2F1721842959325-6.png.jpg&w=256&q=75",
     videoUrl:
-      "https://aceblend.com/cdn/shop/files/quinn_b6mlz7s64pdadq2t5fcnr3lx.mp4", // Add video URL for each product
+      "https://res.cloudinary.com/dgtc2fvgu/video/upload/v1729575854/solar_rgxwix.mp4",
     description: "Shivoham - Celebrity Fitness Coach",
   },
   {
