@@ -4,15 +4,16 @@ import { useRouter } from "next/router"; // Import useRouter to track active rou
 import {
   AiFillHome,
   AiFillDashboard,
-  AiFillDollarCircle,
-  AiFillSetting,
   AiFillQuestionCircle,
   AiOutlineLogout,
 } from "react-icons/ai";
 import { BsFillHeartPulseFill } from "react-icons/bs";
 import { FaUser, FaUserShield } from "react-icons/fa";
 import { GiGraduateCap } from "react-icons/gi";
-import { GrDocument } from "react-icons/gr";
+import { MdHomeRepairService } from "react-icons/md";
+import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+
+
 
 const Sidebar: FC = () => {
   const router = useRouter(); // Use useRouter to get the current path
@@ -65,7 +66,7 @@ const Sidebar: FC = () => {
               : "hover:bg-blue-400"
           }`}
         >
-          <AiFillSetting size={24} />
+          <MdHomeRepairService size={24} />
           <span className="hidden group-hover:block">Services</span>
         </Link>
 
@@ -78,7 +79,7 @@ const Sidebar: FC = () => {
               : "hover:bg-blue-400"
           }`}
         >
-          <AiFillDollarCircle size={24} />
+          <RiMoneyRupeeCircleFill size={24} />
           <span className="hidden group-hover:block">Earnings</span>
         </Link>
 
@@ -118,7 +119,7 @@ const Sidebar: FC = () => {
           }`}
         >
           <GiGraduateCap size={20} />
-          <span className="hidden group-hover:block">LMS</span>
+          <span className="hidden group-hover:block">Green Jobs</span>
         </Link>
 
         {/* Profile */}

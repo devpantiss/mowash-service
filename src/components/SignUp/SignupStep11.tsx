@@ -162,15 +162,6 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       onClick: () => handleSectionClick("pension"),
     },
     {
-      title: "Life Insurance",
-      tagline: "Know more",
-      text: "Protect your family with our life insurance plans.",
-      bgImageSrc:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1727258506/Screenshot_2024-09-25_at_3.27.27_PM_aozx74.png",
-      icon: FaShieldAlt,
-      onClick: () => handleSectionClick("insurance"),
-    },
-    {
       title: "Certified",
       tagline: "Learn more",
       text: "Secure your retirement with our pension plans.",
@@ -180,13 +171,13 @@ const SignupStep11: React.FC<SignupStep11Props> = ({ goToStep }) => {
       onClick: () => goToStep(11), // Navigate to step 10 when Certified card is clicked
     },
     {
-      title: "Health Insurance",
+      title: "Insurance",
       tagline: "Learn more",
-      text: "Secure your Health with our Health Insurance Plans.",
+      text: "Secure your Health & Life with our Insurance Plans.",
       bgImageSrc:
         "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728912505/Screenshot_2024-10-14_at_6.56.59_PM_yrohsd.png",
       icon: FaMoneyBillWave,
-      onClick: () => handleSectionClick("healthCard"),
+      onClick: () => goToStep(12), // Navigate to step 10 when Certified card is clicked
     },
   ];
 

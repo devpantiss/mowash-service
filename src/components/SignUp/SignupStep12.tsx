@@ -6,6 +6,7 @@ import { jsPDF } from "jspdf";
 import animationData from "../assets/health.json";
 import dynamic from "next/dynamic";
 import style from "@/components/common/input/input.module.css";
+import animation from "@/components/assets/doc2.json";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -378,291 +379,304 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
 
       {!isBooking ? (
         // Health Information Form
-        <div className="w-full max-w-6xl bg-transparent ring-2 ring-white p-8 rounded-lg shadow-lg">
-          <h3 className="text-3xl text-white mb-6">
-            Employee Health Information
-          </h3>
-          <form onSubmit={handleFormSubmit} className="space-y-6">
-            {/* Health Information */}
-            <div>
-              <h4 className="text-xl text-white mb-2">Health Information</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Gender Input */}
-                <div className={style.inputContainer}>
-                  <select
-                    name="gender"
-                    value={healthInfo.gender}
-                    onChange={handleInputChange}
-                    required
-                    className={style.inputField}
-                  >
-                    <option value="">Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  <label className={style.inputLabel}>Gender</label>
-                  <span className={style.inputHighlight}></span>
-                </div>
+        <div className="flex justify-center w-full items-center">
+          <div className="flex lg:w-2/3 flex-col w-full items-center ring-2 py-4 ring-white space-y-7 max-w-6xl md:h-full mb-10 rounded-lg mt-12 justify-center">
+            <h3 className="text-3xl text-white mb-6">
+              Employee Health Information
+            </h3>
+            <form onSubmit={handleFormSubmit} className="space-y-6">
+              {/* Health Information */}
+              <div>
+                <h4 className="text-xl text-white mb-2">Health Information</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Gender Input */}
+                  <div className={style.inputContainer}>
+                    <select
+                      name="gender"
+                      value={healthInfo.gender}
+                      onChange={handleInputChange}
+                      required
+                      className={style.inputField}
+                    >
+                      <option value="">Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <label className={style.inputLabel}>Gender</label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-                {/* Blood Type Input */}
-                <div className={style.inputContainer}>
-                  <select
-                    name="bloodType"
-                    value={healthInfo.bloodType}
-                    onChange={handleInputChange}
-                    required
-                    className={style.inputField}
-                  >
-                    <option value="">Blood Type</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                  </select>
-                  <label className={style.inputLabel}>Blood Type</label>
-                  <span className={style.inputHighlight}></span>
-                </div>
+                  {/* Blood Type Input */}
+                  <div className={style.inputContainer}>
+                    <select
+                      name="bloodType"
+                      value={healthInfo.bloodType}
+                      onChange={handleInputChange}
+                      required
+                      className={style.inputField}
+                    >
+                      <option value="">Blood Type</option>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                    </select>
+                    <label className={style.inputLabel}>Blood Type</label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-                {/* Weight Input */}
-                <div className={style.inputContainer}>
-                  <input
-                    type="text"
-                    name="weight"
-                    value={healthInfo.weight}
-                    onChange={handleInputChange}
-                    placeholder="Weight"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>Weight</label>
-                  <span className={style.inputHighlight}></span>
-                </div>
-               
-                {/* Weight Input */}
-                <div className={style.inputContainer}>
-                  <input
-                    type="text"
-                    name="height"
-                    value={healthInfo.height}
-                    onChange={handleInputChange}
-                    placeholder="Height"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>Height</label>
-                  <span className={style.inputHighlight}></span>
-                </div>
+                  {/* Weight Input */}
+                  <div className={style.inputContainer}>
+                    <input
+                      type="text"
+                      name="weight"
+                      value={healthInfo.weight}
+                      onChange={handleInputChange}
+                      placeholder="Weight"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>Weight</label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-                {/* Pre-existing Conditions Input */}
-                <div className={style.inputContainer}>
-                  <textarea
-                    name="preExistingConditions"
-                    value={healthInfo.preExistingConditions}
-                    onChange={handleInputChange}
-                    placeholder="Pre-existing Medical Conditions"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>
-                    Pre-existing Medical Conditions
-                  </label>
-                  <span className={style.inputHighlight}></span>
-                </div>
+                  {/* Weight Input */}
+                  <div className={style.inputContainer}>
+                    <input
+                      type="text"
+                      name="height"
+                      value={healthInfo.height}
+                      onChange={handleInputChange}
+                      placeholder="Height"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>Height</label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-                {/* Current Medications Input */}
-                <div className={style.inputContainer}>
-                  <textarea
-                    name="currentMedications"
-                    value={healthInfo.currentMedications}
-                    onChange={handleInputChange}
-                    placeholder="Current Medications"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>
-                    Current Medications
-                  </label>
-                  <span className={style.inputHighlight}></span>
-                </div>
+                  {/* Pre-existing Conditions Input */}
+                  <div className={style.inputContainer}>
+                    <textarea
+                      name="preExistingConditions"
+                      value={healthInfo.preExistingConditions}
+                      onChange={handleInputChange}
+                      placeholder="Pre-existing Medical Conditions"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>
+                      Pre-existing Medical Conditions
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-                {/* Recent Surgeries Input */}
-                <div className={style.inputContainer}>
-                  <textarea
-                    name="recentSurgeries"
-                    value={healthInfo.recentSurgeries}
-                    onChange={handleInputChange}
-                    placeholder="Recent Surgeries or Hospitalizations"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>
-                    Recent Surgeries or Hospitalizations
-                  </label>
-                  <span className={style.inputHighlight}></span>
-                </div>
+                  {/* Current Medications Input */}
+                  <div className={style.inputContainer}>
+                    <textarea
+                      name="currentMedications"
+                      value={healthInfo.currentMedications}
+                      onChange={handleInputChange}
+                      placeholder="Current Medications"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>
+                      Current Medications
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-                {/* Vaccination Status Input */}
-                <div className={style.inputContainer}>
-                  <input
-                    type="text"
-                    name="vaccinationStatus"
-                    value={healthInfo.vaccinationStatus}
-                    onChange={handleInputChange}
-                    placeholder="Vaccination Status (e.g., COVID-19, Flu)"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>Vaccination Status</label>
-                  <span className={style.inputHighlight}></span>
-                </div>
-              </div>
-            </div>
+                  {/* Recent Surgeries Input */}
+                  <div className={style.inputContainer}>
+                    <textarea
+                      name="recentSurgeries"
+                      value={healthInfo.recentSurgeries}
+                      onChange={handleInputChange}
+                      placeholder="Recent Surgeries or Hospitalizations"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>
+                      Recent Surgeries or Hospitalizations
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-            {/* Occupational Health & Safety */}
-            <div>
-              <h4 className="text-xl text-white mb-2">
-                Occupational Health & Safety
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Physical Limitations Input */}
-                <div className={style.inputContainer}>
-                  <textarea
-                    name="physicalLimitations"
-                    value={healthInfo.physicalLimitations}
-                    onChange={handleInputChange}
-                    placeholder="Physical Limitations (e.g., restricted mobility)"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>
-                    Physical Limitations
-                  </label>
-                  <span className={style.inputHighlight}></span>
-                </div>
-
-                {/* Vision/Hearing Issues Input */}
-                <div className={style.inputContainer}>
-                  <textarea
-                    name="visionHearingIssues"
-                    value={healthInfo.visionHearingIssues}
-                    onChange={handleInputChange}
-                    placeholder="Vision/Hearing Issues"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>
-                    Vision/Hearing Issues
-                  </label>
-                  <span className={style.inputHighlight}></span>
-                </div>
-
-                {/* Last Medical Checkup Date Input */}
-                <div className={style.inputContainer}>
-                  <input
-                    type="date"
-                    name="lastMedicalCheckup"
-                    value={healthInfo.lastMedicalCheckup}
-                    onChange={handleInputChange}
-                    placeholder="Last Medical Checkup Date"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>
-                    Last Medical Checkup Date
-                  </label>
-                  <span className={style.inputHighlight}></span>
-                </div>
-
-                {/* Last Occupational Health Screening Date Input */}
-                <div className={style.inputContainer}>
-                  <input
-                    type="date"
-                    name="lastOccupationalHealthScreening"
-                    value={healthInfo.lastOccupationalHealthScreening}
-                    onChange={handleInputChange}
-                    placeholder="Last Occupational Health Screening Date"
-                    className={style.inputField}
-                  />
-                  <label className={style.inputLabel}>
-                    Last Occupational Health Screening Date
-                  </label>
-                  <span className={style.inputHighlight}></span>
+                  {/* Vaccination Status Input */}
+                  <div className={style.inputContainer}>
+                    <input
+                      type="text"
+                      name="vaccinationStatus"
+                      value={healthInfo.vaccinationStatus}
+                      onChange={handleInputChange}
+                      placeholder="Vaccination Status (e.g., COVID-19, Flu)"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>
+                      Vaccination Status
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Lifestyle Habits */}
-            <div>
-              <h4 className="text-xl text-white mb-2">
-                Lifestyle Habits (Optional)
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Smoking Status Select */}
-                <div className={style.inputContainer}>
-                  <select
-                    name="smokingStatus"
-                    value={healthInfo.smokingStatus}
-                    onChange={handleInputChange}
-                    className={style.inputField}
-                  >
-                    <option value="">Smoking Status</option>
-                    <option value="Smoker">Smoker</option>
-                    <option value="Non-Smoker">Non-Smoker</option>
-                    <option value="Former Smoker">Former Smoker</option>
-                  </select>
-                  <label className={style.inputLabel}>Smoking Status</label>
-                  <span className={style.inputHighlight}></span>
-                </div>
+              {/* Occupational Health & Safety */}
+              <div>
+                <h4 className="text-xl text-white mb-2">
+                  Occupational Health & Safety
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Physical Limitations Input */}
+                  <div className={style.inputContainer}>
+                    <textarea
+                      name="physicalLimitations"
+                      value={healthInfo.physicalLimitations}
+                      onChange={handleInputChange}
+                      placeholder="Physical Limitations (e.g., restricted mobility)"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>
+                      Physical Limitations
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-                {/* Alcohol Consumption Select */}
-                <div className={style.inputContainer}>
-                  <select
-                    name="alcoholConsumption"
-                    value={healthInfo.alcoholConsumption}
-                    onChange={handleInputChange}
-                    className={style.inputField}
-                  >
-                    <option value="">Alcohol Consumption</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                    <option value="Occasionally">Occasionally</option>
-                  </select>
-                  <label className={style.inputLabel}>
-                    Alcohol Consumption
-                  </label>
-                  <span className={style.inputHighlight}></span>
+                  {/* Vision/Hearing Issues Input */}
+                  <div className={style.inputContainer}>
+                    <textarea
+                      name="visionHearingIssues"
+                      value={healthInfo.visionHearingIssues}
+                      onChange={handleInputChange}
+                      placeholder="Vision/Hearing Issues"
+                      className={style.inputField}
+                    />
+                    <label className={style.inputLabel}>
+                      Vision/Hearing Issues
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
+
+                  {/* Last Medical Checkup Date Input */}
+                  <div className={style.inputContainer}>
+                    <input
+                      type="date"
+                      name="lastMedicalCheckup"
+                      value={healthInfo.lastMedicalCheckup}
+                      onChange={handleInputChange}
+                      placeholder="Last Medical Checkup Date"
+                      className={style.inputField}
+                    />
+                    <label className="text-white">Last Medical Checkup Date</label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
+
+                  {/* Last Occupational Health Screening Date Input */}
+                  <div className={style.inputContainer}>
+                    <input
+                      type="date"
+                      name="lastOccupationalHealthScreening"
+                      value={healthInfo.lastOccupationalHealthScreening}
+                      onChange={handleInputChange}
+                      placeholder="Last Occupational Health Screening Date"
+                      className={style.inputField}
+                    />
+                    <label className="text-white">
+                      Last Occupational Health Screening Date
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Consent and Declaration */}
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="consent"
-                checked={healthInfo.consent}
-                onChange={handleInputChange}
-                required
-                className="mr-2"
-              />
-              <label className="text-white">
-                I consent to the sharing of my medical information.
-              </label>
-            </div>
+              {/* Lifestyle Habits */}
+              <div>
+                <h4 className="text-xl text-white mb-2">
+                  Lifestyle Habits (Optional)
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Smoking Status Select */}
+                  <div className={style.inputContainer}>
+                    <select
+                      name="smokingStatus"
+                      value={healthInfo.smokingStatus}
+                      onChange={handleInputChange}
+                      className={style.inputField}
+                    >
+                      <option value="">Smoking Status</option>
+                      <option value="Smoker">Smoker</option>
+                      <option value="Non-Smoker">Non-Smoker</option>
+                      <option value="Former Smoker">Former Smoker</option>
+                    </select>
+                    <label className={style.inputLabel}>Smoking Status</label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
 
-            {/* Form Actions */}
-            <div className="flex justify-between">
-              <button
-                type="submit"
-                className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-              >
-                Submit
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsBooking(true)}
-                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-              >
-                Book Health Checkup
-              </button>
-            </div>
-          </form>
+                  {/* Alcohol Consumption Select */}
+                  <div className={style.inputContainer}>
+                    <select
+                      name="alcoholConsumption"
+                      value={healthInfo.alcoholConsumption}
+                      onChange={handleInputChange}
+                      className={style.inputField}
+                    >
+                      <option value="">Alcohol Consumption</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Occasionally">Occasionally</option>
+                    </select>
+                    <label className={style.inputLabel}>
+                      Alcohol Consumption
+                    </label>
+                    <span className={style.inputHighlight}></span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Consent and Declaration */}
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  checked={healthInfo.consent}
+                  onChange={handleInputChange}
+                  required
+                  className="mr-2"
+                />
+                <label className="text-white">
+                  I consent to the sharing of my medical information.
+                </label>
+              </div>
+
+              {/* Form Actions */}
+              <div className="flex justify-between">
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                >
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsBooking(true)}
+                  className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                >
+                  Book Health Checkup
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="w-full relative hidden lg:block lg:w-1/3">
+            <Lottie
+              animationData={animation}
+              loop={true}
+              style={{
+                width: "100%",
+                height: "600px",
+              }}
+              className="lg:fixed top-[30%] -right-[35%]"
+            />
+          </div>
         </div>
       ) : (
         // Booking Interface
@@ -740,37 +754,37 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
 
                 {/* Slider for Tests Included */}
                 <div className="mt-6">
-                <h3 className="font-bold text-white text-lg">
-                  Tests Included:
-                </h3>
-                <Slider {...sliderSettings} className="w-full">
-                  {checkups
-                    .find((c) => c.name === selectedCheckup)
-                    ?.testsIncluded.map((test, index) => (
-                      <div
-                        key={index}
-                        className="relative text-center bg-white h-44 rounded-md px-2 py-4 transition-transform duration-300 hover:scale-10 hover:bg-blue-100"
-                        onMouseEnter={() => setHoveredTest(index)}
-                        onMouseLeave={() => setHoveredTest(null)}
-                      >
-                        <img
-                          src={test.icon}
-                          alt={test.name}
-                          className="w-20 h-20 mx-auto mb-2"
-                        />
-                        <p className="text-black">{test.name}</p>
+                  <h3 className="font-bold text-white text-lg">
+                    Tests Included:
+                  </h3>
+                  <Slider {...sliderSettings} className="w-full">
+                    {checkups
+                      .find((c) => c.name === selectedCheckup)
+                      ?.testsIncluded.map((test, index) => (
+                        <div
+                          key={index}
+                          className="relative text-center bg-white h-44 rounded-md px-2 py-4 transition-transform duration-300 hover:scale-10 hover:bg-blue-100"
+                          onMouseEnter={() => setHoveredTest(index)}
+                          onMouseLeave={() => setHoveredTest(null)}
+                        >
+                          <img
+                            src={test.icon}
+                            alt={test.name}
+                            className="w-20 h-20 mx-auto mb-2"
+                          />
+                          <p className="text-black">{test.name}</p>
 
-                        {hoveredTest === index && (
-                          <div className="absolute inset-0 bg-blue-600 bg-opacity-90 rounded-md p-4 flex items-center justify-center">
-                            <p className="text-white text-sm">
-                              {test.description}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                </Slider>
-              </div>
+                          {hoveredTest === index && (
+                            <div className="absolute inset-0 bg-blue-600 bg-opacity-90 rounded-md p-4 flex items-center justify-center">
+                              <p className="text-white text-sm">
+                                {test.description}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                  </Slider>
+                </div>
 
                 <div className="mb-4">
                   <label className="block text-white mb-2">

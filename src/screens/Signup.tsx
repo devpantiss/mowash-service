@@ -13,10 +13,12 @@ const Signup: React.FC = () => {
       setStep(9);
     } else if (step === 8) {
       setStep(8);
-    }else if (step === 10) {
+    } else if (step === 10) {
       setStep(10);
-    }else if (step === 9) {
+    } else if (step === 9) {
       setStep(10);
+    } else if (step === 12) {
+      setStep(9);
     } else if (step < totalSteps - 1) {
       setStep((prevStep) => prevStep + 1);
     }
@@ -26,6 +28,8 @@ const Signup: React.FC = () => {
     if (step === 9) {
       setStep(7);
     } else if (step === 11) {
+      setStep(7);
+    } else if (step === 12) {
       setStep(7);
     } else if (step > 0) {
       setStep((prevStep) => prevStep - 1);

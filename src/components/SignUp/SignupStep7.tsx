@@ -23,7 +23,7 @@ import { FaRupeeSign, FaUsers } from "react-icons/fa";
 import style from "@/components/common/input/input.module.css";
 interface FormData {
   name: string;
-  dateOfBirth: Date | null; // Update to Date type
+  dateOfBirth: Date | null;
   gender: string;
   socialStatus: string;
   economicStatus: string;
