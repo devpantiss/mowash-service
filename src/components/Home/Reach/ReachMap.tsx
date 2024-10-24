@@ -8,6 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L, { LatLngTuple } from "leaflet";
+import { FeatureCollection } from "geojson"; // Import GeoJSON types
 
 // Fix for server-side rendering with Leaflet
 const customMarker =
@@ -56,13 +57,15 @@ const locations: { name: string; coords: LatLngTuple; details: string }[] = [
 ];
 
 const MapComponent = () => {
-  const [geoJsonData, setGeoJsonData] = useState<any>(null); // GeoJSON data state
+  const [geoJsonData, setGeoJsonData] = useState<FeatureCollection | null>(
+    null
+  ); // Correct type for GeoJSON data
 
   useEffect(() => {
     // Fetch GeoJSON data for Odisha from the public folder
-    fetch("/geojson/Orissa.geojson") // Adjust the path as necessary
+    fetch("/geojson/Orissa.geojson")
       .then((response) => response.json())
-      .then((data) => {
+      .then((data: FeatureCollection) => {
         setGeoJsonData(data);
       })
       .catch((error) => {
@@ -96,7 +99,6 @@ const MapComponent = () => {
         attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
         url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       /> */}
-
       {geoJsonData && <GeoJSON data={geoJsonData} style={geoJsonStyle} />}
 
       {locations.map((location, index) =>
