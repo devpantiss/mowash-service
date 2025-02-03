@@ -68,18 +68,18 @@ const ProfileCard: React.FC = () => {
   return (
     <div className="bg-black/40 shadow-lg rounded-lg w-80 lg:h-[425px] p-6 ring-2 ring-blue-600 mx-auto">
       <img
-        src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
+        src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg"
         alt="Profile"
         className="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-2 ring-green-600"
       />
       <h2 className="text-xl font-semibold text-white text-center">
-        Stalin Nayak
+        Gautam Samanta
       </h2>
       <p className="text-gray-200 text-center">MWC120</p>
       <div className="mt-4">
         <div className="text-white flex justify-between">
           <span className="font-bold">Age:</span>
-          <span>32</span>
+          <span>26</span>
         </div>
         <div className="text-white flex justify-between">
           <span className="font-bold">Gender:</span>
@@ -87,11 +87,11 @@ const ProfileCard: React.FC = () => {
         </div>
         <div className="text-white flex justify-between">
           <span className="font-bold">Email:</span>
-          <span>stalinnayak96@gmail.com</span>
+          <span>gautamsam23@gmail.com</span>
         </div>
         <div className="text-white flex justify-between">
           <span className="font-bold">Phone:</span>
-          <span>9853939599</span>
+          <span>9865262024</span>
         </div>
       </div>
     </div>
@@ -207,108 +207,105 @@ const Row1: React.FC = () => {
   // Updated dummy data to include job status and date
   const data2: OrderDetailsProps[] = [
     {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
-      review: 4.5,
+      customerName: "Sourav Mohanty",
+      address: "Badambadi, Cuttack, Odisha 753009",
+      contactNumber: "(986) 754-3210",
+      jobDescription: "Pipeline Leakage Repair",
+      earnings: 10000, // Stored as a number
+      review: 4.8,
       status: "Completed",
-      date: "2024-10-10",
+      date: "2025-02-01",
     },
     {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
-      review: 3,
+      customerName: "Ankita Das",
+      address: "Madhupatna, Cuttack, Odisha 753010",
+      contactNumber: "(943) 657-9812",
+      jobDescription: "Bathroom Fitting Installation",
+      earnings: 12500,
+      review: 4.5,
       status: "Upcoming",
-      date: "2024-10-15",
+      date: "2025-02-04",
     },
     {
-      customerName: "Bob Lee",
-      address: "789 Oak St, Suburbia, ST 24680",
-      contactNumber: "(654) 987-1234",
-      jobDescription: "Industrial Cleaning",
-      earnings: 100.0,
-      review: 4,
+      customerName: "Bikash Swain",
+      address: "College Square, Cuttack, Odisha 753003",
+      contactNumber: "(826) 947-3321",
+      jobDescription: "Clogged Drain Cleaning",
+      earnings: 7500,
+      review: 4.2,
       status: "Missed",
-      date: "2024-10-12",
+      date: "2025-02-06",
     },
-    // Add more orders with different dates as needed
     {
-      customerName: "Alice Johnson",
-      address: "321 Pine St, Metropolis, ST 13579",
-      contactNumber: "(321) 654-0987",
-      jobDescription: "Window Cleaning",
-      earnings: 60.0,
+      customerName: "Lopamudra Jena",
+      address: "Naya Bazaar, Cuttack, Odisha 753004",
+      contactNumber: "(789) 654-1230",
+      jobDescription: "Water Tank Cleaning",
+      earnings: 9000,
       review: 5,
       status: "Completed",
-      date: "2024-10-10",
+      date: "2025-02-07",
     },
     {
-      customerName: "Mark Brown",
-      address: "654 Maple St, Villagetown, ST 11223",
-      contactNumber: "(654) 321-7890",
-      jobDescription: "Carpet Cleaning",
-      earnings: 85.0,
-      review: 4.5,
+      customerName: "Subrat Sahoo",
+      address: "Choudhury Bazar, Cuttack, Odisha 753002",
+      contactNumber: "(954) 236-7890",
+      jobDescription: "New Water Line Installation",
+      earnings: 15000,
+      review: 4.7,
       status: "Completed",
-      date: "2024-10-11",
+      date: "2025-02-09",
     },
     {
-      customerName: "Lucy Green",
-      address: "987 Cedar St, Hamlet, ST 44556",
-      contactNumber: "(987) 654-3210",
-      jobDescription: "Garage Cleaning",
-      earnings: 40.0,
+      customerName: "Meera Patnaik",
+      address: "Mangalabag, Cuttack, Odisha 753001",
+      contactNumber: "(700) 654-8954",
+      jobDescription: "Toilet Repair & Fixing",
+      earnings: 6500,
+      review: 4.0,
+      status: "Upcoming",
+      date: "2025-02-11",
+    },
+    {
+      customerName: "Rajat Pradhan",
+      address: "Dolmundai, Cuttack, Odisha 753006",
+      contactNumber: "(865) 321-4785",
+      jobDescription: "Tap & Faucet Replacement",
+      earnings: 5000,
+      review: 3.8,
+      status: "Completed",
+      date: "2025-02-13",
+    },
+    {
+      customerName: "Priyanka Nayak",
+      address: "Buxi Bazaar, Cuttack, Odisha 753001",
+      contactNumber: "(903) 157-4562",
+      jobDescription: "Water Motor Installation",
+      earnings: 11000,
+      review: 4.6,
+      status: "Upcoming",
+      date: "2025-02-15",
+    },
+    {
+      customerName: "Arun Kumar Das",
+      address: "Chauliaganj, Cuttack, Odisha 753004",
+      contactNumber: "(720) 963-8521",
+      jobDescription: "Sewer Line Repair",
+      earnings: 8000,
       review: 3.5,
-      status: "Upcoming",
-      date: "2024-10-15",
-    },
-    // Repeat or add more entries as needed
-    {
-      customerName: "Sam Wilson",
-      address: "159 Walnut St, Smalltown, ST 77889",
-      contactNumber: "(159) 753-4862",
-      jobDescription: "Garden Cleaning",
-      earnings: 65.0,
-      review: 4,
-      status: "Completed",
-      date: "2024-10-13",
-    },
-    {
-      customerName: "Emma Davis",
-      address: "753 Birch St, Middletown, ST 33445",
-      contactNumber: "(753) 159-4862",
-      jobDescription: "Basement Cleaning",
-      earnings: 90.0,
-      review: 4.5,
-      status: "Upcoming",
-      date: "2024-10-14",
-    },
-    {
-      customerName: "Liam Martinez",
-      address: "852 Cherry St, Uptown, ST 66778",
-      contactNumber: "(852) 963-7410",
-      jobDescription: "Attic Cleaning",
-      earnings: 55.0,
-      review: 3,
       status: "Missed",
-      date: "2024-10-16",
+      date: "2025-02-17",
     },
     {
-      customerName: "Olivia Garcia",
-      address: "147 Spruce St, Downtown, ST 99000",
-      contactNumber: "(147) 258-3690",
-      jobDescription: "Kitchen Cleaning",
-      earnings: 70.0,
-      review: 4.2,
+      customerName: "Pallavi Mishra",
+      address: "Jagatpur, Cuttack, Odisha 754021",
+      contactNumber: "(814) 258-3690",
+      jobDescription: "Full House Plumbing Inspection",
+      earnings: 18000,
+      review: 4.9,
       status: "Completed",
-      date: "2024-10-17",
+      date: "2025-02-19",
     },
-    // ... you can add more entries as needed
   ];
 
   // Filter jobs based on selected date
@@ -414,208 +411,185 @@ const Row1: React.FC = () => {
 
   return (
     <div className="p-8 bg-transparent min-h-screen">
-      {/* First Row */}
-      <div className="flex flex-col-reverse lg:flex-row w-full px-2 mb-4 gap-4">
-        <div className="flex lg:w-2/5 w-full mb-8">
-          <div className="bg-transparent w-full ring-2 ring-white p-4 rounded-lg shadow-lg">
-            <h3 className="text-lg text-white font-bold">Earnings Overview</h3>
-
-            {/* Toggle Buttons */}
-            <div className="flex justify-center mt-4">
-              <button
-                className={`px-4 py-2 mr-2 rounded ${
-                  isWeekly ? "bg-blue-600" : "bg-gray-700"
-                }`}
-                onClick={() => setIsWeekly(true)}
-              >
-                Weekly
-              </button>
-              <button
-                className={`px-4 py-2 rounded ${
-                  !isWeekly ? "bg-blue-600" : "bg-gray-700"
-                }`}
-                onClick={() => setIsWeekly(false)}
-              >
-                Monthly
-              </button>
-            </div>
-
-            <div className="mt-4">
-              <Line
-                data={chartData}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  scales: {
-                    x: {
-                      title: {
-                        display: true,
-                        text: isWeekly
-                          ? "Days of the Week"
-                          : "Days of the Month",
-                        color: "white",
-                      },
-                      ticks: {
-                        color: "white",
-                      },
-                      grid: {
-                        color: "rgba(128, 128, 128, 0.5)",
-                      },
-                    },
-                    y: {
-                      title: {
-                        display: true,
-                        text: "Value",
-                        color: "white",
-                      },
-                      ticks: {
-                        color: "white",
-                      },
-                      grid: {
-                        color: "rgba(128, 128, 128, 0.5)",
-                      },
-                    },
-                  },
-                  plugins: {
-                    legend: {
-                      labels: {
-                        color: "white",
-                      },
-                    },
-                  },
-                }}
-                height={425}
-                width={0}
-                className="h-[425px]"
-              />
-            </div>
-          </div>
+      <div className="w-full bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
+        <h3 className="text-lg text-white font-bold">Status (Last 30 days)</h3>
+        <div className="gap-4 grid grid-cols-1 lg:grid-cols-5 p-4 rounded-md w-full">
+          <StatCard
+            title="Total Jobs"
+            value="37"
+            subtitle="Yesterday 0"
+            icon={<span>📋</span>}
+            flexCol="lg:flex-col"
+          />
+          <StatCard
+            title="Completed Jobs"
+            value="32"
+            subtitle="Yesterday ₹ 0"
+            icon={<span>📋</span>}
+            flexCol="lg:flex-col"
+          />
+          <StatCard
+            title="Total Revenue"
+            value="₹ 38000"
+            icon={<span>💸</span>}
+            flexCol="lg:flex-col"
+          />
+          <StatCard
+            title="Amount Withdrawn"
+            value="₹ 32000"
+            icon={<span>💳</span>}
+            flexCol="lg:flex-col"
+          />
+          <StatCard
+            title="Amount Pending"
+            value="₹ 6000"
+            icon={<span>⏳</span>}
+            flexCol="lg:flex-col"
+          />
         </div>
-        <div className="flex lg:w-3/5 w-full flex-col-reverse lg:flex-row gap-y-6 lg:gap-x-4 ">
-          <div className="w-full lg:w-2/3 flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
-            <div className="w-full bg-transparent ring-2 ring-white p-4 rounded-lg shadow-lg">
-              <h3 className="text-lg text-white font-bold">
-                Status (Last 30 days)
-              </h3>
-              <div className="gap-4 grid grid-cols-1 lg:grid-cols-3 p-4 rounded-md w-full">
-                <StatCard
-                  title="Total Jobs"
-                  value="0"
-                  subtitle="Yesterday 0"
-                  icon={<span>📋</span>}
-                  flexCol="lg:flex-col"
+      </div>
+      {/* First Row */}
+      <div className="flex flex-col-reverse lg:flex-row w-full px-2 mb-4 mt-6 gap-4">
+        <div className="flex lg:w-3/5 w-full mb-8">
+          <div className="p-4 w-full border rounded-lg text-white shadow-md flex flex-col">
+            <h3 className="mb-4 text-lg font-semibold">Job Calendar</h3>
+            <div className="flex flex-col lg:flex-row gap-4">
+              {/* Calendar */}
+              <div className="w-full ring-2 ring-white p-2 rounded-md lg:w-1/2">
+                <Calendar
+                  onChange={handleDateChange}
+                  value={selectedDate}
+                  tileClassName={({ date, view }) =>
+                    view === "month" &&
+                    data2.some(
+                      (job) =>
+                        new Date(job.date).toDateString() ===
+                        date.toDateString()
+                    )
+                      ? "highlight"
+                      : null
+                  }
                 />
-                <StatCard
-                  title="Completed Jobs"
-                  value="0"
-                  subtitle="Yesterday ₹ 0"
-                  icon={<span>📋</span>}
-                  flexCol="lg:flex-col"
-                  colSpan="lg:col-span-2 col-span-1"
-                />
-                <StatCard
-                  title="Total Revenue"
-                  value="₹ 0"
-                  icon={<span>💸</span>}
-                  flexCol="lg:flex-col"
-                />
-                <StatCard
-                  title="Amount Withdrawn"
-                  value="₹ 0"
-                  icon={<span>💳</span>}
-                  flexCol="lg:flex-col"
-                />
-                <StatCard
-                  title="Amount Pending"
-                  value="₹ 0"
-                  icon={<span>⏳</span>}
-                  flexCol="lg:flex-col"
-                />
+              </div>
+              {/* Jobs List */}
+              <div className="w-full lg:w-1/2">
+                <h4 className="mb-2 text-md font-semibold text-white">
+                  Jobs on {selectedDate ? selectedDate.toDateString() : "N/A"}:
+                </h4>
+                {filteredJobs.length > 0 ? (
+                  <ul className="space-y-2">
+                    {filteredJobs.map((job, index) => (
+                      <li key={index} className="p-2 bg-gray-700 rounded">
+                        <p>
+                          <strong>{job.customerName}</strong>
+                        </p>
+                        <p>{job.jobDescription}</p>
+                        <p className="text-green-500">
+                          Earnings: ₹{job.earnings.toFixed(2)}
+                        </p>
+                        <p>
+                          Status:{" "}
+                          <span className={getStatusColor(job.status)}>
+                            {job.status}
+                          </span>
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No jobs on this date.</p>
+                )}
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="w-full lg:w-1/3 flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
-            {/* Profile Card on the right */}
-            <div className="w-full mb-6">
-              <ProfileCard />
-            </div>
+        <div className="w-full lg:w-1/3 flex flex-col-reverse lg:flex-row justify-between lg:gap-x-16 items-center">
+          {/* Profile Card on the right */}
+          <div className="w-full mb-6">
+            <ProfileCard />
           </div>
         </div>
       </div>
 
       {/* Middle Section: Calendar & Jobs List and Bar Chart */}
-      <div className="flex flex-col lg:flex-row gap-4 mb-6">
-        {/* Calendar and Jobs List */}
-        <div className="p-4 lg:w-1/2 w-full border rounded-lg text-white shadow-md flex flex-col">
-          <h3 className="mb-4 text-lg font-semibold">Job Calendar</h3>
-          <div className="flex flex-col lg:flex-row gap-4">
-            {/* Calendar */}
-            <div className="w-full ring-2 ring-white p-2 rounded-md lg:w-1/2">
-              <Calendar
-                onChange={handleDateChange}
-                value={selectedDate}
-                tileClassName={({ date, view }) =>
-                  view === "month" &&
-                  data2.some(
-                    (job) =>
-                      new Date(job.date).toDateString() === date.toDateString()
-                  )
-                    ? "highlight"
-                    : null
-                }
-              />
-            </div>
-            {/* Jobs List */}
-            <div className="w-full lg:w-1/2">
-              <h4 className="mb-2 text-md font-semibold text-white">
-                Jobs on {selectedDate ? selectedDate.toDateString() : "N/A"}:
-              </h4>
-              {filteredJobs.length > 0 ? (
-                <ul className="space-y-2">
-                  {filteredJobs.map((job, index) => (
-                    <li key={index} className="p-2 bg-gray-700 rounded">
-                      <p>
-                        <strong>{job.customerName}</strong>
-                      </p>
-                      <p>{job.jobDescription}</p>
-                      <p className="text-green-500">
-                        Earnings: ${job.earnings.toFixed(2)}
-                      </p>
-                      <p>
-                        Status:{" "}
-                        <span className={getStatusColor(job.status)}>
-                          {job.status}
-                        </span>
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No jobs on this date.</p>
-              )}
-            </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* Earnings Overview */}
+        <div className="bg-transparent ring-2 ring-white p-6 rounded-lg shadow-lg">
+          <h3 className="text-lg text-white font-bold mb-4">
+            Earnings Overview
+          </h3>
+
+          {/* Toggle Buttons */}
+          <div className="flex justify-start space-x-4 mb-4">
+            <button
+              className={`px-4 py-2 rounded-lg font-semibold transition ${
+                isWeekly
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-700 text-gray-300"
+              }`}
+              onClick={() => setIsWeekly(true)}
+            >
+              Weekly
+            </button>
+            <button
+              className={`px-4 py-2 rounded-lg font-semibold transition ${
+                !isWeekly
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-700 text-gray-300"
+              }`}
+              onClick={() => setIsWeekly(false)}
+            >
+              Monthly
+            </button>
+          </div>
+
+          {/* Line Chart */}
+          <div className="h-[300px]">
+            <Line
+              data={chartData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: isWeekly ? "Days of the Week" : "Days of the Month",
+                      color: "white",
+                    },
+                    ticks: { color: "white" },
+                    grid: { color: "rgba(128, 128, 128, 0.5)" },
+                  },
+                  y: {
+                    title: { display: true, text: "Value", color: "white" },
+                    ticks: { color: "white" },
+                    grid: { color: "rgba(128, 128, 128, 0.5)" },
+                  },
+                },
+                plugins: {
+                  legend: { labels: { color: "white" } },
+                },
+              }}
+            />
           </div>
         </div>
 
-        {/* Bar Chart: Monthly Average Working Hours */}
-        <div className="p-4 lg:w-1/2 w-full border rounded-lg shadow-md">
-          <h3 className="mb-4 text-lg font-semibold text-white">
+        {/* Monthly Average Working Hours */}
+        <div className="bg-transparent ring-2 ring-white p-6 rounded-lg shadow-lg">
+          <h3 className="text-lg text-white font-bold mb-4">
             Monthly Average Working Hours
           </h3>
+
           <div className="h-[300px]">
             <Bar
               data={data}
               options={{
                 responsive: true,
-                maintainAspectRatio: false, // Allows chart to take full height
+                maintainAspectRatio: false,
                 scales: {
                   x: {
-                    title: {
-                      display: true,
-                      text: "Months",
-                      color: "white",
-                    },
+                    title: { display: true, text: "Months", color: "white" },
                     ticks: { color: "white" },
                     grid: { color: "rgba(128, 128, 128, 0.5)" },
                   },
@@ -626,7 +600,7 @@ const Row1: React.FC = () => {
                   },
                 },
                 plugins: {
-                  legend: { display: false }, // Hides the legend
+                  legend: { display: false },
                   title: {
                     display: true,
                     text: "Monthly Average Working Hours",

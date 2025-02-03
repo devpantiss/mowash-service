@@ -43,14 +43,14 @@ const HealthCheckup: React.FC<SignupStep12Props> = ({ goToStep }) => {
             {/* Left Profile Section */}
             <div className="flex flex-col items-center justify-center text-center lg:text-left lg:border-r lg:border-gray-200 lg:pr-6">
               <img
-                src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
+                src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg"
                 alt="Profile"
                 className="w-28 h-28 rounded-full object-cover mb-4 border-4 border-blue-600"
               />
               <h3 className="text-2xl font-semibold text-white">
-                Alexander Dean
+                Gautam Samanta
               </h3>
-              <p className="text-white">MoWash ID: MOW123456</p>
+              <p className="text-white">MoWash ID: MWC120</p>
               <p className="text-white">Age: 26</p>
             </div>
 

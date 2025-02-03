@@ -8,67 +8,67 @@ interface Feedback {
   comment: string;
 }
 
-// Sample feedback data
+// Sample feedback data with realistic Odia names and comments
 const feedbackData: Feedback[] = [
   {
-    name: "Danish Gourj",
+    name: "Sourav Mohanty",
+    time: "2 months ago",
+    comment: "ମୋର ଅନୁଭବ ବହୁତ ଭଲ ରହିଛି। ଖୁବ ଭଲ ସେବା!",
+  },
+  {
+    name: "Sasmita Behera",
+    time: "3 weeks ago",
+    comment: "ସମୟରେ ଏବଂ ଖୁବ ଭଲ ସେବା ଦେଇଛନ୍ତି। ଧନ୍ୟବାଦ!",
+  },
+  {
+    name: "Bikash Swain",
     time: "5 months ago",
-    comment: "Thanks Guys!",
+    comment: "ଏହି ସେବା ବହୁତ ଆବଶ୍ୟକ ଏବଂ ଭଲ। ଏହା ମୋତେ ଖୁସି କରିଲା।",
   },
   {
-    name: "John Doe",
+    name: "Ankita Jena",
     time: "1 month ago",
-    comment: "Great as always!",
+    comment: "ଏଠି ଅଭିଜ୍ଞ ଏବଂ ଅନୁଭବୀ ଟିମ୍ ଅଛି। ବେଶ ଭଲ ଅନୁଭବ।",
   },
   {
-    name: "Chriss Haul",
-    time: "7 months ago",
-    comment: "All sorted, Thanks!",
+    name: "Subrat Sahoo",
+    time: "6 months ago",
+    comment: "ଅତି ଉତ୍ତମ ସେବା। ଏହା ଏଠିରେ ମୁଁ ଆଉ କେହିଠି ଦେଖି ନାହିଁ।",
   },
   {
-    name: "Pollard Lora",
+    name: "Smruti Rekha Das",
+    time: "2 weeks ago",
+    comment: "ଏଠି ଜଣେ ହିଁଲେ ଯଥାଯଥ ଶୀଘ୍ର ଏବଂ ଭଲ ସେବା ମିଳେ।",
+  },
+  {
+    name: "Rajendra Pradhan",
     time: "4 months ago",
-    comment: "Awesome service!",
+    comment: "ଏହି ସେବା ଏବଂ ଟିମ୍ ନିଶ୍ଚିତ ଭାବେ ସହଯୋଗିମୁଖୀ।",
   },
   {
-    name: "Danish Gourj",
-    time: "5 months ago",
-    comment: "Thanks Guys!",
+    name: "Priyanka Nayak",
+    time: "1 week ago",
+    comment: "ମୁଁ ବହୁତ ଖୁସି। ସମୟରେ ସେବା ଏବଂ ଭଲ ଆଚରଣ।",
   },
   {
-    name: "John Doe",
-    time: "1 month ago",
-    comment: "Great as always!",
+    name: "Madhusmita Rout",
+    time: "3 months ago",
+    comment: "ଅନ୍ୟମାନଙ୍କୁ ଏହା ସିଫାରିଶ କରିବି। ଅତ୍ୟନ୍ତ ଭଲ ସେବା।",
   },
   {
-    name: "Chriss Haul",
+    name: "Bhabani Pattnaik",
+    time: "5 days ago",
+    comment: "ଏଠି ଅତି ଅଭିଜ୍ଞ ଏବଂ ଏକ ଭଲ ଟିମ୍ ଅଛି।",
+  },
+  {
+    name: "Manas Ranjan Mohapatra",
     time: "7 months ago",
-    comment: "All sorted, Thanks!",
+    comment: "ଖୁବ ଭଲ! ଏଠି ଜଣେ ସମସ୍ୟାକୁ ତୁରନ୍ତ ସମାଧାନ କରନ୍ତି।",
   },
   {
-    name: "Pollard Lora",
-    time: "4 months ago",
-    comment: "Awesome service!",
-  },
-  {
-    name: "Danish Gourj",
-    time: "5 months ago",
-    comment: "Thanks Guys!",
-  },
-  {
-    name: "John Doe",
-    time: "1 month ago",
-    comment: "Great as always!",
-  },
-  {
-    name: "Chriss Haul",
-    time: "7 months ago",
-    comment: "All sorted, Thanks!",
-  },
-  {
-    name: "Pollard Lora",
-    time: "4 months ago",
-    comment: "Awesome service!",
+    name: "Lopamudra Mishra",
+    time: "2 months ago",
+    comment: "ମୁଁ ଆଉ ମୋ ଘର ଲୋକମାନେ ଏଠିରେ ବହୁତ ଖୁସି।",
   },
 ];
 

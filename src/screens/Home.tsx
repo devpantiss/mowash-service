@@ -21,19 +21,19 @@ const Home = () => {
   return (
     <>
       <div className="text-black">
-        <Header2 />
+        {/* <Header2 /> */}
         <Hero />
-        <EarningsEstimator />
+        {/* <EarningsEstimator />
         <ServiceSection />
         <SDGBanner />
         <MowashPreneurCards />
         <WhyToBeBanner />
-        <ReachSection />
+        <ReachSection /> */}
         {/* <HowItWorks /> */}
-        <Testimonials />
+        {/* <Testimonials />
         <Impact />
         <OurPartners />
-        <Footer />
+        <Footer /> */}
       </div>
     </>
   );

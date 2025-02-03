@@ -43,7 +43,7 @@ const Navbar: FC = () => {
     <nav className="bg-white shadow-md fixed pl-20 top-0 w-full md:top-0 md:h-16 h-12 z-20 flex items-center justify-between p-4 pr-10">
       {/* Logo */}
       <img
-        src="https://www.mowash.in/Images/mo-wash-logo.svg"
+        src="https://mowash-service.vercel.app/images/mowash-logo.webp"
         className="w-32"
         alt="Logo"
       />
@@ -61,7 +61,7 @@ const Navbar: FC = () => {
           >
             {/* User Avatar */}
             <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg" // Replace with actual user image URL
+              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg" // Replace with actual user image URL
               alt="User Avatar"
               className="w-8 h-8 rounded-full"
             />

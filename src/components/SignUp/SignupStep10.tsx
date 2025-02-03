@@ -46,24 +46,24 @@ const SignupStep10: React.FC = () => {
       </h1>
       <div className="bg-black/40 shadow-lg rounded-lg w-80 p-6 ring-2 ring-blue-600">
         <img
-          src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
+          src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg"
           alt="Profile"
           className="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-2 ring-green-600"
         />
-        <h2 className="text-xl font-semibold text-white text-center">Stalin Nayak</h2>
+        <h2 className="text-xl font-semibold text-white text-center">Gautam Samanta</h2>
         <p className="text-gray-200 text-center">MWC120</p>
         <div className="mt-4">
           <p className="text-white flex justify-between">
-            <span className="font-bold">Age:</span> <p>32</p>
+            <span className="font-bold">Age:</span> <p>26</p>
           </p>
           <p className="text-white flex justify-between">
             <span className="font-bold">Gender:</span> <p>Male</p>
           </p>
           <p className="text-white flex justify-between">
-            <span className="font-bold">Email:</span> <p>stalinnayak96@gmail.com</p>
+            <span className="font-bold">Email:</span> <p>gautamsam23@gmail.com</p>
           </p>
           <p className="text-white flex justify-between">
-            <span className="font-bold">Phone:</span> <p>9853939599</p>
+            <span className="font-bold">Phone:</span> <p>9865262024</p>
           </p>
         </div>
       </div>

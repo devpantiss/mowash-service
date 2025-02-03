@@ -16,7 +16,7 @@ const page = () => {
           <div>
             <Link href="/">
               <Image
-                src="https://www.mowash.in/Images/mo-wash-logo.svg"
+                src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726530988/mo-wash-logo_eiq199.svg"
                 className="h-full"
                 width={150}
                 height={150}

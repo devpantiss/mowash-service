@@ -53,12 +53,12 @@ const Earnings: React.FC = () => {
   // State for bank details
   const [bankDetails, setBankDetails] = useState({
     bankName: "State Bank of India",
-    accountHolderName: "Bruce Wayne",
-    accountNumber: "123456789012",
+    accountHolderName: "Gautam Samanta",
+    accountNumber: "3500624153309",
     ifscCode: "SBIN0001234",
-    branchName: "Downtown Branch",
+    branchName: "Cuttack Main Branch", // Updated to Cuttack
     passbookImage:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1728900754/Screenshot_2024-10-14_at_3.41.05_PM_eapswd.png", // Ensure this path is correct
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738618703/passbook_tmq0pi.jpg", // Ensure this path is correct
   });
 
   // State for modal
@@ -133,22 +133,22 @@ const Earnings: React.FC = () => {
           {[
             {
               label: "Target",
-              amount: "₹2,718.55",
+              amount: "₹52,000",
               icon: <FaRegUser className="h-6 w-6 text-blue-500" />,
             },
             {
               label: "Total Revenue",
-              amount: "₹1,677.42",
+              amount: "₹38,000",
               icon: <FaMoneyBillAlt className="h-6 w-6 text-green-500" />,
             },
             {
               label: "Total Withdrawn",
-              amount: "₹328.85",
+              amount: "₹32,000",
               icon: <FaCreditCard className="h-6 w-6 text-red-500" />,
             },
             {
               label: "Balance",
-              amount: "₹1,348.57",
+              amount: "₹6,000",
               icon: <FaChartLine className="h-6 w-6 text-yellow-500" />,
             },
           ].map((item) => (
@@ -159,7 +159,9 @@ const Earnings: React.FC = () => {
               {item.icon}
               <div>
                 <h3 className="text-white text-sm">{item.label}</h3>
-                <p className="text-2xl text-white font-semibold">{item.amount}</p>
+                <p className="text-2xl text-white font-semibold">
+                  {item.amount}
+                </p>
               </div>
             </div>
           ))}
@@ -169,8 +171,10 @@ const Earnings: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           {/* Earnings Chart */}
           <div className="md:col-span-2 bg-transparent ring-2 ring-white p-6 rounded-lg shadow-md">
-            <h4 className="text-xl text-white font-semibold mb-4">Total Earnings</h4>
-            <p className="text-3xl text-white font-semibold mb-2">₹779.58</p>
+            <h4 className="text-xl text-white font-semibold mb-4">
+              Total Earnings
+            </h4>
+            <p className="text-3xl text-white font-semibold mb-2">₹38,000</p>
             {/* Chart */}
             <EarningsChart />
           </div>
@@ -187,19 +191,24 @@ const Earnings: React.FC = () => {
             </div>
             <div className="space-y-2">
               <p className="text-white">
-                <span className="font-semibold">Bank Name:</span> {bankDetails.bankName}
+                <span className="font-semibold">Bank Name:</span>{" "}
+                {bankDetails.bankName}
               </p>
               <p className="text-white">
-                <span className="font-semibold">Account Holder Name:</span> {bankDetails.accountHolderName}
+                <span className="font-semibold">Account Holder Name:</span>{" "}
+                {bankDetails.accountHolderName}
               </p>
               <p className="text-white">
-                <span className="font-semibold">Account Number:</span> {bankDetails.accountNumber}
+                <span className="font-semibold">Account Number:</span>{" "}
+                {bankDetails.accountNumber}
               </p>
               <p className="text-white">
-                <span className="font-semibold">IFSC Code:</span> {bankDetails.ifscCode}
+                <span className="font-semibold">IFSC Code:</span>{" "}
+                {bankDetails.ifscCode}
               </p>
               <p className="text-white">
-                <span className="font-semibold">Branch Name:</span> {bankDetails.branchName}
+                <span className="font-semibold">Branch Name:</span>{" "}
+                {bankDetails.branchName}
               </p>
               <div className="mt-4">
                 <img
@@ -216,54 +225,56 @@ const Earnings: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between gap-y-8 lg:gap-x-8 mt-12">
           {/* Recent Transactions */}
           <div className="bg-transparent ring-2 ring-white lg:w-1/5 w-full p-3 rounded-lg shadow-md h-85">
-            <h4 className="text-xl text-white font-semibold mb-4">Recent Transactions</h4>
+            <h4 className="text-xl text-white font-semibold mb-4">
+              Recent Transactions
+            </h4>
             <ul className="space-y-4 max-h-80 overflow-y-auto">
               {[
                 {
-                  name: "Jane Cooper",
-                  method: "WISE",
+                  name: "Amit Nayak",
+                  method: "G-Pay",
                   amount: "₹293.01",
                   status: "Success",
                 },
                 {
-                  name: "Arlene McCoy",
-                  method: "PayPal",
+                  name: "Sourav Mohanty",
+                  method: "Paytm",
                   amount: "₹739.65",
                   status: "Cancelled",
                 },
                 {
-                  name: "Jacob Jones",
-                  method: "WISE",
+                  name: "Prakash Das",
+                  method: "Cash",
                   amount: "₹576.28",
                   status: "Success",
                 },
                 {
-                  name: "Kathryn Murphy",
-                  method: "WISE",
+                  name: "Rashmi Behera",
+                  method: "PhonePe",
                   amount: "₹128.01",
                   status: "Success",
                 },
                 {
-                  name: "Jane Cooper",
-                  method: "WISE",
+                  name: "Amit Nayak",
+                  method: "Cash",
                   amount: "₹293.01",
                   status: "Success",
                 },
                 {
-                  name: "Arlene McCoy",
-                  method: "PayPal",
+                  name: "Sourav Mohanty",
+                  method: "PhonePe",
                   amount: "₹739.65",
                   status: "Cancelled",
                 },
                 {
-                  name: "Jacob Jones",
-                  method: "WISE",
+                  name: "Prakash Das",
+                  method: "G-Pay",
                   amount: "₹576.28",
                   status: "Success",
                 },
                 {
-                  name: "Kathryn Murphy",
-                  method: "WISE",
+                  name: "Rashmi Behera",
+                  method: "Paytm",
                   amount: "₹128.01",
                   status: "Success",
                 },
@@ -273,11 +284,15 @@ const Earnings: React.FC = () => {
                   className="bg-transparent ring-2 ring-white p-2 mx-2 my-3 rounded-lg shadow-md flex justify-between items-center"
                 >
                   <div>
-                    <p className="text-lg text-white font-semibold">{transaction.name}</p>
+                    <p className="text-lg text-white font-semibold">
+                      {transaction.name}
+                    </p>
                     <p className="text-sm text-white">{transaction.method}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg text-white font-semibold">{transaction.amount}</p>
+                    <p className="text-lg text-white font-semibold">
+                      {transaction.amount}
+                    </p>
                     <p
                       className={`text-sm ${
                         transaction.status === "Success"
@@ -303,7 +318,7 @@ const Earnings: React.FC = () => {
             {/* Monthly Summary */}
             <div className="bg-transparent lg:w-1/2 w-full ring-2 ring-white p-6 rounded-lg shadow-md">
               <h4 className="text-xl text-white font-semibold mb-4">Monthly</h4>
-              <p className="text-2xl text-white font-semibold">₹475.22</p>
+              <p className="text-2xl text-white font-semibold">₹4750</p>
               <p className="text-sm text-green-500">+29.16% from last month</p>
               {/* Monthly Line Chart */}
               <EarningsLineChart data={monthlyData} />
@@ -311,8 +326,8 @@ const Earnings: React.FC = () => {
             {/* Yearly Summary */}
             <div className="bg-transparent lg:w-1/2 w-full ring-2 ring-white p-6 rounded-lg shadow-md">
               <h4 className="text-xl text-white font-semibold mb-4">Yearly</h4>
-              <p className="text-2xl text-white font-semibold">₹854.08</p>
-              <p className="text-sm text-red-500">-14.76% from last year</p>
+              <p className="text-2xl text-white font-semibold">₹38,000</p>
+              {/* <p className="text-sm text-red-500">-14.76% from last year</p> */}
               {/* Yearly Line Chart */}
               <EarningsLineChart data={yearlyData} />
             </div>
@@ -486,9 +501,3 @@ const Earnings: React.FC = () => {
 };
 
 export default Earnings;
-
-
-
-
-
-

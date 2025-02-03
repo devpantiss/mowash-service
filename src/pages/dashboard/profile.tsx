@@ -9,33 +9,33 @@ import {
   FaEdit,
   FaCamera,
 } from "react-icons/fa";
-import Modal from "react-modal"; // Import Modal component
+import Modal from "react-modal";
 import style from "@/components/common/input/input.module.css";
 
 const user = {
-  name: "John Doe",
-  mowashID: "MOW123456",
-  email: "john.doe@example.com",
-  phoneNumber: "+91 9876543210",
+  name: "Gautam Samanta",
+  mowashID: "MWC120",
+  email: "gautamsam23@gmail.com",
+  phoneNumber: "+91 9865262024",
   category: "Plumber",
   serviceSelected: "Water Maintenance",
   image:
-    "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg",
+    "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg",
   gender: "Male",
-  dobOrAge: "01/01/1985 (39 years)",
-  socialStatus: "General",
-  economicStatus: "Middle Class",
+  dobOrAge: "15/08/1998 (26 years)",
+  socialStatus: "OBC",
+  economicStatus: "APL",
   aadhaarNumber: "1234 5678 9101",
   panNumber: "ABCDE1234F",
   familyMembers: 4,
   address: {
-    flatNumber: "123",
-    street: "Main Street",
-    landmark: "Near City Mall",
-    city: "Cityname",
-    district: "Districtname",
-    state: "Statename",
-    pincode: "123456",
+    flatNumber: "45B",
+    street: "Link Road",
+    landmark: "Near Badambadi Bus Stand",
+    city: "Cuttack",
+    district: "Cuttack",
+    state: "Odisha",
+    pincode: "753001",
   },
   kitDetails: [
     "Safety Helmet",
@@ -57,6 +57,7 @@ interface Document {
   uploaded: boolean;
   file?: File;
   previewUrl?: string;
+  imageLink?: string; // Add imageLink for Aadhaar and PAN
 }
 
 const Profile: React.FC = () => {
@@ -68,18 +69,27 @@ const Profile: React.FC = () => {
   });
 
   const [editedData, setEditedData] = useState(user);
-  const [modalIsOpen, setModalIsOpen] = useState(false); // Modal state
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [documents, setDocuments] = useState<Document[]>([
-    { name: "Aadhaar Card", uploaded: false },
-    { name: "PAN Card", uploaded: false },
+    {
+      name: "Aadhaar Card",
+      uploaded: true,
+      imageLink:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738620629/aadhar_card_vskh3k.png", // Add image link for Aadhaar
+    },
+    {
+      name: "PAN Card",
+      uploaded: true,
+      imageLink:
+        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738620629/pan_card_nbemeh.jpg", // Add image link for PAN
+    },
     { name: "Training Certificate", uploaded: false },
     { name: "Fitness Report", uploaded: false },
   ]);
 
-  const [selectedImage2, setSelectedImage2] = useState<string | null>(null); // Modal state
+  const [selectedImage2, setSelectedImage2] = useState<string | null>(null);
 
-  // Handle file upload and generate preview URL
   const handleFileChange2 = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
@@ -97,11 +107,9 @@ const Profile: React.FC = () => {
     }
   };
 
-  // Handle toggle between uploaded and not uploaded
   const handleToggle = (index: number) => {
     const updatedDocuments = [...documents];
     if (updatedDocuments[index].uploaded) {
-      // If currently uploaded, toggle to not uploaded
       updatedDocuments[index] = {
         ...updatedDocuments[index],
         uploaded: false,
@@ -112,17 +120,14 @@ const Profile: React.FC = () => {
     setDocuments(updatedDocuments);
   };
 
-  // Open image in modal
   const openModal2 = (imageUrl: string) => {
     setSelectedImage2(imageUrl);
   };
 
-  // Close modal
   const closeModal2 = () => {
     setSelectedImage2(null);
   };
 
-  // Cleanup object URLs to prevent memory leaks
   useEffect(() => {
     return () => {
       documents.forEach((doc) => {
@@ -149,14 +154,12 @@ const Profile: React.FC = () => {
     setModalIsOpen(false);
   };
 
-  // Handle image upload
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedImage(e.target.files[0]);
     }
   };
 
-  // Handle image save (when the user clicks "Save Image" in the modal)
   const handleSaveImage = () => {
     if (selectedImage) {
       const newImageUrl = URL.createObjectURL(selectedImage);
@@ -564,31 +567,45 @@ const Profile: React.FC = () => {
                   <h2 className="text-xl text-white font-semibold">
                     {doc.name}
                   </h2>
-                  <label className="flex items-center cursor-pointer">
-                    {/* Toggle Switch */}
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        className="sr-only"
-                        checked={doc.uploaded}
-                        onChange={() => handleToggle(index)}
-                      />
-                      <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
-                      <div
-                        className={`dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition ${
-                          doc.uploaded
-                            ? "transform translate-x-full bg-blue-500"
-                            : ""
-                        }`}
-                      ></div>
-                    </div>
-                    <div className="ml-3 text-gray-700 font-medium">
-                      {doc.uploaded ? "Uploaded" : "Not Uploaded"}
-                    </div>
-                  </label>
+                  {doc.name !== "Aadhaar Card" && doc.name !== "PAN Card" && (
+                    <label className="flex items-center cursor-pointer">
+                      {/* Toggle Switch */}
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          className="sr-only"
+                          checked={doc.uploaded}
+                          onChange={() => handleToggle(index)}
+                        />
+                        <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                        <div
+                          className={`dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition ${
+                            doc.uploaded
+                              ? "transform translate-x-full bg-blue-500"
+                              : ""
+                          }`}
+                        ></div>
+                      </div>
+                      <div className="ml-3 text-gray-700 font-medium">
+                        {doc.uploaded ? "Uploaded" : "Not Uploaded"}
+                      </div>
+                    </label>
+                  )}
                 </div>
 
-                {doc.uploaded ? (
+                {doc.name === "Aadhaar Card" || doc.name === "PAN Card" ? (
+                  <div>
+                    {/* Display image link for Aadhaar and PAN */}
+                    {doc.imageLink && (
+                      <img
+                        src={doc.imageLink}
+                        alt={`${doc.name} Preview`}
+                        className="w-full h-64 object-cover rounded-md mb-4 cursor-pointer"
+                        onClick={() => openModal2(doc.imageLink!)}
+                      />
+                    )}
+                  </div>
+                ) : doc.uploaded ? (
                   <div>
                     {/* Document Preview */}
                     {doc.previewUrl ? (
@@ -596,11 +613,7 @@ const Profile: React.FC = () => {
                         src={doc.previewUrl}
                         alt={`${doc.name} Preview`}
                         className="w-full h-64 object-cover rounded-md mb-4 cursor-pointer"
-                        onClick={() => {
-                          if (doc.previewUrl) {
-                            openModal2(doc.previewUrl); // Ensure previewUrl is defined
-                          }
-                        }}
+                        onClick={() => openModal2(doc.previewUrl!)}
                       />
                     ) : (
                       <p className="text-yellow-500">No preview available.</p>
@@ -685,7 +698,7 @@ const Profile: React.FC = () => {
                   src={selectedImage2}
                   alt="Document Preview"
                   className="max-w-full max-h-full cursor-pointer"
-                  onClick={closeModal2} // Close modal on image click
+                  onClick={closeModal2}
                 />
               </div>
             </div>

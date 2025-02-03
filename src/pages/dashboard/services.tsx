@@ -34,6 +34,7 @@ interface JobNotification {
   payment: number; // Payment amount
   timing: string; // Job timing
   category: string; // Job category
+  address: string
 }
 
 interface StatCardProps {
@@ -77,9 +78,8 @@ const Services: React.FC = () => {
   const [revenueInput, setRevenueInput] = useState<number | string>("");
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]); // Moved state here
   const [notifications, setNotifications] = useState<JobNotification[]>([
-    // Example notifications, replace this with actual data from your backend or state
-    { id: 1, name: "John Doe", distance: 5, payment: 500, timing: "10:00 AM", category: "Cleaning" },
-    { id: 2, name: "Jane Smith", distance: 3, payment: 300, timing: "1:00 PM", category: "Repair" },
+    { id: 1, name: "Rahul Kumar", distance: 8, payment: 600, timing: "2:00 PM", category: "Plumbing", address: "Cuttack" },
+    { id: 2, name: "Anjali Mishra", distance: 5, payment: 400, timing: "4:00 PM", category: "Electrical", address: "Cuttack" },
   ]);
 
   // Calculate total working hours based on selected slots

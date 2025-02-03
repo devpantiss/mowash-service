@@ -138,19 +138,19 @@ const PaymentModal: React.FC<{
 const Table: React.FC = () => {
   const [data, setData] = useState([
     {
-      customerName: "John Doe",
-      address: "123 Main St, Cityville, ST 12345",
-      contactNumber: "(123) 456-7890",
-      jobDescription: "Residential Cleaning",
-      earnings: 50.0,
+      customerName: "Rahul Kumar",
+      address: "Cuttack",
+      contactNumber: "(937) 625-7806",
+      jobDescription: "Pipe Cleaning",
+      earnings: 1550.0,
       status: "Pending",
     },
     {
-      customerName: "Jane Smith",
-      address: "456 Elm St, Townsville, ST 67890",
+      customerName: "Anjali Mishra",
+      address: "Cuttack",
       contactNumber: "(987) 654-3210",
-      jobDescription: "Office Cleaning",
-      earnings: 75.0,
+      jobDescription: "Pipeline Fitting",
+      earnings: 1775.0,
       status: "Pending",
     },
   ]);

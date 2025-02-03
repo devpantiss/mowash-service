@@ -26,31 +26,31 @@ interface ServiceType {
   redirectRoute: string;
 }
 
-const serviceTypes: ServiceType[] = [
+const serviceTypes = [
   {
     title: "Health Insurance",
     organizations: [
       {
         name: "Biju Swasthya Kalyan Yojana",
-        premium: "₹874/month",
-        annualPremium: "₹10,488/year", // Added annual premium
-        cover: "₹7 Lac",
+        premium: "N/A",
+        annualPremium: "N/A",
+        cover: "₹5 Lac per family; additional ₹5 Lac for women members",
         hospitals: 187,
-        renewalBonus: "₹10.5 Lac Renewal Bonus",
-        text: "Get the best health insurance plan with extensive coverage.",
+        renewalBonus: "N/A",
+        text: "Provides cashless healthcare coverage to economically vulnerable families in Odisha.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/BSKY_Logo_umdrqn.png",
-        link: "https://example.com/view-plan",
+        link: "https://bsky.odisha.gov.in/",
         policyType: "Health Insurance",
-        policyHolderName: "John Doe",
-        policyNumber: "HS123456",
-        coverage: "₹7 Lac",
-        nextDueDate: "2024-11-15",
+        policyHolderName: "Gautam Samanta",
+        policyNumber: "BSKY123456",
+        coverage: "₹5 Lac per family; additional ₹5 Lac for women members",
+        nextDueDate: "N/A",
       },
     ],
-    totalPremiumPaid: "₹20,868",
-    installmentsPaid: 24,
-    installmentsRemaining: 6,
+    totalPremiumPaid: "N/A",
+    installmentsPaid: "N/A",
+    installmentsRemaining: "N/A",
     redirectRoute: "/welfare/healthinsurance",
   },
   {
@@ -58,51 +58,51 @@ const serviceTypes: ServiceType[] = [
     organizations: [
       {
         name: "National Pension System",
-        premium: "₹1000/month",
-        annualPremium: "₹12,000/year", // Added annual premium
-        cover: "₹10 Lac",
+        premium: "Varies",
+        annualPremium: "Varies",
+        cover: "Market-linked retirement corpus",
         hospitals: 0,
         renewalBonus: "N/A",
-        text: "Ensure a secure retirement with our NPS plan.",
+        text: "A voluntary, defined contribution retirement savings scheme to ensure financial security after retirement.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749889/logo_uupd0f.png",
-        link: "https://example.com/nps-plan",
-        policyType: "Social Security",
-        policyHolderName: "Jane Smith",
-        policyNumber: "SS987654",
-        coverage: "₹10 Lac",
-        nextDueDate: "2024-12-01",
+        link: "https://npstrust.org.in/",
+        policyType: "Pension Scheme",
+        policyHolderName: "Gautam Samanta",
+        policyNumber: "NPS987654",
+        coverage: "Depends on contributions and market performance",
+        nextDueDate: "2025-02-28",
       },
     ],
-    totalPremiumPaid: "₹36,000",
-    installmentsPaid: 36,
-    installmentsRemaining: 0,
+    totalPremiumPaid: "Varies",
+    installmentsPaid: "Varies",
+    installmentsRemaining: "Varies",
     redirectRoute: "/welfare/socialsecurity",
   },
   {
     title: "Life Insurance",
     organizations: [
       {
-        name: "Mantri Suraksha Bima Yojana",
+        name: "Pradhan Mantri Suraksha Bima Yojana",
         premium: "₹12/year",
-        annualPremium: "₹12/year", // Added annual premium
+        annualPremium: "₹12/year",
         cover: "₹2 Lac",
         hospitals: 0,
         renewalBonus: "N/A",
-        text: "Secure Tomorrow: Protect Your Loved Ones Today.",
+        text: "Accidental death and disability insurance scheme offering coverage at an affordable premium.",
         imageUrl:
           "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750007/site-logo_k7ejwo.jpg",
-        link: "https://example.com/pmsby-plan",
-        policyType: "Term Life",
-        policyHolderName: "Alice Johnson",
-        policyNumber: "LI123456",
+        link: "https://www.jansuraksha.gov.in/Forms-PMSBY.aspx",
+        policyType: "Accidental Insurance",
+        policyHolderName: "Gautam Samanta",
+        policyNumber: "PMSBY123456",
         coverage: "₹2 Lac",
-        nextDueDate: "2024-12-10",
+        nextDueDate: "2025-05-31",
       },
     ],
-    totalPremiumPaid: "₹342",
-    installmentsPaid: 2,
-    installmentsRemaining: 1,
+    totalPremiumPaid: "₹12",
+    installmentsPaid: 1,
+    installmentsRemaining: "N/A",
     redirectRoute: "/welfare/insurance",
   },
 ];
@@ -148,7 +148,7 @@ const ServicesCards: React.FC = () => {
           <div className="flex text-white flex-col lg:justify-between lg:w-full">
             <div className="flex flex-row-reverse items-center justify-between">
               <img
-                src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
+                src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg"
                 alt="user"
                 className="h-32 w-32 rounded-full"
               />

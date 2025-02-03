@@ -41,18 +41,18 @@ const WelfareServices: React.FC = () => {
         {
           name: "Biju Swasthya Kalyan Yojana",
           premium: "₹874/month",
-          annualPremium: "₹10,488/year", // Added annual premium
-          cover: "₹7 Lac",
+          annualPremium: "₹10,488/year",
+          cover: "Up to ₹5 lakh per annum per family",
           hospitals: 187,
-          renewalBonus: "₹10.5 Lac Renewal Bonus",
+          renewalBonus: "N/A",
           text: "Get the best health insurance plan with extensive coverage.",
           imageUrl:
             "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/BSKY_Logo_umdrqn.png",
-          link: "https://example.com/view-plan",
+          link: "https://bskydashboard.odisha.gov.in/",
           policyType: "Health Insurance",
           policyHolderName: "John Doe",
           policyNumber: "HS123456",
-          coverage: "₹7 Lac",
+          coverage: "Up to ₹5 lakh per annum per family",
           nextDueDate: "2024-11-15",
         },
       ],
@@ -66,19 +66,19 @@ const WelfareServices: React.FC = () => {
       organizations: [
         {
           name: "National Pension System",
-          premium: "₹1000/month",
-          annualPremium: "₹12,000/year", // Added annual premium
-          cover: "₹10 Lac",
+          premium: "₹1,000/month",
+          annualPremium: "₹12,000/year",
+          cover: "Market-linked retirement corpus",
           hospitals: 0,
           renewalBonus: "N/A",
           text: "Ensure a secure retirement with our NPS plan.",
           imageUrl:
             "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749889/logo_uupd0f.png",
-          link: "https://example.com/nps-plan",
+          link: "https://www.india.gov.in/spotlight/national-pension-system-retirement-plan-all",
           policyType: "Social Security",
           policyHolderName: "Jane Smith",
           policyNumber: "SS987654",
-          coverage: "₹10 Lac",
+          coverage: "Market-linked retirement corpus",
           nextDueDate: "2024-12-01",
         },
       ],
@@ -91,32 +91,33 @@ const WelfareServices: React.FC = () => {
       title: "Life Insurance",
       organizations: [
         {
-          name: "Mantri Suraksha Bima Yojana",
-          premium: "₹12/year",
-          annualPremium: "₹12/year", // Added annual premium
-          cover: "₹2 Lac",
+          name: "Pradhan Mantri Suraksha Bima Yojana",
+          premium: "₹20/year",
+          annualPremium: "₹20/year",
+          cover: "₹2 lakh for accidental death and full disability; ₹1 lakh for partial disability",
           hospitals: 0,
           renewalBonus: "N/A",
           text: "Secure Tomorrow: Protect Your Loved Ones Today.",
           imageUrl:
             "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750007/site-logo_k7ejwo.jpg",
-          link: "https://example.com/pmsby-plan",
-          policyType: "Term Life",
+          link: "https://financialservices.gov.in/beta/en/pmsby",
+          policyType: "Accident Insurance",
           policyHolderName: "Alice Johnson",
           policyNumber: "LI123456",
-          coverage: "₹2 Lac",
+          coverage: "₹2 lakh for accidental death and full disability; ₹1 lakh for partial disability",
           nextDueDate: "2024-12-10",
         },
       ],
-      totalPremiumPaid: "₹342",
+      totalPremiumPaid: "₹40",
       installmentsPaid: 2,
       installmentsRemaining: 1,
       redirectRoute: "/welfare/insurance",
     },
   ];
+  
 
   const initialToggleState = serviceTypes.reduce((acc, service) => {
-    acc[service.title] = true;
+    acc[service.title] = false;
     return acc;
   }, {} as { [key: string]: boolean });
 
@@ -197,7 +198,7 @@ const WelfareServices: React.FC = () => {
                         <div className="flex text-white flex-col lg:justify-between lg:w-full">
                           <div className="flex flex-row-reverse items-center justify-between">
                             <img
-                              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg"
+                              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg"
                               alt="user"
                               className="h-32 w-32 rounded-full"
                             />

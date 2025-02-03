@@ -80,7 +80,7 @@ const Header2: React.FC = () => {
           <div className="glow-container">
             <Link href="/" onClick={toggleMenu}>
               <img
-                src="/images/mowash-logo.webp" // Adjusted for Next.js public folder
+                src="https://mowash-service.vercel.app/images/mowash-logo.webp" // Adjusted for Next.js public folder
                 alt="Company Logo"
                 className="h-[60px] w-auto glow-effect"
               />
