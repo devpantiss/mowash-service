@@ -17,10 +17,10 @@ const GreenJobsAcademy = () => {
     <Layout>
       <div className="flex flex-col justify-center mt-8 lg:mt-24 items-center bg-transparent p-6">
         <h1 className="text-4xl font-bold text-center text-white mb-4">
-          Welcome To <span className="text-green-400">Green</span> Jobs Academy
+          Welcome To <span className="text-blue-800">Mo </span> <span className="text-blue-500">WASH</span> Academy
         </h1>
         <p className="text-lg text-center text-white max-w-xl mb-10">
-          Green Jobs Academy is dedicated to helping individuals develop the
+          Mo WASH Academy is dedicated to helping individuals develop the
           skills they need to succeed in sustainable careers. Explore our
           programs and choose the path that&apos;s right for you.
         </p>
