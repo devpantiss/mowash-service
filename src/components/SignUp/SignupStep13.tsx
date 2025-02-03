@@ -46,7 +46,7 @@ const SignupStep13: React.FC<SignupStep13Props> = ({ goToStep }) => {
   };
 
   return (
-    <div className="flex flex-col justify-start items-center mt-12 lg:h-[85vh] bg-transparent">
+    <div className="flex flex-col justify-start items-center mt-12 bg-transparent">
       {/* Heading */}
       <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
         Bank Details

@@ -168,7 +168,7 @@ const SignupStep7: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center h-[100vh] items-center">
       <div className="flex flex-col w-full items-center space-y-7 max-w-6xl md:h-full mb-10 z-50 rounded-lg mt-12 justify-center">
         <h2 className="text-5xl font-bold lg:text-center text-left text-white my-8">
           Basic Information Form
