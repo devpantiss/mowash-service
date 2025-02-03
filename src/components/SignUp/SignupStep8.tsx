@@ -388,7 +388,7 @@ const SignupStep8: React.FC = () => {
               Join Mo Wash <p className="text-green-500">Green</p> Jobs Academy
             </h2>
             <p className="text-center">
-              Become part of the Green Jobs Academy and start your certification
+              Become part of the MoWASH Academy and start your certification
               journey today.
             </p>
             <Link href="/lms/greenjobsacademy" className="mt-4 w-full p-2 text-center bg-green-500 text-white rounded-md hover:bg-green-600 transition">Explore</Link>

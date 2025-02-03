@@ -12,55 +12,72 @@ const HealthInsurance: React.FC = () => {
   // Reorganize organizations by sections
   const organizations = [
     {
-      name: "BSKY",
-      premium: "₹874/month",
-      cover: "₹7 Lac",
-      hospitals: 187,
-      renewalBonus: "₹10.5 Lac Renewal Bonus",
-      text: "Get the best health insurance plan with extensive coverage.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/BSKY_Logo_umdrqn.png",
-      link: "https://example.com/view-plan",
+      name: "Biju Swasthya Kalyan Yojana (BSKY)",
+      premium: "Free",
+      cover: "₹5 lakh - ₹10 lakh",
+      hospitals: "Yes",
+      renewalBonus: "N/A",
+      text: "Provides cashless healthcare services to residents of Odisha.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749584/BSKY_Logo_umdrqn.png",
+      link: "https://bsky.odisha.gov.in/"
     },
     {
-      name: "Ayushman Bharat",
-      premium: "₹874/month",
-      cover: "₹7 Lac",
-      hospitals: 187,
-      renewalBonus: "₹10.5 Lac Renewal Bonus",
-      text: "Get the best health insurance plan with extensive coverage.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749583/ayushman_bharat_ngycj4.png",
-      link: "https://example.com/view-plan",
+      name: "Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (AB-PMJAY)",
+      premium: "Free",
+      cover: "₹5 lakh",
+      hospitals: "Yes",
+      renewalBonus: "N/A",
+      text: "Provides health coverage for secondary and tertiary care hospitalization to eligible families.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749583/ayushman_bharat_ngycj4.png",
+      link: "https://pmjay.gov.in/"
     },
     {
-      name: "Niramaya Scheme",
-      premium: "₹874/month",
-      cover: "₹7 Lac",
-      hospitals: 187,
-      renewalBonus: "₹10.5 Lac Renewal Bonus",
-      text: "Free medicine distribution scheme.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729352238/NIRAMAYA-removebg-preview_vazwi7.png",
-      link: "https://example.com/view-plan",
-    },
+      name: "Niramaya Health Insurance Scheme",
+      premium: "₹250/year (Free for BPL families)",
+      cover: "₹1 lakh",
+      hospitals: "Yes",
+      renewalBonus: "N/A",
+      text: "Provides affordable health insurance for individuals with disabilities.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729352238/NIRAMAYA-removebg-preview_vazwi7.png",
+      link: "http://thenationaltrust.gov.in/content/scheme/niramaya.php"
+    }
   ];
+  
 
   // Handle CSP PDF download (same as before)
   const customerServicePoints = [
     {
-      name: "Customer Service Point 1",
-      contact: "John Doe",
-      number: "9876543210",
-      address: "123 Street, City",
+      name: "Maa Durga Service Point",
+      contact: "Montu Raulo",
+      number: "9439522812",
+      address: "Badambadi, Cuttack",
     },
     {
-      name: "Customer Service Point 2",
-      contact: "Jane Smith",
-      number: "9123456780",
-      address: "456 Lane, Town",
+      name: "CSP - Buxi Bazaar",
+      contact: "Amit Kumar",
+      number: "9876123450",
+      address: "Buxi Bazaar, Cuttack",
     },
-  ];
+    {
+      name: "CSP - College Square",
+      contact: "Priya Das",
+      number: "9437826954",
+      address: "College Square, Cuttack",
+    },
+    {
+      name: "Maa Tarini Center",
+      contact: "Preety Sethy",
+      number: "9958243619",
+      address: "Pahala, Cuttack",
+    },
+    {
+      name: "CSP - Choudhury Bazar",
+      contact: "Ravi Mishra",
+      number: "9123987654",
+      address: "Choudhury Bazar, Cuttack",
+    },
+];
+
 
   const downloadCSPAsPDF = (selectedCSP: string) => {
     const csp = customerServicePoints.find((csp) => csp.name === selectedCSP);

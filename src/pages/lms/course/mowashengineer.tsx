@@ -9,9 +9,9 @@ interface TrainingCenter {
 }
 
 const trainingCenters: TrainingCenter[] = [
-  { id: "center1", name: "Green Jobs Academy - Delhi", address: "123 Delhi Rd, Delhi" },
-  { id: "center2", name: "Green Jobs Academy - Mumbai", address: "456 Mumbai St, Mumbai" },
-  { id: "center3", name: "Green Jobs Academy - Bangalore", address: "789 Bangalore Ln, Bangalore" },
+  { id: "center1", name: "MoWASH Academy - Cuttack", address: "Tangi, Cuttack, Odisha" },
+  { id: "center2", name: "MoWASH Academy - Kalahandi", address: "Town Road, Bhawanipatna, Kalahandi, Odisha" },
+  { id: "center3", name: "MoWASH Academy - Mayurbhanj", address: "Satya Sai Circle, Mayurbhanj" },
 ];
 
 const MowashEngineer = () => {
@@ -38,7 +38,7 @@ const MowashEngineer = () => {
     
     // Title
     doc.setFontSize(20);
-    doc.text("Green Jobs Academy", 20, 20);
+    doc.text("MoWASH Academy", 20, 20);
     doc.setFontSize(16);
     doc.text("Application for Acceptance into Mowash Engineer Training Program", 20, 30);
     

@@ -11,55 +11,72 @@ const Insurance: React.FC = () => {
   // Reorganize organizations by sections
   const organizations = [
     {
-      name: "PMSBY",
+      name: "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
       premium: "₹12/year",
       cover: "₹2 Lac",
-      hospitals: 0,
+      hospitals: "N/A",
       renewalBonus: "N/A",
-      text: "Secure Tomorrow: Protect Your Loved Ones Today.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750007/site-logo_k7ejwo.jpg",
-      link: "https://example.com/pmsby-plan",
+      text: "Accidental insurance scheme providing financial protection against death or disability due to an accident.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750007/site-logo_k7ejwo.jpg",
+      link: "https://jansuraksha.gov.in/Files/PMSBY/English/FAQ.pdf"
     },
     {
-      name: "PMJJBY",
+      name: "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
       premium: "₹330/year",
       cover: "₹2 Lac",
-      hospitals: 0,
+      hospitals: "N/A",
       renewalBonus: "N/A",
-      text: "Peace of Mind: Life Insurance for a Brighter Future.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750296/a_bsuthv.jpg",
-      link: "https://example.com/pmjjby-plan",
+      text: "Life insurance scheme providing financial support to the family in case of the policyholder's death.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726750296/a_bsuthv.jpg",
+      link: "https://jansuraksha.gov.in/Files/PMJJBY/English/FAQ.pdf"
     },
     {
-      name: "Aam Admi Beema Yojana",
-      premium: "₹200/year",
-      cover: "₹1 Lac",
-      hospitals: 0,
+      name: "Aam Aadmi Bima Yojana (AABY)",
+      premium: "₹200/year (₹100 subsidized by Govt.)",
+      cover: "₹30,000 - ₹75,000",
+      hospitals: "N/A",
       renewalBonus: "N/A",
-      text: "Peace of Mind: Life Insurance for a Brighter Future.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729351466/emblem-black_btobue.svg",
-      link: "https://example.com/pmjjby-plan",
-    },
+      text: "Insurance scheme for rural landless households providing coverage for natural and accidental deaths.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729351466/emblem-black_btobue.svg",
+      link: "https://financialservices.gov.in/insurance-divisions/aam-admi-bima-yojana-aaby"
+    }
   ];
+  
+  
 
   // Handle CSP PDF download (same as before)
   const customerServicePoints = [
     {
-      name: "Customer Service Point 1",
-      contact: "John Doe",
-      number: "9876543210",
-      address: "123 Street, City",
+      name: "Maa Durga Service Point",
+      contact: "Montu Raulo",
+      number: "9439522812",
+      address: "Badambadi, Cuttack",
     },
     {
-      name: "Customer Service Point 2",
-      contact: "Jane Smith",
-      number: "9123456780",
-      address: "456 Lane, Town",
+      name: "CSP - Buxi Bazaar",
+      contact: "Amit Kumar",
+      number: "9876123450",
+      address: "Buxi Bazaar, Cuttack",
     },
-  ];
+    {
+      name: "CSP - College Square",
+      contact: "Priya Das",
+      number: "9437826954",
+      address: "College Square, Cuttack",
+    },
+    {
+      name: "Maa Tarini Center",
+      contact: "Preety Sethy",
+      number: "9958243619",
+      address: "Pahala, Cuttack",
+    },
+    {
+      name: "CSP - Choudhury Bazar",
+      contact: "Ravi Mishra",
+      number: "9123987654",
+      address: "Choudhury Bazar, Cuttack",
+    },
+];
 
   const downloadCSPAsPDF = (selectedCSP: string) => {
     const csp = customerServicePoints.find((csp) => csp.name === selectedCSP);

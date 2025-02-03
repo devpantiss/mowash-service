@@ -35,7 +35,7 @@ const GreenJobsAcademy = () => {
               Be an Apprentice
             </h2>
             <p className="text-center">
-              Begin your journey with practical training in green jobs
+              Begin your journey with practical training in MoWASH
               industries. Learn from experienced professionals.
             </p>
           </div>

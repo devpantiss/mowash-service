@@ -11,66 +11,82 @@ const SocialSecurity: React.FC = () => {
   // Reorganize organizations by sections
   const organizations = [
     {
-      name: "NPS",
-      premium: "₹1000/month",
-      cover: "₹10 Lac",
-      hospitals: 0,
+      name: "National Pension System (NPS)",
+      premium: "Varies based on contribution",
+      cover: "Market-linked",
+      hospitals: "N/A",
       renewalBonus: "N/A",
-      text: "Get the best health insurance plan with extensive coverage.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749889/logo_uupd0f.png",
-      link: "https://example.com/nps-plan",
+      text: "A voluntary, defined contribution retirement savings scheme designed to enable systematic savings during the subscriber's working life.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749889/logo_uupd0f.png",
+      link: "https://www.pfrda.org.in/"
     },
     {
-      name: "EPF",
-      premium: "₹1500/month",
-      cover: "₹8 Lac",
-      hospitals: 0,
+      name: "Employees' Provident Fund (EPF)",
+      premium: "12% of basic salary",
+      cover: "Varies based on contribution",
+      hospitals: "N/A",
       renewalBonus: "N/A",
-      text: "Get the best health insurance plan with extensive coverage.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749878/epf_bwvokn.jpg",
-      link: "https://example.com/epf-plan",
+      text: "A mandatory savings scheme for Indian employees, providing financial security and stability during retirement.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726749878/epf_bwvokn.jpg",
+      link: "https://www.epfindia.gov.in/"
     },
     {
-      name: "PM-SYM",
-      premium: "₹1500/month",
-      cover: "₹8 Lac",
-      hospitals: 0,
+      name: "Pradhan Mantri Shram Yogi Maandhan (PM-SYM)",
+      premium: "₹55 to ₹200/month",
+      cover: "₹3,000/month pension",
+      hospitals: "N/A",
       renewalBonus: "N/A",
-      text: "Get the best health insurance plan with extensive coverage.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729351466/emblem-black_btobue.svg",
-      link: "https://example.com/epf-plan",
+      text: "A pension scheme for unorganized workers providing a minimum assured pension of ₹3,000 per month after attaining the age of 60 years.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729351466/emblem-black_btobue.svg",
+      link: "https://maandhan.in/shramyogi"
     },
     {
-      name: "Atal-Pension Yojana",
-      premium: "₹1500/month",
-      cover: "₹8 Lac",
-      hospitals: 0,
+      name: "Atal Pension Yojana (APY)",
+      premium: "₹42 to ₹1,454/month",
+      cover: "₹1,000 - ₹5,000/month pension",
+      hospitals: "N/A",
       renewalBonus: "N/A",
-      text: "Get the best health insurance plan with extensive coverage.",
-      imageUrl:
-        "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729352516/Atal_Pension_Yojana_pqhpop.png",
-      link: "https://example.com/epf-plan",
-    },
+      text: "A pension scheme focused on unorganized sector workers, offering a guaranteed minimum pension ranging from ₹1,000 to ₹5,000 per month after the age of 60.",
+      imageUrl: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1729352516/Atal_Pension_Yojana_pqhpop.png",
+      link: "https://www.npscra.nsdl.co.in/nsdl/faq/APY_FAQs_17062020.pdf"
+    }
   ];
+  
+  
 
   // Handle CSP PDF download (same as before)
   const customerServicePoints = [
     {
-      name: "Customer Service Point 1",
-      contact: "John Doe",
-      number: "9876543210",
-      address: "123 Street, City",
+      name: "Maa Durga Service Point",
+      contact: "Montu Raulo",
+      number: "9439522812",
+      address: "Badambadi, Cuttack",
     },
     {
-      name: "Customer Service Point 2",
-      contact: "Jane Smith",
-      number: "9123456780",
-      address: "456 Lane, Town",
+      name: "CSP - Buxi Bazaar",
+      contact: "Amit Kumar",
+      number: "9876123450",
+      address: "Buxi Bazaar, Cuttack",
     },
-  ];
+    {
+      name: "CSP - College Square",
+      contact: "Priya Das",
+      number: "9437826954",
+      address: "College Square, Cuttack",
+    },
+    {
+      name: "Maa Tarini Center",
+      contact: "Preety Sethy",
+      number: "9958243619",
+      address: "Pahala, Cuttack",
+    },
+    {
+      name: "CSP - Choudhury Bazar",
+      contact: "Ravi Mishra",
+      number: "9123987654",
+      address: "Choudhury Bazar, Cuttack",
+    },
+];
 
   const downloadCSPAsPDF = (selectedCSP: string) => {
     const csp = customerServicePoints.find((csp) => csp.name === selectedCSP);

@@ -23,17 +23,17 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "10:45",
     trainer: "John Doe",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Mason course video.",
   },
   {
     id: 2,
     title: "Electrician",
-    description: "Become a certified electrician for green jobs.",
+    description: "Become a certified electrician for MoWASH.",
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "12:30",
     trainer: "Jane Smith",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Electrician course video.",
   },
   {
@@ -43,7 +43,7 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "14:15",
     trainer: "Michael Johnson",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Plumber course video.",
   },
   {
@@ -53,7 +53,7 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "8:20",
     trainer: "Lisa Turner",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Cesspool Technician course video.",
   },
   {
@@ -63,7 +63,7 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "11:05",
     trainer: "Tom Williams",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Sanitation Crew course video.",
   },
   {
@@ -73,19 +73,19 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "9:50",
     trainer: "Aisha Khan",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Nal Jal Mitra course video.",
   },
-  {
-    id: 7,
-    title: "STP Operator",
-    description: "Operate sewage treatment plants for a cleaner environment.",
-    videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
-    videoTiming: "10:30",
-    trainer: "David Clarke",
-    publishedBy: "Green Jobs Academy",
-    transcript: "This is the transcript for the STP Operator course video.",
-  },
+  // {
+  //   id: 7,
+  //   title: "STP Operator",
+  //   description: "Operate sewage treatment plants for a cleaner environment.",
+  //   videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
+  //   videoTiming: "10:30",
+  //   trainer: "David Clarke",
+  //   publishedBy: "MoWASH Academy",
+  //   transcript: "This is the transcript for the STP Operator course video.",
+  // },
   {
     id: 8,
     title: "Solar Pump Operator",
@@ -93,7 +93,7 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "13:10",
     trainer: "Priya Patel",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Solar Pump Operator course video.",
   },
   {
@@ -103,7 +103,7 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "11:45",
     trainer: "Henry Adams",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Pond Excavator course video.",
   },
   {
@@ -113,7 +113,7 @@ const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/9yGN8SG7fgk?si=sZPyODoXbOeFJN_T",
     videoTiming: "9:30",
     trainer: "Sophia Lee",
-    publishedBy: "Green Jobs Academy",
+    publishedBy: "MoWASH Academy",
     transcript: "This is the transcript for the Water Bill Collector course video.",
   },
 ];
@@ -150,7 +150,7 @@ const Apprentice = () => {
     <Layout>
       <div className="min-h-screen p-6 bg-transparent">
         <h1 className="text-4xl font-bold text-white text-center mb-6">
-          Welcome to the Apprentice program by <span className="text-green-600">Green</span> Jobs Academy
+          Welcome to the Apprentice program by <span className="text-blue-800">Mo </span> <span className="text-blue-500">WASH</span> Academy
         </h1>
         <p className="text-lg text-white text-center max-w-3xl mx-auto mb-10">
           The Apprentice program offers you the opportunity to gain
