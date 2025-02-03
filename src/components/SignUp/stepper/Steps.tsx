@@ -25,7 +25,7 @@ const Steps = [
   // SignupStep9, 
   // SignupStep11,
   // SignupStep12,
-  SignupStep13,
+  SignupStep13,  //bank details
   SignupStep10,
   // SignupStep8,
   // SignupStep1,

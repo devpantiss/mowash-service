@@ -119,7 +119,7 @@ const Sidebar: FC = () => {
           }`}
         >
           <GiGraduateCap size={20} />
-          <span className="hidden group-hover:block">Green Jobs</span>
+          <span className="hidden group-hover:block">Mo WASH Academy</span>
         </Link>
 
         {/* Profile */}
