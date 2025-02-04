@@ -66,7 +66,7 @@ const Navbar: FC = () => {
               className="w-8 h-8 rounded-full"
             />
             {/* User Name */}
-            <span className="hidden md:block">Stalin Nayak</span>
+            <span className="hidden md:block">Gautam Samanta</span>
             {/* Dropdown Arrow */}
             <svg
               className={`w-4 h-4 transition-transform duration-200 ${
@@ -93,14 +93,14 @@ const Navbar: FC = () => {
               <div className="p-4 flex items-center space-x-3">
                 {/* User Avatar */}
                 <img
-                  src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726535095/Pranab_kumar_Misra_expert_1_udboll.jpg" // Replace with actual user image URL
+                  src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1738615222/WhatsApp_Image_2025-02-04_at_2.08.31_AM_dadcvi.jpg" // Replace with actual user image URL
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full"
                 />
                 {/* User Details */}
                 <div>
-                  <p className="text-gray-800 font-semibold">Stalin Nayak</p>
-                  <p className="text-gray-500 text-sm">MWC ID: 123456</p>
+                  <p className="text-gray-800 font-semibold">Gautam Samanta</p>
+                  <p className="text-gray-500 text-sm">MWC120</p>
                 </div>
               </div>
 
