@@ -194,9 +194,9 @@ const SignupStep7: React.FC = () => {
                     required
                   >
                     <option value="">Select Social Status</option>
-                    <option value="Ultra Poor">Ultra Poor</option>
-                    <option value="BPL">BPL</option>
-                    <option value="APL">APL</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                    <option value="OBC">OBC</option>
                   </select>
                 </div>
                 {/* Economic Status Dropdown */}
@@ -212,9 +212,9 @@ const SignupStep7: React.FC = () => {
                     required
                   >
                     <option value="">Select Economic Status</option>
-                    <option value="SC">SC</option>
-                    <option value="ST">ST</option>
-                    <option value="OBC">OBC</option>
+                    <option value="Ultra Poor">Ultra Poor</option>
+                    <option value="BPL">BPL</option>
+                    <option value="APL">APL</option>
                   </select>
                 </div>
                 {/* Gender Dropdown */}

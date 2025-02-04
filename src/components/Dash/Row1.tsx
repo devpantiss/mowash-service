@@ -214,7 +214,7 @@ const Row1: React.FC = () => {
       earnings: 10000, // Stored as a number
       review: 4.8,
       status: "Completed",
-      date: "2025-02-01",
+      date: "2025-01-01",
     },
     {
       customerName: "Ankita Das",
@@ -223,8 +223,8 @@ const Row1: React.FC = () => {
       jobDescription: "Bathroom Fitting Installation",
       earnings: 12500,
       review: 4.5,
-      status: "Upcoming",
-      date: "2025-02-04",
+      status: "Completed",
+      date: "2025-01-04",
     },
     {
       customerName: "Bikash Swain",
@@ -234,7 +234,7 @@ const Row1: React.FC = () => {
       earnings: 7500,
       review: 4.2,
       status: "Missed",
-      date: "2025-02-06",
+      date: "2025-01-06",
     },
     {
       customerName: "Lopamudra Jena",
@@ -244,7 +244,7 @@ const Row1: React.FC = () => {
       earnings: 9000,
       review: 5,
       status: "Completed",
-      date: "2025-02-07",
+      date: "2025-01-07",
     },
     {
       customerName: "Subrat Sahoo",
@@ -254,7 +254,7 @@ const Row1: React.FC = () => {
       earnings: 15000,
       review: 4.7,
       status: "Completed",
-      date: "2025-02-09",
+      date: "2025-01-09",
     },
     {
       customerName: "Meera Patnaik",
@@ -264,7 +264,7 @@ const Row1: React.FC = () => {
       earnings: 6500,
       review: 4.0,
       status: "Upcoming",
-      date: "2025-02-11",
+      date: "2025-01-17",
     },
     {
       customerName: "Rajat Pradhan",
@@ -274,7 +274,7 @@ const Row1: React.FC = () => {
       earnings: 5000,
       review: 3.8,
       status: "Completed",
-      date: "2025-02-13",
+      date: "2025-01-21",
     },
     {
       customerName: "Priyanka Nayak",
@@ -284,7 +284,7 @@ const Row1: React.FC = () => {
       earnings: 11000,
       review: 4.6,
       status: "Upcoming",
-      date: "2025-02-15",
+      date: "2025-01-15",
     },
     {
       customerName: "Arun Kumar Das",
@@ -294,7 +294,7 @@ const Row1: React.FC = () => {
       earnings: 8000,
       review: 3.5,
       status: "Missed",
-      date: "2025-02-17",
+      date: "2025-01-27",
     },
     {
       customerName: "Pallavi Mishra",
@@ -304,7 +304,7 @@ const Row1: React.FC = () => {
       earnings: 18000,
       review: 4.9,
       status: "Completed",
-      date: "2025-02-19",
+      date: "2025-01-31",
     },
   ];
 
